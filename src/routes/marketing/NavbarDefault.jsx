@@ -8,7 +8,7 @@ const NavbarDefault = [
 		children: [
 			{
 				id: uuid(),
-				menuitem: 'Web Development',
+				menuitem: 'Desarrollo web',
 				link: '#',
 				children: [
 					{
@@ -60,12 +60,12 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Design',
+				menuitem: 'Diseño',
 				link: '#',
 				children: [
 					{
 						id: uuid(),
-						menuitem: 'Graphic Design',
+						menuitem: 'Diseño gráfico',
 						link: '/marketing/course-category/'
 					},
 					{
@@ -107,12 +107,12 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Mobile App',
+				menuitem: 'Desarrollo móvil',
 				link: '/marketing/course-category/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'IT Software',
+				menuitem: 'Contabilidad para mediocres',
 				link: '/marketing/course-category/'
 			},
 			{
@@ -122,78 +122,20 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Music',
+				menuitem: 'Música',
 				link: '/marketing/course-category/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'Life Style',
-				link: '/marketing/course-category/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Business',
-				link: '/marketing/course-category/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Photography',
+				menuitem: 'Fotografía',
 				link: '/marketing/course-category/'
 			}
 		]
 	},
+	
 	{
 		id: uuid(),
-		menuitem: 'Landings',
-		link: '#',
-		children: [
-			{
-				id: uuid(),
-				header: true,
-				header_text: 'LANDINGS'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Education',
-				link: '/marketing/landings/landing-education/',
-				badge: 'New',
-				badgecolor: 'primary',
-			},
-			{
-				id: uuid(),
-				menuitem: 'Home Academy',
-				link: '/marketing/landings/home-academy/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Courses',
-				link: '/marketing/landings/landing-courses/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Lead Course',
-				link: '/marketing/landings/course-lead/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Request Access',
-				link: '/marketing/landings/request-access/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'SaaS',
-				link: '/marketing/landings/landing-sass/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Job Listing',
-				link: '/marketing/landings/landing-job/'
-			}
-		]
-	},
-	{
-		id: uuid(),
-		menuitem: 'Pages',
+		menuitem: 'Secciones',
 		link: '#',
 		children: [
 			{
@@ -449,7 +391,7 @@ const NavbarDefault = [
 	},
 	{
 		id: uuid(),
-		menuitem: 'Accounts',
+		menuitem: 'Cuentas',
 		link: '#',
 		children: [
 			{

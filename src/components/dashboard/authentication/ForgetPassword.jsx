@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row, Card, Form, Button, Image } from 'react-bootstrap';
 
 // import media files
-import Logo from 'assets/images/brand/logo/logo-icon.svg';
+
 
 const ForgetPassword = () => {
 	return (
@@ -14,34 +14,31 @@ const ForgetPassword = () => {
 					<Card>
 						<Card.Body className="p-6">
 							<div className="mb-4">
-								<Link to="/">
-									<Image src={Logo} className="mb-4" alt="" />
-								</Link>
-								<h1 className="mb-1 fw-bold">Forgot Password</h1>
-								<span>Fill the form to reset your password.</span>
+								<h1 className="mb-1 fw-bold">Olvidé mi contraseña</h1>
+								<span>Rellena el formulario para recuperar tu contraseña.</span>
 							</div>
 							{/* Form */}
 							<Form>
 								<Row>
 									<Col lg={12} md={12} className="mb-3">
 										{/*  email */}
-										<Form.Label>Email</Form.Label>
+										<Form.Label>Correo Electrónico</Form.Label>
 										<Form.Control
 											type="email"
 											id="email"
-											placeholder="Enter your email"
+											placeholder="ejemplo@gmail.com"
 											required
 										/>
 									</Col>
 									<Col lg={12} md={12} className="mb-3 d-grid gap-2">
 										{/* Button */}
-										<Button variant="primary" type="submit">
-											Send Reset Link
+										<Button style={{backgroundColor:"#042b61", borderColor:"white"}} type="submit">
+											Enviar link de recuperación
 										</Button>
 									</Col>
 								</Row>
 								<span>
-									Return to <Link to="/authentication/sign-in">Sign in</Link>
+									Regresar a <Link to="/authentication/sign-in" style={{color:"#009475"}}>Iniciar Sesión</Link>
 								</span>
 							</Form>
 						</Card.Body>

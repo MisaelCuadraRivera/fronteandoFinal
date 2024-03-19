@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row, Card, Form, Button, Image } from 'react-bootstrap';
 
 // import media files
-import Logo from 'assets/images/brand/logo/Logo-utez.png';
+import Logo from 'assets/images/brand/logo/Logo-utez-2.png';
 
 const SignUp = () => {
 	return (
@@ -14,12 +14,14 @@ const SignUp = () => {
 						<Card.Body className="p-6">
 							<div className="mb-4 ">
 								<Link to="/marketing/landings/landing-courses/">
-									<Image src={Logo} className="mb-4" alt="" />
+									<div className='text-center'>
+										<Image src={Logo} className="mb-4 w-50" alt="" />
+									</div>
 								</Link>
 								<h1 className="mb-1 fw-bold mb-4">Registrarme</h1>
 								<span>
 									¿Ya tienes una cuenta?{' '}
-									<Link to="/authentication/sign-in" className="ms-1">
+									<Link to="/authentication/sign-in" className="ms-1" style={{ color: "#009475" }}>
 										Iniciar Sesión
 									</Link>
 								</span>
@@ -195,18 +197,18 @@ const SignUp = () => {
 											<Form.Check.Input type="checkbox" required />
 											<Form.Check.Label>
 												Acepto los
-												<Link to="/pages/terms-and-conditions">
+												<Link to="/pages/terms-and-conditions" style={{ color: "#009475" }}>
 													{' '}Términos de Servicio
 												</Link>
 												{' '}y la
-												<Link to="/pages/privacy-policy">
+												<Link to="/pages/privacy-policy" style={{ color: "#009475" }}>
 													{' '}Política de Privacidad.
 												</Link>
 											</Form.Check.Label>
 										</Form.Check>
 									</Col>
 									<Col lg={12} md={12} className="mb-0 d-grid gap-2">
-										<Button variant="primary" type="submit">
+										<Button type="submit" style={{ backgroundColor: "#042b61", borderColor: "white" }} >
 											Registrarse
 										</Button>
 									</Col>

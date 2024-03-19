@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row, Card, Form, Button, Image } from 'react-bootstrap';
 
 // import media files
-import Logo from 'assets/images/brand/logo/Logo-utez.png';
+import Logo from 'assets/images/brand/logo/Logo-utez-2.png';
 
 const SignIn = () => {
 	return (
@@ -15,12 +15,14 @@ const SignIn = () => {
 						<Card.Body className="p-6">
 							<div className="mb-4">
 								<Link to="/marketing/landings/landing-courses/">
-									<Image src={Logo} className="mb-4" alt="" />
+									<div className='text-center'>
+										<Image src={Logo} className="mb-4 w-50" alt="" />
+									</div>
 								</Link>
-								<h1 className="mb-1 fw-bold">Iniciar Sesión</h1>
+								<h1 className="mb-1 fw-bold ">Iniciar Sesión</h1>
 								<span>
 									¿No tienes una cuenta?{' '}
-									<Link to="/authentication/sign-up" className="ms-1">
+									<Link to="/authentication/sign-up" className="ms-1" style={{ color: "#009475" }}>
 										Regístrate
 									</Link>
 								</span>
@@ -57,20 +59,20 @@ const SignIn = () => {
 											>
 												<Form.Check type="checkbox" label="Recordarme" />
 											</Form.Group>
-											<Link to="/authentication/forget-password">
+											<Link to="/authentication/forget-password" style={{ color: "#009475" }}>
 												¿Olvidaste tu contraseña?
 											</Link>
 										</div>
 									</Col>
 									<Col lg={12} md={12} className="mb-0 d-grid gap-2">
 										{/* Button */}
-										<Button variant="primary" type="submit">
+										<Button type="submit" style={{ backgroundColor: "#042b61", borderColor:"white" }}>
 											Iniciar Sesión
 										</Button>
 									</Col>
 								</Row>
 							</Form>
-							
+
 						</Card.Body>
 					</Card>
 				</Col>
