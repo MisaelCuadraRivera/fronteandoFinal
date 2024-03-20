@@ -102,28 +102,6 @@ const FooterWithLinks = () => {
 							</div>
 						</Col>
 					</Row>
-					<Row className="align-items-center g-0 border-top py-2 mt-6">
-						{/* Desc  */}
-						<Col lg={4} md={5} sm={12}>
-							<span>© 2024 UTEZ, Todos los derechos reservados</span>
-						</Col>
-						{/*  Links  */}
-						<Col
-							lg={8}
-							md={7}
-							sm={12}
-							className="d-md-flex justify-content-end"
-						>
-							<nav className="nav nav-footer">
-								<Link className="nav-link ps-0" to="#">
-									Política de privacidad
-								</Link>
-								<Link className="nav-link" to="#">
-									Términos de uso
-								</Link>
-							</nav>
-						</Col>
-					</Row>
 				</Container>
 			</footer>
 		</Fragment>
