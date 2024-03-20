@@ -1,0 +1,823 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\samic\\Music\\fronteando\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\account-settings\\EditProfile.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\account-settings\\EditProfile.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\ProfileLayout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\student\\ProfileLayout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\Dashboard.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\student\\Dashboard.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\ProfileCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\pages\\courses\\ProfileCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\QuickMenu.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\QuickMenu.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\AllRoutes.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\AllRoutes.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\BestSellingCoursesData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\data\\marketing\\BestSellingCoursesData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CoursePathData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\data\\marketing\\CoursePathData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\CoursesCategory.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\dashboard\\courses\\CoursesCategory.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\DashboardIndex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\dashboard\\DashboardIndex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\NavbarVertical.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\dashboard\\NavbarVertical.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarMegaMenuRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\marketing\\NavbarMegaMenuRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarDefault.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\marketing\\NavbarDefault.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\NavbarTopRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\dashboard\\NavbarTopRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\DashboardRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\dashboard\\DashboardRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavbarCompact.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\dashboard\\navbars\\NavbarCompact.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavDropdownMain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\dashboard\\navbars\\NavDropdownMain.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\overview\\Overview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\dashboard\\overview\\Overview.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\marketing\\DefaultLayout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\layouts\\marketing\\DefaultLayout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\AppConfig.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\AppConfig.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\server.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\JobListingRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\marketing\\JobListingRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\HelpCenterRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\marketing\\HelpCenterRoutes.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\reportWebVitals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\reportWebVitals.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\setupTests.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\setupTests.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\.eslintrc.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.eslintrc.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\jsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:jsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\LICENSE||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LICENSE||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\helper\\utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\helper\\utils.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\reducers\\AppConfigReducer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\reducers\\AppConfigReducer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\StudentDashboardMenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\routes\\marketing\\StudentDashboardMenu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CourseIndexData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\data\\marketing\\CourseIndexData.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EditProfile.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\account-settings\\EditProfile.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\account-settings\\EditProfile.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\account-settings\\EditProfile.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\account-settings\\EditProfile.jsx",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAwFIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T14:15:08.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProfileLayout.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\ProfileLayout.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\student\\ProfileLayout.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\ProfileLayout.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\student\\ProfileLayout.jsx",
+              "ViewState": "AQIAACIAAAAAAAAAAAAjwFEAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T14:11:35.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProfileCard.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\ProfileCard.js",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\pages\\courses\\ProfileCard.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\ProfileCard.js",
+              "RelativeToolTip": "src\\components\\marketing\\pages\\courses\\ProfileCard.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T14:09:33.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\Dashboard.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\student\\Dashboard.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\student\\Dashboard.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\student\\Dashboard.jsx",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T14:03:09.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InstructorCard.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js",
+              "RelativeToolTip": "src\\components\\marketing\\landings\\landing-courses\\InstructorCard.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T08:04:15.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HeroTyped.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\landings\\landing-courses\\HeroTyped.jsx",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAC0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T08:04:11.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TestimonialSection.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\landings\\landing-courses\\TestimonialSection.jsx",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T08:03:44.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WorldClassInstructors.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js",
+              "RelativeToolTip": "src\\components\\marketing\\landings\\landing-courses\\WorldClassInstructors.js",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T08:03:34.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CourseCategory.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\pages\\courses\\course-category\\CourseCategory.jsx",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAowHUAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T07:58:55.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HeroHeader.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js",
+              "RelativeToolTip": "src\\components\\marketing\\pages\\courses\\course-index\\HeroHeader.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T07:58:41.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AllRoutes.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\AllRoutes.jsx",
+              "RelativeDocumentMoniker": "src\\layouts\\AllRoutes.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\AllRoutes.jsx",
+              "RelativeToolTip": "src\\layouts\\AllRoutes.jsx",
+              "ViewState": "AQIAAKACAAAAAAAAAAAiwKoCAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:28:12.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "QuickMenu.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\QuickMenu.jsx",
+              "RelativeDocumentMoniker": "src\\layouts\\QuickMenu.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\QuickMenu.jsx",
+              "RelativeToolTip": "src\\layouts\\QuickMenu.jsx",
+              "ViewState": "AQIAAIkAAAAAAAAAAAAQwJEAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:26:11.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CourseIndex.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js",
+              "RelativeToolTip": "src\\components\\marketing\\pages\\courses\\course-index\\CourseIndex.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T07:58:39.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LandingCourses.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx",
+              "RelativeDocumentMoniker": "src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx",
+              "RelativeToolTip": "src\\components\\marketing\\landings\\landing-courses\\LandingCourses.jsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:50:21.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BestSellingCoursesData.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\BestSellingCoursesData.js",
+              "RelativeDocumentMoniker": "src\\data\\marketing\\BestSellingCoursesData.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\BestSellingCoursesData.js",
+              "RelativeToolTip": "src\\data\\marketing\\BestSellingCoursesData.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T07:57:03.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CoursePathData.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CoursePathData.js",
+              "RelativeDocumentMoniker": "src\\data\\marketing\\CoursePathData.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CoursePathData.js",
+              "RelativeToolTip": "src\\data\\marketing\\CoursePathData.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T07:56:50.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CoursesCategory.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\CoursesCategory.js",
+              "RelativeDocumentMoniker": "src\\components\\dashboard\\courses\\CoursesCategory.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\CoursesCategory.js",
+              "RelativeToolTip": "src\\components\\dashboard\\courses\\CoursesCategory.js",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T07:56:03.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DashboardIndex.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\DashboardIndex.js",
+              "RelativeDocumentMoniker": "src\\layouts\\dashboard\\DashboardIndex.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\DashboardIndex.js",
+              "RelativeToolTip": "src\\layouts\\dashboard\\DashboardIndex.js",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T06:43:43.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "NavbarVertical.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\NavbarVertical.jsx",
+              "RelativeDocumentMoniker": "src\\layouts\\dashboard\\NavbarVertical.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\NavbarVertical.jsx",
+              "RelativeToolTip": "src\\layouts\\dashboard\\NavbarVertical.jsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACoBAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T06:42:25.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "NavDropdownMain.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavDropdownMain.js",
+              "RelativeDocumentMoniker": "src\\layouts\\dashboard\\navbars\\NavDropdownMain.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavDropdownMain.js",
+              "RelativeToolTip": "src\\layouts\\dashboard\\navbars\\NavDropdownMain.js",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T06:40:14.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NavbarCompact.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavbarCompact.js",
+              "RelativeDocumentMoniker": "src\\layouts\\dashboard\\navbars\\NavbarCompact.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\dashboard\\navbars\\NavbarCompact.js",
+              "RelativeToolTip": "src\\layouts\\dashboard\\navbars\\NavbarCompact.js",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T06:40:07.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "DashboardRoutes.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\DashboardRoutes.js",
+              "RelativeDocumentMoniker": "src\\routes\\dashboard\\DashboardRoutes.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\DashboardRoutes.js",
+              "RelativeToolTip": "src\\routes\\dashboard\\DashboardRoutes.js",
+              "ViewState": "AQIAACEAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:26:02.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "NavbarTopRoutes.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\NavbarTopRoutes.js",
+              "RelativeDocumentMoniker": "src\\routes\\dashboard\\NavbarTopRoutes.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\dashboard\\NavbarTopRoutes.js",
+              "RelativeToolTip": "src\\routes\\dashboard\\NavbarTopRoutes.js",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:26:03.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "DefaultLayout.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\marketing\\DefaultLayout.js",
+              "RelativeDocumentMoniker": "src\\layouts\\marketing\\DefaultLayout.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\layouts\\marketing\\DefaultLayout.js",
+              "RelativeToolTip": "src\\layouts\\marketing\\DefaultLayout.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:52:34.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "NavbarMegaMenuRoutes.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarMegaMenuRoutes.js",
+              "RelativeDocumentMoniker": "src\\routes\\marketing\\NavbarMegaMenuRoutes.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarMegaMenuRoutes.js",
+              "RelativeToolTip": "src\\routes\\marketing\\NavbarMegaMenuRoutes.js",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:25:45.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "App.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\App.js",
+              "RelativeDocumentMoniker": "src\\App.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\App.js",
+              "RelativeToolTip": "src\\App.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:23:29.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\index.js",
+              "RelativeDocumentMoniker": "src\\index.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\index.js",
+              "RelativeToolTip": "src\\index.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:23:20.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "NavbarDefault.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarDefault.jsx",
+              "RelativeDocumentMoniker": "src\\routes\\marketing\\NavbarDefault.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\NavbarDefault.jsx",
+              "RelativeToolTip": "src\\routes\\marketing\\NavbarDefault.jsx",
+              "ViewState": "AQIAAHkCAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:25:46.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "JobListingRoutes.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\JobListingRoutes.js",
+              "RelativeDocumentMoniker": "src\\routes\\marketing\\JobListingRoutes.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\JobListingRoutes.js",
+              "RelativeToolTip": "src\\routes\\marketing\\JobListingRoutes.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:31:29.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "HelpCenterRoutes.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\HelpCenterRoutes.js",
+              "RelativeDocumentMoniker": "src\\routes\\marketing\\HelpCenterRoutes.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\HelpCenterRoutes.js",
+              "RelativeToolTip": "src\\routes\\marketing\\HelpCenterRoutes.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:31:25.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Overview.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\overview\\Overview.jsx",
+              "RelativeDocumentMoniker": "src\\components\\dashboard\\overview\\Overview.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\overview\\Overview.jsx",
+              "RelativeToolTip": "src\\components\\dashboard\\overview\\Overview.jsx",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAswGoAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:19:25.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AllCourses.jsx",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx",
+              "RelativeDocumentMoniker": "src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx",
+              "RelativeToolTip": "src\\components\\dashboard\\courses\\all-courses\\AllCourses.jsx",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswEUAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-03-19T05:19:52.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "reportWebVitals.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\reportWebVitals.js",
+              "RelativeDocumentMoniker": "src\\reportWebVitals.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\reportWebVitals.js",
+              "RelativeToolTip": "src\\reportWebVitals.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:24:23.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "setupTests.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\setupTests.js",
+              "RelativeDocumentMoniker": "src\\setupTests.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\setupTests.js",
+              "RelativeToolTip": "src\\setupTests.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:23:38.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\.env",
+              "RelativeDocumentMoniker": ".env",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\.env",
+              "RelativeToolTip": ".env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-19T05:31:06.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AppConfig.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\AppConfig.js",
+              "RelativeDocumentMoniker": "src\\AppConfig.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\AppConfig.js",
+              "RelativeToolTip": "src\\AppConfig.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:23:34.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": ".eslintrc.json",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\.eslintrc.json",
+              "RelativeDocumentMoniker": ".eslintrc.json",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\.eslintrc.json",
+              "RelativeToolTip": ".eslintrc.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-19T05:31:01.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "server.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\server.js",
+              "RelativeDocumentMoniker": "server.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\server.js",
+              "RelativeToolTip": "server.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:24:07.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-19T05:31:00.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "jsconfig.json",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\jsconfig.json",
+              "RelativeDocumentMoniker": "jsconfig.json",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\jsconfig.json",
+              "RelativeToolTip": "jsconfig.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-19T05:29:17.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "LICENSE",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\LICENSE",
+              "RelativeDocumentMoniker": "LICENSE",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\LICENSE",
+              "RelativeToolTip": "LICENSE",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-03-19T05:29:15.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\package-lock.json",
+              "RelativeDocumentMoniker": "package-lock.json",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\package-lock.json",
+              "RelativeToolTip": "package-lock.json",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAAABEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-19T05:29:05.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\package.json",
+              "RelativeDocumentMoniker": "package.json",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\package.json",
+              "RelativeToolTip": "package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-19T05:26:49.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "utils.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\helper\\utils.js",
+              "RelativeDocumentMoniker": "src\\helper\\utils.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\helper\\utils.js",
+              "RelativeToolTip": "src\\helper\\utils.js",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:27:35.71Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AppConfigReducer.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\reducers\\AppConfigReducer.js",
+              "RelativeDocumentMoniker": "src\\reducers\\AppConfigReducer.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\reducers\\AppConfigReducer.js",
+              "RelativeToolTip": "src\\reducers\\AppConfigReducer.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:27:20.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "StudentDashboardMenu.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\StudentDashboardMenu.js",
+              "RelativeDocumentMoniker": "src\\routes\\marketing\\StudentDashboardMenu.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\routes\\marketing\\StudentDashboardMenu.js",
+              "RelativeToolTip": "src\\routes\\marketing\\StudentDashboardMenu.js",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAE8AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:23:50.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CourseIndexData.js",
+              "DocumentMoniker": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CourseIndexData.js",
+              "RelativeDocumentMoniker": "src\\data\\marketing\\CourseIndexData.js",
+              "ToolTip": "C:\\Users\\samic\\Music\\fronteando\\src\\data\\marketing\\CourseIndexData.js",
+              "RelativeToolTip": "src\\data\\marketing\\CourseIndexData.js",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-03-19T05:08:48.087Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

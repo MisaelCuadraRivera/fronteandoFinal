@@ -84,7 +84,7 @@ const CategorySingle = () => {
 					);
 				}
 			},
-			{ accessorKey: 'date_added', header: '', show: false },
+			{ accessorKey: 'date_added', header: 'Fecha de publicacion', show: false },
 			{
 				accessorKey: 'instructor_name',
 				header: 'Instructor',
@@ -103,7 +103,7 @@ const CategorySingle = () => {
 			},
 			{
 				accessorKey: 'enrolled',
-				header: 'Enrolled',
+				header: 'Estudiantes inscritos',
 				cell: ({ getValue }) => {
 					return numberWithCommas(getValue());
 				}
@@ -129,22 +129,22 @@ const CategorySingle = () => {
 						<div className="mb-3 mb-md-0">
 							<h1 className="mb-1 h2 fw-bold">
 								{' '}
-								Web Development <span className="fs-5">(210 Courses)</span>{' '}
+								Categorias especificas <span className="fs-5">(210 Courses)</span>{' '}
 							</h1>
 							<Breadcrumb>
-								<Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">Category</Breadcrumb.Item>
-								<Breadcrumb.Item active>Web Development</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Categorias especificas</Breadcrumb.Item>
+								<Breadcrumb.Item active>JAVA</Breadcrumb.Item>
 							</Breadcrumb>
 						</div>
 						<div>
 							<Link
-								to="#"
+								to="/courses/all-courses"
 								className="btn btn-outline-secondary"
 								data-bs-toggle="modal"
 								data-bs-target="#newCatgory"
 							>
-								Back to All Category
+								Regresar a todas las categorias
 							</Link>
 						</div>
 					</div>
@@ -159,7 +159,7 @@ const CategorySingle = () => {
 								data={data}
 								columns={columns}
 								filter={true}
-								filterPlaceholder="Search Course"
+								filterPlaceholder="Buscar cursos"
 								pagination={true} />
 						</Card.Body>
 					</Card>

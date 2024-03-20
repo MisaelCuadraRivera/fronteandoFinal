@@ -55,16 +55,16 @@ const ActionMenu = () => {
 				<Dropdown.Header>SETTINGS</Dropdown.Header>
 				<Dropdown.Item eventKey="1">
 					{' '}
-					<Edit size="15px" className="dropdown-item-icon" /> Edit
+					<Edit size="15px" className="dropdown-item-icon" /> Editar
 				</Dropdown.Item>
 				<Dropdown.Item eventKey="2">
 					{' '}
-					<Trash size="15px" className="dropdown-item-icon" /> Delete
+					<Trash size="15px" className="dropdown-item-icon" /> Eliminar
 				</Dropdown.Item>
 				<Dropdown.Item eventKey="3">
 					{' '}
-					<CreditCard size="15px" className="dropdown-item-icon" /> Make it
-					Primary
+					<CreditCard size="15px" className="dropdown-item-icon" /> Haz
+					Principal
 				</Dropdown.Item>
 			</Dropdown.Menu>
 		</Dropdown>

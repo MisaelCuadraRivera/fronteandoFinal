@@ -22,12 +22,12 @@ const Pagination = ({ nPages, currentPage, setCurrentPage }) => {
 			)}
 			{currentPage === nPages ? (
 				<Link className="btn btn-primary" to="/marketing/student/quiz/result/">
-					Finish
+					Finalizar
 				</Link>
 			) : (
 				<Button variant="primary" onClick={nextPage}>
 					{' '}
-					Next <i className="fe fe-arrow-right"></i>
+					Siguiente <i className="fe fe-arrow-right"></i>
 				</Button>
 			)}
 		</div>

@@ -16,16 +16,15 @@ const Quiz = () => {
 					<div className="text-center">
 						<img src={SurveyImg} alt="" className="img-fluid" />
 						<div className="px-lg-18">
-							<h1>Welcome to Quiz </h1>
+							<h1>Bienvenido al Examen Grindr</h1>
 							<p className="mb-0">
-								Engage live or asynchronously with quiz and poll questions that
-								participants complete at their own pace.
+								Descubre que tanto conocimiento tienes sobre la aplicacion de Grindr.
 							</p>
 							<Link
 								to="/marketing/student/quiz/start/"
 								className="btn btn-primary mt-4"
 							>
-								Start Your Quiz
+								Empezar tu Examen
 							</Link>
 						</div>
 					</div>

@@ -33,7 +33,7 @@ const HeroTyped = () => {
 							     Desarrolla tus habilidades con los mejores cursos en línea o presenciales que te ofrece la UTEZ
 							</p>
 							<Link
-								to="/marketing/pages/pricing"
+								to="/marketing/course-category/"
 								className="btn me-2"
 								style={{backgroundColor: "#009475", color: "white"}}
 								

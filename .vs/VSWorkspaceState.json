@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\marketing",
+    "\\src\\components\\marketing\\account-settings",
+    "\\src\\components\\marketing\\landings",
+    "\\src\\components\\marketing\\landings\\landing-courses",
+    "\\src\\components\\marketing\\pages",
+    "\\src\\components\\marketing\\pages\\courses\\course-category",
+    "\\src\\components\\marketing\\student",
+    "\\src\\components\\marketing\\student\\quiz-start"
+  ],
+  "SelectedNode": "\\src\\components\\marketing\\account-settings\\EditProfile.jsx",
+  "PreviewInSolutionExplorer": false
+}

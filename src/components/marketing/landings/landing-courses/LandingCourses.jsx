@@ -31,31 +31,28 @@ const LandingCourses = () => {
 				{/* Page Content */}
 				<HeroTyped />
 
-				{/*  Featured in section */}
-				<LogosTopHeading title="NUESTROS CLIENTES" logos={LogoList2} />
+				{/* Browse Categories Section  */}
+				<BrowseCategories />
 
 				{/* Why learn with geeks */}
 				<Features4Columns />
 
-				{/* Browse Categories Section  */}
-				<BrowseCategories />
+				{/*  Featured in section */}
+				<LogosTopHeading title="NUESTROS CLIENTES" logos={LogoList2} />
+
 
 				<hr className="my-0" />
 
 
-				<section className="py-8 py-lg-16 bg-white">					
-					<Container>
-						<TestimonialSection />
-					</Container>
-				</section>
+
 
 				{/*  CTA section */}
 				<CTA2Buttons
-					title="Join more than 1 million learners worldwide"
-					description="Effective learning starts with assessment. Learning a new skill is hard work—Signal makes it easier."
-					btntext1="Start Learning for Free"
-					btnlink1="/authentication/sign-up"
-					btntext2="Geeks for Business"
+					title="Unete a la comunidad de halcones de la UTEZ"
+					description="Donde puedes encontrar cursos para resolver cualquier duda de los temas de tu carrera."
+					btntext1="Inicia Sesion"
+					btnlink1="/authentication/sign-in"
+					btntext2="Registrate"
 					btnlink2="/authentication/sign-up"
 				/>
 			</main>
