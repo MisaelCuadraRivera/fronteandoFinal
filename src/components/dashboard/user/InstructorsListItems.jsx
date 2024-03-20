@@ -44,14 +44,14 @@ const InstructorsListItems = () => {
 					<MoreVertical size="15px" className="text-secondary" />
 				</Dropdown.Toggle>
 				<Dropdown.Menu align="end">
-					<Dropdown.Header>SETTINGS</Dropdown.Header>
+					<Dropdown.Header>Configuracion</Dropdown.Header>
 					<Dropdown.Item eventKey="1">
 						{' '}
-						<Edit size="15px" className="dropdown-item-icon" /> Edit
+						<Edit size="15px" className="dropdown-item-icon" /> Editar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="2">
 						{' '}
-						<Trash size="15px" className="dropdown-item-icon" /> Remove
+						<Trash size="15px" className="dropdown-item-icon" /> Eliminar
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -62,7 +62,7 @@ const InstructorsListItems = () => {
 		() => [
 			{
 				accessorKey: 'name',
-				header: 'Name',
+				header: 'Nombre',
 				cell: ({ getValue, row }) => {
 					return (
 						<div className="d-flex align-items-center">
@@ -76,42 +76,23 @@ const InstructorsListItems = () => {
 					);
 				}
 			},
-			{ accessorKey: 'topic', header: 'Topic' },
-			{ accessorKey: 'courses', header: 'Courses' },
-			{ accessorKey: 'joined', header: 'Joined' },
+			{ accessorKey: 'topic', header: 'Especialidad' },
+			{ accessorKey: 'courses', header: 'No. Cursos' },
+			{ accessorKey: 'joined', header: 'Registro de alta' },
 			{
 				accessorKey: 'students',
-				header: 'Students',
+				header: 'Estudiantes',
 				cell: ({ getValue }) => {
 					return numberWithCommas(getValue());
 				}
 			},
 			{
 				accessorKey: 'rating',
-				header: 'Rating',
+				header: 'Puntuacion',
 				cell: ({ getValue }) => {
 					return (
 						<div className="align-middle text-warning border-top-0">
 							{getValue()} <Icon path={mdiStar} size={0.6} />
-						</div>
-					);
-				}
-			},
-			{
-				accessorKey: 'message',
-				header: '',
-				cell: () => {
-					return (
-						<div className="align-middle border-top-0">
-							<OverlayTrigger
-								key="top"
-								placement="top"
-								overlay={<Tooltip id={`tooltip-top`}>Message</Tooltip>}
-							>
-								<Link href="#">
-									<Mail size="15px" className="dropdown-item-icon" />
-								</Link>
-							</OverlayTrigger>
 						</div>
 					);
 				}
@@ -125,7 +106,7 @@ const InstructorsListItems = () => {
 							<OverlayTrigger
 								key="top"
 								placement="top"
-								overlay={<Tooltip id={`tooltip-top`}>Delete</Tooltip>}
+								overlay={<Tooltip id={`tooltip-top`}>Eliminar</Tooltip>}
 							>
 								<Link href="#">
 									<Trash size="15px" className="dropdown-item-icon" />
@@ -153,7 +134,7 @@ const InstructorsListItems = () => {
 			data={data}
 			columns={columns}
 			filter={true}
-			filterPlaceholder="Search Instructors"
+			filterPlaceholder="Buscar instructores"
 			pagination={true} />
 	);
 };

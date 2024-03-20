@@ -45,20 +45,20 @@ function InstructorsGridCard() {
 								<p className="mb-0">{instructors.topic}</p>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2 mt-4">
-								<span>Students</span>
+								<span>Estudiantes</span>
 								<span className="text-dark">
 									{numberWithCommas(instructors.students)}
 								</span>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2">
-								<span>Instructor Rating</span>
+								<span>Calificacion del instructor</span>
 								<span className="text-warning">
 									{instructors.rating}{' '}
 									<Icon path={mdiStar} size={0.6} className="mb-1" />{' '}
 								</span>
 							</div>
 							<div className="d-flex justify-content-between pt-2">
-								<span>Courses</span>
+								<span>Cursos</span>
 								<span className="text-dark"> {instructors.courses} </span>
 							</div>
 						</Card.Body>
@@ -105,7 +105,7 @@ function InstructorsGridCard() {
 				{displayInstructors.length > 0 ? (
 					displayInstructors
 				) : (
-					<Col>No matching instructors found.</Col>
+					<Col>No hay instructores encontrados.</Col>
 				)}
 			</Row>
 

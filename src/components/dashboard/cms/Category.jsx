@@ -37,13 +37,13 @@ const Category = () => {
 				<Dropdown.Menu align={'end'}>
 					<Dropdown.Header>ACTION</Dropdown.Header>
 					<Dropdown.Item eventKey="1">
-						<Send size="15px" className="dropdown-item-icon" /> Publish
+						<Send size="15px" className="dropdown-item-icon" /> Publicar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="2">
-						<Inbox size="15px" className="dropdown-item-icon" /> Moved Draft
+						<Inbox size="15px" className="dropdown-item-icon" /> Archivado
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="3">
-						<Trash size="15px" className="dropdown-item-icon" /> Delete
+						<Trash size="15px" className="dropdown-item-icon" /> Eliminar
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -77,7 +77,7 @@ const Category = () => {
 			},
 			{
 				accessorKey: 'category',
-				header: 'Category',
+				header: 'Categoria',
 				cell: ({ getValue }) => {
 					return (
 						(<Link href="#" className="text-inherit position-relative">
@@ -86,10 +86,10 @@ const Category = () => {
 					);
 				}
 			},
-			{ accessorKey: 'slug', header: 'Slug' },
-			{ accessorKey: 'posts', header: 'Posts' },
-			{ accessorKey: 'date_created', header: 'Date Created' },
-			{ accessorKey: 'date_updated', header: 'Date Updated' },
+			{ accessorKey: 'slug', header: 'Identificador' },
+			{ accessorKey: 'posts', header: 'Cursos con esa categoria' },
+			{ accessorKey: 'date_created', header: 'Fecha de creacion' },
+			{ accessorKey: 'date_updated', header: 'Fecha de actualizacion' },
 			{
 				accessorKey: 'status',
 				header: 'Status',
@@ -116,16 +116,16 @@ const Category = () => {
 				<Col lg={12} md={12} sm={12}>
 					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
 						<div className="mb-3 mb-md-0">
-							<h1 className="mb-1 h2 fw-bold">Category</h1>
+							<h1 className="mb-1 h2 fw-bold">Tipos de evento</h1>
 							<Breadcrumb>
 								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">CMS</Breadcrumb.Item>
-								<Breadcrumb.Item active>Category</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Gestion de eventos</Breadcrumb.Item>
+								<Breadcrumb.Item active>Tipos de evento</Breadcrumb.Item>
 							</Breadcrumb>
 						</div>
 						<div>
 							<Link to="/cms/all-posts" className="btn btn-outline-secondary ">
-								Back to All Post
+								Regresar a listado de eventos
 							</Link>
 						</div>
 					</div>
@@ -139,7 +139,7 @@ const Category = () => {
 								data={data}
 								columns={columns}
 								filter={true}
-								filterPlaceholder="Search Category"
+								filterPlaceholder="Buscar eventos"
 								pagination={true} />
 						</Card.Body>
 					</Card>

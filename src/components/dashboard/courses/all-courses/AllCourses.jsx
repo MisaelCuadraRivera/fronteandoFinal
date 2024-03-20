@@ -48,7 +48,7 @@ const AllCourses = () => {
 									</Nav.Item>
 									<Nav.Item>
 										<Nav.Link eventKey="approved" className="mb-sm-3 mb-md-0">
-											Aprovados
+											Aprobados
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>

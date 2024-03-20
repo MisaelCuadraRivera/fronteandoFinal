@@ -269,35 +269,7 @@ const NavbarVertical = (props) => {
 									</Fragment>
 								);
 							} else {
-								return (
-									<Card bsPrefix="nav-item" key={index}>
-										{/* menu item without any childern items like Help Center, Documentation and Changelog items*/}
-										<Link
-											to={menu.link}
-											className={`nav-link ${
-												location.pathname === menu.link ? 'active' : ''
-											}`}
-										>
-											{typeof menu.icon === 'string' ? (
-												<i className={`nav-icon fe fe-${menu.icon} me-2`}></i>
-											) : (
-												menu.icon
-											)}
-											{menu.title}
-											{menu.badge ? (
-												<Badge
-													className="ms-1"
-													bg={menu.badgecolor ? menu.badgecolor : 'primary'}
-												>
-													{menu.badge}
-												</Badge>
-											) : (
-												''
-											)}
-										</Link>
-										{/* end of menu item without any childern items */}
-									</Card>
-								);
+								
 							}
 						}
 					})}

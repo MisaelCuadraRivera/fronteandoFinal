@@ -44,17 +44,17 @@ const StudentsGridCard = () => {
 								</p>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2 mt-6">
-								<span>Payments</span>
+								<span>Pagos</span>
 								<span className="text-dark">
 									${numberWithCommas(students.payment)}
 								</span>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2">
-								<span>Joined at</span>
+								<span>Fecha de registro</span>
 								<span>{students.joined}</span>
 							</div>
 							<div className="d-flex justify-content-between pt-2">
-								<span>Courses</span>
+								<span>Cursos</span>
 								<span className="text-dark"> {students.enrolled} </span>
 							</div>
 						</Card.Body>
@@ -92,7 +92,7 @@ const StudentsGridCard = () => {
 			<div className="mb-4">
 				<Form.Control
 					type="search"
-					placeholder="Search Students"
+					placeholder="Buscar Estudiantes"
 					value={searchTerm}
 					onChange={getSearchTerm}
 				/>
@@ -101,7 +101,7 @@ const StudentsGridCard = () => {
 				{displayStudents.length > 0 ? (
 					displayStudents
 				) : (
-					<Col>No matching students found.</Col>
+					<Col>No hay estudiantes encontrados.</Col>
 				)}
 			</Row>
 

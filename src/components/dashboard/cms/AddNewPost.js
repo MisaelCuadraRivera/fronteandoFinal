@@ -27,30 +27,7 @@ import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
 import Avatar1 from 'assets/images/avatar/avatar-1.jpg';
 
 const AddNewPost = () => {
-	const initialValue = `<h4>One Ring to Rule Them All</h4>
-  <br />
-  <p>
-  Three Rings for the
-  <i> Elven-kingsunder</i> the sky, <br />
-  Seven for the <u>Dwarf-lords</u> in halls of stone,
-  Nine for Mortal Men, <br />
-  doomed to die, One for the Dark Lord on his dark
-  throne. <br />
-  In the Land of Mordor where the Shadows lie.
-  <br />
-  <br />
-  </p>
-  <p>
-  One Ring to
-  <b>rule</b> them all, <br />
-  One Ring to find them, <br />
-  One Ring to bring them all and in the darkness bind
-  them. <br />
-  In the Land of Mordor where the Shadows lie.
-  </p>
-  <p>
-  <br />
-  </p>`;
+	const initialValue = `<h4>Esto es un ejemplo</h4>`;
 
 	const categoryOptions = [
 		{ value: 'course', label: 'Course' },
@@ -65,16 +42,16 @@ const AddNewPost = () => {
 				<Col lg={12} md={12} sm={12}>
 					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
 						<div className="mb-3 mb-md-0">
-							<h1 className="mb-1 h2 fw-bold">Add New Post</h1>
+							<h1 className="mb-1 h2 fw-bold">Agregar nuevo evento</h1>
 							<Breadcrumb>
 								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">CMS</Breadcrumb.Item>
-								<Breadcrumb.Item active>Add New Post</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Gestion de eventos</Breadcrumb.Item>
+								<Breadcrumb.Item active>Tipos de eventos</Breadcrumb.Item>
 							</Breadcrumb>
 						</div>
 						<div>
 							<Link to="/cms/all-posts" className="btn btn-outline-secondary ">
-								Back to All Post
+								Regresar a listado de eventos
 							</Link>
 						</div>
 					</div>
@@ -85,11 +62,11 @@ const AddNewPost = () => {
 				<Col xl={9} lg={8} md={12} sm={12}>
 					<Card>
 						<Card.Header>
-							<h4 className="mb-0">Create Post</h4>
+							<h4 className="mb-0">Crear evento</h4>
 						</Card.Header>
 						<Card.Body>
 							<Button variant="outline-secondary" className="me-1 mb-1">
-								<i className="fe fe-image me-1"></i> Photo
+								<i className="fe fe-image me-1"></i> Foto
 							</Button>
 
 							<Button variant="outline-secondary" className="me-1 mb-1">
@@ -97,7 +74,7 @@ const AddNewPost = () => {
 							</Button>
 
 							<Button variant="outline-secondary" className="me-1 mb-1">
-								Quote
+								Parrafo
 							</Button>
 
 							<Button variant="outline-secondary" className="mb-1">
@@ -117,31 +94,29 @@ const AddNewPost = () => {
 									<Col md={9} sm={12}>
 										{/* Date */}
 										<Form.Group className="mb-3">
-											<Form.Label htmlFor="selectDate">Date</Form.Label>
+											<Form.Label htmlFor="selectDate">Fecha</Form.Label>
 											<FlatPickr value={''} />
 										</Form.Group>
 
 										{/* Title  */}
 										<Form.Group className="mb-3">
-											<Form.Label htmlFor="postTitle">Title</Form.Label>
+											<Form.Label htmlFor="postTitle">Titulo</Form.Label>
 											<Form.Control
 												type="text"
 												placeholder="Post Title"
 												id="postTitle"
 											/>
 											<Form.Text className="text-muted">
-												Keep your post titles under 60 characters. Write heading
-												that describe the topic content. Contextualize for Your
-												Audience.
+												Manten tus eventos con valor maximo a 60 caracteres.
 											</Form.Text>
 										</Form.Group>
 
 										{/*   Slug  */}
 										<Form.Group className="mb-3">
-											<Form.Label htmlFor="basic-url">Slug</Form.Label>
+											<Form.Label htmlFor="basic-url">Identificador</Form.Label>
 											<InputGroup>
 												<InputGroup.Text id="basic-addon3">
-													https://example.com/
+													https://ejemplo.com/
 												</InputGroup.Text>
 												<FormControl
 													id="basic-url"
@@ -151,16 +126,16 @@ const AddNewPost = () => {
 											</InputGroup>
 											<Form.Text className="text-muted">
 												{' '}
-												Field must contain a unique value
+												El campo debe tener un valor unico
 											</Form.Text>
 										</Form.Group>
 
 										{/* Excerpt */}
 										<Form.Group className="mb-3">
-											<Form.Label htmlFor="Excerpt">Excerpt</Form.Label>
+											<Form.Label htmlFor="Excerpt">Descripcion</Form.Label>
 											<Form.Control
 												as="textarea"
-												placeholder="Excerpt"
+												placeholder="Descripcion"
 												id="Excerpt"
 												style={{ height: '100px' }}
 											/>
@@ -168,7 +143,7 @@ const AddNewPost = () => {
 
 										{/* Category */}
 										<Form.Group className="mb-3">
-											<Form.Label>Category</Form.Label>
+											<Form.Label>Categoria</Form.Label>
 											<FormSelect options={categoryOptions} />
 										</Form.Group>
 									</Col>
@@ -181,9 +156,9 @@ const AddNewPost = () => {
 										{/* button */}
 										<Form.Group className="mb-3">
 											<Button variant="primary" className="m-1">
-												Publish
+												Publicar
 											</Button>
-											<Button variant="outline-secondary">Save to Draft</Button>
+											<Button variant="outline-secondary">Guardar Borrador</Button>
 										</Form.Group>
 									</Col>
 								</Row>
@@ -195,25 +170,25 @@ const AddNewPost = () => {
 					{/*  List group  */}
 					<Card className="mt-4 mt-lg-0 mb-4">
 						<Card.Header className="d-lg-flex">
-							<h4 className="mb-0">Post Info</h4>
+							<h4 className="mb-0">Info Evento</h4>
 						</Card.Header>
 						<Card.Body className="p-0">
 							{/*  List group  */}
 							<ListGroup variant="flush">
 								<ListGroup.Item>
-									<span className="text-body">Post ID</span>
+									<span className="text-body">Evento ID</span>
 									<h5>8693637308</h5>
 								</ListGroup.Item>
 								<ListGroup.Item>
 									<span className="text-body">Status</span>
 									<h5>
 										<DotBadge bg="success">
-											Published (unsaved changes)
+											Publicado (unsaved changes)
 										</DotBadge>
 									</h5>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<span className="text-body">Created by</span>
+									<span className="text-body">Creado por</span>
 									<div className="d-flex mt-2">
 										<Image
 											src={Avatar1}
@@ -221,26 +196,22 @@ const AddNewPost = () => {
 											className="avatar-sm rounded-circle"
 										/>
 										<div className="ms-2">
-											<h5 className="mb-n1">Geeks Courses</h5>
+											<h5 className="mb-n1">Keila Lizalde</h5>
 											<small>Admin</small>
 										</div>
 									</div>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<span className="text-body">Created at</span>
-									<h5>Jul 30, 2:21 PM</h5>
+									<span className="text-body">Fecha de creacion</span>
+									<h5>Mar 20, 2:21 PM</h5>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<span className="text-body">First published at</span>
-									<h5>Jul 30, 2:21 PM</h5>
+									<span className="text-body">Primera actualizacion</span>
+									<h5>Mar 21, 2:21 PM</h5>
 								</ListGroup.Item>
 								<ListGroup.Item>
-									<span className="text-body">Last update</span>
-									<h5>Aug 31, 12:21 PM</h5>
-								</ListGroup.Item>
-								<ListGroup.Item className="bg-transparent">
-									<span className="text-body">Last Published</span>
-									<h5>Aug 31, 12:21 PM</h5>
+									<span className="text-body">Ultima actualizacion</span>
+									<h5>Mar  21, 12:21 PM</h5>
 								</ListGroup.Item>
 							</ListGroup>
 						</Card.Body>
@@ -248,27 +219,27 @@ const AddNewPost = () => {
 
 					<Card className="mt-4 mt-lg-0 mb-4">
 						<Card.Header className="d-lg-flex">
-							<h4 className="mb-0">Actions</h4>
+							<h4 className="mb-0">Acciones</h4>
 						</Card.Header>
 						<Card.Body className="p-0">
 							{/*  List group  */}
 							<ListGroup variant="flush">
 								<ListGroup.Item className="d-flex justify-content-between align-items-center">
-									<span className="text-body">Unpublish</span>
+									<span className="text-body">Archivar</span>
 									<Link to="#" className="text-inherit">
 										<XCircle size="18px" />{' '}
 									</Link>
 								</ListGroup.Item>
 
 								<ListGroup.Item className="d-flex justify-content-between align-items-center">
-									<span className="text-body">Duplicate</span>
+									<span className="text-body">Duplicar</span>
 									<Link to="#" className="text-inherit">
 										<Copy size="18px" />
 									</Link>
 								</ListGroup.Item>
 
 								<ListGroup.Item className="d-flex justify-content-between align-items-center bg-transparent">
-									<span className="text-body">Delete</span>
+									<span className="text-body">Eliminar</span>
 									<Link to="#">
 										<Trash size="18px" className="text-danger" />
 									</Link>
@@ -279,18 +250,18 @@ const AddNewPost = () => {
 
 					<Card className="mt-4 mt-lg-0 mb-4">
 						<Card.Header className="d-lg-flex">
-							<h4 className="mb-0">Revision History</h4>
+							<h4 className="mb-0">Historial de revisiones</h4>
 						</Card.Header>
 						<Card.Body className="p-0">
 							{/*  List group  */}
 							<ListGroup variant="flush">
 								<ListGroup.Item className="d-flex justify-content-between align-items-center bg-transparent">
 									<div>
-										<h5 className="mb-0">Aug 31, 12:21 PM</h5>
-										<span className="text-body">Geeks Coures</span>
+										<h5 className="mb-0">Mar 31, 12:21 PM</h5>
+										<span className="text-body">Keila Lizalde</span>
 									</div>
 									<div>
-										<Badge bg="success">Published</Badge>
+										<Badge bg="success">Archivado</Badge>
 									</div>
 								</ListGroup.Item>
 							</ListGroup>

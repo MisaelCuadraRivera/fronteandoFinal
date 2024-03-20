@@ -22,16 +22,16 @@ const AllPosts = () => {
 				<Col lg={12} md={12} sm={12}>
 					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
 						<div className="mb-3 mb-md-0">
-							<h1 className="mb-1 h2 fw-bold">All Posts</h1>
+							<h1 className="mb-1 h2 fw-bold">Listado de eventos</h1>
 							<Breadcrumb>
 								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">CMS</Breadcrumb.Item>
-								<Breadcrumb.Item active>All Post</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Gestion de eventos</Breadcrumb.Item>
+								<Breadcrumb.Item active>Listado de eventos</Breadcrumb.Item>
 							</Breadcrumb>
 						</div>
 						<div>
 							<Link to="/cms/add-new-post" className="btn btn-primary">
-								New Post
+								Nuevo evento
 							</Link>
 						</div>
 					</div>
@@ -46,27 +46,27 @@ const AllPosts = () => {
 								<Nav className="nav-lb-tab">
 									<Nav.Item>
 										<Nav.Link eventKey="all" className="mb-sm-3 mb-md-0">
-											All
+											Todos
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Nav.Link eventKey="published" className="mb-sm-3 mb-md-0">
-											Published
+											Publicados
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Nav.Link eventKey="scheduled" className="mb-sm-3 mb-md-0">
-											Scheduled
+											Programados
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Nav.Link eventKey="draft" className="mb-sm-3 mb-md-0">
-											Draft
+											Archivados
 										</Nav.Link>
 									</Nav.Item>
 									<Nav.Item>
 										<Nav.Link eventKey="deleted" className="mb-sm-3 mb-md-0">
-											Deleted
+											Eliminados
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>

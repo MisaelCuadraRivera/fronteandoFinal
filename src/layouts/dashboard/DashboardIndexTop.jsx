@@ -61,7 +61,7 @@ const DashboardIndexTop = (props) => {
 							</span>
 							<Form.Control
 								type="search"
-								placeholder="Search Entire Dashboard"
+								placeholder="Buscar"
 								className="form-control form-control-sm ps-6 py-2"
 							/>
 						</Form>

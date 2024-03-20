@@ -18,12 +18,12 @@ const Instructor = () => {
 						<div className="border-bottom pb-4 mb-4 d-flex align-items-center justify-content-between">
 							<div className="mb-3 mb-md-0">
 								<h1 className="mb-1 h2 fw-bold">
-									Instructor <span className="fs-5 text-muted">(12,105)</span>
+									Instructores <span className="fs-5 text-muted">(12,105)</span>
 								</h1>
 								<Breadcrumb>
 									<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-									<Breadcrumb.Item href="#">User</Breadcrumb.Item>
-									<Breadcrumb.Item active>Instructor</Breadcrumb.Item>
+									<Breadcrumb.Item href="#">Usuarios</Breadcrumb.Item>
+									<Breadcrumb.Item active>Instructores</Breadcrumb.Item>
 								</Breadcrumb>
 							</div>
 							<div>

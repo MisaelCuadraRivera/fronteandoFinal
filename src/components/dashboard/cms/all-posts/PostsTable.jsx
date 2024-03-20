@@ -44,24 +44,24 @@ const PostsTable = ({ table_data }) => {
 					<MoreVertical size="15px" className="text-secondary" />
 				</Dropdown.Toggle>
 				<Dropdown.Menu align="end">
-					<Dropdown.Header>SETTINGS</Dropdown.Header>
+					<Dropdown.Header>Configuracion</Dropdown.Header>
 					<Dropdown.Item eventKey="1">
-						<Edit size="15px" className="dropdown-item-icon" /> Edit
+						<Edit size="15px" className="dropdown-item-icon" /> Editar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="2">
-						<Move size="15px" className="dropdown-item-icon" /> Move
+						<Move size="15px" className="dropdown-item-icon" /> Mover
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="3">
-						<Copy size="15px" className="dropdown-item-icon" /> Copy
+						<Copy size="15px" className="dropdown-item-icon" /> Copiar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="4">
-						<ToggleLeft size="15px" className="dropdown-item-icon" /> Publish
+						<ToggleLeft size="15px" className="dropdown-item-icon" /> Publicar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="5">
-						<ToggleRight size="15px" className="dropdown-item-icon" /> Unpublish
+						<ToggleRight size="15px" className="dropdown-item-icon" /> Archivar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="6">
-						<Trash size="15px" className="dropdown-item-icon" /> Delete
+						<Trash size="15px" className="dropdown-item-icon" /> Eliminar
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -96,7 +96,7 @@ const PostsTable = ({ table_data }) => {
 			},
 			{
 				accessorKey: 'title',
-				header: 'Post',
+				header: 'Titulo',
 				cell: ({ getValue }) => {
 					return (
 						<h5 className="mb-0">
@@ -110,7 +110,7 @@ const PostsTable = ({ table_data }) => {
 
 			{
 				accessorKey: 'type',
-				header: 'Type',
+				header: 'Tipo',
 				cell: ({ getValue }) => {
 					if (getValue() === 'image') {
 						return (
@@ -138,7 +138,7 @@ const PostsTable = ({ table_data }) => {
 
 			{
 				accessorKey: 'category',
-				header: 'Category',
+				header: 'Categoria',
 				cell: ({ getValue }) => {
 					return (
 						(<Link href="#" className="text-inherit">
@@ -147,10 +147,10 @@ const PostsTable = ({ table_data }) => {
 					);
 				}
 			},
-			{ accessorKey: 'date', header: 'Date' },
+			{ accessorKey: 'date', header: 'Fecha de publicacion' },
 			{
 				accessorKey: 'instructor_name',
-				header: 'Author',
+				header: 'Instrcutor',
 				cell: ({ getValue, row }) => {
 					return (
 						<div className="d-flex align-items-center">
@@ -208,7 +208,7 @@ const PostsTable = ({ table_data }) => {
 			data={data}
 			columns={columns}
 			filter={true}
-			filterPlaceholder="Search Course"
+			filterPlaceholder="Buscar Evento"
 			pagination={true} />
 	);
 };

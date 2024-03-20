@@ -136,7 +136,7 @@ const CoursesTable = ({ courses_data }) => {
 			data={data}
 			columns={columns}
 			filter={true}
-			filterPlaceholder="Search Course"
+			filterPlaceholder="Buscar Cursos"
 			pagination={true} />
 	);
 };

@@ -26,7 +26,7 @@ const HeaderDefault = (props) => {
 								<span className="position-absolute ps-3 search-icon">
 									<i className="fe fe-search"></i>
 								</span>
-								<Form.Control type="search" className="form-control ps-6" placeholder="Search Entire Dashboard" />
+								<Form.Control type="search" className="form-control ps-6" placeholder="Buscar" />
 							</Form>
 						</div>
 					</div>

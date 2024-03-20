@@ -42,14 +42,14 @@ const StudentsListItems = () => {
 					<MoreVertical size="15px" className="text-secondary" />
 				</Dropdown.Toggle>
 				<Dropdown.Menu align="end">
-					<Dropdown.Header>SETTINGS</Dropdown.Header>
+					<Dropdown.Header>Configuracion</Dropdown.Header>
 					<Dropdown.Item eventKey="1">
 						{' '}
-						<Edit size="15px" className="dropdown-item-icon" /> Edit
+						<Edit size="15px" className="dropdown-item-icon" /> Editar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="2">
 						{' '}
-						<Trash size="15px" className="dropdown-item-icon" /> Remove
+						<Trash size="15px" className="dropdown-item-icon" /> Eliminar
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -61,7 +61,7 @@ const StudentsListItems = () => {
 		() => [
 			{
 				accessorKey: 'name',
-				header: 'Name',
+				header: 'Nombre',
 				cell: ({ getValue, row }) => {
 					return (
 						<div className="d-flex align-items-center">
@@ -77,39 +77,20 @@ const StudentsListItems = () => {
 			},
 			{
 				accessorKey: 'enrolled',
-				header: 'Enrolled',
+				header: 'Cursos inscrito',
 				cell: ({ getValue }) => {
 					return getValue() + ' Courses';
 				}
 			},
-			{ accessorKey: 'joined', header: 'Joined At' },
+			{ accessorKey: 'joined', header: 'Fecha de registro' },
 			{
 				accessorKey: 'payment',
-				header: 'TotaL Payment',
+				header: 'Total de pagos',
 				cell: ({ getValue }) => {
 					return '$' + numberWithCommas(getValue());
 				}
 			},
-			{ accessorKey: 'locations', header: 'Locations' },
-			{
-				accessorKey: 'message',
-				header: '',
-				cell: () => {
-					return (
-						<div className="align-middle border-top-0">
-							<OverlayTrigger
-								key="top"
-								placement="top"
-								overlay={<Tooltip id={`tooltip-top`}>Message</Tooltip>}
-							>
-								<Link href="#">
-									<Mail size="15px" className="dropdown-item-icon" />
-								</Link>
-							</OverlayTrigger>
-						</div>
-					);
-				}
-			},
+			{ accessorKey: 'locations', header: 'Ubicacion' },
 			{
 				accessorKey: 'delete',
 				header: '',
@@ -119,7 +100,7 @@ const StudentsListItems = () => {
 							<OverlayTrigger
 								key="top"
 								placement="top"
-								overlay={<Tooltip id={`tooltip-top`}>Delete</Tooltip>}
+								overlay={<Tooltip id={`tooltip-top`}>Eliminar</Tooltip>}
 							>
 								<Link href="#">
 									<Trash size="15px" className="dropdown-item-icon" />
@@ -147,7 +128,7 @@ const StudentsListItems = () => {
 			data={data}
 			columns={columns}
 			filter={true}
-			filterPlaceholder="Search Students"
+			filterPlaceholder="Buscar Estudiante"
 			pagination={true} />
 	);
 };

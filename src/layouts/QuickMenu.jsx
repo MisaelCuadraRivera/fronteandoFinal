@@ -80,40 +80,6 @@ const QuickMenu = () => {
 				bsPrefix="navbar-nav"
 				className="navbar-right-wrap ms-2 d-flex nav-top-wrap"
 			>
-				<Dropdown as="li">
-					<Dropdown.Toggle
-						as="a"
-						bsPrefix=" "
-						className="text-dark icon-notifications me-lg-1  btn btn-light btn-icon rounded-circle indicator indicator-primary text-muted"
-						id="dropdownNotification"
-					>
-						<i className="fe fe-bell"></i>
-					</Dropdown.Toggle>
-					<Dropdown.Menu
-						show={isDesktop ? true : false}
-						className="dashboard-dropdown notifications-dropdown dropdown-menu-lg dropdown-menu-end mt-3 py-0"
-						aria-labelledby="dropdownNotification"
-						align="end"
-					>
-						<div className="border-bottom px-3 pt-3 pb-3 d-flex justify-content-between align-items-end">
-							<span className="h4 mb-0">Notifications</span>
-							<Link to="# " className="text-muted">
-								<span className="align-middle">
-									<i className="fe fe-settings me-1"></i>
-								</span>
-							</Link>
-						</div>
-						<Notifications />
-						<div className="border-top px-3 pt-3 pb-3">
-							<Link
-								to="/authentication/notifications"
-								className="text-link fw-semi-bold"
-							>
-								See all Notifications
-							</Link>
-						</div>
-					</Dropdown.Menu>
-				</Dropdown>
 
 				<Dropdown as="li" className="ms-1">
 					<Dropdown.Toggle
