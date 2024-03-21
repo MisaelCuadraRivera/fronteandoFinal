@@ -15,8 +15,8 @@ const Invoice = () => {
 			<Card className="border-0">
 				<Card.Header>
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Invoices</h3>
-						<p className="mb-0">You can find all of your order Invoices.</p>
+						<h3 className="mb-0">Recibos</h3>
+						<p className="mb-0">Encuentra aquí todos tus recibos de pago.</p>
 					</div>
 				</Card.Header>
 				<Card.Body className="p-0">
@@ -29,10 +29,10 @@ const Invoice = () => {
 						>
 							<thead className="table-light">
 								<tr>
-									<th scope="col">Order ID</th>
-									<th scope="col">Date</th>
-									<th scope="col">Amount</th>
-									<th scope="col">Status</th>
+									<th scope="col">ID</th>
+									<th scope="col">Fecha</th>
+									<th scope="col">Cantidad</th>
+									<th scope="col">Estatus</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>

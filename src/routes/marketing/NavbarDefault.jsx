@@ -202,11 +202,7 @@ const NavbarDefault = [
 				menuitem: 'Especiales',
 				link: '#',
 				children: [
-					{
-						id: uuid(),
-						menuitem: 'Coming Soon',
-						link: '/marketing/specialty/coming-soon/'
-					},
+			
 					{
 						id: uuid(),
 						menuitem: 'Error 404',
@@ -288,6 +284,7 @@ const NavbarDefault = [
 						id: uuid(),
 						header: true,
 						header_text: 'Instructor',
+
 						description:
 							'Dashboard del instructor para administrar cursos y estudiantes.'
 					},
@@ -312,6 +309,7 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
+
 						menuitem: 'Reseñas',
 						link: '/marketing/instructor/instructor-reviews/'
 					},
@@ -320,6 +318,7 @@ const NavbarDefault = [
 						menuitem: 'Estudiantes',
 						link: '/marketing/instructor/instructor-students/'
 					},
+
 				]
 			},
 			{
@@ -345,28 +344,18 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Subscriptions',
+						menuitem: 'Mis cursos',
 						link: '/marketing/student/student-subscriptions/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Payments',
+						menuitem: 'Pagos',
 						link: '/marketing/student/student-payment/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Billing Info',
-						link: '/marketing/student/student-billing-info/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Invoice',
+						menuitem: 'Recibos',
 						link: '/marketing/student/student-invoice/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Invoice Details',
-						link: '/marketing/student/student-invoice-details/'
 					},
 					{
 						id: uuid(),
@@ -384,9 +373,9 @@ const NavbarDefault = [
 					{
 						id: uuid(),
 						header: true,
-						header_text: 'Master Admin',
+						header_text: 'Súper Admin',
 						description:
-							'Master admin dashboard to manage courses, user, site setting, and work with amazing apps.'
+							''
 					},
 					{
 						id: uuid(),
@@ -394,7 +383,7 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Go to Dashboard',
+						menuitem: 'Dashboard',
 						link: '/dashboard/overview/',
 						type: 'button'
 					}
@@ -406,27 +395,27 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Sign In',
+				menuitem: 'Inicio de Sesión',
 				link: '/authentication/sign-in/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'Sign Up',
+				menuitem: 'Registro',
 				link: '/authentication/sign-up/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'Forgot Password',
+				menuitem: 'Olvidé mi contraseña',
 				link: '/authentication/forget-password/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'Edit Profile',
+				menuitem: 'Editar perfil',
 				link: '/marketing/student/student-edit-profile/'
 			},
 			{
 				id: uuid(),
-				menuitem: 'Security',
+				menuitem: 'Seguridad',
 				link: '/marketing/student/student-security/'
 			}
 		]
