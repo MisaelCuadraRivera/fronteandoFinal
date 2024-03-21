@@ -129,7 +129,7 @@ const ViewProfile = () => {
 											<h4 className="mb-0 fw-bold">
 												{InstructorData[InstructorID].students}
 											</h4>
-											<p className="fs-6 mb-0">Estudiantes Totales</p>
+											<p className="fs-6 mb-0">Estudiantes</p>
 										</div>
 										<div>
 											<span>
@@ -142,7 +142,7 @@ const ViewProfile = () => {
 											<h4 className="mb-0 fw-bold">
 												{InstructorData[InstructorID].reviews}
 											</h4>
-											<p className="fs-6 mb-0">Reseñas</p>
+											<p className="fs-6 mb-0">Reviews</p>
 										</div>
 										<div>
 											<span>

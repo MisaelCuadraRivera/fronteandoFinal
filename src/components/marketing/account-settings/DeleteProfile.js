@@ -14,18 +14,16 @@ const DeleteProfile = () => {
 			<Card className="border-0">
 				<Card.Header>
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Delete your account</h3>
-						<p className="mb-0">Delete or Close your account permanently.</p>
+						<h3 className="mb-0">Eliminar Cuenta</h3>
 					</div>
 				</Card.Header>
 				<Card.Body>
-					<span className="text-danger h4">Warning</span>
+					<span className="text-danger h4">Advertencia.</span>
 					<p>
-						If you close your account, you will be unsubscribed from all your 0
-						courses, and will lose access forever.
+					Si cierras tu cuenta, serás dado de baja de todos tus 0 cursos y perderás el acceso para siempre.
 					</p>
 					<Link to="/" className="btn btn-danger">
-						Close My Account
+						Cerrar mi cuenta
 					</Link>
 				</Card.Body>
 			</Card>
