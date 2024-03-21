@@ -15,9 +15,9 @@ import { AllCoursesData } from 'data/slider/AllCoursesData';
 const StudentDashboard = () => {
 	const dashboardData = {
 		avatar: Avatar3,
-		name: 'Kulian Rodriguez Rojas',
+		name: 'Julián Rodriguez Rojas',
 		username: '20223tn075@utez.edu.mx',
-		linkname: 'Editar Configuracion',
+		linkname: 'Editar Configuración',
 		link: '/marketing/student/student-edit-profile/',
 		verified: false,
 		outlinebutton: false,

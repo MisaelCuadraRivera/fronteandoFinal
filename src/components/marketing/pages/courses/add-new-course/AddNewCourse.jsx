@@ -36,7 +36,7 @@ const AddNewCourse = () => {
 	const steps = [
 		{
 			id: 1,
-			title: 'Basic Information',
+			title: 'Información básica',
 			content: (
 				<BasicInformation
 					data={formData}
@@ -47,7 +47,7 @@ const AddNewCourse = () => {
 		},
 		{
 			id: 2,
-			title: 'Courses Media',
+			title: 'Imágenes',
 			content: (
 				<CoursesMedia
 					data={formData}
@@ -57,21 +57,10 @@ const AddNewCourse = () => {
 				/>
 			)
 		},
+		
 		{
 			id: 3,
-			title: 'Curriculum',
-			content: (
-				<Curriculum
-					data={formData}
-					handleChange={handleChange}
-					next={next}
-					previous={previous}
-				/>
-			)
-		},
-		{
-			id: 4,
-			title: 'Settings',
+			title: 'Configuración',
 			content: (
 				<Settings
 					data={formData}
@@ -85,29 +74,29 @@ const AddNewCourse = () => {
 
 	return (
 		<Fragment>
-			<section className="py-4 py-lg-6 bg-primary">
+			<section className="py-4 py-lg-6" style={{backgroundColor:"#009475"}}>
 				<Container>
 					<Row>
 						<Col lg={{ span: 10, offset: 1 }} md={12} sm={12}>
 							<div className="d-lg-flex align-items-center justify-content-between">
 								<div className="mb-4 mb-lg-0">
-									<h1 className="text-white mb-1">Add New Course</h1>
+									<h1 className="text-white mb-1">Crear un nuevo curso</h1>
 									<p className="mb-0 text-white lead">
-										Just fill the form and create your courses.
+										Rellena el formulario.
 									</p>
 								</div>
 								<div>
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
-										className="btn btn-white "
+										className="btn btn-white btn-sm "
 									>
-										Back to Course
+										Regresar a cursos
 									</Link>{' '}
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
-										className="btn btn-dark "
+										className="btn btn-dark btn-sm"
 									>
-										Save
+										Guardar
 									</Link>
 								</div>
 							</div>
