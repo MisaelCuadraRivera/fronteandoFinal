@@ -55,7 +55,16 @@ const ProfileCover = ({ dashboardData }) => {
 								<p className="mb-0 d-block">{dashboardData.username}</p>
 							</div>
 						</div>
-						
+						<div>
+							<Link
+								to={dashboardData.link}
+								className={`btn btn${
+									dashboardData.outlinebutton ? '-outline' : ''
+								}-primary btn-sm d-none d-md-block`}
+							>
+								{dashboardData.linkname}
+							</Link>
+						</div>
 					</div>
 				</Card>
 			</Col>
