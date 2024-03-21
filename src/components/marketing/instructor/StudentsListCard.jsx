@@ -14,7 +14,7 @@ const StudentsListCard = () => {
 		() => [
 			{
 				accessorKey: 'name',
-				header: 'Name',
+				header: 'Nombre',
 				cell: ({ getValue, row }) => {
 					return (
 						<div className="d-flex align-items-center">
@@ -28,18 +28,18 @@ const StudentsListCard = () => {
 					);
 				}
 			},
-			{ accessorKey: 'joined', header: 'Enrolled' },
+			{ accessorKey: 'joined', header: 'Inscrito' },
 			{
 				accessorKey: 'progress',
-				header: 'Progress',
+				header: 'Progreso',
 				cell: ({ getValue }) => {
 					return getValue() + '%';
 				}
 			},
-			{ accessorKey: 'questionasked', header: 'Q/A' },
+			{ accessorKey: 'questionasked', header: 'Respuestas' },
 			{
-				accessorKey: 'locations',
-				header: 'Locations',
+				accessorKey: 'Locations',
+				header: 'Dirección',
 				cell: ({ getValue }) => {
 					return (
 						<span className="fs-6">
@@ -51,11 +51,11 @@ const StudentsListCard = () => {
 			},
 			{
 				accessorKey: 'message',
-				header: 'Message',
+				header: 'Mensaje	',
 				cell: () => {
 					return (
 						<Link href="#" className="btn btn-outline-secondary btn-sm">
-							Message
+							Mensaje
 						</Link>
 					);
 				}
@@ -71,7 +71,7 @@ const StudentsListCard = () => {
 			data={data}
 			columns={columns}
 			filter={true}
-			filterPlaceholder="Search By Name"
+			filterPlaceholder="Buscar por nombre"
 			pagination={true}
 			exportButton={true} />
 	);

@@ -15,9 +15,8 @@ import { InstructorReviewsData } from 'data/marketing/InstructorReviewsData';
 
 const Reviews = () => {
 	const courselist = [
-		{ value: '1', label: 'How to easily create a website' },
-		{ value: '2', label: 'Grunt: The JavaScript Task...' },
-		{ value: '3', label: 'Vue js: The JavaScript Task...' }
+		{ value: '1', label: 'Hola' },
+		{ value: '2', label: 'Prueba' }
 	];
 	const ratinglist = [
 		{ value: '1', label: '1' },
@@ -27,8 +26,8 @@ const Reviews = () => {
 		{ value: '5', label: '5' }
 	];
 	const sortby = [
-		{ value: 'Newest', label: 'Newest' },
-		{ value: 'Oldest', label: 'Oldest' }
+		{ value: 'Reciente', label: 'Reciente' },
+		{ value: 'Antiguo', label: 'Antiguo' }
 	];
 
 	return (
@@ -36,14 +35,12 @@ const Reviews = () => {
 			<Card className="border-0">
 				<Card.Header className="d-lg-flex align-items-center justify-content-between">
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Reviews</h3>
-						<p className="mb-0">
-							You have full control to manage your own account setting.
-						</p>
+						<h3 className="mb-0">Reseñas</h3>
+						
 					</div>
 					<div>
 						<Link to="#" className="btn btn-outline-primary btn-sm">
-							Export To CSV...
+							Exportar como CSV...
 						</Link>
 					</div>
 				</Card.Header>
@@ -52,13 +49,13 @@ const Reviews = () => {
 					<Form className="mb-4">
 						<Row>
 							<Col xl={6} lg={6} md={4} sm={12} className="mb-2 mb-lg-0">
-								<FormSelect options={courselist} placeholder="All" />
+								<FormSelect options={courselist} placeholder="Todas" />
 							</Col>
 							<Col xl={3} lg={3} md={4} sm={12} className="mb-2 mb-lg-0">
-								<FormSelect options={ratinglist} placeholder="Rating" />
+								<FormSelect options={ratinglist} placeholder="Calificación" />
 							</Col>
 							<Col xl={3} lg={3} md={4} sm={12} className="mb-2 mb-lg-0">
-								<FormSelect options={sortby} placeholder="Sort" />
+								<FormSelect options={sortby} placeholder="Orden" />
 							</Col>
 						</Row>
 					</Form>
