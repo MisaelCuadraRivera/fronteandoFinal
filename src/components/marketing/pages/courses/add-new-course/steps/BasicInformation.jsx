@@ -22,13 +22,9 @@ const BasicInformation = (props) => {
 		{ value: 'Advance', label: 'Avanzado' }
 	];
 
-<<<<<<< HEAD
-	const initialValue = `<p>Descripción</p>
-=======
 	const initialValue = `<p>Escribe la descripción del curso</p>
                       <p><br /></p>        
                       <p></p>
->>>>>>> main
                       <p><br /></p><p><br /></p><p><br /></p><p><br /></p>`;
 
 	return (
@@ -42,70 +38,40 @@ const BasicInformation = (props) => {
 				<Card.Body>
 					{/* Title  */}
 					<Form.Group className="mb-3">
-<<<<<<< HEAD
-						<Form.Label htmlFor="courseTitle">Titulo del Curso</Form.Label>
-						<Form.Control
-							type="text"
-							placeholder="Titulo del curso"
-=======
 						<Form.Label htmlFor="courseTitle">Título del curso</Form.Label>
 						<Form.Control
 							type="text"
 							placeholder="Título"
->>>>>>> main
 							id="course_title"
 							name="course_title"
 						/>
 						<Form.Text className="text-muted">
-<<<<<<< HEAD
-							Máximo 60 carácteres para el titulo.
-=======
 							Máximo 60 caracteres.
->>>>>>> main
 						</Form.Text>
 					</Form.Group>
 
 					{/* Category */}
 					<Form.Group className="mb-3">
-<<<<<<< HEAD
-						<Form.Label>Categoria</Form.Label>
-=======
 						<Form.Label>Categoría</Form.Label>
->>>>>>> main
 						<FormSelect
 							options={categoryOptions}
 							id="category_category"
 							name="category_category"
-<<<<<<< HEAD
-							placeholder="Selecciona una categoria"
-						/>
-						<Form.Text className="text-muted">
-						Ayuda a las personas a encontrar tus cursos eligiendo categorías que representen tu curso.
-=======
 							placeholder="Selecciona una categoría"
 						/>
 						<Form.Text className="text-muted">
 							Ayuda a las personas a encontrar los cursos en base a categorías.
->>>>>>> main
 						</Form.Text>
 					</Form.Group>
 
 					{/* Courses level */}
 					<Form.Group className="mb-3">
-<<<<<<< HEAD
-						<Form.Label>Nivel de curso</Form.Label>
-=======
 						<Form.Label>Nivel del curso</Form.Label>
->>>>>>> main
 						<FormSelect
 							options={CoursesLevel}
 							id="courses_level"
 							name="courses_level"
-<<<<<<< HEAD
-							placeholder="Selecciona el nivel"
-=======
 							placeholder="Selecciona un nivel"
->>>>>>> main
 						/>
 					</Form.Group>
 
@@ -118,28 +84,18 @@ const BasicInformation = (props) => {
 							name="course_description"
 						/>
 						<Form.Text className="text-muted">
-<<<<<<< HEAD
-							un breve resumen de tus cursos.
-=======
 							Un resumen pequeño del curso.
->>>>>>> main
 						</Form.Text>
 					</Form.Group>
 				</Card.Body>
 			</Card>
 			{/* Button */}
-<<<<<<< HEAD
-			<Button variant="primary" onClick={next}>
-				Siguiente
-			</Button>
-=======
 			<Container className='text-end'>
 				<Button onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
 					Siguiente
 				</Button>
 			</Container>
 
->>>>>>> main
 		</Form>
 	);
 };
