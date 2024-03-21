@@ -18,34 +18,14 @@ const MaintenanceMode = () => {
 					className="text-center text-lg-start"
 				>
 					<h1 className="display-3 mb-2 fw-bold">
-						Fixing a few things behind the scenes.
+						Estamos mejorando el sitio para ti, volveremos pronto.
 					</h1>
 					<p className="mb-5 fs-4">
-						We apologize for the inconvenience, but are performing some
-						maintenance. You can still contact us at{' '}
-						<Link to="#">admin@company.com</Link>. We’ll be back up soon
+						Nos disculpamos por los inconvenientes, pero estamos realizando un mantenimiento. Aún pueden contactarnos en{' '}
+						<Link to="mailto:educacioncontinua@utez.edu.mx" style={{color:"#009475"}}>educacioncontinua@utez.edu.mx</Link>.
 					</p>
 					<hr className="my-5" />
-					<div>
-						{/*  notify form */}
-						<h3 className="mb-3">Notify me when it’s ready.</h3>
-						<Form>
-							<Form.Group
-								className="d-inline-flex justify-content-center justify-content-lg-start"
-								controlId="formBasicEmail"
-							>
-								<Form.Control
-									type="email"
-									className="form-control mb-2 me-2"
-									placeholder="Your e-mail..."
-									required
-								/>
-								<Button type="submit" className="btn btn-primary mb-2">
-									Subscribe
-								</Button>
-							</Form.Group>
-						</Form>
-					</div>
+					
 				</Col>
 				{/*  image */}
 				<Col
