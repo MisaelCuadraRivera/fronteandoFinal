@@ -91,23 +91,20 @@ const AddNewCourse = () => {
 						<Col lg={{ span: 10, offset: 1 }} md={12} sm={12}>
 							<div className="d-lg-flex align-items-center justify-content-between">
 								<div className="mb-4 mb-lg-0">
-									<h1 className="text-white mb-1">Add New Course</h1>
-									<p className="mb-0 text-white lead">
-										Just fill the form and create your courses.
-									</p>
+									<h1 className="text-white mb-1">Agregar un nuevo Curso</h1>
 								</div>
 								<div>
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
 										className="btn btn-white "
 									>
-										Back to Course
+										Devuelta al Curso
 									</Link>{' '}
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
 										className="btn btn-dark "
 									>
-										Save
+										Guardar
 									</Link>
 								</div>
 							</div>
