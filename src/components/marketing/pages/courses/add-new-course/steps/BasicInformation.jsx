@@ -1,5 +1,5 @@
 // import node module libraries
-import { Card, Form, Button } from 'react-bootstrap';
+import { Card, Form, Button, Container } from 'react-bootstrap';
 
 // import custom components
 import { FormSelect } from 'components/elements/form-select/FormSelect';
@@ -17,14 +17,14 @@ const BasicInformation = (props) => {
 	];
 
 	const CoursesLevel = [
-		{ value: 'Intermediate', label: 'Intermediate' },
-		{ value: 'Beignners', label: 'Beignners' },
-		{ value: 'Advance', label: 'Advance' }
+		{ value: 'Intermediate', label: 'Intermedio' },
+		{ value: 'Beignners', label: 'Principiante' },
+		{ value: 'Advance', label: 'Avanzado' }
 	];
 
-	const initialValue = `<p>Insert course description</p>
+	const initialValue = `<p>Escribe la descripción del curso</p>
                       <p><br /></p>        
-                      <p>Some initial <strong>bold</strong> text</p>
+                      <p></p>
                       <p><br /></p><p><br /></p><p><br /></p><p><br /></p>`;
 
 	return (
@@ -32,68 +32,70 @@ const BasicInformation = (props) => {
 			{/* Card */}
 			<Card className="mb-3 ">
 				<Card.Header className="border-bottom px-4 py-3">
-					<h4 className="mb-0">Basic Information</h4>
+					<h4 className="mb-0">Información básica</h4>
 				</Card.Header>
 				{/* Card body */}
 				<Card.Body>
 					{/* Title  */}
 					<Form.Group className="mb-3">
-						<Form.Label htmlFor="courseTitle">Course Title</Form.Label>
+						<Form.Label htmlFor="courseTitle">Título del curso</Form.Label>
 						<Form.Control
 							type="text"
-							placeholder="Course Title"
+							placeholder="Título"
 							id="course_title"
 							name="course_title"
 						/>
 						<Form.Text className="text-muted">
-							Write a 60 character course title.
+							Máximo 60 caracteres.
 						</Form.Text>
 					</Form.Group>
 
 					{/* Category */}
 					<Form.Group className="mb-3">
-						<Form.Label>Category category</Form.Label>
+						<Form.Label>Categoría</Form.Label>
 						<FormSelect
 							options={categoryOptions}
 							id="category_category"
 							name="category_category"
-							placeholder="Select Category"
+							placeholder="Selecciona una categoría"
 						/>
 						<Form.Text className="text-muted">
-							Help people find your courses by choosing categories that
-							represent your course.
+							Ayuda a las personas a encontrar los cursos en base a categorías.
 						</Form.Text>
 					</Form.Group>
 
 					{/* Courses level */}
 					<Form.Group className="mb-3">
-						<Form.Label>Courses level</Form.Label>
+						<Form.Label>Nivel del curso</Form.Label>
 						<FormSelect
 							options={CoursesLevel}
 							id="courses_level"
 							name="courses_level"
-							placeholder="Select level"
+							placeholder="Selecciona un nivel"
 						/>
 					</Form.Group>
 
 					{/* Course Description*/}
 					<Form.Group className="mb-3">
-						<Form.Label>Course Description</Form.Label>
+						<Form.Label>Descripción del curso</Form.Label>
 						<ReactQuillEditor
 							initialValue={initialValue}
 							id="course_description"
 							name="course_description"
 						/>
 						<Form.Text className="text-muted">
-							A brief summary of your courses.
+							Un resumen pequeño del curso.
 						</Form.Text>
 					</Form.Group>
 				</Card.Body>
 			</Card>
 			{/* Button */}
-			<Button variant="primary" onClick={next}>
-				Next
-			</Button>
+			<Container className='text-end'>
+				<Button onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
+					Siguiente
+				</Button>
+			</Container>
+
 		</Form>
 	);
 };

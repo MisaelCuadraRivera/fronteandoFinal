@@ -31,12 +31,12 @@ const Security = () => {
 					<div className="mb-3 mb-lg-0">
 						<h3 className="mb-0">Seguridad</h3>
 						<p className="mb-0">
-							Edita tu configuracion de la cuenta y cambia la contraseña.
+							Edita tu configuración de la cuenta y cambia la contraseña.
 						</p>
 					</div>
 				</Card.Header>
 				<Card.Body>
-					<h4 className="mb-0">Email Address</h4>
+					<h4 className="mb-0">Correo Electrónico</h4>
 					<p>
 						Tu correo actual es{' '}
 						<span className="text-success">20223tn075@utez.edu.mx</span>
@@ -48,7 +48,7 @@ const Security = () => {
 									<Form.Label htmlFor="email">Nuevo correo electronico</Form.Label>
 									<Form.Control type="email" id="email" required />
 								</Form.Group>
-								<Button type="submit" className="btn btn-primary mt-2">
+								<Button type="submit" className="btn btn-sm mt-2" style={{backgroundColor: "#042b61", borderColor: "white"}}>
 									Actualizar detalles
 								</Button>
 							</Col>
@@ -129,15 +129,15 @@ const Security = () => {
 										/>
 									</Form.Group>
 									{/* Button */}
-									<Button type="submit" className="btn btn-primary">
-										Save Password
+									<Button type="submit" className="btn btn-sm" style={{backgroundColor: "#042b61", borderColor: "white"}}>
+										Guardar contraseña
 									</Button>
 									<Col xs={6}></Col>
 								</Col>
 								<Col lg={12} md={12} sm={12} className="mt-4">
 									<p className="mb-0">
 										¿No recuerdas tu contraseña?{' '}
-										<Link to="#">Restablece tu contraseña</Link>
+										<Link to="" style={{color: "#009475"}}>Restablece tu contraseña</Link>
 									</p>
 								</Col>
 							</Row>

@@ -18,14 +18,14 @@ const Error404 = () => {
 				>
 					<h1 className="display-1 mb-3">404</h1>
 					<p className="mb-5 lead">
-						Oops! Sorry, we couldn’t find the page you were looking for. If you
-						think this is a problem with us, please{' '}
-						<Link to="#" className="btn-link">
-							<u>Contact us</u>
+						¡Oops! Lo sentimos, no pudimos encontrar la página que buscabas.
+						Si crees que esto se trata de un error, contactate con nosotros.{' '}
+						<Link to="#" className="btn-link" style={{color: "#009475"}}>
+							<u>Contacto</u>
 						</Link>
 					</p>
-					<Link to="/" className="btn btn-primary me-2">
-						Back to Safety
+					<Link to="/" className="btn btn-sm  me-2" style={{backgroundColor: "#042b61", borderColor: "white", color:"white"}}>
+						Regresar a lo seguro
 					</Link>
 				</Col>
 				<Col

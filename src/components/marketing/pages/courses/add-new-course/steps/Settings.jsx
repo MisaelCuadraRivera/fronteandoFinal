@@ -12,19 +12,19 @@ const Settings = (props) => {
 			{/* Card */}
 			<Card className="mb-3  border-0">
 				<Card.Header className="border-bottom px-4 py-3">
-					<h4 className="mb-0">Requirements</h4>
+					<h4 className="mb-0">Requisitos</h4>
 				</Card.Header>
 				{/* Card body */}
 				<Card.Body>
-					<GKTagsInput defaulttags={['jQuery', 'bootstrap']} />
+					<GKTagsInput  />
 				</Card.Body>
 			</Card>
 			<div className="d-flex justify-content-between mb-22">
 				{/* Button */}
 				<Button variant="secondary" onClick={previous}>
-					Previous
+					Anterior
 				</Button>
-				<Button variant="danger">Submit For Review</Button>
+				<Button variant="danger">Mandar a revisión</Button>
 			</div>
 		</Form>
 	);

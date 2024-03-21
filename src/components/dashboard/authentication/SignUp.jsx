@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Row, Card, Form, Button, Image } from 'react-bootstrap';
+import { Col, Row, Card, Form, Button, Image, Container } from 'react-bootstrap';
 
 // Importa tus imágenes
 import Logo from 'assets/images/brand/logo/Logo-utez-2.png';
@@ -178,7 +178,7 @@ const SignUp = () => {
 
 	return (
 		<Fragment>
-			<Row className="align-items-center justify-content-center g-0 min-vh-100">
+			<Row className="align-items-center justify-content-center g-0 min-vh-100 container-fluid"  >
 				<Col lg={8} md={10} className="py-8 py-xl-0">
 					<Card>
 						<Card.Body className="p-6">
@@ -193,9 +193,9 @@ const SignUp = () => {
 							{renderForm()}
 						</Card.Body>
 					</Card>
-				</Col>
-			</Row>
-		</Fragment>
+				</Col >
+			</Row >
+		</Fragment >
 	);
 };
 
