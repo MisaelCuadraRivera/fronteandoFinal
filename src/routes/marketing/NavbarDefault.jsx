@@ -112,7 +112,7 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Contabilidad para mediocres',
+				menuitem: 'Contabilidad',
 				link: '/marketing/course-category/'
 			},
 			{
@@ -132,7 +132,7 @@ const NavbarDefault = [
 			}
 		]
 	},
-	
+
 	{
 		id: uuid(),
 		menuitem: 'Secciones',
@@ -140,7 +140,7 @@ const NavbarDefault = [
 		children: [
 			{
 				id: uuid(),
-				menuitem: 'Courses',
+				menuitem: 'Cursos',
 				link: '#',
 				children: [
 					{
@@ -182,131 +182,24 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Paths',
+				menuitem: 'Categorías',
 				link: '#',
 				children: [
 					{
 						id: uuid(),
-						menuitem: 'Browse Path',
+						menuitem: 'Categorías',
 						link: '/marketing/courses/course-path/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Path Single',
+						menuitem: 'Por nivel',
 						link: '/marketing/courses/course-path-single/'
 					}
 				]
 			},
 			{
 				id: uuid(),
-				menuitem: 'Blog',
-				link: '#',
-				children: [
-					{
-						id: uuid(),
-						menuitem: 'Listing',
-						link: '/marketing/blog/listing/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Article',
-						link: '/marketing/blog/article-single/1'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Category',
-						link: '/marketing/blog/category/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Sidebar',
-						link: '/marketing/blog/sidebar/'
-					}
-				]
-			},
-			{
-				id: uuid(),
-				menuitem: 'Career',
-				link: '#',
-				children: [
-					{
-						id: uuid(),
-						menuitem: 'Overview',
-						link: '/marketing/pages/career/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Listing',
-						link: '/marketing/pages/career-list/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Opening',
-						link: '/marketing/pages/career-single/'
-					}
-				]
-			},
-
-			{
-				id: uuid(),
-				menuitem: 'Portfolio',
-				link: '#',
-				badge: 'New',
-				badgecolor: 'primary',
-				children: [
-					{
-						id: uuid(),
-						menuitem: 'List',
-						link: '/marketing/portfolio/list/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Single',
-						link: '/marketing/portfolio/single/'
-					}
-				]
-				
-			},
-			{
-				id: uuid(),
-				menuitem: 'Job',
-				link: '#',
-				children: [
-					{
-						id: uuid(),
-						menuitem: 'Home',
-						link: '/marketing/landings/landing-job/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'List',
-						link: '/marketing/jobs/listing/job-list/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Grid',
-						link: '/marketing/jobs/listing/job-list/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Single',
-						link: '/marketing/jobs/listing/helpdesk-software-engineer-web3crypto/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Company List',
-						link: '/marketing/jobs/company-list/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Company Single',
-						link: '/marketing/jobs/company/about/'
-					}
-				]
-			},
-			{
-				id: uuid(),
-				menuitem: 'Specialty',
+				menuitem: 'Especiales',
 				link: '#',
 				children: [
 					{
@@ -321,12 +214,12 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Maintenance Mode',
+						menuitem: 'Modo mantenimiento',
 						link: '/marketing/specialty/maintenance-mode/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Terms & Conditions',
+						menuitem: 'Términos y condiciones',
 						link: '/marketing/specialty/terms-and-conditions/'
 					}
 				]
@@ -372,21 +265,8 @@ const NavbarDefault = [
 					}
 				]
 			},
-			{
-				id: uuid(),
-				menuitem: 'Pricing',
-				link: '/marketing/pages/pricing/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Compare Plan',
-				link: '/marketing/pages/compare-plan/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Contact',
-				link: '/marketing/pages/contact/'
-			}
+
+		
 		]
 	},
 	{
@@ -397,7 +277,7 @@ const NavbarDefault = [
 			{
 				id: uuid(),
 				header: true,
-				header_text: 'Accounts'
+				header_text: 'Cuentas'
 			},
 			{
 				id: uuid(),
@@ -480,15 +360,15 @@ const NavbarDefault = [
 			},
 			{
 				id: uuid(),
-				menuitem: 'Students',
+				menuitem: 'Estudiantes',
 				link: '#',
 				children: [
 					{
 						id: uuid(),
 						header: true,
-						header_text: 'Students',
+						header_text: 'Estudiantes',
 						description:
-							'Students dashboard to manage your courses and subscriptions.'
+							'Dashboard del estudiante.'
 					},
 					{
 						id: uuid(),
@@ -526,41 +406,10 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Bookmarked',
+						menuitem: 'Favoritos',
 						link: '/marketing/student/dashboard/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'My Path',
-						link: '/marketing/student/dashboard/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Quiz',
-						link: '#',
-						children: [
-							{
-								id: uuid(),
-								menuitem: 'Quiz',
-								link: '/marketing/student/quiz/'
-							},
-							{
-								id: uuid(),
-								menuitem: 'Attempt',
-								link: '/marketing/student/quiz/attempt/'
-							},
-							{
-								id: uuid(),
-								menuitem: 'Start',
-								link: '/marketing/student/quiz/start/'
-							},
-							{
-								id: uuid(),
-								menuitem: 'Result',
-								link: '/marketing/student/quiz/result/'
-							}
-						]
 					}
+					
 				]
 			},
 			{
@@ -615,31 +464,6 @@ const NavbarDefault = [
 				id: uuid(),
 				menuitem: 'Security',
 				link: '/marketing/student/student-security/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Social Profiles',
-				link: '/marketing/student/student-social-profiles/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Notifications',
-				link: '/marketing/student/student-notifications/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Privacy Settings',
-				link: '/marketing/student/student-profile-privacy/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Delete Profile',
-				link: '/marketing/student/student-delete-profile/'
-			},
-			{
-				id: uuid(),
-				menuitem: 'Linked Accounts',
-				link: '/marketing/student/student-linked-accounts/'
 			}
 		]
 	}

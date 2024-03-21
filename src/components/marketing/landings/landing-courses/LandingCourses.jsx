@@ -1,6 +1,5 @@
 // import node module libraries
 import { Fragment } from 'react';
-import { Container } from 'react-bootstrap';
 
 // import custom components
 import LogosTopHeading from 'components/marketing/common/clientlogos/LogosTopHeading';
@@ -9,10 +8,8 @@ import CTA2Buttons from 'components/marketing/common/call-to-action/CTA2Buttons'
 // import sub components
 import Features4Columns from './Features4Columns';
 import BrowseCategories from './BrowseCategories';
-import WorldClassInstructors from './WorldClassInstructors';
 import HeroTyped from './HeroTyped';
-import BecomeInstructor from './BecomeInstructor';
-import TestimonialSection from './TestimonialSection';
+
 
 // import layouts
 import NavbarDefault from 'layouts/marketing/navbars/NavbarDefault';

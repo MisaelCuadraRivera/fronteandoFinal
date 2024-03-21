@@ -72,7 +72,7 @@ const FooterWithLinks = () => {
 									className="nav nav-footer flex-column nav-x-0"
 								>
 									<ListGroup.Item as="li" bsPrefix=" ">
-										<Link to="#" className="nav-link">
+										<Link to="/marketing/help-center/support/" className="nav-link">
 											Soporte
 										</Link>
 									</ListGroup.Item>
