@@ -175,7 +175,7 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Add New Course',
+						menuitem: 'Agregar un nuevo curso',
 						link: '/marketing/instructor/add-new-course/'
 					}
 				]
@@ -284,7 +284,9 @@ const NavbarDefault = [
 						id: uuid(),
 						header: true,
 						header_text: 'Instructor',
-						description: 'Instructor dashboard.'
+
+						description:
+							'Dashboard del instructor para administrar cursos y estudiantes.'
 					},
 					{
 						id: uuid(),
@@ -307,29 +309,16 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Órdenes',
-						link: '/marketing/instructor/instructor-orders/'
-					},
-					{
-						id: uuid(),
+
 						menuitem: 'Reseñas',
 						link: '/marketing/instructor/instructor-reviews/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Students',
+						menuitem: 'Estudiantes',
 						link: '/marketing/instructor/instructor-students/'
 					},
-					{
-						id: uuid(),
-						menuitem: 'Payouts',
-						link: '/marketing/instructor/instructor-payouts/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Ganancias',
-						link: '/marketing/instructor/instructor-earnings/'
-					},
+
 				]
 			},
 			{

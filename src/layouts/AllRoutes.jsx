@@ -393,7 +393,7 @@ const AllRoutes = () => {
 				/>
 				<Route
 					path="/marketing/student/student-edit-profile/"
-					element={<EditProfile />}
+					element={<EditProfile />} /*------> Necesitamos cambiar esto*/
 				/>
 				<Route
 					path="/marketing/student/student-security/"

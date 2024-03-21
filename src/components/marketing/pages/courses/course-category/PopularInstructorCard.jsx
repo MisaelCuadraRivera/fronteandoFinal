@@ -25,17 +25,17 @@ const PopularInstructorCard = ({ item }) => {
 						<p className="mb-0 fs-6 text-muted">{item.topic}</p>
 					</div>
 					<div className="d-flex justify-content-between border-bottom py-2 mt-4">
-						<span>Students</span>
+						<span>Estudiantes</span>
 						<span className="text-dark">{numberWithCommas(item.students)}</span>
 					</div>
 					<div className="d-flex justify-content-between border-bottom py-2">
-						<span>Instructor Rating</span>
+						<span>Calificación del instructor</span>
 						<span className="text-warning">
 							{item.rating} <Icon path={mdiStar} size={0.6} />
 						</span>
 					</div>
 					<div className="d-flex justify-content-between pt-2">
-						<span>Courses</span>
+						<span>Cursos</span>
 						<span className="text-dark">{item.courses} </span>
 					</div>
 				</Card.Body>

@@ -70,7 +70,7 @@ const NavbarDefault = ({ headerstyle, login }) => {
 									);
 								}
 							})}
-							<DocumentMenu />
+							
 						</Nav>
 						{/* Search Form */}
 						<Form className="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">

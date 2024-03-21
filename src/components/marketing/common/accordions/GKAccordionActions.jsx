@@ -38,7 +38,7 @@ const GKAccordionActions = ({ accordionItems }) => {
 						<OverlayTrigger
 							key={overlayKeyEdit}
 							placement="top"
-							overlay={<Tooltip id="tooltip-top"> Edit</Tooltip>}
+							overlay={<Tooltip id="tooltip-top"> Editar</Tooltip>}
 						>
 							<Link to="#" className="me-1 text-inherit" title="Edit">
 								<i className="fe fe-edit fs-6"></i>
@@ -48,7 +48,7 @@ const GKAccordionActions = ({ accordionItems }) => {
 						<OverlayTrigger
 							key={overlayKeyDelete}
 							placement="top"
-							overlay={<Tooltip id="tooltip-top"> Delete</Tooltip>}
+							overlay={<Tooltip id="tooltip-top"> Eliminar</Tooltip>}
 						>
 							<Link to="#" className="me-1 text-inherit" title="Delete">
 								<i className="fe fe-trash-2 fs-6"></i>

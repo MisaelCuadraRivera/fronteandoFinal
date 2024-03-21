@@ -36,7 +36,7 @@ const StudentsListCard = () => {
 					return getValue() + '%';
 				}
 			},
-			{ accessorKey: 'questionasked', header: 'Respuestas' },
+			
 			{
 				accessorKey: 'Locations',
 				header: 'Dirección',

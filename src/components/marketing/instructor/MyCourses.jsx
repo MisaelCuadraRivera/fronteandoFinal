@@ -121,10 +121,7 @@ const MyCourses = () => {
 										<i className="far fa-clock me-1"></i>
 										{row.original.duration}
 									</ListGroup.Item>
-									<ListGroup.Item as="li" bsPrefix="list-inline-item">
-										<LevelIcon level={row.original.level} />
-										{row.original.level}
-									</ListGroup.Item>
+									
 								</ListGroup>
 								{row.original.progress && (
 									<ProgressBar

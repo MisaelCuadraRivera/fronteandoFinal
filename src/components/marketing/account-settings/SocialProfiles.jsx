@@ -14,10 +14,7 @@ const SocialProfiles = () => {
 			<Card className="border-0">
 				<Card.Header>
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Social Profiles</h3>
-						<p className="mb-0">
-							Add your social profile links in below social accounts.
-						</p>
+						<h3 className="mb-0">Perfil Social</h3>
 					</div>
 				</Card.Header>
 				<Card.Body>
@@ -30,11 +27,11 @@ const SocialProfiles = () => {
 							<Col lg={9} md={8} sm={12}>
 								<Form.Control
 									type="text"
-									placeholder="Twitter Profile Name"
+									placeholder="Usuario de Twitter"
 									className="form-control mb-1"
 								/>
 								<Form.Text className="text-muted">
-									Add your Twitter username (e.g. johnsmith).
+									Agrega tu usuario de Twitter.
 								</Form.Text>
 							</Col>
 						</Row>
@@ -46,11 +43,11 @@ const SocialProfiles = () => {
 							<Col lg={9} md={8} sm={12}>
 								<Form.Control
 									type="text"
-									placeholder="Facebook Profile Name"
+									placeholder="Usuario de Facebook"
 									className="form-control mb-1"
 								/>
 								<Form.Text className="text-muted">
-									Add your Facebook username (e.g. johnsmith).
+									Agrega tu usuario de Facebook
 								</Form.Text>
 							</Col>
 						</Row>
@@ -62,31 +59,16 @@ const SocialProfiles = () => {
 							<Col lg={9} md={8} sm={12}>
 								<Form.Control
 									type="text"
-									placeholder="Instagram Profile Name"
+									placeholder="Usuario de Instagram"
 									className="form-control mb-1"
 								/>
 								<Form.Text className="text-muted">
-									Add your Instagram username (e.g. johnsmith).
+									Agrega tu usuario de Instagram
 								</Form.Text>
 							</Col>
 						</Row>
 						{/*  Linked in  */}
-						<Row className="mb-5">
-							<Col lg={3} md={4} sm={12}>
-								<h5>LinkedIn Profile URL</h5>
-							</Col>
-							<Col lg={9} md={8} sm={12}>
-								<Form.Control
-									type="text"
-									placeholder="LinkedIn Profile URL "
-									className="form-control mb-1"
-								/>
-								<Form.Text className="text-muted">
-									Add your linkedin profile URL. (
-									https://www.linkedin.com/in/jitu-chauhan-ba004b78)
-								</Form.Text>
-							</Col>
-						</Row>
+						
 						{/*  Youtube  */}
 						<Row className="mb-3">
 							<Col lg={3} md={4} sm={12}>
@@ -95,11 +77,11 @@ const SocialProfiles = () => {
 							<Col lg={9} md={8} sm={12}>
 								<Form.Control
 									type="text"
-									placeholder="YouTube URL"
+									placeholder="YouTube Link"
 									className="form-control mb-1"
 								/>
 								<Form.Text className="text-muted">
-									Add your Youtube profile URL.
+									Agrega tu link de Youtube
 								</Form.Text>
 							</Col>
 						</Row>
@@ -107,7 +89,7 @@ const SocialProfiles = () => {
 						<Row>
 							<Col lg={{ span: 6, offset: 3 }} sm={12}>
 								<Button variant="primary" type="submit">
-									Save Social Profile
+									Guardar información
 								</Button>
 							</Col>
 						</Row>
