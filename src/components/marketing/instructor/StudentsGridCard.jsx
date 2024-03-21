@@ -38,15 +38,15 @@ const StudentsGridCard = () => {
 									{students.locations}
 								</p>
 								<Link to="#" className="btn btn-sm btn-outline-secondary mt-3">
-									Message
+									Mensaje
 								</Link>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2 mt-4 fs-6">
-								<span>Enrolled</span>
+								<span>Inscrito</span>
 								<span className="text-dark">{students.joined}</span>
 							</div>
 							<div className="d-flex justify-content-between pt-2 fs-6">
-								<span>Progress</span>
+								<span>Progreso</span>
 								<span className="text-success">{students.progress}%</span>
 							</div>
 						</Card.Body>
@@ -87,7 +87,7 @@ const StudentsGridCard = () => {
 						<Col className="pe-0">
 							<Form.Group className="mb-3" controlId="formSearchbyName">
 								<Form.Control
-									placeholder="Search by Name"
+									placeholder="Buscar por nombre"
 									type="search"
 									value={searchTerm}
 									onChange={getSearchTerm}
@@ -96,7 +96,7 @@ const StudentsGridCard = () => {
 						</Col>
 						<Col xs="auto">
 							<Link to="#" className="btn btn-secondary">
-								Export CSV
+								Exportar XSL
 							</Link>
 						</Col>
 					</Row>
@@ -107,7 +107,7 @@ const StudentsGridCard = () => {
 				{displayStudents.length > 0 ? (
 					displayStudents
 				) : (
-					<Col>No matching students found.</Col>
+					<Col>Resultado no encontrado.</Col>
 				)}
 			</Row>
 

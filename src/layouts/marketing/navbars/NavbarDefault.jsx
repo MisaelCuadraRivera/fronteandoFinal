@@ -36,7 +36,7 @@ const NavbarDefault = ({ headerstyle, login }) => {
 				className="navbar p-2 navbar-default py-2"
 			>
 				<Container fluid className="px-0 ps-2">
-					<Navbar.Brand as={Link} to="/marketing/landings/landing-courses/" >
+					<Navbar.Brand as={Link} to="/" >
 						<Image src={Logo} alt="" />
 					</Navbar.Brand>
 

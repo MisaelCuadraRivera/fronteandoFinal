@@ -22,7 +22,7 @@ const ProfileLayout = (props) => {
 		avatar: Avatar1,
 		name: 'Jenny Wilson',
 		username: '@Jennywilson',
-		linkname: 'Create New Course',
+		linkname: 'Crear curso',
 		link: '/marketing/instructor/add-new-course/'
 	};
 
@@ -83,7 +83,7 @@ const ProfileLayout = (props) => {
 											</Nav.Item>
 										))}
 										<Nav.Item className="navbar-header mt-4" as="li">
-											ACCOUNT SETTINGS
+											Configuración
 										</Nav.Item>
 										{AccountSettingsMenu.map((item, index) => (
 											<Nav.Item

@@ -18,9 +18,9 @@ const ProfileLayout = (props) => {
 
 	const dashboardData = {
 		avatar: Avatar3,
-		name: 'Kulian Rodriguez Rojas',
+		name: 'Julián Rodríguez Rojas',
 		username: '20223tn075@utez.edu.mx',
-		linkname: 'Configuracion de la cuenta',
+		linkname: 'Configuración de la cuenta',
 		link: '/marketing/student/student-edit-profile/',
 		verified: true,
 		outlinebutton: false,
@@ -67,7 +67,7 @@ const ProfileLayout = (props) => {
 								<Navbar.Collapse id="basic-navbar-nav">
 									<Nav className="me-auto flex-column" as="ul" activeKey="0">
 										<Nav.Item className="navbar-header" as="li">
-											Suscripciones
+											Cursos
 										</Nav.Item>
 										{DashboardMenu.map((item, index) => (
 											<Nav.Item

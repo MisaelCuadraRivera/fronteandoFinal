@@ -58,9 +58,10 @@ const ProfileCover = ({ dashboardData }) => {
 						<div>
 							<Link
 								to={dashboardData.link}
-								className={`btn btn${
-									dashboardData.outlinebutton ? '-outline' : ''
-								}-primary btn-sm d-none d-md-block`}
+								className={`btn btn${dashboardData.outlinebutton ? '-outline' : ''
+									} btn-sm d-none d-md-block`}
+								style={{backgroundColor: "#042b61", borderColor: "white", color:"white"
+							}}
 							>
 								{dashboardData.linkname}
 							</Link>

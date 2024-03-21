@@ -67,14 +67,14 @@ const MyCourses = () => {
 					<MoreVertical size="15px" className="text-secondary" />
 				</Dropdown.Toggle>
 				<Dropdown.Menu align="end">
-					<Dropdown.Header>SETTINGS</Dropdown.Header>
+					
 					<Dropdown.Item eventKey="1">
 						{' '}
-						<Edit size="15px" className="dropdown-item-icon" /> Edit
+						<Edit size="15px" className="dropdown-item-icon" /> Editar
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="2">
 						{' '}
-						<Trash size="15px" className="dropdown-item-icon" /> Remove
+						<Trash size="15px" className="dropdown-item-icon" /> Remover
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -82,11 +82,7 @@ const MyCourses = () => {
 	};
 
 	const sortby = [
-		{ value: 'Date Created', label: 'Date Created' },
-		{ value: 'Newest', label: 'Newest' },
-		{ value: 'High Rated', label: 'High Rated' },
-		{ value: 'Law Rated', label: 'Law Rated' },
-		{ value: 'High Earned', label: 'High Earned' }
+		{ value: 'Date Created', label: 'Fecha de creación' }
 	];
 
 	const columns = useMemo(
@@ -105,7 +101,7 @@ const MyCourses = () => {
 			},
 			{
 				accessorKey: 'image',
-				header: 'Courses',
+				header: 'Cursos',
 				cell: ({ getValue, row }) => {
 					return (
 						<div className="d-lg-flex">
@@ -145,7 +141,7 @@ const MyCourses = () => {
 			},
 			{
 				accessorKey: 'students',
-				header: 'Students',
+				header: 'Estudiantes',
 				cell: ({ getValue }) => {
 					return numberWithCommas(getValue());
 				}
@@ -153,7 +149,7 @@ const MyCourses = () => {
 
 			{
 				accessorKey: 'rating',
-				header: 'Rating',
+				header: 'Calificación',
 				cell: ({ getValue, row }) => {
 					return (
 						<Fragment>
@@ -168,7 +164,7 @@ const MyCourses = () => {
 			},
 			{
 				accessorKey: 'status',
-				header: 'Status',
+				header: 'Estado',
 				cell: ({ getValue }) => {
 					return (
 						<Badge
@@ -225,10 +221,7 @@ const MyCourses = () => {
 			<Card className="border-0">
 				<Card.Header>
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Courses</h3>
-						<p className="mb-0">
-							Manage your courses and its update like live, draft and insight.
-						</p>
+						<h3 className="mb-0">Cursos</h3>
 					</div>
 				</Card.Header>
 				<Card.Body>
@@ -237,10 +230,10 @@ const MyCourses = () => {
 							<GlobalFilter
 								filtering={filtering}
 								setFiltering={setFiltering}
-								placeholder="Search Your Courses" />
+								placeholder="Buscar cursos" />
 						</Col>
 						<Col lg={3} md={5} sm={12}>
-							<FormSelect options={sortby} placeholder="Sort by" />
+							<FormSelect options={sortby} placeholder="Ordenar por" />
 						</Col>
 					</Row>
 				</Card.Body>

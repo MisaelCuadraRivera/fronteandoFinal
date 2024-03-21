@@ -51,7 +51,7 @@ const TanstackTable = ({ data, columns, filter = false, pagination = false, filt
                 </Col>
                 <Col xs="auto" className="mb-lg-0 mb-2 pe-5 py-4">
                     <Link to="#" className="btn btn-secondary">
-                        Export CSV
+                        Export XSL
                     </Link>
                 </Col>
             </Row>}

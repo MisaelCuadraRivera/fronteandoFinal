@@ -18,19 +18,18 @@ const HeroTyped = () => {
 								<span className="text-dark px-3 px-md-0">Mejora en</span>
 								<span className="ms-2" style={{color: "#009475"}}>
 									<Typewriter
-										words={['React', 'JS', 'Spring', 'Java', 'Vue', 'Angular']}
+										words={['React', 'Canto', 'JS', 'Spring', 'Java', 'Vue', 'Angular','Contaduria']}
 										loop
 										cursor
 										cursorStyle="|"
 										typeSpeed={60}
 										deleteSpeed={50}
 										delaySpeed={1000}
-										
 									/>
 								</span>
 							</h1>
 							<p className="mb-6 h2 text-dark">
-							     Desarrolla tus habilidades con los mejores cursos en línea o presenciales que te ofrece la UTEZ
+							     Desarrolla tus habilidades con los mejores cursos presenciales que te ofrece la UTEZ
 							</p>
 							<Link
 								to="/marketing/course-category/"
