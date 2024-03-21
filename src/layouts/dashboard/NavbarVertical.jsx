@@ -17,7 +17,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
 // import media files
-import InverseLogo from 'assets/images/brand/logo/logo-inverse.svg';
+import InverseLogo from 'assets/images/brand/logo/logo-inverse.png';
 import GiftBox from 'assets/images/background/giftbox.png';
 
 // import routes file
