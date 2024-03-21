@@ -175,7 +175,7 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Add New Course',
+						menuitem: 'Agregar un nuevo curso',
 						link: '/marketing/instructor/add-new-course/'
 					}
 				]
@@ -288,7 +288,8 @@ const NavbarDefault = [
 						id: uuid(),
 						header: true,
 						header_text: 'Instructor',
-						description: 'Instructor dashboard for manage courses and earning.'
+						description:
+							'Dashboard del instructor para administrar cursos y estudiantes.'
 					},
 					{
 						id: uuid(),
@@ -301,61 +302,24 @@ const NavbarDefault = [
 					},
 					{
 						id: uuid(),
-						menuitem: 'Profile',
+						menuitem: 'Perfil',
 						link: '/marketing/instructor/instructor-profile/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'My Courses',
+						menuitem: 'Mis cursos',
 						link: '/marketing/instructor/instructor-my-courses/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Orders',
-						link: '/marketing/instructor/instructor-orders/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Reviews',
+						menuitem: 'Reseñas',
 						link: '/marketing/instructor/instructor-reviews/'
 					},
 					{
 						id: uuid(),
-						menuitem: 'Students',
+						menuitem: 'Estudiantes',
 						link: '/marketing/instructor/instructor-students/'
 					},
-					{
-						id: uuid(),
-						menuitem: 'Payouts',
-						link: '/marketing/instructor/instructor-payouts/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Earning',
-						link: '/marketing/instructor/instructor-earnings/'
-					},
-					{
-						id: uuid(),
-						menuitem: 'Quiz',
-						link: '#',
-						children: [
-							{
-								id: uuid(),
-								menuitem: 'Quiz',
-								link: '/marketing/instructor/quiz/'
-							},
-							{
-								id: uuid(),
-								menuitem: 'Single',
-								link: '/marketing/instructor/quiz/single/'
-							},
-							{
-								id: uuid(),
-								menuitem: 'Result',
-								link: '/marketing/instructor/quiz/result/'
-							}
-						]
-					}
 				]
 			},
 			{

@@ -30,7 +30,7 @@ export const AllCoursesData = [
 		id: 1,
 		category: 'gatsby',
 		image: GatsbyCourse,
-		title: 'Carding, ¿Vendicion de los pobre, o maldicion de los ricos?',
+		title: 'Carding, ¿Bendicion de los pobres, o maldicion de los ricos?',
 		date_added: 'Agregado 7/Junio/2023',
 		instructor_name: 'Misael Cuadra',
 		instructor_image: Avatar7,
