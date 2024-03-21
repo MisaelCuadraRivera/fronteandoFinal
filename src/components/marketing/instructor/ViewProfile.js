@@ -48,7 +48,7 @@ const ViewProfile = () => {
 					<MoreVertical size="15px" className="text-secondary" />
 				</Dropdown.Toggle>
 				<Dropdown.Menu align="end">
-					<Dropdown.Header>SHARE</Dropdown.Header>
+					<Dropdown.Header>COMPARTIR</Dropdown.Header>
 					<Dropdown.Item eventKey="1">
 						<Icon path={mdiFacebook} size={0.8} className="text-secondary" />{' '}
 						Facebook
@@ -63,7 +63,7 @@ const ViewProfile = () => {
 					</Dropdown.Item>
 					<Dropdown.Item eventKey="4">
 						<Icon path={mdiContentCopy} size={0.8} className="text-secondary" />
-						Copy Link
+						Copiar Link
 					</Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
@@ -99,11 +99,11 @@ const ViewProfile = () => {
 							<Card className="border-0 mb-4">
 								{/* Card body */}
 								<Card.Body>
-									<h4>About me</h4>
+									<h4>Sobre mi</h4>
 									<p>{InstructorData[InstructorID].about}</p>
 									<Link to="#" className="btn-link">
 										{' '}
-										Read more
+										Leer más
 									</Link>
 								</Card.Body>
 							</Card>
@@ -116,7 +116,7 @@ const ViewProfile = () => {
 											<h4 className="mb-0 fw-bold">
 												{InstructorData[InstructorID].courses}
 											</h4>
-											<p className="fs-6 mb-0">Courses</p>
+											<p className="fs-6 mb-0">Cursos</p>
 										</div>
 										<div>
 											<span>
@@ -129,7 +129,7 @@ const ViewProfile = () => {
 											<h4 className="mb-0 fw-bold">
 												{InstructorData[InstructorID].students}
 											</h4>
-											<p className="fs-6 mb-0">Total Students</p>
+											<p className="fs-6 mb-0">Estudiantes Totales</p>
 										</div>
 										<div>
 											<span>
@@ -142,7 +142,7 @@ const ViewProfile = () => {
 											<h4 className="mb-0 fw-bold">
 												{InstructorData[InstructorID].reviews}
 											</h4>
-											<p className="fs-6 mb-0">Reviews</p>
+											<p className="fs-6 mb-0">Reseñas</p>
 										</div>
 										<div>
 											<span>

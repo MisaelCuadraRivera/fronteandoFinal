@@ -10,31 +10,24 @@ export const BestSellingCoursesData = [
 	{
 		id: uuid(),
 		image: GatsbyCourse,
-		title: 'Revolutionize how you build the web',
+		title: 'Curso de Sexting',
 		sales: 34,
 		amount: 3145.23
 	},
 	{
 		id: uuid(),
 		image: GraphQLCourse,
-		title: 'Guide to Static Sites with Gatsby',
+		title: 'Curso de Carding',
 		sales: 30,
 		amount: 2611.82
 	},
 	{
 		id: uuid(),
 		image: HTMLCourse,
-		title: 'The Modern HTML Courses',
+		title: 'Grindr Users Course',
 		sales: 26,
 		amount: 2372.19
 	},
-	{
-		id: uuid(),
-		image: JavaScriptCourse,
-		title: 'Courses JavaScript Heading Title',
-		sales: 20,
-		amount: 1145.23
-	}
 ];
 
 export default BestSellingCoursesData;

@@ -18,8 +18,7 @@ const Students = () => {
 				<Card className="mb-4 pb-1">
 					<Card.Header className="border-0 d-flex justify-content-between ">
 						<div className="mb-3 mb-lg-0">
-							<h3 className="mb-0">Students</h3>
-							<p className="mb-0">Meet people taking your course.</p>
+							<h3 className="mb-0">Estudiantes</h3>
 						</div>
 						<GridListViewButton keyGrid="grid" keyList="list" />
 					</Card.Header>

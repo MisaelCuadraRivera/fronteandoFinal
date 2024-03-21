@@ -20,13 +20,13 @@ const InstructorReviewCard = ({ item }) => {
 						<OverlayTrigger
 							key="top"
 							placement="top"
-							overlay={<Tooltip id={`tooltip-top`}>Report Abuse</Tooltip>}
+							overlay={<Tooltip id={`tooltip-top`}>Reportar</Tooltip>}
 						>
 							<Link
 								to="#"
 								data-bs-toggle="tooltip"
 								data-placement="top"
-								title="Report Abuse"
+								title="Reportar"
 							>
 								<i className="fe fe-flag"></i>
 							</Link>
@@ -37,11 +37,11 @@ const InstructorReviewCard = ({ item }) => {
 					<span className="me-1 text-warning">
 						<Ratings rating={item.rating} />
 					</span>
-					<span className="me-1">for</span>
+					<span className="me-1">De</span>
 					<span className="h5">{item.for}</span>
 					<p className="mt-2">{item.content} </p>
 					<Link to="#" className="btn btn-outline-secondary btn-sm">
-						Respond
+						Responder
 					</Link>
 				</div>
 			</div>

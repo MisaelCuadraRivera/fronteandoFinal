@@ -5,16 +5,11 @@ import { Row, Col, Card, Table, Dropdown, Image } from 'react-bootstrap';
 
 // import custom components
 import StatRightBadge from 'components/marketing/common/stats/StatRightBadge';
-import ApexCharts from 'components/elements/charts/ApexCharts';
+
 
 // import data files
 import BestSellingCoursesData from 'data/marketing/BestSellingCoursesData';
-import {
-	EarningsChartSeries,
-	EarningsChartOptions,
-	OrderColumnChartSeries,
-	OrderColumnChartOptions
-} from 'data/charts/ChartData';
+
 
 // import profile layout wrapper
 import ProfileLayout from './ProfileLayout';
@@ -44,12 +39,11 @@ const Dashboard = () => {
 						<i className="fe fe-more-vertical text-muted"></i>
 					</Dropdown.Toggle>
 					<Dropdown.Menu align="end">
-						<Dropdown.Header>SETTINGS</Dropdown.Header>
 						<Dropdown.Item eventKey="1">
-							<i className="fe fe-edit dropdown-item-icon"></i> Edit
+							<i className="fe fe-edit dropdown-item-icon"></i> Editar
 						</Dropdown.Item>
 						<Dropdown.Item eventKey="2">
-							<i className="fe fe-trash dropdown-item-icon"></i> Remove
+							<i className="fe fe-trash dropdown-item-icon"></i> Remover
 						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
@@ -61,28 +55,19 @@ const Dashboard = () => {
 		<ProfileLayout>
 			{/* Page Content section */}
 			<Row>
-				<Col lg={4} md={12} sm={12} className="mb-4 mb-lg-0">
+				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">
 					<StatRightBadge
-						title="Revenue"
-						subtitle="Earning this month"
-						value="$467.34"
-						badgeValue="$203.23"
-						colorVariant="success"
-					/>
-				</Col>
-				<Col lg={4} md={12} sm={12} className="mb-4 mb-lg-0">
-					<StatRightBadge
-						title="Students Enrollments"
-						subtitle="New this month"
+						title="Estudiantes"
+						subtitle="Este mes"
 						value="12,000"
 						badgeValue="120+"
 						colorVariant="info"
 					/>
 				</Col>
-				<Col lg={4} md={12} sm={12} className="mb-4 mb-lg-0">
+				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">
 					<StatRightBadge
-						title="Courses Rating"
-						subtitle="Rating this month"
+						title="Calificación de cursos"
+						subtitle="Calificación promedio"
 						value="4.80"
 						badgeValue="10+"
 						colorVariant="warning"
@@ -90,50 +75,23 @@ const Dashboard = () => {
 				</Col>
 			</Row>
 			{/* <!-- Card --> */}
-			<Card className="my-4">
-				<Card.Header>
-					<h3 className="h4 mb-0">Earnings</h3>
-				</Card.Header>
-				<Card.Body>
-					<ApexCharts
-						options={EarningsChartOptions}
-						series={EarningsChartSeries}
-						height={350}
-						type="line"
-					/>
-				</Card.Body>
-			</Card>
-			{/* <!-- Card --> */}
-			<Card className="my-4">
-				<Card.Header>
-					<h3 className="h4 mb-0">Order</h3>
-				</Card.Header>
-				<Card.Body>
-					<ApexCharts
-						options={OrderColumnChartOptions}
-						series={OrderColumnChartSeries}
-						height={287}
-						type="bar"
-					/>
-				</Card.Body>
-			</Card>
 
 			<Card className="mt-4">
 				<Card.Header>
-					<h3 className="mb-0 h4">Best Selling Courses</h3>
+					<h3 className="mb-0 h4">Cursos mas vendidos</h3>
 				</Card.Header>
 				<Card.Body className="p-0 ">
 					<Table hover responsive className="mb-0 text-nowrap table-centered">
 						<thead className="table-light">
 							<tr>
 								<th scope="col" className="border-0">
-									COURSES
+									CURSOS
 								</th>
 								<th scope="col" className="border-0">
-									SALES
+									VENTAS
 								</th>
 								<th scope="col" className="border-0">
-									AMOUNT
+									MONTO
 								</th>
 								<th scope="col" className="border-0"></th>
 							</tr>
