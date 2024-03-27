@@ -1,5 +1,8 @@
 // import node module libraries
+import Icon from '@mdi/react';
 import { Card, Form, Button } from 'react-bootstrap';
+import { mdiArrowLeft } from '@mdi/js';
+import { mdiArrowRight } from '@mdi/js';
 
 const CoursesMedia = (props) => {
 	const { next, previous } = props;
@@ -28,25 +31,25 @@ const CoursesMedia = (props) => {
 							Subir
 						</Form.Label>
 						<Form.Text className="text-muted">
-							Upload your course image here. It must meet our course image
-							quality standards to be accepted. Important guidelines: 750x440
-							pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
+							Sube la imagen de tu curso aquí.
+							Debe cumplir con nuestros estándares de calidad de imagen para ser aceptada. 
+							Pautas importantes: 750x440 píxeles; .jpg, .jpeg, .gif o .png. sin texto en la imagen.
 						</Form.Text>
 					</Form.Group>
-					
+
 				</Card.Body>
 			</Card>
 
 			{/* Button */}
 			<div className="d-flex justify-content-between">
 				<Button variant="secondary" onClick={previous}>
-					Anterior
+				<Icon path={mdiArrowLeft} size={0.8} />{" "} Anterior 
 				</Button>
-				
-				<Button className='btn-sm' onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
-					Siguiente
+
+				<Button onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
+					Siguiente <Icon path={mdiArrowRight} size={0.8} />
 				</Button>
-			
+
 			</div>
 		</Form>
 	);

@@ -6,44 +6,40 @@ const DescriptionTab = () => {
 	return (
 		<Fragment>
 			<div className="mb-4">
-				<h3 className="mb-2">Course Descriptions</h3>
+				<h3 className="mb-2">Descripción del curso</h3>
 				<p>
-					If you’re learning to program for the first time, or if you’re coming
-					from a different language, this course, JavaScript: Getting Started,
-					will give you the basics for coding in JavaScript. First, you'll
-					discover the types of applications that can be built with JavaScript,
-					and the platforms they’ll run on.
+					Si estás aprendiendo a programar por primera vez, o si vienes de un lenguaje diferente, este curso, JavaScript:
+					Comenzando, te dará las bases para codificar en JavaScript. Primero, descubrirás los tipos de aplicaciones que se pueden construir
+					con JavaScript y las plataformas en las que se ejecutarán.
 				</p>
 				<p>
-					Next, you’ll explore the basics of the language, giving plenty of
-					examples. Lastly, you’ll put your JavaScript knowledge to work and
-					modify a modern, responsive web page. When you’re finished with this
-					course, you’ll have the skills and knowledge in JavaScript to create
-					simple programs, create simple web applications, and modify web pages.
+					A continuación, explorarás los conceptos básicos del lenguaje, proporcionando abundantes ejemplos.
+					Finalmente, pondrás a prueba tus conocimientos de JavaScript y modificarás una página web moderna y
+					adaptable. Cuando hayas terminado con este curso, tendrás las habilidades
+					y conocimientos en JavaScript para crear programas simples, desarrollar aplicaciones
+					web sencillas y modificar páginas web.
 				</p>
 			</div>
-			<h4 className="mb-3">What you’ll learn</h4>
+			<h4 className="mb-3">Lo que aprenderás</h4>
 			<Row className="mb-3">
 				<Col lg={6} md={6} sm={12}>
 					<ListGroup bsPrefix="list-unstyled" variant="flush">
 						<ListGroup.Item bsPrefix=" " className="d-flex mb-2">
 							<i className="far fa-check-circle text-success me-2 mt-2"></i>
 							<span>
-								Recognize the importance of understanding your objectives when
-								addressing an audience.
+								Reconoce la importancia de entender tus objetivos al dirigirte a una audiencia.
 							</span>
 						</ListGroup.Item>
 						<ListGroup.Item bsPrefix=" " className="d-flex mb-2">
 							<i className="far fa-check-circle text-success me-2 mt-2"></i>
 							<span>
-								Identify the fundaments of composing a successful close.
+								Identifica los fundamentos para componer un cierre exitoso.
 							</span>
 						</ListGroup.Item>
 						<ListGroup.Item bsPrefix=" " className="d-flex mb-2">
 							<i className="far fa-check-circle text-success me-2 mt-2"></i>
 							<span>
-								Explore how to connect with your audience through crafting
-								compelling stories.
+								Explora cómo conectar con tu audiencia a través de la creación de historias convincentes.
 							</span>
 						</ListGroup.Item>
 					</ListGroup>
@@ -53,8 +49,7 @@ const DescriptionTab = () => {
 						<ListGroup.Item bsPrefix=" " className="d-flex mb-2">
 							<i className="far fa-check-circle text-success me-2 mt-1"></i>{' '}
 							<span>
-								Examine ways to connect with your audience by personalizing your
-								content.
+							Examina formas de conectar con tu audiencia personalizando tu contenido.
 							</span>
 						</ListGroup.Item>
 						<ListGroup.Item bsPrefix=" " className="d-flex mb-2">

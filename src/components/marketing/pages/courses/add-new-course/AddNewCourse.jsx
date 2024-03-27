@@ -9,7 +9,6 @@ import GKStepper from 'components/elements/stepper/GKStepper';
 // import sub components ( Steps )
 import BasicInformation from './steps/BasicInformation';
 import CoursesMedia from './steps/CoursesMedia';
-import Curriculum from './steps/Curriculum';
 import Settings from './steps/Settings';
 
 const AddNewCourse = () => {
@@ -88,13 +87,13 @@ const AddNewCourse = () => {
 								<div>
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
-										className="btn btn-white btn-sm "
+										className="btn btn-white"
 									>
 										Regresar a cursos
 									</Link>{' '}
 									<Link
 										to="/marketing/instructor/instructor-my-courses/"
-										className="btn btn-dark btn-sm"
+										className="btn btn-dark"
 									>
 										Guardar
 									</Link>

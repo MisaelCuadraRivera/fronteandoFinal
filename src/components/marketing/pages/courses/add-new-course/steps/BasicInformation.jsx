@@ -4,6 +4,8 @@ import { Card, Form, Button, Container } from 'react-bootstrap';
 // import custom components
 import { FormSelect } from 'components/elements/form-select/FormSelect';
 import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
 
 const BasicInformation = (props) => {
 	const { next } = props;
@@ -92,7 +94,7 @@ const BasicInformation = (props) => {
 			{/* Button */}
 			<Container className='text-end'>
 				<Button onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
-					Siguiente
+					Siguiente <Icon path={mdiArrowRight} size={0.8} />
 				</Button>
 			</Container>
 
