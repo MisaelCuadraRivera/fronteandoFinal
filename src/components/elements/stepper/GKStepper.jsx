@@ -23,7 +23,7 @@ const GKStepper = (props) => {
 													}`}
 												>
 													<Button bsPrefix="step-trigger">
-														<span className="stepper-circle">{step.id}</span>
+														<span className="stepper-circle" style={{backgroundColor:"#042b61"}}>{step.id}</span>
 														<span className="stepper-label">{step.title}</span>
 													</Button>
 												</div>

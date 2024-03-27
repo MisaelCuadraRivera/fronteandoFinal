@@ -13,10 +13,8 @@ import {
 import { Link } from 'react-router-dom';
 
 // import popup youtube video
-import ModalVideo from 'react-modal-video';
 
 // import custom components
-import GKAccordionDefault from 'components/marketing/common/accordions/GKAccordionDefault';
 import Ratings from 'components/marketing/common/ratings/Ratings';
 import GKTippy from 'components/elements/tooltips/GKTippy';
 
@@ -26,7 +24,6 @@ import CourseCard from '../CourseCard';
 // import sub components tabs
 import ReviewsTab from './ReviewsTab';
 import DescriptionTab from './DescriptionTab';
-import TranscriptTab from './TranscriptTab';
 import FAQTab from './FAQTab';
 
 // import media files
@@ -35,7 +32,6 @@ import CourseJavascript from 'assets/images/course/course-javascript.jpg';
 import Avatar1 from 'assets/images/avatar/avatar-1.jpg';
 
 // import data files
-import { CourseIndex } from 'data/marketing/CourseIndexData';
 import { AllCoursesData } from 'data/slider/AllCoursesData';
 
 const CourseSingle = () => {
@@ -45,18 +41,17 @@ const CourseSingle = () => {
 	return (
 		<Fragment>
 			{/* Page header */}
-			<section className="pt-lg-8 pb-lg-16 pt-8 pb-12 bg-primary">
+			<section className="pt-lg-8 pb-lg-16 pt-8 pb-12" style={{backgroundColor:"#009475"}}>
 				<Container>
 					<Row className="align-items-center">
 						<Col xl={7} lg={7} md={12} sm={12}>
 							<div>
 								<h1 className="text-white display-4 fw-semi-bold">
-									Getting Started with JavaScript
+									Aprendiendo JavaScript
 								</h1>
 								<p className="text-white mb-6 lead">
-									JavaScript is the popular programming language which powers
-									web pages and web applications. This course will get you
-									started coding in JavaScript.
+									JavaScript es el lenguaje de programación popular que impulsa páginas web
+									y aplicaciones web. Este curso te iniciará en la codificación en JavaScript.
 								</p>
 								<div className="d-flex align-items-center">
 									<GKTippy content="Add to Bookmarks">
@@ -65,15 +60,15 @@ const CourseSingle = () => {
 											className="bookmark text-white text-decoration-none"
 										>
 											<i className="fe fe-bookmark text-white-50 me-2"></i>
-											Bookmark
+											Guardar
 										</Link>
 									</GKTippy>
 									<span className="text-white ms-3">
-										<i className="fe fe-user text-white-50"></i> 1200 Enrolled{' '}
+										<i className="fe fe-user text-white-50"></i> 14 inscritos{' '}
 									</span>
 									<span className="ms-4">
 										<span className="text-warning">
-											<Ratings rating={4.5} />
+											<Ratings rating={3.5} />
 											<span className="text-white ms-1">(140)</span>
 										</span>
 									</span>
@@ -110,7 +105,7 @@ const CourseSingle = () => {
 												fill="#DBD8E9"
 											></rect>
 										</svg>{' '}
-										<span className="align-middle">Intermediate</span>
+										<span className="align-middle">Intermedio</span>
 									</span>
 								</div>
 							</div>
@@ -123,15 +118,12 @@ const CourseSingle = () => {
 				<Container>
 					<Row>
 						<Col lg={8} md={12} sm={12} className="mt-n8 mb-4 mb-lg-0">
-							<Tab.Container defaultActiveKey="contents">
+							<Tab.Container defaultActiveKey="descripción">
 								<Card>
 									<Nav className="nav-lb-tab">
 										{[
-											'Contents',
-											'Description',
-											'Reviews',
-											'Transcript',
-											'FAQ'
+											'Descripción',
+											'Reseñas',
 										].map((item, index) => (
 											<Nav.Item key={index}>
 												<Nav.Link
@@ -146,29 +138,15 @@ const CourseSingle = () => {
 									</Nav>
 									<Card.Body className="p-0">
 										<Tab.Content>
-											<Tab.Pane eventKey="contents" className="pb-4 pt-3 px-4">
-												{/* Course Index Accordion */}
-												<GKAccordionDefault
-													accordionItems={CourseIndex}
-													itemClass="px-0"
-												/>
-											</Tab.Pane>
-											<Tab.Pane eventKey="description" className="pb-4 p-4">
+											<Tab.Pane eventKey="descripción" className="pb-4 p-4">
 												{/* Description */}
 												<DescriptionTab />
 											</Tab.Pane>
-											<Tab.Pane eventKey="reviews" className="pb-4 p-4">
+											<Tab.Pane eventKey="reseñas" className="pb-4 p-4">
 												{/* Reviews */}
 												<ReviewsTab />
 											</Tab.Pane>
-											<Tab.Pane eventKey="transcript" className="pb-4 p-4">
-												{/* Transcript */}
-												<TranscriptTab />
-											</Tab.Pane>
-											<Tab.Pane eventKey="faq" className="pb-4 p-4">
-												{/* FAQ */}
-												<FAQTab />
-											</Tab.Pane>
+											
 										</Tab.Content>
 									</Card.Body>
 								</Card>
@@ -187,24 +165,10 @@ const CourseSingle = () => {
 											backgroundPosition: 'top center'
 										}}
 									>
-										<Link
-											to="#"
-											className="popup-youtube icon-shape rounded-circle btn-play icon-xl text-decoration-none"
-											onClick={() => setOpen(true)}
-										>
-											<i className="fe fe-play"></i>
-										</Link>
+
 									</div>
 								</div>
-								{/* video popup */}
-								<ModalVideo
-									channel="youtube"
-									autoplay
-									isOpen={isOpen}
-									videoId={YouTubeURL}
-									onClose={() => setOpen(false)}
-								/>
-								{/* end of video popup */}
+
 
 								{/* Card body */}
 								<Card.Body>
@@ -214,15 +178,10 @@ const CourseSingle = () => {
 										<del className="fs-4 text-muted">$750</del>
 									</div>
 									<div className="d-grid">
-										<Link to="#" className="btn btn-primary mb-2  ">
-											Start Free Month
+										<Link to="#" className="btn mb-2" style={{ backgroundColor: "#042b61", color: "white" }}>
+											Inscribirme
 										</Link>
-										<Link
-											to="/marketing/pages/pricing/"
-											className="btn btn-outline-primary"
-										>
-											Get Full Access
-										</Link>
+
 									</div>
 								</Card.Body>
 							</Card>
@@ -237,23 +196,19 @@ const CourseSingle = () => {
 									<ListGroup variant="flush">
 										<ListGroup.Item>
 											<i className="fe fe-play-circle align-middle me-2 text-primary"></i>
-											12 hours video
+											12 horas de video
 										</ListGroup.Item>
 										<ListGroup.Item>
 											<i className="fe fe-award me-2 align-middle text-success"></i>
-											Certificate
-										</ListGroup.Item>
-										<ListGroup.Item>
-											<i className="fe fe-calendar align-middle me-2 text-info"></i>
-											12 Article
+											Certificado de finalización
 										</ListGroup.Item>
 										<ListGroup.Item>
 											<i className="fe fe-video align-middle me-2 text-secondary"></i>
-											Watch Offline
+											Ver offline
 										</ListGroup.Item>
 										<ListGroup.Item className="bg-transparent">
 											<i className="fe fe-clock align-middle me-2 text-warning"></i>
-											Lifetime access
+											Acceso de por vida
 										</ListGroup.Item>
 									</ListGroup>
 								</Card.Body>
@@ -290,7 +245,7 @@ const CourseSingle = () => {
 											<span className="fs-6">
 												<span className="text-warning">4.5</span>
 												<span className="mdi mdi-star text-warning me-2"></span>
-												Instructor Rating
+												Calificación del instructor
 											</span>
 										</div>
 									</div>
@@ -298,32 +253,30 @@ const CourseSingle = () => {
 										<Col>
 											<div className="pe-1 ps-2 py-3">
 												<h5 className="mb-0">11,604</h5>
-												<span>Students</span>
+												<span>Estudiantes</span>
 											</div>
 										</Col>
 										<Col className="border-start">
 											<div className="pe-1 ps-3 py-3">
 												<h5 className="mb-0">32</h5>
-												<span>Courses</span>
+												<span>Cursos</span>
 											</div>
 										</Col>
 										<Col className="border-start">
 											<div className="pe-1 ps-3 py-3">
 												<h5 className="mb-0">12,230</h5>
-												<span>Reviews</span>
+												<span>Reseñas</span>
 											</div>
 										</Col>
 									</Row>
 									<p>
-										I am an Innovation designer focussing on UX/UI based in
-										Berlin. As a creative resident at Figma explored the city of
-										the future and how new technologies.
+										Descripción del profesor
 									</p>
 									<Link
 										to="/marketing/instructor/instructor-edit-profile/"
 										className="btn btn-outline-secondary btn-sm"
 									>
-										View Details
+										Ver detalles
 									</Link>
 								</Card.Body>
 							</Card>
