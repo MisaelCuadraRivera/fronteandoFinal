@@ -18,7 +18,19 @@ const Settings = (props) => {
 				</Card.Header>
 				{/* Card body */}
 				<Card.Body>
-					<GKTagsInput  />
+<Form.Group className="mb-3">
+  <Form.Label htmlFor="applicantRequirements">Requisitos del aspirante</Form.Label>
+  <Form.Control
+    type="text"
+    placeholder="Requisitos"
+    id="applicant_requirements"
+    name="applicant_requirements" // Ajustado para reflejar correctamente el propósito del campo
+  />
+  <Form.Text className="text-muted">
+    Máximo 60 caracteres.
+  </Form.Text>
+</Form.Group>
+
 				</Card.Body>
 			</Card>
 			<div className="d-flex justify-content-between mb-22">
@@ -26,7 +38,7 @@ const Settings = (props) => {
 				<Button variant="secondary" onClick={previous}>
 				<Icon path={mdiArrowLeft} size={0.8} />{" "} Anterior
 				</Button>
-				<Button variant="danger">Mandar a revisión <Icon path={mdiUpload} size={0.7}/>  </Button>
+				<Button variant="danger" onClick={props.submitCourse}>Mandar a revisión</Button>
 			</div>
 		</Form>
 	);
