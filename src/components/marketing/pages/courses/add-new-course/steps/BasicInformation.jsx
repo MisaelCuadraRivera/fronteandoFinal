@@ -8,7 +8,7 @@ import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 
 const BasicInformation = (props) => {
-	const { next } = props;
+	const { next, handleChange, setFormData } = props;
 
 	const categoryOptions = [
 		{ value: 'React', label: 'React' },
@@ -44,8 +44,9 @@ const BasicInformation = (props) => {
 						<Form.Control
 							type="text"
 							placeholder="Título"
-							id="course_title"
-							name="course_title"
+							id="title"
+							name="title"
+							onChange={(e) => props.setFormData(e.target.name, e.target.value)}
 						/>
 						<Form.Text className="text-muted">
 							Máximo 60 caracteres.
@@ -57,9 +58,10 @@ const BasicInformation = (props) => {
 						<Form.Label>Categoría</Form.Label>
 						<FormSelect
 							options={categoryOptions}
-							id="category_category"
-							name="category_category"
+							id="category"
+							name="category"
 							placeholder="Selecciona una categoría"
+							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
 						/>
 						<Form.Text className="text-muted">
 							Ayuda a las personas a encontrar los cursos en base a categorías.
@@ -71,9 +73,10 @@ const BasicInformation = (props) => {
 						<Form.Label>Nivel del curso</Form.Label>
 						<FormSelect
 							options={CoursesLevel}
-							id="courses_level"
-							name="courses_level"
+							id="level"
+							name="level"
 							placeholder="Selecciona un nivel"
+							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
 						/>
 					</Form.Group>
 
@@ -82,8 +85,9 @@ const BasicInformation = (props) => {
 						<Form.Label>Descripción del curso</Form.Label>
 						<ReactQuillEditor
 							initialValue={initialValue}
-							id="course_description"
-							name="course_description"
+							id="description"
+							name="description"
+							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
 						/>
 						<Form.Text className="text-muted">
 							Un resumen pequeño del curso.
