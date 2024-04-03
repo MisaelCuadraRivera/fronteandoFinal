@@ -5,23 +5,25 @@ import { Card, Form, Button, Container } from 'react-bootstrap';
 import { FormSelect } from 'components/elements/form-select/FormSelect';
 import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
 import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
+import { mdiArrowRight, mdiUpload } from '@mdi/js';
+import GKTagsInput from 'components/elements/tags/GKTagsInput';
+
 
 const BasicInformation = (props) => {
-	const { next, handleChange, setFormData } = props;
+	const { next } = props;
 
 	const categoryOptions = [
-		{ value: "React", label: "React" },
-		{ value: "Javascript", label: "Javascript" },
-		{ value: "HTML", label: "HTML" },
-		{ value: "Vuejs", label: "Vue js" },
-		{ value: "Gulpjs", label: "Gulp js" }
+		{ value: 'React', label: 'React' },
+		{ value: 'Javascript', label: 'Javascript' },
+		{ value: 'HTML', label: 'HTML' },
+		{ value: 'Vuejs', label: 'Vue js' },
+		{ value: 'Gulpjs', label: 'Gulp js' }
 	];
 
 	const CoursesLevel = [
-		{ value: "Intermediate", label: "Intermedio" },
-		{ value: "Beignners", label: "Principiante" },
-		{ value: "Advance", label: "Avanzado" }
+		{ value: 'Intermediate', label: 'Intermedio' },
+		{ value: 'Beignners', label: 'Principiante' },
+		{ value: 'Advance', label: 'Avanzado' }
 	];
 
 	const initialValue = `<p>Escribe la descripción del curso</p>
@@ -44,10 +46,8 @@ const BasicInformation = (props) => {
 						<Form.Control
 							type="text"
 							placeholder="Título"
-							id="title"
-							name="title"
-							onChange={(e) => props.setFormData(e.target.name, e.target.value)}
-							
+							id="course_title"
+							name="course_title"
 						/>
 						<Form.Text className="text-muted">
 							Máximo 60 caracteres.
@@ -59,10 +59,9 @@ const BasicInformation = (props) => {
 						<Form.Label>Categoría</Form.Label>
 						<FormSelect
 							options={categoryOptions}
-							id="category"
-							name="category"
+							id="category_category"
+							name="category_category"
 							placeholder="Selecciona una categoría"
-							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
 						/>
 						<Form.Text className="text-muted">
 							Ayuda a las personas a encontrar los cursos en base a categorías.
@@ -74,10 +73,9 @@ const BasicInformation = (props) => {
 						<Form.Label>Nivel del curso</Form.Label>
 						<FormSelect
 							options={CoursesLevel}
-							id="level"
-							name="level"
+							id="courses_level"
+							name="courses_level"
 							placeholder="Selecciona un nivel"
-							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
 						/>
 					</Form.Group>
 
@@ -86,12 +84,33 @@ const BasicInformation = (props) => {
 						<Form.Label>Descripción del curso</Form.Label>
 						<ReactQuillEditor
 							initialValue={initialValue}
-							id="description"
-							name="description"
-							onChange={(e) => props.handleChange(e.target.name, e.target.value)}
+							id="course_description"
+							name="course_description"
 						/>
 						<Form.Text className="text-muted">
 							Un resumen pequeño del curso.
+						</Form.Text>
+					</Form.Group>
+					{/* Course cover image */}
+					<Form.Label>Portada del curso</Form.Label>
+					<Form.Group className="mb-1 input-group">
+						<Form.Control
+							id="inputfavicon"
+							type="file"
+							className="form-control"
+						/>
+						<Form.Text className="text-muted">
+							Sube la imagen de tu curso aquí.
+							Debe cumplir con nuestros estándares de calidad de imagen para ser aceptada.
+							Pautas importantes: 750x440 píxeles; .jpg, .jpeg, .gif o .png. sin texto en la imagen.
+						</Form.Text>
+					</Form.Group>
+					<Form.Group className="mb-1">
+						<Form.Label>
+							Requisitos
+						</Form.Label>
+						<Form.Text>
+							<GKTagsInput />
 						</Form.Text>
 					</Form.Group>
 				</Card.Body>
@@ -99,7 +118,7 @@ const BasicInformation = (props) => {
 			{/* Button */}
 			<Container className='text-end'>
 				<Button onClick={next} style={{ backgroundColor: "#042b61", borderColor: "white", color: "white" }}>
-					Siguiente <Icon path={mdiArrowRight} size={0.8} />
+					Mandar a revisión <Icon path={mdiUpload} size={0.8} />
 				</Button>
 			</Container>
 
