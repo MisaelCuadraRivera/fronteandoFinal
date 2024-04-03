@@ -11,17 +11,17 @@ const BasicInformation = (props) => {
 	const { next, handleChange, setFormData } = props;
 
 	const categoryOptions = [
-		{ value: 'React', label: 'React' },
-		{ value: 'Javascript', label: 'Javascript' },
-		{ value: 'HTML', label: 'HTML' },
-		{ value: 'Vuejs', label: 'Vue js' },
-		{ value: 'Gulpjs', label: 'Gulp js' }
+		{ value: "React", label: "React" },
+		{ value: "Javascript", label: "Javascript" },
+		{ value: "HTML", label: "HTML" },
+		{ value: "Vuejs", label: "Vue js" },
+		{ value: "Gulpjs", label: "Gulp js" }
 	];
 
 	const CoursesLevel = [
-		{ value: 'Intermediate', label: 'Intermedio' },
-		{ value: 'Beignners', label: 'Principiante' },
-		{ value: 'Advance', label: 'Avanzado' }
+		{ value: "Intermediate", label: "Intermedio" },
+		{ value: "Beignners", label: "Principiante" },
+		{ value: "Advance", label: "Avanzado" }
 	];
 
 	const initialValue = `<p>Escribe la descripción del curso</p>
@@ -47,6 +47,7 @@ const BasicInformation = (props) => {
 							id="title"
 							name="title"
 							onChange={(e) => props.setFormData(e.target.name, e.target.value)}
+							
 						/>
 						<Form.Text className="text-muted">
 							Máximo 60 caracteres.

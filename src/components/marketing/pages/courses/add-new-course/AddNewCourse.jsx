@@ -21,37 +21,45 @@ const AddNewCourse = () => {
 
     // Actualiza formData cuando cualquier campo cambia
     const handleChange = (name, value) => {
-        setFormData(prev => ({
-            ...prev,
+        console.log(name, value); // Para verificar que se estén recibiendo correctamente los datos
+        setFormData((prevFormData) => ({
+            ...prevFormData,
             [name]: value,
         }));
     };
+
+    
 
     const next = () => setCurrentStep(currentStep >= 3 ? 3 : currentStep + 1);
     const previous = () => setCurrentStep(currentStep <= 1 ? 1 : currentStep - 1);
 
     // Función para manejar el envío del formulario al servidor
-    const handleSubmitCourse = async () => {
-        try {
-            const response = await fetch('http://localhost:3001/create-course', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-            if (response.ok) {
-                const result = await response.json();
-                console.log(result);
-                alert('Curso creado con éxito');
-            } else {
-                alert('Error al crear el curso');
-            }
-        } catch (error) {
-            console.error('Error:', error);
+    // Función para manejar el envío del formulario al servidor
+const handleSubmitCourse = async () => {
+    // Convertir formData a una cadena JSON válida
+    const formDataJSON = JSON.stringify(formData);
+    
+    try {
+        const response = await fetch('http://localhost:3001/create-course', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: formDataJSON, // Enviar la cadena JSON
+        });
+        if (response.ok) {
+            const result = await response.json();
+            console.log(result);
+            alert('Curso creado con éxito');
+        } else {
             alert('Error al crear el curso');
         }
-    };
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al crear el curso');
+    }
+};
+
 
     const steps = [
         {

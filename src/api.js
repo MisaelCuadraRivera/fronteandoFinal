@@ -4,6 +4,7 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const morgan = require('morgan');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -12,7 +13,11 @@ const port = process.env.PORT || 3001;
 const JWT_SECRET = 'chimuelo';
 
 app.use(cors());
+
+// Aquí es donde body-parser empieza a procesar el cuerpo de la solicitud
 app.use(bodyParser.json());
+app.use(morgan('dev'));
+2
 
 const db = mysql.createPool({
   host: 'roundhouse.proxy.rlwy.net',
@@ -37,7 +42,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey('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'); // Configura esto de manera segura en producción
+        sgMail.setApiKey('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'); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado
@@ -93,8 +98,8 @@ app.post('/signin', (req, res) => {
 
 //Endpoint para crear un nuevo curso
 app.post('/create-course', (req, res) => {
-    console.log(req.body); // Verifica los datos recibidos
-    // Asume que 'req.body' ya contiene todos los datos necesarios, incluida la imagen en Base64
+  console.log('Cuerpo de la solicitud recibida:', req.body);
+  // Asume que 'req.body' ya contiene todos los datos necesarios, incluida la imagen en Base64
     const { title, category, level, description, applicant_requirements, courseImage } = req.body;
   
     // Aquí, courseImage es una cadena en Base64 que representa la imagen del curso

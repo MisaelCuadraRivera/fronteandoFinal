@@ -25,7 +25,8 @@ const Settings = (props) => {
     placeholder="Requisitos"
     id="applicant_requirements"
     name="applicant_requirements" // Ajustado para reflejar correctamente el propósito del campo
-  />
+	onChange={(e) => props.setFormData(e.target.name, e.target.value)}
+	/>
   <Form.Text className="text-muted">
     Máximo 60 caracteres.
   </Form.Text>
