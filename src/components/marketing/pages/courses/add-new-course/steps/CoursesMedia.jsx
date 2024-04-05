@@ -58,3 +58,6 @@ const CoursesMedia = ({ next, previous, setFormData, formData }) => {
 };
 
 export default CoursesMedia;
+
+
+

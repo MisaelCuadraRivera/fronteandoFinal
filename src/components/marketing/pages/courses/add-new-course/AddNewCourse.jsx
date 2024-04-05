@@ -67,17 +67,6 @@ const handleSubmitCourse = async () => {
             title: 'Información básica',
             content: <BasicInformation data={formData} handleChange={handleChange} setFormData={setFormData} next={next} />,
         },
-        {
-            id: 2,
-            title: 'Imágenes',
-            content: <CoursesMedia data={formData} handleChange={handleChange} setFormData={setFormData} // Asegúrate de que esto se pasa correctamente
-			next={next} previous={previous} />,
-        },
-        {
-            id: 3,
-            title: 'Configuración',
-            content: <Settings data={formData} handleChange={handleChange} setFormData={setFormData} submitCourse={handleSubmitCourse} previous={previous} />,
-        },
     ];
 
     return (
