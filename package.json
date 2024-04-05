@@ -59,6 +59,8 @@
     "simplebar": "^6.2.5",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.1.8",
+    "sweetalert2": "^11.10.7",
+    "sweetalert2-react-content": "^5.0.7",
     "uuid": "^9.0.1",
     "web-vitals": "^3.5.2",
     "yet-another-react-lightbox": "^3.16.0",
