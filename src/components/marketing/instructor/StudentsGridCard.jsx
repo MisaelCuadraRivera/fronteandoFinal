@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight } from 'react-feather';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import Swal from 'sweetalert2';
+import { jsPDF } from "jspdf";
+
 
 // import data files
 import { StudentsList } from 'data/users/StudentsData';
@@ -39,8 +41,8 @@ const StudentsGridCard = () => {
 									{students.locations}
 								</p>
 								<Button variant="outline-secondary" className="mt-3" onClick={() => certifyStudent(students.name)}>
-                                    Certificar <i className="fe fe-file-text ms-1"></i>
-                                </Button>
+									Certificar <i className="fe fe-file-text ms-1"></i>
+								</Button>
 							</div>
 							<div className="d-flex justify-content-between border-bottom py-2 mt-4 fs-6">
 								<span>Inscrito</span>
@@ -90,10 +92,18 @@ const StudentsGridCard = () => {
 			cancelButtonText: 'Cancelar',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				// Aquí puedes agregar la lógica para certificar al estudiante
+				// Crear el PDF aquí
+				const doc = new jsPDF();
+
+				doc.text(`Certificado de finalización`, 20, 20);
+				doc.text(`Este documento certifica que ${studentName} ha completado satisfactoriamente el curso.`, 20, 30);
+
+				// Guardar el PDF. El nombre del archivo será 'certificado.pdf'
+				doc.save('certificado.pdf');
+
 				Swal.fire(
 					'¡Certificado!',
-					`El alumno ${studentName} ha sido certificado.`,
+					`El alumno ${studentName} ha sido certificado y se ha generado su certificado.`,
 					'success'
 				);
 			}
