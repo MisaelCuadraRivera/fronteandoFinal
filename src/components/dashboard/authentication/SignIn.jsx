@@ -25,6 +25,7 @@ const SignIn = () => {
             const data = await response.json();
 
             if (response.ok) {
+                localStorage.setItem('token', data.token);
                 // Aquí manejas la lógica de redirección basada en la comunidad del usuario
                 const { utez_community } = data;
                 if (utez_community === 'estudiante' || utez_community === 'egresado' || utez_community === 'publico') {

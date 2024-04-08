@@ -22,11 +22,11 @@ const AllPosts = () => {
 				<Col lg={12} md={12} sm={12}>
 					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
 						<div className="mb-3 mb-md-0">
-							<h1 className="mb-1 h2 fw-bold">Listado de eventos</h1>
+							<h1 className="mb-1 h2 fw-bold">Listado de categorias</h1>
 							<Breadcrumb>
 								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">Gestion de eventos</Breadcrumb.Item>
-								<Breadcrumb.Item active>Listado de eventos</Breadcrumb.Item>
+								<Breadcrumb.Item href="#">Gestion de categorias</Breadcrumb.Item>
+								<Breadcrumb.Item active>Listado de categorias</Breadcrumb.Item>
 							</Breadcrumb>
 						</div>
 						<div>

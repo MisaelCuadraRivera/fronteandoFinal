@@ -28,9 +28,6 @@ const AllCourses = () => {
 							</Breadcrumb>
 						</div>
 						<div>
-							<Link to="#" className="btn btn-primary">
-								Agregar nuevo curso
-							</Link>
 						</div>
 					</div>
 				</Col>
@@ -44,16 +41,6 @@ const AllCourses = () => {
 									<Nav.Item>
 										<Nav.Link eventKey="all" className="mb-sm-3 mb-md-0">
 											Todos
-										</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
-										<Nav.Link eventKey="approved" className="mb-sm-3 mb-md-0">
-											Aprobados
-										</Nav.Link>
-									</Nav.Item>
-									<Nav.Item>
-										<Nav.Link eventKey="pending" className="mb-sm-3 mb-md-0">
-											Pendientes
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>

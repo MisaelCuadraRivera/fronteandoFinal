@@ -8,6 +8,7 @@ import { mdiArrowRight, mdiUpload } from '@mdi/js';
 import GKTagsInput from 'components/elements/tags/GKTagsInput';
 
 const BasicInformation = (props) => {
+  const navigate = useNavigate();
   // Estados para cada campo del formulario
   const [courseTitle, setCourseTitle] = useState('');
   const [category, setCategory] = useState(''); // Ahora como cadena
@@ -82,12 +83,20 @@ const BasicInformation = (props) => {
     };
   
     console.log("Form data being sent:", formData);
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert("No estás autenticado. Por favor, inicia sesión.");
+      // Aquí podrías redirigir al usuario a la página de inicio de sesión
+      return;
+    }
   
     try {
       const response = await fetch('http://localhost:3001/create-course', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Usar el token en el header Authorization
         },
         body: JSON.stringify(formData),
       });
@@ -99,6 +108,7 @@ const BasicInformation = (props) => {
   
       // Si la respuesta es exitosa, mostrar alerta y redirigir
       alert('Se creó el curso con éxito');
+      navigate('/marketing/instructor/instructor-my-courses/');
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
       alert('Error al crear el curso');
