@@ -5,7 +5,7 @@ const FeatureTopIcon = ({ item }) => {
 	return (
 		<div className="mb-4">
 			{/* Icon */}
-			<div className="display-4 text-primary">
+			<div className="display-4" style={{color:"#009475"}}>
 				<i className={`fe fe-${item.icon}`}></i>
 			</div>
 			{/* Para */}

@@ -21,11 +21,6 @@ const AllCourses = () => {
 					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
 						<div className="mb-3 mb-md-0">
 							<h1 className="mb-1 h2 fw-bold">Todos los cursos</h1>
-							<Breadcrumb>
-								<Breadcrumb.Item href="#">Menu</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">Cursos</Breadcrumb.Item>
-								<Breadcrumb.Item active>Todos</Breadcrumb.Item>
-							</Breadcrumb>
 						</div>
 						<div>
 						</div>

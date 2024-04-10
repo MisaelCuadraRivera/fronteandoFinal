@@ -19,7 +19,7 @@ const CourseCategory = () => {
 			{/* Page header */}
 			<PageHeadingBriefinfo
 				pagetitle="Cursos de Javascript"
-				briefinfo="Muchos halcones les a llamado la atencion esta categoria."
+				briefinfo="A muchos halcones les ha llamado la atención esta categoría."
 			/>
 
 			<section className="py-6">

@@ -111,7 +111,7 @@ const StudentsGridCard = () => {
             </div>
             <div className="d-flex justify-content-between mt-3">
               <Button
-                variant="primary"
+                variant="secondary"
                 size="sm"
                 onClick={() => handleShowEditModal(student)}
               >
@@ -215,10 +215,10 @@ const StudentsGridCard = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button className="btn-sm" variant="secondary" onClick={() => setShowEditModal(false)}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={handleEditStudent}>
+          <Button className="btn-sm" style={{ backgroundColor: "#042b61", border: "none" }} onClick={handleEditStudent}>
             Guardar Cambios
           </Button>
         </Modal.Footer>
