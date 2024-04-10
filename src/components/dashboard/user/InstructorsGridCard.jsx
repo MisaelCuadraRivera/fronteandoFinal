@@ -1,129 +1,238 @@
-// import node module libraries
-import React, { Fragment, useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import { Col, Card, Image, Row, Form } from 'react-bootstrap';
-import { ChevronLeft, ChevronRight } from 'react-feather';
-
-// import MDI icons
-import Icon from '@mdi/react';
-import { mdiStar } from '@mdi/js';
-
-// import utility file
-import { numberWithCommas } from 'helper/utils';
-
-// import data files
-import { InstructorData } from 'data/users/InstructorData';
+import React, { Fragment, useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
+import { Col, Card, Image, Row, Form, Button, Modal } from "react-bootstrap";
+import { ChevronLeft, ChevronRight, Edit, Trash } from "react-feather";
+import axios from "axios";
 
 function InstructorsGridCard() {
-	const [instructors, setInstructorsList] = useState(
-		InstructorData.slice(0, 500)
-	);
+  const [instructors, setInstructors] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const instructorsPerPage = 8;
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editInstructorData, setEditInstructorData] = useState({
+    id: null,
+    nombre: "",
+    email: "",
+    celular: "",
+  });
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [instructorToDelete, setInstructorToDelete] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
-	// paging start
+  const fetchInstructors = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/instructors");
+      setInstructors(response.data);
+    } catch (error) {
+      console.error("Error al cargar los instructores:", error);
+    }
+  };
 
-	const [pageNumber, setPageNumber] = useState(0);
-	const instructorsPerPage = 8;
-	const pagesVisited = pageNumber * instructorsPerPage;
-	const pageCount = Math.ceil(instructors.length / instructorsPerPage);
-	const changePage = ({ selected }) => {
-		setPageNumber(selected);
-	};
-	const displayInstructors = instructors
-		.slice(pagesVisited, pagesVisited + instructorsPerPage)
-		.map((instructors) => {
-			return (
-				<Col xl={3} lg={6} md={6} sm={12} key={instructors.id}>
-					<Card className="mb-5">
-						<Card.Body>
-							<div className="text-center">
-								<Image
-									src={instructors.image}
-									className="rounded-circle avatar-xl mb-3"
-									alt=""
-								/>
-								<h4 className="mb-0">{instructors.name}</h4>
-								<p className="mb-0">{instructors.topic}</p>
-							</div>
-							<div className="d-flex justify-content-between border-bottom py-2 mt-4">
-								<span>Estudiantes</span>
-								<span className="text-dark">
-									{numberWithCommas(instructors.students)}
-								</span>
-							</div>
-							<div className="d-flex justify-content-between border-bottom py-2">
-								<span>Calificacion del instructor</span>
-								<span className="text-warning">
-									{instructors.rating}{' '}
-									<Icon path={mdiStar} size={0.6} className="mb-1" />{' '}
-								</span>
-							</div>
-							<div className="d-flex justify-content-between pt-2">
-								<span>Cursos</span>
-								<span className="text-dark"> {instructors.courses} </span>
-							</div>
-						</Card.Body>
-					</Card>
-				</Col>
-			);
-		});
-	// end of paging
+  useEffect(() => {
+    fetchInstructors();
+  }, []);
 
-	// searching code started
+  const pageCount = Math.ceil(instructors.length / instructorsPerPage);
 
-	const [searchTerm, setSearchTerm] = useState('');
+  const handleShowEditModal = (instructor) => {
+    setEditInstructorData({
+      id: instructor.id,
+      nombre: instructor.nombre,
+      email: instructor.email,
+      celular: instructor.celular,
+    });
+    setShowEditModal(true);
+  };
 
-	const getSearchTerm = (event) => {
-		let searchTerm = event.target.value;
-		setSearchTerm(searchTerm);
-		if (searchTerm !== '') {
-			const newInstructorsList = InstructorData.filter((instructor) => {
-				return Object.values(instructor)
-					.join(' ')
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase());
-			});
-			setInstructorsList(newInstructorsList.slice(0, 500));
-			setPageNumber(0);
-		} else {
-			setInstructorsList(InstructorData.slice(0, 500));
-		}
-	};
+  const handleEditChange = (e) => {
+    setEditInstructorData({
+      ...editInstructorData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-	// end of searching code
+  const handleEditInstructor = async () => {
+    try {
+      await axios.put(
+        `http://localhost:3001/instructors/${editInstructorData.id}`,
+        editInstructorData
+      );
+      setShowEditModal(false);
+      fetchInstructors();
+    } catch (error) {
+      console.error("Error al actualizar el instructor:", error);
+    }
+  };
 
-	return (
-		<Fragment>
-			<div className="mb-4">
-				<Form.Control
-					type="search"
-					placeholder="Search Instructors"
-					value={searchTerm}
-					onChange={getSearchTerm}
-				/>
-			</div>
-			<Row>
-				{displayInstructors.length > 0 ? (
-					displayInstructors
-				) : (
-					<Col>No hay instructores encontrados.</Col>
-				)}
-			</Row>
+  const showDeleteConfirmation = (id) => {
+    setInstructorToDelete(id);
+    setShowConfirmationModal(true);
+  };
 
-			<ReactPaginate
-				previousLabel={<ChevronLeft size="14px" />}
-				nextLabel={<ChevronRight size="14px" />}
-				pageCount={pageCount}
-				onPageChange={changePage}
-				containerClassName={'justify-content-center mb-0 pagination'}
-				previousLinkClassName={'page-link mx-1 rounded'}
-				nextLinkClassName={'page-link mx-1 rounded'}
-				pageClassName={'page-item'}
-				pageLinkClassName={'page-link mx-1 rounded'}
-				disabledClassName={'paginationDisabled'}
-				activeClassName={'active'}
-			/>
-		</Fragment>
-	);
+  const confirmDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/instructors/${instructorToDelete}`);
+      setShowConfirmationModal(false);
+      fetchInstructors();
+    } catch (error) {
+      console.error("Error al eliminar el instructor:", error);
+    }
+  };
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  const handleSearch = (event) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+    if (!value.trim()) {
+      fetchInstructors(); // Recargar instructores si la búsqueda está vacía
+      return;
+    }
+    const filteredInstructors = instructors.filter(
+      (instructor) =>
+        instructor.nombre.toLowerCase().includes(value) ||
+        instructor.email.toLowerCase().includes(value) ||
+        instructor.municipio.toLowerCase().includes(value)
+    );
+    setInstructors(filteredInstructors);
+    setPageNumber(0); // Resetear a la primera página
+  };
+
+  const displayInstructors = instructors
+    .slice(pageNumber * instructorsPerPage, pageNumber * instructorsPerPage + instructorsPerPage)
+    .map((instructor) => (
+      <Col xl={3} lg={6} md={6} sm={12} key={instructor.id}>
+        <Card className="mb-5">
+          <Card.Body>
+            <div className="text-center">
+              <Image
+                src={
+                  instructor.image ||
+                  "https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
+                }
+                className="rounded-circle avatar-xl mb-3"
+                alt=""
+              />
+              <h4 className="mb-0">{instructor.nombre}</h4>
+              <p className="mb-0">{instructor.municipio}</p>
+			  <p className="mb-0">{instructor.status}</p>
+            </div>
+            <div className="d-flex justify-content-between mt-3">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => handleShowEditModal(instructor)}
+              >
+                <Edit size={16} />
+              </Button>
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => showDeleteConfirmation(instructor.id)}
+              >
+                <Trash size={16} />
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    ));
+
+  // Retorno del componente, incluyendo modales para editar y confirmar eliminación
+  return (
+    <Fragment>
+      <div className="mb-4">
+        <Form.Control
+          type="search"
+          placeholder="Buscar Instructores"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+      <Row>{displayInstructors}</Row>
+      <ReactPaginate
+        previousLabel={<ChevronLeft size="14px" />}
+        nextLabel={<ChevronRight size="14px" />}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={"justify-content-center mb-0 pagination"}
+        previousLinkClassName={"page-link mx-1 rounded"}
+        nextLinkClassName={"page-link mx-1 rounded"}
+        pageClassName={"page-item"}
+        pageLinkClassName={"page-link mx-1 rounded"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"active"}
+      />
+	   <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Instructor</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="editInstructorName">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="text"
+                name="nombre"
+                value={editInstructorData.nombre}
+                onChange={handleEditChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="editInstructorEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={editInstructorData.email}
+                onChange={handleEditChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="editInstructorCelular">
+              <Form.Label>Celular</Form.Label>
+              <Form.Control
+                type="text"
+                name="celular"
+                value={editInstructorData.celular}
+                onChange={handleEditChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleEditInstructor}>
+            Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
+	  <Modal
+        show={showConfirmationModal}
+        onHide={() => setShowConfirmationModal(false)}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Estás seguro de que quieres eliminar este instructor?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => setShowConfirmationModal(false)}
+          >
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Eliminar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Fragment>
+  );
 }
 
 export default InstructorsGridCard;

@@ -18,16 +18,13 @@ const Students = () => {
 						<div className="border-bottom pb-4 mb-4 d-flex align-items-center justify-content-between">
 							<div className="mb-3 mb-md-0">
 								<h1 className="mb-1 h2 fw-bold">
-									Estudiantes <span className="fs-5 text-muted">(1,22,105 )</span>
+									Estudiantes registrados
 								</h1>
 								<Breadcrumb>
 									<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
 									<Breadcrumb.Item href="#">Usuarios</Breadcrumb.Item>
 									<Breadcrumb.Item active>Estudiantes</Breadcrumb.Item>
 								</Breadcrumb>
-							</div>
-							<div>
-								<GridListViewButton keyGrid="grid" keyList="list" />
 							</div>
 						</div>
 					</Col>

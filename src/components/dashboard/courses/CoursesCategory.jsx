@@ -1,177 +1,182 @@
-// import node module libraries
-import React, { Fragment, useMemo, useState } from 'react';
+import React, { Fragment, useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Trash, Send, Inbox, MoreVertical } from 'react-feather';
-import {
-	Col,
-	Row,
-	Dropdown,
-	Card,
-	Breadcrumb,
-	Button,
-	Modal,
-	Badge
-} from 'react-bootstrap';
-
-// import custom components
-import Checkbox from 'components/elements/advance-table/Checkbox';
+import { Edit, Trash, MoreVertical } from 'react-feather';
+import { Col, Row, Dropdown, Card, Breadcrumb, Button, Modal, Form } from 'react-bootstrap';
+import axios from 'axios';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
 
-// import sub components
-import AddNewCategoryPopup from './AddNewCategoryPopup';
-
-// import data files
-import { courses } from 'data/courses/CoursesCategoryData';
-
 const CoursesCategory = () => {
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const [show, setShow] = useState(false);
+	const [newCategory, setNewCategory] = useState('');
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [editCategoryName, setEditCategoryName] = useState('');
+    const [editCategoryId, setEditCategoryId] = useState(null);
+    const [categoryToDeleteId, setCategoryToDeleteId] = useState(null);
 
-	// The forwardRef is important!!
-	// Dropdown needs access to the DOM node in order to position the Menu
-	const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-		<Link
-			to=""
-			ref={ref}
-			onClick={(e) => {
-				e.preventDefault();
-				onClick(e);
-			}}
-		>
-			{children}
-		</Link>
-	));
+    useEffect(() => {
+        loadCategories();
+    }, []);
 
-	const ActionMenu = () => {
-		return (
-			<Dropdown>
-				<Dropdown.Toggle as={CustomToggle}>
-					<MoreVertical size="15px" className="text-secondary" />
-				</Dropdown.Toggle>
-				<Dropdown.Menu align="end">
-					<Dropdown.Header>Acciones</Dropdown.Header>
-					<Dropdown.Item eventKey="1">
-						<Send size={14} className="dropdown-item-icon me-2" /> Publicar
-					</Dropdown.Item>
-					<Dropdown.Item eventKey="2">
-						<Inbox size={14} className="dropdown-item-icon me-2" /> Archivar
-					</Dropdown.Item>
-					<Dropdown.Item eventKey="3">
-						<Trash size={14} className="dropdown-item-icon me-2" /> Eliminar
-					</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		);
-	};
+    const loadCategories = async () => {
+        const response = await axios.get('http://localhost:3001/categories');
+        setCategories(response.data);
+    };
+
+    const handleAddCategory = async () => {
+        await axios.post('http://localhost:3001/categories', { name: newCategoryName });
+        setNewCategoryName('');
+        setShowAddModal(false);
+        loadCategories();
+    };
+
+    const handleShowEditModal = (categoryId, name) => {
+        setEditCategoryId(categoryId);
+        setEditCategoryName(name);
+        setShowEditModal(true);
+    };
+
+    const handleEditCategory = async () => {
+        await axios.put(`http://localhost:3001/categories/${editCategoryId}`, { name: editCategoryName });
+        setEditCategoryName('');
+        setShowEditModal(false);
+        loadCategories();
+    };
+
+    const handleDeleteCategory = async () => {
+        await axios.delete(`http://localhost:3001/categories/${categoryToDeleteId}`);
+        setShowDeleteModal(false);
+        loadCategories();
+    };
 
 	const columns = useMemo(
 		() => [
-			{
-				id: 'select',
-				header: ({ table }) => (
-					<Checkbox
-						{...{
-							checked: table.getIsAllRowsSelected(),
-							indeterminate: table.getIsSomeRowsSelected(),
-							onChange: table.getToggleAllRowsSelectedHandler(),
-						}}
-					/>
-				),
-				cell: ({ row }) => (
-					<div className="px-1">
-						<Checkbox
-							{...{
-								checked: row.getIsSelected(),
-								disabled: !row.getCanSelect(),
-								indeterminate: row.getIsSomeSelected(),
-								onChange: row.getToggleSelectedHandler(),
-							}}
-						/>
-					</div>
-				),
-			},
+		  { accessorKey: "categorias", header: "Categoria" },
+		  {
+			accessorKey: "fecha_creacion",
+			header: "Fecha de creacion",
+			cell: (info) => new Date(info.getValue()).toLocaleDateString(),
+		  },
+        {
+            header: 'Acciones',
+            id: 'actions',
+            cell: (info) => {
+                return (
+                    <div className="d-flex">
+                        <Button variant="info" className="me-2" onClick={() => handleShowEditModal(info.row.original.ID, info.row.original.categorias)}>
+                            <Edit size={16} />
+                        </Button>
+                        <Button variant="danger" onClick={() => { setShowDeleteModal(true); setCategoryToDeleteId(info.row.original.ID); }}>
+                            <Trash size={16} />
+                        </Button>
+                    </div>
+                );
+            }
+        }
+    ], []);
 
-			{ accessorKey: 'category', header: 'Categoria' },
-			{ accessorKey: 'slug', header: 'identificador' },
-			{ accessorKey: 'posts', header: 'Cursos' },
-			{ accessorKey: 'date_created', header: 'Fecha de creacion' },
-			{ accessorKey: 'date_updated', header: 'Fecha de actualizacion' },
-			{
-				accessorKey: 'status',
-				header: 'Status',
-				cell: ({ getValue }) => {
-					return (<Badge bg={getValue() === 1 ? 'success' : getValue() === 0 ? 'warning' : ''}>{getValue() === 1 ? 'Live' : getValue() === 0 ? 'Draft' : ''}</Badge>);
-				}
-			},
-			{
-				accessorKey: 'action',
-				header: '',
-				cell: () => {
-					return <ActionMenu />;
-				}
-			}
-		],
-		[]
-	);
+    const data = useMemo(() => categories, [categories]);
 
-	const data = useMemo(() => courses, []);
+  return (
+    <Fragment>
+      <Row>
+        <Col lg={12} md={12} sm={12}>
+          <div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
+            <div className="mb-3 mb-md-0">
+              <h1 className="mb-1 h2 fw-bold">Categoria de cursos</h1>
+              <Breadcrumb>
+                <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
+                <Breadcrumb.Item href="#">Cursos</Breadcrumb.Item>
+                <Breadcrumb.Item active>Categoria de Cursos</Breadcrumb.Item>
+              </Breadcrumb>
+            </div>
+            <div>
+              <Button variant="primary" onClick={handleShow}>
+                Agregar nueva categoria
+              </Button>
+              <Modal show={show} onHide={() => setShow(false)}>
+                {/* Contenido del Modal */}
+                <Form>
+                  <Form.Group className="mb-3" controlId="formCategoryName">
+                    <Form.Label>Nombre de la Categoría</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Introduce la categoría"
+                      value={newCategory}
+                      onChange={(e) => setNewCategory(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Button variant="primary" onClick={handleAddCategory}>
+                    Agregar Categoría
+                  </Button>
+                </Form>
+              </Modal>
+            </div>
+          </div>
+        </Col>
+      </Row>
 
-	return (
-		<Fragment>
-			<Row>
-				<Col lg={12} md={12} sm={12}>
-					<div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
-						<div className="mb-3 mb-md-0">
-							<h1 className="mb-1 h2 fw-bold">Categoria de cursos</h1>
-							<Breadcrumb>
-								<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-								<Breadcrumb.Item href="#">Cursos</Breadcrumb.Item>
-								<Breadcrumb.Item active>Categoria de Cursos</Breadcrumb.Item>
-							</Breadcrumb>
-						</div>
-						<div>
-							<Button variant="primary" onClick={handleShow}>
-								Agregar nueva categoria
-							</Button>
-							<Modal show={show} onHide={handleClose} size="lg">
-								<Modal.Header closeButton>
-									<Modal.Title>Crear nuevo cursos</Modal.Title>
-								</Modal.Header>
-								<Modal.Body>
-									<AddNewCategoryPopup />
-								</Modal.Body>
-								<Modal.Footer className="d-flex justify-content-start border-0 pt-0">
-									{/*  Action Buttons  */}
-									<Button variant="primary" onClick={handleClose}>
-										Agregar nueva categoria
-									</Button>
-									<Button variant="outline-secondary" onClick={handleClose}>
-										Cerrar
-									</Button>
-								</Modal.Footer>
-							</Modal>
-						</div>
-					</div>
-				</Col>
-			</Row>
+      <Row>
+        <Col lg={12} md={12} sm={12}>
+          <Card>
+            <Card.Body className="p-0">
+              <TanstackTable
+                data={data}
+                columns={columns}
+                filter={true}
+                filterPlaceholder="Buscar categoria"
+                pagination={true}
+              />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+	  <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Editar Categoría</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group controlId="editCategoryName">
+                            <Form.Label>Nombre de la Categoría</Form.Label>
+							<Form.Control
+    type="text"
+    value={editCategoryName}
+    onChange={(e) => setEditCategoryName(e.target.value)}
+/>                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={handleEditCategory}>
+                        Guardar Cambios
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-			<Row>
-				<Col lg={12} md={12} sm={12}>
-					<Card>
-						<Card.Body className="p-0">
-							<TanstackTable
-								data={data}
-								columns={columns}
-								filter={true}
-								filterPlaceholder="Buscar categoria"
-								pagination={true} />
-						</Card.Body>
-					</Card>
-				</Col>
-			</Row>
-		</Fragment>
-	);
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar Eliminación</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>¿Estás seguro de que quieres eliminar esta categoría?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancelar
+                    </Button>
+                    <Button variant="danger" onClick={handleDeleteCategory}>
+                        Eliminar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+    </Fragment>
+  );
+
 };
 
 export default CoursesCategory;

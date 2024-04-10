@@ -1,6 +1,6 @@
 // import node module libraries
-import { Fragment } from 'react';
-import { Form, FormControl, InputGroup } from 'react-bootstrap';
+import { Fragment, useState } from 'react';
+import { Form, FormControl, InputGroup,Button } from 'react-bootstrap';
 
 // import custom components
 import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
@@ -14,9 +14,9 @@ const AddNewCategoryPopup = () => {
 		{ value: 'purple', label: 'Workshop' },
 		{ value: 'red', label: 'Company' }
 	];
-
-	const initialValue = `<h4>Esto es un ejemplo</h4>`;
-
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 	const onChange = () => {
 		console.log('onChange was called!');
 	};
@@ -36,47 +36,6 @@ const AddNewCategoryPopup = () => {
 					<Form.Text className="text-muted">
 						La categoria debe de tener un nombre unico
 					</Form.Text>
-				</Form.Group>
-
-				{/*   Slug  */}
-				<Form.Group className="mb-3">
-					<Form.Label>identificador</Form.Label>
-					<InputGroup className="mb-3">
-						<InputGroup.Text id="basic-addon3">
-							https://ejemplo.com/
-						</InputGroup.Text>
-						<FormControl
-							id="basic-url"
-							aria-describedby="basic-addon3"
-							placeholder="contaduria"
-						/>
-					</InputGroup>
-					<Form.Text className="text-muted">
-						El campo debe de tener un valor unico
-					</Form.Text>
-				</Form.Group>
-
-				{/* Parent  */}
-				<Form.Group className="mb-3">
-					<Form.Label>Categoria Padre</Form.Label>
-					<FormSelect options={parentOptions} />
-				</Form.Group>
-
-				{/*  Editor  */}
-				<Form.Group className="mb-3">
-					<ReactQuillEditor initialValue={initialValue} />
-				</Form.Group>
-
-				{/* Parent  */}
-				<Form.Group className="mb-3">
-					<Form.Label>Enabled</Form.Label>
-					<Form.Check
-						type="checkbox"
-						defaultChecked
-						label=""
-						className=" form-switch"
-						onChange={onChange}
-					/>
 				</Form.Group>
 			</Form>
 		</Fragment>
