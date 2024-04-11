@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Form, ListGroup, Row, Col } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 // import custom components
 import InstructorReviewCard from 'components/marketing/common/cards/InstructorReviewCard';
@@ -30,6 +31,25 @@ const Reviews = () => {
 		{ value: 'Antiguo', label: 'Antiguo' }
 	];
 
+	const alert = () => {
+		Swal.fire({
+			title: "¿Estas seguro de realizar esta acción?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Accept"
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire({
+				title: "Descargando...",
+				text: "Tuarchivo se esta descargando. Por favor espera...",
+				icon: "success"
+			  });
+			}
+		  });
+	};
+
 	return (
 		<ProfileLayout>
 			<Card className="border-0">
@@ -39,7 +59,7 @@ const Reviews = () => {
 						
 					</div>
 					<div>
-						<Link to="#" className="btn btn-outline-primary btn-sm">
+						<Link to="#" className="btn btn-outline-primary btn-sm" onClick={alert}>
 							Exportar como CSV...
 						</Link>
 					</div>

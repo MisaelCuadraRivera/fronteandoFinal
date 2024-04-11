@@ -15,18 +15,16 @@ import Avatar15 from 'assets/images/avatar/avatar-15.jpg';
 export const InstructorData = [
 	{
 		id: 1,
-		name: 'Jenny Wilson',
+		name: 'Misael Cuadra',
 		image: Avatar1,
 		topic: 'Desarrollador Front-end',
-		courses: 6,
+		courses: 1,
 		joined: '7 Julio, 2020',
-		students: 50274,
+		students: 5,
 		rating: 4.6,
 		reviews: 12230,
 		status: 'offline',
-		about: `I am an Innovation designer focussing on UX/UI based in Berlin. 
-        As a creative resident at Figma explored the city of the future and how new technologies like AI, 
-        voice control, and augmented reality will change our interfaces.`
+		about: `Hola soy grindero `
 	},
 	{
 		id: 2,

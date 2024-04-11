@@ -216,15 +216,12 @@ import UploadResume from 'components/marketing/pages/jobs/upload-resume/UploadRe
 import InstructorDashboard from 'components/marketing/instructor/Dashboard';
 import InstructorMyCourses from 'components/marketing/instructor/MyCourses';
 import InstructorReviews from 'components/marketing/instructor/Reviews';
-import Earnings from 'components/marketing/instructor/Earnings';
-import InstructorOrders from 'components/marketing/instructor/Orders';
+//import Earnings from 'components/marketing/instructor/Earnings';
+//import InstructorOrders from 'components/marketing/instructor/Orders';
 import InstructorStudents from 'components/marketing/instructor/Students';
 import ViewProfile from 'components/marketing/instructor/ViewProfile';
 
-// Instructor New Dashboard Pages for Quiz ( v2.0.0)
-import InstructorQuiz from 'components/marketing/instructor/Quiz';
-import InstructorQuizSingle from 'components/marketing/instructor/QuizSingle';
-import InstructorQuizResult from 'components/marketing/instructor/QuizResult';
+
 
 // Student Dashboard Pages
 import StudentDashboard from 'components/marketing/student/Dashboard';
@@ -253,6 +250,7 @@ import InvoiceDetails from 'components/marketing/account-settings/InvoiceDetails
 // Portfolio Pages ( v2.2.0)
 import PortfolioList from 'components/marketing/pages/portfolio/PortfolioList';
 import PortfolioSingle from 'components/marketing/pages/portfolio/PortfolioSingle';
+import SecurityInstructor from 'components/marketing/account-settings/SecurityInstructor';
 
 const AllRoutes = () => {
 	return (
@@ -299,6 +297,9 @@ const AllRoutes = () => {
 				/>
 				<Route path="/marketing/blog/category/" element={<BlogCategory />} />
 				<Route path="/marketing/blog/listing/" element={<BlogListing />} />
+
+				{/* RUTAS DEL INSTRUCTOR OK? */}
+
 				<Route
 					path="/marketing/instructor/dashboard/"
 					element={<InstructorDashboard />}
@@ -311,14 +312,7 @@ const AllRoutes = () => {
 					path="/marketing/instructor/instructor-reviews/"
 					element={<InstructorReviews />}
 				/>
-				<Route
-					path="/marketing/instructor/instructor-earnings/"
-					element={<Earnings />}
-				/>
-				<Route
-					path="/marketing/instructor/instructor-orders/"
-					element={<InstructorOrders />}
-				/>
+				
 				<Route
 					path="/marketing/instructor/instructor-students/"
 					element={<InstructorStudents />}
@@ -329,7 +323,7 @@ const AllRoutes = () => {
 				/>
 				<Route
 					path="/marketing/instructor/instructor-edit-profile/"
-					element={<EditProfile />}
+					element={<ViewProfile />}
 				/>
 				<Route
 					path="/marketing/instructor/instructor-profile/"
@@ -337,7 +331,7 @@ const AllRoutes = () => {
 				/>
 				<Route
 					path="/marketing/instructor/instructor-security/"
-					element={<Security />}
+					element={<SecurityInstructor />}
 				/>
 				<Route
 					path="/marketing/instructor/instructor-social-profiles/"
@@ -355,18 +349,9 @@ const AllRoutes = () => {
 					path="/marketing/instructor/instructor-delete-profile/"
 					element={<DeleteProfile />}
 				/>
-				<Route
-					path="/marketing/instructor/quiz/"
-					element={<InstructorQuiz />}
-				/>
-				<Route
-					path="/marketing/instructor/quiz/single/"
-					element={<InstructorQuizSingle />}
-				/>
-				<Route
-					path="/marketing/instructor/quiz/result/"
-					element={<InstructorQuizResult />}
-				/>
+				
+
+				{/* ACA terminan y amo a Sharon OK? */}
 				<Route
 					path="/marketing/student/dashboard/"
 					element={<StudentDashboard />}
@@ -393,7 +378,7 @@ const AllRoutes = () => {
 				/>
 				<Route
 					path="/marketing/student/student-edit-profile/"
-					element={<EditProfile />} /*------> Necesitamos cambiar esto*/
+					element={<EditProfile />} /*------> Necesitamos cambiar esto, YA ARREGLE TU MIERDA*/ 
 				/>
 				<Route
 					path="/marketing/student/student-security/"

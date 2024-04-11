@@ -4,6 +4,7 @@ import { Col, Card, Image, Row, Form } from 'react-bootstrap';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
+import Swal from 'sweetalert2';
 
 // import data files
 import { StudentsList } from 'data/users/StudentsData';
@@ -79,6 +80,26 @@ const StudentsGridCard = () => {
 
 	// end of searching
 
+	// Alertirri
+	const alert = () => {
+		Swal.fire({
+			title: "¿Estas seguro de realizar esta acción?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Accept"
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire({
+				title: "Descargando...",
+				text: "Tu archivo se esta descargando. Por favor espera...",
+				icon: "success"
+			  });
+			}
+		  });
+	}
+
 	return (
 		<Fragment>
 			<Row>
@@ -95,7 +116,7 @@ const StudentsGridCard = () => {
 							</Form.Group>
 						</Col>
 						<Col xs="auto">
-							<Link to="#" className="btn btn-secondary">
+							<Link to="#" className="btn btn-secondary" onClick={alert}>
 								Exportar XSL
 							</Link>
 						</Col>

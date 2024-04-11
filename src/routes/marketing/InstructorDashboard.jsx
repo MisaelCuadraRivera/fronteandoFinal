@@ -28,7 +28,7 @@ export const DashboardMenu = [
 export const AccountSettingsMenu = [
 	{
 		id: 1,
-		title: 'Editar Perfil',
+		title: 'Mi Perfil',
 		link: '/marketing/instructor/instructor-edit-profile/',
 		icon: 'settings'
 	},
@@ -42,7 +42,7 @@ export const AccountSettingsMenu = [
 		id: 3,
 		title: 'Redes Sociales',
 		link: '/marketing/instructor/instructor-social-profiles/',
-		icon: 'refresh-cw'
+		icon: 'share-2'
 	},
 	{
 		id: 6,

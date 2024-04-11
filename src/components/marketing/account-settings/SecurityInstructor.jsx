@@ -17,7 +17,7 @@ import PasswordStrengthMeter from 'components/elements/passwordstrength/Password
 // import profile layout wrapper
 import ProfileLayoutWrap from './ProfileLayoutWrap';
 
-const Security = () => {
+const SecurityInstructor = () => {
 	const location = useLocation();
 
 	const [password, setPassword] = useState('');
@@ -29,7 +29,7 @@ const Security = () => {
 			<Card className="border-0">
 				<Card.Header>
 					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Seguridad</h3>
+						<h3 className="mb-0">Seguridad Instructor</h3>
 						<p className="mb-0">
 							Edita tu configuración de la cuenta y cambia la contraseña.
 						</p>
@@ -149,4 +149,4 @@ const Security = () => {
 	);
 };
 
-export default Security;
+export default SecurityInstructor;

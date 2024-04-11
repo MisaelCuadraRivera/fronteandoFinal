@@ -21,9 +21,14 @@ import CourseCard from 'components/marketing/pages/courses/CourseCard';
 // import profile layout wrapper
 import ProfileCoverFull from 'components/marketing/common/headers/ProfileCoverFull';
 
+// import profile layout wrapper
+import ProfileLayout from './ProfileLayout';
+
 // Import required data
 import { AllCoursesData } from 'data/slider/AllCoursesData';
 import { InstructorData } from 'data/users/InstructorData';
+
+//import ProfileLayoutWrap from './ProfileLayoutWrap';
 
 const ViewProfile = () => {
 	// The forwardRef is important!!
@@ -88,72 +93,14 @@ const ViewProfile = () => {
 	return (
 		<Fragment>
 			{/* Full width header */}
-			<ProfileCoverFull dashboardData={dashboardData} />
+			<ProfileLayout dashboardData={dashboardData}>
+			
 
 			{/* Content */}
-			<section className="py-5 py-md-5">
+			<section className="py-0 py-md-0">
 				<Container>
 					<Row>
-						<Col lg={3} md={4} sm={12}>
-							{/* Card */}
-							<Card className="border-0 mb-4">
-								{/* Card body */}
-								<Card.Body>
-									<h4>Sobre mi</h4>
-									<p>{InstructorData[InstructorID].about}</p>
-									<Link to="#" className="btn-link">
-										{' '}
-										Leer más
-									</Link>
-								</Card.Body>
-							</Card>
-							{/* Card */}
-							<Card className="border-0 mb-4 mb-lg-0">
-								{/* Card body */}
-								<Card.Body>
-									<div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-										<div>
-											<h4 className="mb-0 fw-bold">
-												{InstructorData[InstructorID].courses}
-											</h4>
-											<p className="fs-6 mb-0">Cursos</p>
-										</div>
-										<div>
-											<span>
-												<i className="fe fe-file-text fs-3"></i>
-											</span>
-										</div>
-									</div>
-									<div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
-										<div>
-											<h4 className="mb-0 fw-bold">
-												{InstructorData[InstructorID].students}
-											</h4>
-											<p className="fs-6 mb-0">Estudiantes</p>
-										</div>
-										<div>
-											<span>
-												<i className="fe fe-users fs-3"></i>
-											</span>
-										</div>
-									</div>
-									<div className="d-flex align-items-center justify-content-between">
-										<div>
-											<h4 className="mb-0 fw-bold">
-												{InstructorData[InstructorID].reviews}
-											</h4>
-											<p className="fs-6 mb-0">Reviews</p>
-										</div>
-										<div>
-											<span>
-												<i className="fe fe-star fs-3"></i>
-											</span>
-										</div>
-									</div>
-								</Card.Body>
-							</Card>
-						</Col>
-						<Col lg={9} md={8} sm={12}>
+					<Col lg={12} md={12} sm={12}>
 							{/* Card */}
 							<Card className="border-0">
 								{/* Card header */}
@@ -200,8 +147,69 @@ const ViewProfile = () => {
 							</Card>
 						</Col>
 					</Row>
+					<Row className='mt-5'>
+					<Col lg={6} md={4} sm={12}>
+							{/* Card */}
+							<Card className="border-0 mb-4" >
+								{/* Card body */}
+								<Card.Body>
+									<h4>Sobre mi</h4>
+									<p>{InstructorData[InstructorID].about}</p>
+									
+								</Card.Body>
+							</Card>
+						</Col>
+						<Col lg={6} md={4} sm={12}>
+							{/* Card */}
+							<Card className="border-5 mb-4 mb-lg-5">
+								{/* Card body */}
+								<Card.Body>
+									<div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+										<div>
+											<h4 className="mb-0 fw-bold">
+												{InstructorData[InstructorID].courses}
+											</h4>
+											<p className="fs-6 mb-0">Cursos</p>
+										</div>
+										<div>
+											<span>
+												<i className="fe fe-file-text fs-3"></i>
+											</span>
+										</div>
+									</div>
+									<div className="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3">
+										<div>
+											<h4 className="mb-0 fw-bold">
+												{InstructorData[InstructorID].students}
+											</h4>
+											<p className="fs-6 mb-0">Estudiantes</p>
+										</div>
+										<div>
+											<span>
+												<i className="fe fe-users fs-3"></i>
+											</span>
+										</div>
+									</div>
+									<div className="d-flex align-items-center justify-content-between">
+										<div>
+											<h4 className="mb-0 fw-bold">
+												{InstructorData[InstructorID].reviews}
+											</h4>
+											<p className="fs-6 mb-0">Reviews</p>
+										</div>
+										<div>
+											<span>
+												<i className="fe fe-star fs-3"></i>
+											</span>
+										</div>
+									</div>
+								</Card.Body>
+							</Card>
+						</Col>
+					</Row>
 				</Container>
 			</section>
+			</ProfileLayout>
 		</Fragment>
 	);
 };

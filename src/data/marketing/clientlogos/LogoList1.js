@@ -8,6 +8,7 @@ import InstagramBrandLogo from 'assets/images/brand/instagram.svg';
 import PinterestBrandLogo from 'assets/images/brand/pinterest.svg';
 import StripeBrandLogo from 'assets/images/brand/stripe.svg';
 
+
 const LogoList1 = [
 	{
 		id: uuid(),

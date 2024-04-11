@@ -9,6 +9,7 @@ import {
     useReactTable,
 } from '@tanstack/react-table'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 // import custom components
 import GlobalFilter from './GlobalFilter';
@@ -34,6 +35,26 @@ const TanstackTable = ({ data, columns, filter = false, pagination = false, filt
         debugTable: false,
     })
 
+    // alertirri 
+    const alert = () => {
+		Swal.fire({
+			title: "¿Estas seguro de realizar esta acción?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Accept"
+		  }).then((result) => {
+			if (result.isConfirmed) {
+			  Swal.fire({
+				title: "Descargando...",
+				text: "Tu archivo se esta descargando. Por favor espera...",
+				icon: "success"
+			  });
+			}
+		  });
+	}
+
     return (
         <Fragment>
 
@@ -50,7 +71,7 @@ const TanstackTable = ({ data, columns, filter = false, pagination = false, filt
                     <GlobalFilter filtering={filtering} setFiltering={setFiltering} placeholder={filterPlaceholder} />
                 </Col>
                 <Col xs="auto" className="mb-lg-0 mb-2 pe-5 py-4">
-                    <Link to="#" className="btn btn-secondary">
+                    <Link to="#" className="btn btn-secondary" onClick={alert}>
                         Export XSL
                     </Link>
                 </Col>

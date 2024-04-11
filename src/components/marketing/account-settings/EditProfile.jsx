@@ -10,7 +10,7 @@ import { FlatPickr } from 'components/elements/flat-pickr/FlatPickr';
 import Avatar3 from 'assets/images/avatar/avatar-3.jpg';
 
 // import profile layout wrapper
-import ProfileLayout from 'components/marketing/instructor/ProfileLayout';
+import ProfileLayout from 'components/marketing/student/ProfileLayout'; // YA arregle tu mierda
 
 const EditProfile = () => {
 	const pathInfo = useLocation();

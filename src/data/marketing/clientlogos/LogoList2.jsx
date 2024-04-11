@@ -7,6 +7,7 @@ import DiscordLogo from 'assets/images/brand/gray-logo-discord.svg';
 import IntercomLogo from 'assets/images/brand/gray-logo-intercom.svg';
 import PinterestLogo from 'assets/images/brand/gray-logo-pinterest.svg';
 import NetflixLogo from 'assets/images/brand/gray-logo-netflix.svg';
+import Grindr from 'assets/images/brand/Grindr.svg';
 
 const LogoList2 = [
 	{
@@ -31,7 +32,7 @@ const LogoList2 = [
 	},
 	{
 		id: uuid(),
-		logoimage: NetflixLogo
+		logoimage: Grindr
 	}
 ];
 

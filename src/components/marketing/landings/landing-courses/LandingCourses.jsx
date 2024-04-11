@@ -17,6 +17,7 @@ import FooterWithLinks from 'layouts/marketing/footers/FooterWithLinks';
 
 // import required data files
 import LogoList2 from 'data/marketing/clientlogos/LogoList2';
+import LogoList1 from 'data/marketing/clientlogos/LogoList1';
 
 const LandingCourses = () => {
 	return (
@@ -35,7 +36,7 @@ const LandingCourses = () => {
 				<Features4Columns />
 
 				{/*  Featured in section */}
-				<LogosTopHeading title="NUESTROS CLIENTES" logos={LogoList2} />
+				<LogosTopHeading title="NUESTROS CLIENTES" logos={LogoList1} />
 
 
 				<hr className="my-0" />

@@ -31,12 +31,6 @@ const Features4Columns = () => {
 			icon: 'award',
 			title: 'Certificate',
 			description: `Nuestros cursos te otorgan un certificado de finalización.`
-		},
-		{
-			id: 4,
-			icon: 'users',
-			title: 'Mejora tu empresa',
-			description: `Aprende habilidades que te ayudarán a mejorar tu empresa.`
 		}
 	];
 
@@ -51,7 +45,7 @@ const Features4Columns = () => {
 				<Row>
 					{features.map((item, index) => {
 						return (
-							<Col lg={3} md={6} sm={12} key={index}>
+							<Col lg={4} md={6} sm={12} key={index}>
 								<FeatureTopIcon item={item} />
 							</Col>
 						);

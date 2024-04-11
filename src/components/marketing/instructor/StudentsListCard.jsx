@@ -49,17 +49,6 @@ const StudentsListCard = () => {
 					);
 				}
 			},
-			{
-				accessorKey: 'message',
-				header: 'Mensaje	',
-				cell: () => {
-					return (
-						<Link href="#" className="btn btn-outline-secondary btn-sm">
-							Mensaje
-						</Link>
-					);
-				}
-			}
 		],
 		[]
 	);

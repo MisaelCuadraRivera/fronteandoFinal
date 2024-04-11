@@ -19,9 +19,10 @@ const ProfileLayout = (props) => {
 	const location = useLocation();
 
 	const dashboardData = {
+		id: 1,
 		avatar: Avatar1,
-		name: 'Jenny Wilson',
-		username: '@Jennywilson',
+		name: 'Misael Cuadra',
+		username: '@Guarrarivera',
 		linkname: 'Crear curso',
 		link: '/marketing/instructor/add-new-course/'
 	};

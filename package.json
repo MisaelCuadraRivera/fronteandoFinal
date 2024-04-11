@@ -26,11 +26,7 @@
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.2",
-<<<<<<< HEAD
-    "express": "^4.19.2",
-=======
     "cors": "^2.8.5",
->>>>>>> c038ae525564edfdbee88a39b0eba4489877b42f
     "flatpickr": "^4.6.13",
     "formik": "^2.4.5",
     "jsonwebtoken": "^9.0.2",
@@ -70,6 +66,7 @@
     "simplebar": "^6.2.5",
     "simplebar-react": "^3.2.4",
     "styled-components": "^6.1.8",
+    "sweetalert2": "^11.10.7",
     "uuid": "^9.0.1",
     "web-vitals": "^3.5.2",
     "yet-another-react-lightbox": "^3.16.0",
