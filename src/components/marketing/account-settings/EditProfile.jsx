@@ -1,172 +1,221 @@
-// import node module libraries
-import { useLocation } from 'react-router-dom';
-import { Card, Form, Row, Col, Button, Image } from 'react-bootstrap';
-
-// import custom components
-import { FormSelect } from 'components/elements/form-select/FormSelect';
-import { FlatPickr } from 'components/elements/flat-pickr/FlatPickr';
-
-// import media files
-import Avatar3 from 'assets/images/avatar/avatar-3.jpg';
-
-// import profile layout wrapper
-import ProfileLayout from 'components/marketing/instructor/ProfileLayout';
+import React, { useState, useEffect } from 'react';
+import { Card, Form, Row, Col, Button, Image, InputGroup, FormControl } from 'react-bootstrap';
+import ProfileLayout from 'components/marketing/instructor/ProfileLayout'; // Asegúrate de ajustar la importación según tu estructura de archivos
+import Avatar3 from 'assets/images/avatar/avatar-3.jpg'; // Asegúrate de ajustar la ruta según tu proyecto
 
 const EditProfile = () => {
-	const pathInfo = useLocation();
-	const account = pathInfo.pathname.substring(21, 11);
-	const statelist = [
-		{ value: '1', label: 'Gujarat' },
-		{ value: '2', label: 'Rajasthan' },
-		{ value: '3', label: 'Maharashtra' }
-	];
-	const countrylist = [
-		{ value: '1', label: 'India' },
-		{ value: '2', label: 'UK' },
-		{ value: '3', label: 'USA' }
-	];
-	return (
-		<ProfileLayout>
-			{account === 'instructor'}
-			<Card className="border-0">
-				<Card.Header>
-					<div className="mb-3 mb-lg-0">
-						<h3 className="mb-0">Detalle del perfil</h3>
-						<p className="mb-0">
-							Configura los datos de tu cuenta.
-						</p>
-					</div>
-				</Card.Header>
-				<Card.Body>
-					<div className="d-lg-flex align-items-center justify-content-between">
-						<div className="d-flex align-items-center mb-4 mb-lg-0">
-							<Image
-								src={Avatar3}
-								id="img-uploaded"
-								className="avatar-xl rounded-circle"
-								alt=""
-							/>
-							<div className="ms-3">
-								<h4 className="mb-0">Tu avatar</h4>
-								<p className="mb-0">
-									PNG o JPG no mayor a 800px
-								</p>
-							</div>
-						</div>
-						<div>
-							<Button variant="outline-secondary" size="sm">
-								Actualizar
-							</Button>{' '}
-							<Button variant="outline-danger" size="sm">
-								Eliminar
-							</Button>
-						</div>
-					</div>
-					<hr className="my-5" />
-					<div>
-						<h4 className="mb-0">Detalles Personales</h4>
-						<p className="mb-4">Edita tu informacion personal</p>
-						{/* Form */}
-						<Form>
-							<Row>
-								{/* First name */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formFirstName">
-										<Form.Label>Nombre</Form.Label>
-										<Form.Control
-											type="text"
-											placeholder="Nombre"
-											required
-										/>
-									</Form.Group>
-								</Col>
+	const [userData, setUserData] = useState({
+	  nombre: '',
+	  apellidos: '',
+	  email: '',
+	  celular: '',
+	  fecha_nacimiento: '',
+	  estado: '',
+	  municipio: '',
+	  imagen: Avatar3, // Imagen predeterminada
+	});
+  
+	useEffect(() => {
+	  const fetchUserData = async () => {
+		const token = localStorage.getItem('token');
+		try {
+		  const response = await fetch('http://localhost:3001/user/profile', {
+			headers: {
+			  Authorization: `Bearer ${token}`,
+			},
+		  });
+		  if (!response.ok) {
+			throw new Error('No se pudieron obtener los datos del usuario');
+		  }
+		  const data = await response.json();
+		  setUserData({
+			...data.user,
+			imagen: data.user.imagen || Avatar3,
+		  });
+		} catch (error) {
+		  console.error(error.message);
+		}
+	  };
+  
+	  fetchUserData();
+	}, []);
 
-								{/* Last name */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formLastName">
-										<Form.Label>Apellido</Form.Label>
-										<Form.Control
-											type="text"
-											placeholder="Apellido"
-											required
-										/>
-									</Form.Group>
-								</Col>
+	  // Función para manejar cambios en los inputs
+	  const handleChange = (e) => {
+		const { name, value } = e.target;
+		setUserData({ ...userData, [name]: value });
+	  };
+  
+	// Manejador para el cambio de imagen
+	const handleImageChange = async (e) => {
+		if (e.target.files[0]) {
+		  const file = e.target.files[0];
+		  const base64 = await convertToBase64(file);
+	  
+		  // Extrae solo la parte base64 de la cadena
+		  const base64Data = base64.split(',')[1];
+	  
+		  setUserData({
+			...userData,
+			imagen: base64Data,
+		  });
+		}
+	  };
+  
+	// Función para convertir imagen a Base64
+	const convertToBase64 = (file) => {
+	  return new Promise((resolve, reject) => {
+		const fileReader = new FileReader();
+		fileReader.readAsDataURL(file);
+		fileReader.onload = () => {
+		  resolve(fileReader.result);
+		};
+		fileReader.onerror = (error) => {
+		  reject(error);
+		};
+	  });
+	};
+  
+	// Función para manejar la actualización del perfil
+	const handleUpdateProfile = async (event) => {
+		event.preventDefault();
+		const token = localStorage.getItem('token');
+	  
+		const userProfileData = {
+		  nombre: userData.nombre,
+		  apellidos: userData.apellidos,
+		  celular: userData.celular,
+		  fecha_nacimiento: userData.fecha_nacimiento,
+		  estado: userData.estado,
+		  municipio: userData.municipio,
+		  imagen: userData.imagen, // Envía la imagen en base64
+		};
+	  
+		try {
+		  const response = await fetch('http://localhost:3001/user/profile', {
+			method: 'PUT',
+			headers: {
+			  Authorization: `Bearer ${token}`,
+			  'Content-Type': 'application/json', // Asegúrate de incluir este encabezado
+			},
+			body: JSON.stringify(userProfileData),
+		  });
+	  
+		  if (!response.ok) {
+			throw new Error('Error al actualizar los datos del usuario');
+		  }
+	  
+		  alert('Perfil actualizado con éxito');
+		} catch (error) {
+		  console.error(error.message);
+		  alert('Hubo un error al actualizar el perfil');
+		}
+	  };
 
-								{/* Phone */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formPhone">
-										<Form.Label>Telefono</Form.Label>
-										<Form.Control type="text" placeholder="Telefono" required />
-									</Form.Group>
-								</Col>
-
-								{/* Birthday */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formBirthday">
-										<Form.Label>Dia de Nacimiento</Form.Label>
-										<Form.Control
-											as={FlatPickr}
-											value={''}
-											placeholder="Dia de Nacimiento"
-											required
-										/>
-									</Form.Group>
-								</Col>
-
-								{/* Address Line 1 */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formBirthday">
-										<Form.Label>Direccion Linea 1</Form.Label>
-										<Form.Control
-											type="text"
-											placeholder="Direccion Linea 1"
-											required
-										/>
-									</Form.Group>
-								</Col>
-
-								{/* Address Line 2 */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formBirthday">
-										<Form.Label>Direccion Linea 2</Form.Label>
-										<Form.Control
-											type="text"
-											placeholder="Direccion Linea 2"
-											required
-										/>
-									</Form.Group>
-								</Col>
-
-								{/* State */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formState">
-										<Form.Label>Estado</Form.Label>
-										<FormSelect options={statelist} />
-									</Form.Group>
-								</Col>
-
-								{/* Country */}
-								<Col md={6} sm={12} className="mb-3">
-									<Form.Group className="mb-3" controlId="formState">
-										<Form.Label>Pais</Form.Label>
-										<FormSelect options={countrylist} />
-									</Form.Group>
-								</Col>
-
-								{/* Button */}
-								<Col sm={12} md={12}>
-									<Button variant="primary" type="submit">
-										Actualizar Perfil
-									</Button>
-								</Col>
-							</Row>
-						</Form>
-					</div>
-				</Card.Body>
-			</Card>
-		</ProfileLayout>
-	);
+  return (
+    <ProfileLayout>
+      <Card className="border-0">
+        <Card.Header>
+          <h3 className="mb-0">Editar Perfil</h3>
+        </Card.Header>
+        <Card.Body>
+          <Form onSubmit={handleUpdateProfile}>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="nombre">
+                  <Form.Label>Nombre</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="nombre"
+                    value={userData.nombre}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="apellidos">
+                  <Form.Label>Apellidos</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="apellidos"
+                    value={userData.apellidos}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="celular">
+                  <Form.Label>Celular</Form.Label>
+                  <Form.Control
+                    type="tel"
+                    name="celular"
+                    value={userData.celular}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="fecha_nacimiento">
+                  <Form.Label>Fecha de Nacimiento</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="fecha_nacimiento"
+                    value={userData.fecha_nacimiento}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="estado">
+                  <Form.Label>Estado</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="estado"
+                    value={userData.estado}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="municipio">
+                  <Form.Label>Municipio</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="municipio"
+                    value={userData.municipio}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Form.Group controlId="imagenPerfil">
+              <Form.Label>Imagen de Perfil</Form.Label>
+              <InputGroup>
+                <FormControl
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </InputGroup>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Actualizar Perfil
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </ProfileLayout>
+  );
 };
 
 export default EditProfile;
