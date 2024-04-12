@@ -65,7 +65,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(''); // Configura esto de manera segura en producción
+        sgMail.setApiKey('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'); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado
@@ -557,7 +557,7 @@ app.post('/forgot-password', (req, res) => {
           return res.status(500).send('Error en el servidor.');
       }
       const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey(''); // Configura esto de manera segura en producción
+      sgMail.setApiKey('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'); // Configura esto de manera segura en producción
       
       // Dentro de la misma función después de actualizar la base de datos con el token
       const resetUrl = `http://localhost:3000/reset-password/${token}`; // Asegúrate de cambiar esto por la URL correcta de tu frontend
