@@ -20,15 +20,7 @@ const HeaderDefault = (props) => {
 						>
 							<Menu size="18px" />
 						</Link>
-						<div className="ms-lg-3 d-none d-md-none d-lg-block">
-							{/* <!-- Form --> */}
-							<Form className="d-flex align-items-center">
-								<span className="position-absolute ps-3 search-icon">
-									<i className="fe fe-search"></i>
-								</span>
-								<Form.Control type="search" className="form-control ps-6" placeholder="Buscar" />
-							</Form>
-						</div>
+						
 					</div>
 					<Nav className="navbar-nav navbar-right-wrap ms-auto d-flex align-items-center nav-top-wrap">
 						<QuickMenu />

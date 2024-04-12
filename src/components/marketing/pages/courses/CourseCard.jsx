@@ -1,21 +1,23 @@
-import React, { useState, useEffect, Fragment } from 'react';
+// import node module libraries
+import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {
-    Image,
-    Card,
-    Row,
-    Col,
-    ListGroup
+	Image,
+	Card,
+	Row,
+	Col,
+	ProgressBar,
+	ListGroup,
+	Badge
 } from 'react-bootstrap';
 
-// Asumiendo que estos componentes ya manejan props dinámicas correctamente
+// import custom components
 import Ratings from 'components/marketing/common/ratings/Ratings';
 import LevelIcon from 'components/marketing/common/miscellaneous/LevelIcon';
 import GKTippy from 'components/elements/tooltips/GKTippy';
 
-// Utility function
+// import utility file
 import { numberWithCommas } from 'helper/utils';
 
 const CourseCard = ({ course, viewby = 'default-value', extraclass }) => {
@@ -178,20 +180,21 @@ const CourseCard = ({ course, viewby = 'default-value', extraclass }) => {
 
 // Specifies the default values for props
 CourseCard.defaultProps = {
-    free: false,
-    viewby: 'grid',
-    showprogressbar: false,
-    extraclass: '',
-    link: '#'
+	free: false,
+	viewby: 'grid',
+	showprogressbar: false,
+	extraclass: '',
+	link: '#'
 };
 
 // Typechecking With PropTypes
 CourseCard.propTypes = {
-    free: PropTypes.bool,
-    viewby: PropTypes.string,
-    showprogressbar: PropTypes.bool,
-    extraclass: PropTypes.string,
-    link: PropTypes.string
+	item: PropTypes.object.isRequired,
+	free: PropTypes.bool,
+	viewby: PropTypes.string,
+	showprogressbar: PropTypes.bool,
+	extraclass: PropTypes.string,
+	link: PropTypes.string
 };
 
 export default CourseCard;

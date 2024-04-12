@@ -1,12 +1,14 @@
 import React, { Fragment, useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { Edit, Trash, MoreVertical } from 'react-feather';
-import { Col, Row, Dropdown, Card, Breadcrumb, Button, Modal, Form } from 'react-bootstrap';
+import { Edit, Trash, } from 'react-feather';
+import { Col, Row, Card, Button, Modal, Form, Container } from 'react-bootstrap';
 import axios from 'axios';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
+import Swal from 'sweetalert2';
+
 
 const CoursesCategory = () => {
   const handleShow = () => setShow(true);
+  const [categoryError, setCategoryError] = useState('');
   const [show, setShow] = useState(false);
   const [newCategory, setNewCategory] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
@@ -18,6 +20,12 @@ const CoursesCategory = () => {
   const [editCategoryId, setEditCategoryId] = useState(null);
   const [categoryToDeleteId, setCategoryToDeleteId] = useState(null);
 
+  const handleClose = () => {
+    setShow(false);
+    setCategoryError('');
+    setNewCategory('');
+  };
+
   useEffect(() => {
     loadCategories();
   }, []);
@@ -27,17 +35,28 @@ const CoursesCategory = () => {
     setCategories(response.data);
   };
 
-    const handleAddCategory = async () => {
-      try {
-          await axios.post('http://localhost:3001/categories', { categoria: newCategoryName }); // Changed 'name' to 'categorias'
-          setNewCategoryName('');
-          setShowAddModal(false);
-          loadCategories();
-      } catch (error) {
-          console.error('Error adding category:', error);
-      }
+  const handleAddCategory = async () => {
+    if (!newCategory.trim()) {
+      setCategoryError('El nombre de la categoría no puede estar vacío.');
+      return;
+    }
+    try {
+      await axios.post('http://localhost:3001/categories', { name: newCategory });
+      setNewCategory('');
+      setShow(false);
+      loadCategories();
+    } catch (error) {
+      console.error("Error al agregar la categoría", error);
+      // Manejar más errores aquí si es necesario
+    }
   };
-  
+
+  const handleChange = (e) => {
+    setNewCategory(e.target.value);
+    if (categoryError) {
+      setCategoryError('');
+    }
+  };
 
   const handleShowEditModal = (categoryId, name) => {
     setEditCategoryId(categoryId);
@@ -45,25 +64,62 @@ const CoursesCategory = () => {
     setShowEditModal(true);
   };
 
-  const handleEditCategory = async () => {
-    await axios.put(`http://localhost:3001/categories/${editCategoryId}`, { name: editCategoryName });
+  const handleCloseEditModal = () => {
     setEditCategoryName('');
     setShowEditModal(false);
-    loadCategories();
   };
 
-  const handleDeleteCategory = async () => {
-    await axios.delete(`http://localhost:3001/categories/${categoryToDeleteId}`);
-    setShowDeleteModal(false);
-    loadCategories();
+  const handleEditCategory = async () => {
+    try {
+      await axios.put(`http://localhost:3001/categories/${editCategoryId}`, { name: editCategoryName });
+      setEditCategoryName('');
+      setShowEditModal(false);
+      loadCategories();
+      Swal.fire({
+        title: '¡Éxito!',
+        text: 'La categoría ha sido actualizada correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo actualizar la categoría.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+    }
   };
+
+
+  const handleDeleteCategory = async () => {
+    try {
+      await axios.delete(`http://localhost:3001/categories/${categoryToDeleteId}`);
+      setShowDeleteModal(false);
+      loadCategories();
+      Swal.fire({
+        title: '¡Eliminado!',
+        text: 'La categoría ha sido eliminada correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo eliminar la categoría.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+  };
+
 
   const columns = useMemo(
     () => [
       { accessorKey: "categorias", header: "Categoria" },
       {
         accessorKey: "fecha_creacion",
-        header: "Fecha de creacion",
+        header: "Fecha de creación",
         cell: (info) => new Date(info.getValue()).toLocaleDateString(),
       },
       {
@@ -99,21 +155,29 @@ const CoursesCategory = () => {
               <Button onClick={handleShow} style={{ backgroundColor: "#042b61", border: "none" }}>
                 Agregar nueva categoria
               </Button>
-              <Modal show={show} onHide={() => setShow(false)}>
+              <Modal show={show} onHide={handleClose}>
                 {/* Contenido del Modal */}
-                <Form>
+                <Form className='m-2'>
                   <Form.Group className="mb-3" controlId="formCategoryName">
-                    <Form.Label>Nombre de la Categoría</Form.Label>
+                    <Form.Label className='m-3'>Nombre de la categoría</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Introduce la categoría"
-                      value={newCategoryName}
-                      onChange={(e) => setNewCategoryName(e.target.value)}
+                      value={newCategory}
+                      onChange={handleChange}
+                      className='w-100 '
+                      isInvalid={!!categoryError}
                     />
+                    <Form.Control.Feedback type="invalid" className="">
+                      {categoryError}
+                    </Form.Control.Feedback>
                   </Form.Group>
-                  <Button variant="primary" onClick={handleAddCategory}>
-                    Agregar Categoría
-                  </Button>
+                  <Container className='text-end'>
+                    <Button variant='secondary' className='btn-sm' onClick={handleClose}>Cancelar</Button>
+                    <Button className='btn-sm m-1' variant="primary" onClick={handleAddCategory}>
+                      Agregar categoría
+                    </Button>
+                  </Container>
                 </Form>
               </Modal>
             </div>
@@ -136,7 +200,7 @@ const CoursesCategory = () => {
           </Card>
         </Col>
       </Row>
-      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+      <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Categoría</Modal.Title>
         </Modal.Header>
@@ -153,10 +217,10 @@ const CoursesCategory = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button variant="secondary" onClick={handleCloseEditModal}>
             Cancelar
           </Button>
-          <Button style={{backgroundColor:"#042b61", border: "none"}} onClick={handleEditCategory}>
+          <Button variant='primary' onClick={handleEditCategory}>
             Guardar Cambios
           </Button>
         </Modal.Footer>

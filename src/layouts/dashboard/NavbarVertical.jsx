@@ -18,7 +18,6 @@ import 'simplebar/dist/simplebar.min.css';
 
 // import media files
 import InverseLogo from 'assets/images/brand/logo/logo-inverse.png';
-import GiftBox from 'assets/images/background/giftbox.png';
 
 // import routes file
 import { DashboardMenu } from 'routes/dashboard/DashboardRoutes';
@@ -53,9 +52,8 @@ const NavbarVertical = (props) => {
 	const generateLink = (item) => {
 		return (
 			<Link
-				className={`nav-link ${
-					location.pathname === item.link ? 'active' : ''
-				}`}
+				className={`nav-link ${location.pathname === item.link ? 'active' : ''
+					}`}
 				to={item.link}
 				onClick={(e) =>
 					isMobile ? props.onClick(!props.showMenu) : props.showMenu
@@ -82,9 +80,9 @@ const NavbarVertical = (props) => {
 	return (
 		<Fragment>
 			<SimpleBar style={{ maxHeight: '100vh' }}>
-				<div className="nav-scroller">
+				<div className="nav-scroller text-center">
 					<Link className="navbar-brand" to="/dashboard/overview">
-						<Image src={InverseLogo} alt="" />
+						<Image src={InverseLogo} alt="" className='mx-auto' style={{width:"120px", height:"80px"}} />
 					</Link>
 				</div>
 				{/* Dashboard Menu */}
@@ -269,7 +267,7 @@ const NavbarVertical = (props) => {
 									</Fragment>
 								);
 							} else {
-								
+
 							}
 						}
 					})}
