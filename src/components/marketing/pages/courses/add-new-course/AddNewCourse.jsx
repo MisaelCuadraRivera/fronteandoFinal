@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // Importa los componentes de cada paso del formulario
 import GKStepper from 'components/elements/stepper/GKStepper';
 import BasicInformation from './steps/BasicInformation';
-
+import Swal from 'sweetalert2';
 
 const AddNewCourse = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -27,37 +27,53 @@ const AddNewCourse = () => {
         }));
     };
 
-    
+
 
     const next = () => setCurrentStep(currentStep >= 3 ? 3 : currentStep + 1);
-    const previous = () => setCurrentStep(currentStep <= 1 ? 1 : currentStep - 1);
 
     // Función para manejar el envío del formulario al servidor
-    // Función para manejar el envío del formulario al servidor
-const handleSubmitCourse = async () => {
-    // Convertir formData a una cadena JSON válida
-    const formDataJSON = JSON.stringify(formData);
-    
-    try {
-        const response = await fetch('http://localhost:3001/create-course', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: formDataJSON, // Enviar la cadena JSON
-        });
-        if (response.ok) {
-            const result = await response.json();
-            console.log(result);
-            alert('Curso creado con éxito');
-        } else {
-            alert('Error al crear el curso');
+    const handleSubmitCourse = async () => {
+        // Convertir formData a una cadena JSON válida
+        const formDataJSON = JSON.stringify(formData);
+
+        try {
+            const response = await fetch('http://localhost:3001/create-course', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: formDataJSON, // Enviar la cadena JSON
+            });
+            if (response.ok) {
+                const result = await response.json();
+                console.log(result);
+                // Alerta de SweetAlert2 para éxito
+                Swal.fire({
+                    title: "Éxito",
+                    text: "El curso ha sido creado correctamente",
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                });
+            } else {
+                // Alerta de SweetAlert2 para una respuesta no exitosa
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo crear el curso. Por favor, inténtalo de nuevo.",
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Alerta de SweetAlert2 para errores de conexión o problemas técnicos
+            Swal.fire({
+                title: "Error de Conexión",
+                text: "Error al crear el curso. Verifica tu conexión o contacta con el soporte técnico.",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
         }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error al crear el curso');
-    }
-};
+    };
 
 
     const steps = [
@@ -70,7 +86,7 @@ const handleSubmitCourse = async () => {
 
     return (
         <Fragment>
-            <section className="py-4 py-lg-6" style={{backgroundColor:"#009475"}}>
+            <section className="py-4 py-lg-6" style={{ backgroundColor: "#009475" }}>
                 <Container>
                     <Row>
                         <Col lg={{ span: 10, offset: 1 }} md={12} sm={12}>
