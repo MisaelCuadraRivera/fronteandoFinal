@@ -28,11 +28,16 @@ const CoursesCategory = () => {
     };
 
     const handleAddCategory = async () => {
-        await axios.post('http://localhost:3001/categories', { name: newCategoryName });
-        setNewCategoryName('');
-        setShowAddModal(false);
-        loadCategories();
-    };
+      try {
+          await axios.post('http://localhost:3001/categories', { categoria: newCategoryName }); // Changed 'name' to 'categorias'
+          setNewCategoryName('');
+          setShowAddModal(false);
+          loadCategories();
+      } catch (error) {
+          console.error('Error adding category:', error);
+      }
+  };
+  
 
     const handleShowEditModal = (categoryId, name) => {
         setEditCategoryId(categoryId);
@@ -106,8 +111,8 @@ const CoursesCategory = () => {
                     <Form.Control
                       type="text"
                       placeholder="Introduce la categoría"
-                      value={newCategory}
-                      onChange={(e) => setNewCategory(e.target.value)}
+                      value={newCategoryName}
+                      onChange={(e) => setNewCategoryName(e.target.value)}
                     />
                   </Form.Group>
                   <Button variant="primary" onClick={handleAddCategory}>
