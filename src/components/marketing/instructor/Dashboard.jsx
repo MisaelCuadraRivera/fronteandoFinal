@@ -104,7 +104,7 @@ const Dashboard = () => {
 								<th scope="col" className="border-0">CURSOS</th>
 								<th scope="col" className="border-0">VENTAS</th>
 								<th scope="col" className="border-0">PRECIO</th>
-								<th scope="col" className="border-0"></th> {/* Si no se usa, se puede quitar */}
+								
 							</tr>
 						</thead>
 						<tbody>

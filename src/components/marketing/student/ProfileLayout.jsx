@@ -16,16 +16,6 @@ import Avatar3 from 'assets/images/avatar/avatar-3.jpg';
 const ProfileLayout = (props) => {
 	const location = useLocation();
 
-	const dashboardData = {
-		avatar: Avatar3,
-		name: 'Julián Rodríguez Rojas',
-		username: '20223tn075@utez.edu.mx',
-		linkname: 'Configuración de la cuenta',
-		link: '/marketing/student/student-edit-profile/',
-		verified: true,
-		outlinebutton: false,
-		level: ''
-	};
 
 	return (
 		<Fragment>

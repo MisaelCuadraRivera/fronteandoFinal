@@ -18,7 +18,7 @@ const HeaderDefault = (props) => {
 							to="#"
 							onClick={() => props.data.SidebarToggleMenu(!props.data.showMenu)}
 						>
-							<Menu size="18px" />
+							<Menu size="18px" style={{color:"#042b61"}} />
 						</Link>
 						
 					</div>

@@ -5,7 +5,6 @@ import { Image, Navbar, Nav, Container } from 'react-bootstrap';
 import { jwtDecode } from 'jwt-decode';
 import Logo from 'assets/images/brand/logo/Logo-utez.png';
 // Dentro de NavbarDefault.jsx u otro archivo relevante
-import NavbarDefaultRoutes from 'routes/marketing/NavbarDefault';
 import DarkLightMode from 'layouts/DarkLightMode';
 
 
@@ -15,7 +14,7 @@ const NavbarDefault = ({ headerstyle }) => {
     const [user, setUser] = useState(null);
     const [dashboardLink, setDashboardLink] = useState('/');  // Estado para dashboardLink
 
-	useEffect(() => {
+    useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
@@ -27,7 +26,7 @@ const NavbarDefault = ({ headerstyle }) => {
                     isAuthenticated: true
                 });
 
-                switch(decoded.utez_community) {
+                switch (decoded.utez_community) {
                     case 'profesor':
                         setDashboardLink('/marketing/instructor/dashboard/');
                         break;
@@ -56,7 +55,7 @@ const NavbarDefault = ({ headerstyle }) => {
             >
                 <Container fluid className="px-0 ps-2">
                     <Navbar.Brand as={Link} to="/" >
-                        <Image src={Logo} alt="logo UTEZ" />
+                        <Image src={Logo} alt="logo UTEZ" className='mx-auto' />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav">
                         <span className="icon-bar top-bar mt-0"></span>
@@ -64,23 +63,19 @@ const NavbarDefault = ({ headerstyle }) => {
                         <span className="icon-bar bottom-bar"></span>
                     </Navbar.Toggle>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav>
-                            {NavbarDefaultRoutes.map((item, index) => (
-                                <Nav.Link key={index} as={Link} to={item.link}>{item.menuitem}</Nav.Link>
-                            ))}
-                        </Nav>
+                        
                         <Nav className="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
-						<DarkLightMode className="mt-2 me-2" />
+                            <DarkLightMode className="mt-2 me-2" />
                             {user?.isAuthenticated ? (
                                 <>
-                                    <Nav.Link as={Link} to={dashboardLink} className="btn btn-primary">Dashboard</Nav.Link>
+                                    <Nav.Link as={Link} to={dashboardLink} className="btn" style={{paddingTop:"13px", paddingBottom:"10px"}}>Dashboard</Nav.Link>
                                 </>
                             ) : (
                                 <>
-                                    <Nav.Link as={Link} to="/authentication/sign-in" className="btn btn-white shadow-sm me-2">
+                                    <Nav.Link as={Link} to="/authentication/sign-in" className="btn shadow-sm btn-white" style={{paddingTop:"13px", paddingBottom:"10px"}}>
                                         Iniciar sesión
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to="/authentication/sign-up" className="btn shadow-sm" style={{ backgroundColor: '#042b61', color: '#fff' }}>
+                                    <Nav.Link as={Link} to="/authentication/sign-up" className="btn shadow-sm" style={{paddingTop:"13px", paddingBottom:"10px"}}>
                                         Registrarme
                                     </Nav.Link>
                                 </>

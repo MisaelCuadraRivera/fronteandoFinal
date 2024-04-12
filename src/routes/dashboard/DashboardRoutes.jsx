@@ -25,9 +25,6 @@ import { v4 as uuid } from 'uuid';
  *
  */
 
-// import MDI icons
-import Icon from '@mdi/react';
-import { mdiTrello, mdiCalendar } from '@mdi/js';
 
 export const DashboardMenu = [
 	{

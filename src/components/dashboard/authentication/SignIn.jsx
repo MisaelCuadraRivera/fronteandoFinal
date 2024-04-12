@@ -3,16 +3,17 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Col, Row, Card, Form, Button, Image } from 'react-bootstrap';
 // Asegúrate de que la ruta del logo sea correcta
 import Logo from 'assets/images/brand/logo/Logo-utez-2.png';
+import Swal from 'sweetalert2';
+
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Usamos useNavigate para redireccionar
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        // Realizar solicitud POST al endpoint /signin
+
         try {
             const response = await fetch('http://localhost:3001/signin', {
                 method: 'POST',
@@ -21,34 +22,46 @@ const SignIn = () => {
                 },
                 body: JSON.stringify({ email, password }),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
-                // Correcciones aquí:
-                localStorage.setItem('token', data.token); // Correcto
-                // localStorage.setItem('token', response.token); // Incorrecto, debería ser data.token
-                localStorage.setItem('user', JSON.stringify(data.user)); // Usa data.user en vez de response.user
-                localStorage.setItem('utez_community', data.utez_community); // Agrega la comunidad del usuario (estudiante, egresado, etc.
-                console.log(data)
-                
-                // Aquí manejas la lógica de redirección basada en la comunidad del usuario
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('utez_community', data.utez_community);
+                console.log(data);
+
                 const { utez_community } = data;
-                if (utez_community === 'estudiante' || utez_community === 'egresado' || utez_community === 'publico') {
+                if (['estudiante', 'egresado', 'publico'].includes(utez_community)) {
                     navigate('/marketing/student/dashboard/');
-                } else if (utez_community === 'administrativo' || utez_community === 'profesor') {
+                } else if (['administrativo', 'profesor'].includes(utez_community)) {
                     navigate('/marketing/instructor/dashboard/');
                 } else if (utez_community === 'admin') {
                     navigate('/dashboard/overview/');
                 } else {
-                    alert('Tu cuenta no tiene permisos para acceder.');
+                    Swal.fire({
+                        title: 'Acceso denegado',
+                        text: 'Tu cuenta no tiene permisos para acceder.',
+                        icon: 'warning',
+                        confirmButtonText: 'Aceptar'
+                    });
                 }
             } else {
-                alert('Correo electrónico o contraseña incorrectos');
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Correo electrónico o contraseña incorrectos',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
             }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Hubo un problema al intentar iniciar sesión. Por favor, inténtalo de nuevo.');
+            Swal.fire({
+                title: 'Error',
+                text: 'Hubo un problema al intentar iniciar sesión. Por favor, inténtalo de nuevo.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
         }
     };
 

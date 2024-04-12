@@ -4,113 +4,113 @@ import ProfileLayout from 'components/marketing/instructor/ProfileLayout'; // As
 import Avatar3 from 'assets/images/avatar/avatar-3.jpg'; // Asegúrate de ajustar la ruta según tu proyecto
 
 const EditProfile = () => {
-	const [userData, setUserData] = useState({
-	  nombre: '',
-	  apellidos: '',
-	  email: '',
-	  celular: '',
-	  fecha_nacimiento: '',
-	  estado: '',
-	  municipio: '',
-	  imagen: Avatar3, // Imagen predeterminada
-	});
-  
-	useEffect(() => {
-	  const fetchUserData = async () => {
-		const token = localStorage.getItem('token');
-		try {
-		  const response = await fetch('http://localhost:3001/user/profile', {
-			headers: {
-			  Authorization: `Bearer ${token}`,
-			},
-		  });
-		  if (!response.ok) {
-			throw new Error('No se pudieron obtener los datos del usuario');
-		  }
-		  const data = await response.json();
-		  setUserData({
-			...data.user,
-			imagen: data.user.imagen || Avatar3,
-		  });
-		} catch (error) {
-		  console.error(error.message);
-		}
-	  };
-  
-	  fetchUserData();
-	}, []);
+  const [userData, setUserData] = useState({
+    nombre: '',
+    apellidos: '',
+    email: '',
+    celular: '',
+    fecha_nacimiento: '',
+    estado: '',
+    municipio: '',
+    imagen: Avatar3, // Imagen predeterminada
+  });
 
-	  // Función para manejar cambios en los inputs
-	  const handleChange = (e) => {
-		const { name, value } = e.target;
-		setUserData({ ...userData, [name]: value });
-	  };
-  
-	// Manejador para el cambio de imagen
-	const handleImageChange = async (e) => {
-		if (e.target.files[0]) {
-		  const file = e.target.files[0];
-		  const base64 = await convertToBase64(file);
-	  
-		  // Extrae solo la parte base64 de la cadena
-		  const base64Data = base64.split(',')[1];
-	  
-		  setUserData({
-			...userData,
-			imagen: base64Data,
-		  });
-		}
-	  };
-  
-	// Función para convertir imagen a Base64
-	const convertToBase64 = (file) => {
-	  return new Promise((resolve, reject) => {
-		const fileReader = new FileReader();
-		fileReader.readAsDataURL(file);
-		fileReader.onload = () => {
-		  resolve(fileReader.result);
-		};
-		fileReader.onerror = (error) => {
-		  reject(error);
-		};
-	  });
-	};
-  
-	// Función para manejar la actualización del perfil
-	const handleUpdateProfile = async (event) => {
-		event.preventDefault();
-		const token = localStorage.getItem('token');
-	  
-		const userProfileData = {
-		  nombre: userData.nombre,
-		  apellidos: userData.apellidos,
-		  celular: userData.celular,
-		  fecha_nacimiento: userData.fecha_nacimiento,
-		  estado: userData.estado,
-		  municipio: userData.municipio,
-		  imagen: userData.imagen, // Envía la imagen en base64
-		};
-	  
-		try {
-		  const response = await fetch('http://localhost:3001/user/profile', {
-			method: 'PUT',
-			headers: {
-			  Authorization: `Bearer ${token}`,
-			  'Content-Type': 'application/json', // Asegúrate de incluir este encabezado
-			},
-			body: JSON.stringify(userProfileData),
-		  });
-	  
-		  if (!response.ok) {
-			throw new Error('Error al actualizar los datos del usuario');
-		  }
-	  
-		  alert('Perfil actualizado con éxito');
-		} catch (error) {
-		  console.error(error.message);
-		  alert('Hubo un error al actualizar el perfil');
-		}
-	  };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await fetch('http://localhost:3001/user/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error('No se pudieron obtener los datos del usuario');
+        }
+        const data = await response.json();
+        setUserData({
+          ...data.user,
+          imagen: data.user.imagen || Avatar3,
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  // Función para manejar cambios en los inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  // Manejador para el cambio de imagen
+  const handleImageChange = async (e) => {
+    if (e.target.files[0]) {
+      const file = e.target.files[0];
+      const base64 = await convertToBase64(file);
+
+      // Extrae solo la parte base64 de la cadena
+      const base64Data = base64.split(',')[1];
+
+      setUserData({
+        ...userData,
+        imagen: base64Data,
+      });
+    }
+  };
+
+  // Función para convertir imagen a Base64
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  // Función para manejar la actualización del perfil
+  const handleUpdateProfile = async (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem('token');
+
+    const userProfileData = {
+      nombre: userData.nombre,
+      apellidos: userData.apellidos,
+      celular: userData.celular,
+      fecha_nacimiento: userData.fecha_nacimiento,
+      estado: userData.estado,
+      municipio: userData.municipio,
+      imagen: userData.imagen, // Envía la imagen en base64
+    };
+
+    try {
+      const response = await fetch('http://localhost:3001/user/profile', {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json', // Asegúrate de incluir este encabezado
+        },
+        body: JSON.stringify(userProfileData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar los datos del usuario');
+      }
+
+      alert('Perfil actualizado con éxito');
+    } catch (error) {
+      console.error(error.message);
+      alert('Hubo un error al actualizar el perfil');
+    }
+  };
 
   return (
     <ProfileLayout>
@@ -208,7 +208,7 @@ const EditProfile = () => {
                 />
               </InputGroup>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" className='btn mt-2'>
               Actualizar Perfil
             </Button>
           </Form>

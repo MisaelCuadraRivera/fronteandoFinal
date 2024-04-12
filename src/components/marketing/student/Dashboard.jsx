@@ -39,7 +39,7 @@ const StudentDashboard = () => {
           <ProfileCover dashboardData={dashboardData} />
           <Row className="mb-3">
             <Col className="text-end">
-              <Link to={dashboardData.link} className="btn btn-primary">
+              <Link to={dashboardData.link} className="btn btn-primary mt-2">
                 {dashboardData.linkname}
               </Link>
             </Col>

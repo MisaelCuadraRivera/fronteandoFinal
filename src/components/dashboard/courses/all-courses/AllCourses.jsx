@@ -35,7 +35,7 @@ const AllCourses = () => {
 								<Nav className="nav-lb-tab">
 									<Nav.Item>
 										<Nav.Link eventKey="all" className="mb-sm-3 mb-md-0">
-											Todos
+											Listado de cursos
 										</Nav.Link>
 									</Nav.Item>
 								</Nav>

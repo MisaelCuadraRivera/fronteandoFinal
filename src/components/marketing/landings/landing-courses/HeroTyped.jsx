@@ -33,15 +33,14 @@ const HeroTyped = () => {
 							</p>
 							<Link
 								to="/marketing/course-category/"
-								className="btn me-2"
-								style={{backgroundColor: "#009475", color: "white"}}
+								className="btn btn-success me-2"
 								
 							>
 								Ver cursos
 							</Link>
 							<Link
 								to="/authentication/sign-up"
-								className="btn btn-outline-dark"
+								className="btn btn-outline-primary"
 							>
 								Regístrate 
 							</Link>

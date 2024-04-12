@@ -10,6 +10,7 @@ import {
 	Button
 } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 // import custom components
 import PasswordStrengthMeter from 'components/elements/passwordstrength/PasswordStrengthMeter';
@@ -18,7 +19,7 @@ import PasswordStrengthMeter from 'components/elements/passwordstrength/Password
 import ProfileLayoutWrap from './ProfileLayoutWrap';
 
 const Security = () => {
-	
+
 	const location = useLocation();
 
 	const [password, setPassword] = useState('');
@@ -29,7 +30,7 @@ const Security = () => {
 		event.preventDefault();
 		const token = localStorage.getItem('token');
 		const email = event.target.elements.newEmail.value;
-	
+
 		try {
 			const response = await fetch('http://localhost:3001/user/updateemail', {
 				method: 'PUT',
@@ -39,16 +40,26 @@ const Security = () => {
 				},
 				body: JSON.stringify({ email }),
 			});
-	
+
 			if (!response.ok) {
 				throw new Error('Error al actualizar el correo electrónico');
-				console.log(response);
+				// No se alcanzará el console.log si lanzas un error antes
 			}
-	
-			alert('Correo electrónico actualizado con éxito');
+
+			Swal.fire({
+				title: 'Éxito',
+				text: 'Correo electrónico actualizado con éxito',
+				icon: 'success',
+				confirmButtonText: 'Aceptar'
+			});
 		} catch (error) {
 			console.error(error.message);
-			alert('Hubo un error al actualizar el correo electrónico');
+			Swal.fire({
+				title: 'Error',
+				text: 'Hubo un error al actualizar el correo electrónico',
+				icon: 'error',
+				confirmButtonText: 'Aceptar'
+			});
 		}
 	};
 
@@ -58,12 +69,17 @@ const Security = () => {
 		const currentPassword = currentpassword;
 		const newPassword = password;
 		const confirmPassword = confirmpassword;
-	
+
 		if (newPassword !== confirmPassword) {
-			alert('Las contraseñas no coinciden');
+			Swal.fire({
+				title: 'Error',
+				text: 'Las contraseñas no coinciden',
+				icon: 'error',
+				confirmButtonText: 'Aceptar'
+			});
 			return;
 		}
-	
+
 		try {
 			const response = await fetch('http://localhost:3001/user/updatepassword', {
 				method: 'PUT',
@@ -73,19 +89,29 @@ const Security = () => {
 				},
 				body: JSON.stringify({ currentPassword, newPassword }),
 			});
-	
+
 			if (!response.ok) {
 				throw new Error('Error al actualizar la contraseña');
 			}
-	
-			alert('Contraseña actualizada con éxito');
+
+			Swal.fire({
+				title: 'Éxito',
+				text: 'Contraseña actualizada con éxito',
+				icon: 'success',
+				confirmButtonText: 'Aceptar'
+			});
 		} catch (error) {
 			console.error(error.message);
-			alert('Hubo un error al actualizar la contraseña');
+			Swal.fire({
+				title: 'Error',
+				text: 'Hubo un error al actualizar la contraseña',
+				icon: 'error',
+				confirmButtonText: 'Aceptar'
+			});
 		}
 	};
-	
-	
+
+
 
 	return (
 		<ProfileLayoutWrap pathpara={location.pathname}>
@@ -99,15 +125,14 @@ const Security = () => {
 					</div>
 				</Card.Header>
 				<Card.Body>
-					<h4 className="mb-0">Correo Electrónico</h4>
+					<h4 className="mb-2">Correo Electrónico</h4>
 					<Form id="email" onSubmit={handleEmailUpdate}>
 						<Row>
 							<Col lg={6} md={12} sm={12} className="mb-3">
 								<Form.Group>
-									<Form.Label htmlFor="email">Nuevo correo electronico</Form.Label>
-									<Form.Control type="email" id="newEmail" required />
+									<Form.Control type="email" id="newEmail" required placeholder='Nuevo correo electrónico' />
 								</Form.Group>
-								<Button type="submit" className="btn btn-sm" style={{backgroundColor: "#042b61", borderColor: "white"}}>
+								<Button type="submit" className="btn btn-sm mt-2" variant='primary'>
 									Actualizar detalles
 								</Button>
 							</Col>
@@ -188,7 +213,7 @@ const Security = () => {
 										/>
 									</Form.Group>
 									{/* Button */}
-									<Button type="submit" className="btn btn-sm" style={{backgroundColor: "#042b61", borderColor: "white"}}>
+									<Button type="submit" className="btn btn-sm" variant='primary'>
 										Guardar contraseña
 									</Button>
 									<Col xs={6}></Col>

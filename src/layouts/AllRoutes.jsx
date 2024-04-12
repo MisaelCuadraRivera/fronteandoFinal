@@ -8,13 +8,9 @@ import 'assets/scss/theme.scss';
 import DashboardIndex from 'layouts/dashboard/DashboardIndex';
 import ResetPassword from 'components/dashboard/authentication/ResetPassword';
 import AuthLayout from 'layouts/dashboard/AuthLayout';
-import HelpCenterLayout from 'layouts/marketing/HelpCenterLayout'; // ( added in v1.3.0 )
 import DashboardIndexCompact from 'layouts/dashboard/DashboardIndexCompact'; // ( added in v1.3.0 )
 import DashboardIndexTop from 'layouts/dashboard/DashboardIndexTop'; // ( added in v1.3.0 )
-import JobListingLayout from 'layouts/marketing/JobListingLayout'; // ( added in v2.0.0 )
-import TaskKanbanLayout from './dashboard/TaskKanbanLayout'; // ( added in v2.0.0 )
-import HelpCenterTransparentLayout from 'layouts/marketing/HelpCenterTransparentLayout'; // ( added in v2.0.0 )
-import EcommerceLayout from './dashboard/EcommerceLayout'; // ( added in v2.2.0 )
+
 
 // ** Import Dahbaord Menu Pages
 import Overview from 'components/dashboard/overview/Overview';
@@ -39,17 +35,6 @@ import SignIn from 'components/dashboard/authentication/SignIn';
 import SignUp from 'components/dashboard/authentication/SignUp';
 import ForgetPassword from 'components/dashboard/authentication/ForgetPassword';
 import Notifications from 'components/dashboard/authentication/Notifications';
-
-
-
-
-
-
-
-
-
-
-
 
 // ** Boostrap Forms components
 import ChecksRadios from 'components/elements/bootstrap/forms/ChecksRadios';
@@ -96,11 +81,9 @@ import ChangeLog from 'components/dashboard/changelog/ChangeLog';
 /* ----------------------------------- */
 /* IMPORTS FOR MARKETING PAGES - START */
 import DefaultLayout from 'layouts/marketing/DefaultLayout';
-import LayoutFooterLinks from 'layouts/marketing/LayoutFooterLinks';
 import BlankLayout from 'layouts/marketing/BlankLayout';
 import NotFound from 'layouts/marketing/NotFound';
 import AcademyLayout from 'layouts/marketing/AcademyLayout'; // added in 2.0.0
-import CourseIndex from 'components/marketing/pages/courses/course-index/CourseIndex';
 import CourseCategory from 'components/marketing/pages/courses/course-category/CourseCategory';
 
 /* IMPORTS FOR FRONT SIDE PAGES MENU */
