@@ -35,7 +35,7 @@ const CTA2Buttons = ({
 							<Link to={btnlink1} className="btn mb-2 mb-md-0" style={{backgroundColor: "#009475", color:"white"}}> 
 								{btntext1}
 							</Link>{' '}
-							<Link to={btnlink2} className="btn" style={{backgroundColor: "#042b61", color:"white"}}>
+							<Link to={btnlink2} className="btn">
 								{btntext2}
 							</Link>
 						</div>

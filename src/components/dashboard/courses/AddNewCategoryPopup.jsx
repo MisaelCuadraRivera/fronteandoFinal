@@ -2,9 +2,7 @@
 import { Fragment, useState } from 'react';
 import { Form, FormControl, InputGroup,Button } from 'react-bootstrap';
 
-// import custom components
-import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
-import { FormSelect } from 'components/elements/form-select/FormSelect';
+
 
 const AddNewCategoryPopup = () => {
 	const parentOptions = [

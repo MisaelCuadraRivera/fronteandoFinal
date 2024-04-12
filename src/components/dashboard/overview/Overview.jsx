@@ -1,26 +1,13 @@
 // import node module libraries
 import { Col, Row, Card, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-// import custom components
-import { FlatPickr } from 'components/elements/flat-pickr/FlatPickr';
-import ApexCharts from 'components/elements/charts/ApexCharts';
 import StatRightIcon from 'components/dashboard/common/stats/StatRightIcon';
 
 // import sub components
 import PopularInstructor from './PopularInstructor';
 import RecentCourses from './RecentCourses';
-import Activity from './Activity';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
-// import data files
-import {
-	TrafficChartSeries,
-	TrafficChartOptions,
-	EarningsChartSeries,
-	EarningsChartOptions
-} from 'data/charts/ChartData';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -125,7 +112,7 @@ const Overview = () => {
                         value={ventas}
                         showSummaryIcon
                         iconName="shopping-bag"
-                        iconColorVariant="primary"
+                        iconColorVariant="success"
                         classValue="mb-4"
                     />
                 </Col>
@@ -135,7 +122,7 @@ const Overview = () => {
                         title="Cursos"
                         value={totalCursos.toString()}
                         iconName="book-open"
-                        iconColorVariant="primary"
+                        iconColorVariant="success"
                         classValue="mb-4"
                     />
                 </Col>
@@ -146,7 +133,7 @@ const Overview = () => {
                         value={totalEstudiantes.toString()}
                         showSummaryIcon
                         iconName="users"
-                        iconColorVariant="primary"
+                        iconColorVariant="success"
                         classValue="mb-4"
                     />
                 </Col>
@@ -157,7 +144,7 @@ const Overview = () => {
                         value={totalInstructores.toString()}
                         showSummaryIcon
                         iconName="user-check"
-                        iconColorVariant="primary"
+                        iconColorVariant="success"
                         classValue="mb-4"
                     />
                 </Col>
