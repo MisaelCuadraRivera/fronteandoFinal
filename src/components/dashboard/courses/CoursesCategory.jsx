@@ -57,7 +57,6 @@ const CoursesCategory = () => {
       setCategoryError('');
     }
   };
-  
 
   const handleShowEditModal = (categoryId, name) => {
     setEditCategoryId(categoryId);
