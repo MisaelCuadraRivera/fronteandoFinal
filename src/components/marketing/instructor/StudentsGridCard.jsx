@@ -1,84 +1,108 @@
 // import node module libraries
-import React, { useState, Fragment } from 'react';
-import { Col, Card, Image, Row, Form } from 'react-bootstrap';
+import React, { useState, Fragment, useCallback, useEffect } from 'react';
+import { Col, Card, Image, Row, Form, Button } from 'react-bootstrap';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import Swal from 'sweetalert2';
-
-// import data files
-import { StudentsList } from 'data/users/StudentsData';
+import { jsPDF } from "jspdf";
+import axios from 'axios';
 
 const StudentsGridCard = () => {
-	const [students, setStudentsList] = useState(StudentsList.slice(0, 500));
+    const [students, setStudentsList] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
+    const studentsPerPage = 9;
+    const pagesVisited = pageNumber * studentsPerPage;
+    const pageCount = Math.ceil(students.length / studentsPerPage);
+    const [searchTerm, setSearchTerm] = useState('');
+	const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0]; // Esto devuelve la fecha en formato 'YYYY-MM-DD'
+    };
 
-	// paging start
-	const [pageNumber, setPageNumber] = useState(0);
-	const studentsPerPage = 9;
-	const pagesVisited = pageNumber * studentsPerPage;
-	const pageCount = Math.ceil(students.length / studentsPerPage);
+
+    useEffect(() => {
+        fetchStudents();
+    }, [searchTerm]); // Re-fetch when searchTerm changes
+
+	const fetchStudents = async () => {
+		const token = localStorage.getItem('token'); // Suponiendo que el token está almacenado en localStorage
+		console.log("Fetching students with searchTerm:", searchTerm);
+		try {
+			const response = await axios.get('http://localhost:3001/api/instructor/students', {
+				headers: {
+					Authorization: `Bearer ${token}` // Asegúrate de incluir el token aquí
+				},
+				params: { search: searchTerm }
+			});
+			console.log("Data received:", response.data);
+			setStudentsList(response.data);
+		} catch (error) {
+			console.error('Error fetching students:', error);
+			console.log(error.response);
+		}
+	};
+
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
 	};
+
+    const getSearchTerm = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
 	const displayStudents = students
 		.slice(pagesVisited, pagesVisited + studentsPerPage)
-		.map((students) => {
+		.map((student) => {
 			return (
-				<Col xl={4} lg={4} md={6} sm={12} key={students.id}>
+				<Col xl={4} lg={4} md={6} sm={12} key={student.id}>
 					<Card className="mb-4">
 						<Card.Body>
 							<div className="text-center">
 								<Image
-									src={students.image}
+									src={student.imagen ? `data:image/png;base64,${student.imagen}` : 'default-avatar.png'}
 									className="rounded-circle avatar-xl mb-3"
-									alt=""
+									alt={student.nombre}
 								/>
-								<h4 className="mb-1">{students.name}</h4>
-								<p className="mb-0 fs-6">
-									<i className="fe fe-map-pin me-1"></i>
-									{students.locations}
-								</p>
-								<Link to="#" className="btn btn-sm btn-outline-secondary mt-3">
-									Mensaje
-								</Link>
-							</div>
-							<div className="d-flex justify-content-between border-bottom py-2 mt-4 fs-6">
-								<span>Inscrito</span>
-								<span className="text-dark">{students.joined}</span>
-							</div>
-							<div className="d-flex justify-content-between pt-2 fs-6">
-								<span>Progreso</span>
-								<span className="text-success">{students.progress}%</span>
+									
+								<h4 className="mb-1">{student.nombre}</h4>
+								<h4 className="mb-1">{student.email}</h4>
+								<h4 className="mb-1">{formatDate(student.fecha_inscripcion)}</h4>
+								<h4 className="mb-1">{student.courseTitle}</h4>
+
+								<Button variant="outline-secondary" className="mt-3" onClick={() => certifyStudent(student.name)}>
+									Certificar <i className="fe fe-file-text ms-1"></i>
+								</Button>
 							</div>
 						</Card.Body>
 					</Card>
 				</Col>
 			);
 		});
-	// end of paging
 
-	// searching code started
-
-	const [searchTerm, setSearchTerm] = useState('');
-
-	const getSearchTerm = (event) => {
-		let searchTerm = event.target.value;
-		setSearchTerm(searchTerm);
-		if (searchTerm !== '') {
-			const newStudentsList = StudentsList.filter((student) => {
-				return Object.values(student)
-					.join(' ')
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase());
-			});
-			setStudentsList(newStudentsList.slice(0, 500));
-			setPageNumber(0);
-		} else {
-			setStudentsList(StudentsList.slice(0, 500));
-		}
-	};
-
-	// end of searching
+	const certifyStudent = useCallback((studentName) => {
+		Swal.fire({
+			title: `¿Seguro que quieres certificar al alumno?`,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '¡Sí, certificar!',
+			cancelButtonText: 'Cancelar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const doc = new jsPDF();
+				doc.text(`Certificado de finalización`, 20, 20);
+				doc.text(`Este documento certifica que ${student.nombre} ha completado satisfactoriamente el curso.`, 20, 30);
+				doc.save('certificado.pdf');
+				Swal.fire(
+					'¡Certificado!',
+					`El alumno ${student.nombre} ha sido certificado y se ha generado su certificado.`,
+					'success'
+				);
+			}
+		});
+	}, []);
 
 	// Alertirri
 	const alert = () => {
@@ -123,15 +147,9 @@ const StudentsGridCard = () => {
 					</Row>
 				</Col>
 			</Row>
-
 			<Row>
-				{displayStudents.length > 0 ? (
-					displayStudents
-				) : (
-					<Col>Resultado no encontrado.</Col>
-				)}
+				{displayStudents.length > 0 ? displayStudents : <Col>Resultado no encontrado.</Col>}
 			</Row>
-
 			<ReactPaginate
 				previousLabel={<ChevronLeft size="14px" />}
 				nextLabel={<ChevronRight size="14px" />}

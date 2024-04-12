@@ -11,7 +11,7 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Realizar solicitud POST al endpoint /signin
         try {
             const response = await fetch('http://localhost:3001/signin', {
@@ -21,11 +21,17 @@ const SignIn = () => {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
-                localStorage.setItem('token', data.token);
+                // Correcciones aquí:
+                localStorage.setItem('token', data.token); // Correcto
+                // localStorage.setItem('token', response.token); // Incorrecto, debería ser data.token
+                localStorage.setItem('user', JSON.stringify(data.user)); // Usa data.user en vez de response.user
+                localStorage.setItem('utez_community', data.utez_community); // Agrega la comunidad del usuario (estudiante, egresado, etc.
+                console.log(data)
+                
                 // Aquí manejas la lógica de redirección basada en la comunidad del usuario
                 const { utez_community } = data;
                 if (utez_community === 'estudiante' || utez_community === 'egresado' || utez_community === 'publico') {
@@ -92,9 +98,6 @@ const SignIn = () => {
                                     </Col>
                                     <Col lg={12} md={12} className="mb-3">
                                         <div className="d-md-flex justify-content-between align-items-center">
-                                            <Form.Group controlId="formBasicCheckbox" className="mb-3 mb-md-0">
-                                                <Form.Check type="checkbox" label="Recordarme" />
-                                            </Form.Group>
                                             <Link to="/authentication/forget-password" style={{ color: "#009475" }}>
                                                 ¿Olvidaste tu contraseña?
                                             </Link>

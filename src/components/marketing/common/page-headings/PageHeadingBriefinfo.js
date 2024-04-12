@@ -3,7 +3,7 @@ import { Col, Row, Container } from 'react-bootstrap';
 
 const PageHeadingBriefinfo = ({ pagetitle, briefinfo }) => {
 	return (
-		<section className="bg-primary">
+		<section style={{backgroundColor:"#009475"}}>
 			<Container>
 				<Row className="align-items-center">
 					<Col xl={12} lg={12} md={12} sm={12}>

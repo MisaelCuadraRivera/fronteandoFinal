@@ -10,34 +10,6 @@ const CoursesTabSlider = () => {
 			<Col md={12}>
 				<Tab.Container defaultActiveKey="all">
 					<Card className="bg-transparent shadow-none ">
-						<Card.Header className="border-0 p-0 bg-transparent">
-							<Nav className="nav-lb-tab">
-								<Nav.Item className="ms-0">
-									<Nav.Link eventKey="all" className="mb-sm-3 mb-md-0" >
-										{' '}
-										Todas las categorías
-									</Nav.Link>
-								</Nav.Item>
-								<Nav.Item>
-									<Nav.Link eventKey="design" className="mb-sm-3 mb-md-0">
-										Diseño
-									</Nav.Link>
-								</Nav.Item>
-								<Nav.Item>
-									<Nav.Link eventKey="javascript" className="mb-sm-3 mb-md-0">
-										Javascript
-									</Nav.Link>
-								</Nav.Item>
-								<Nav.Item>
-									<Nav.Link
-										eventKey="webdevelopment"
-										className="mb-sm-3 mb-md-0"
-									>
-										Desarrollo Web
-									</Nav.Link>
-								</Nav.Item>
-							</Nav>
-						</Card.Header>
 						<Card.Body className="p-0">
 							<Tab.Content>
 								<Tab.Pane eventKey="all" className="pb-4 p-4 ps-0 pe-0">

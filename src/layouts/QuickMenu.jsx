@@ -14,7 +14,6 @@ import DarkLightMode from 'layouts/DarkLightMode';
 import GKTippy from 'components/elements/tooltips/GKTippy';
 
 // import media files
-import Avatar1 from 'assets/images/avatar/avatar-1.jpg';
 
 // import data files
 import NotificationList from 'data/Notification';
@@ -39,7 +38,7 @@ const QuickMenu = () => {
 										<Link className="text-body" to="#">
 											<div className="d-flex">
 												<Image
-													src={item.image}
+													src="https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-utez.png"
 													alt=""
 													className="avatar-md rounded-circle"
 												/>
@@ -89,7 +88,7 @@ const QuickMenu = () => {
 						id="dropdownUser"
 					>
 						<div className="avatar avatar-md avatar-indicators avatar-online">
-							<Image alt="avatar" src={Avatar1} className="rounded-circle" />
+							<Image alt="avatar" src="https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-utez.png" className="rounded-circle" />
 						</div>
 					</Dropdown.Toggle>
 					<Dropdown.Menu
@@ -103,7 +102,8 @@ const QuickMenu = () => {
 								<div className="avatar avatar-md avatar-indicators avatar-online">
 									<Image
 										alt="avatar"
-										src={Avatar1}
+										src="https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-utez.png"
+										
 										className="rounded-circle"
 									/>
 								</div>
@@ -114,16 +114,12 @@ const QuickMenu = () => {
 							</div>
 						</Dropdown.Item>
 						<Dropdown.Divider />
-						<Dropdown.Item eventKey="2">
-							<i className="fe fe-user me-2"></i> Perfil
-						</Dropdown.Item>
-						<Dropdown.Item>
-							<i className="fe fe-settings me-2"></i> Opciones
-						</Dropdown.Item>
 						<Dropdown.Divider />
-						<Dropdown.Item className="mb-3">
-							<i className="fe fe-power me-2"></i> Cerrar Sesion
-						</Dropdown.Item>
+						<Dropdown.Item as="div" className="mb-3">
+    <Link to="/" className="dropdown-item">
+        <i className="fe fe-power me-2"></i> Cerrar Sesión
+    </Link>
+</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</ListGroup>

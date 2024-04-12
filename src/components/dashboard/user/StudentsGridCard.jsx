@@ -3,6 +3,7 @@ import { Col, Card, Image, Row, Form, Button, Modal } from "react-bootstrap";
 import { ChevronLeft, ChevronRight, MapPin, Edit, Trash } from "react-feather";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const StudentsGridCard = () => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -56,10 +57,23 @@ const StudentsGridCard = () => {
       );
       setShowEditModal(false);
       fetchStudents();
+      Swal.fire({
+        title: '¡Listo!',
+        text: 'Los datos del estudiante han sido actualizados correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
     } catch (error) {
       console.error("Error al actualizar el estudiante:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo actualizar la información del estudiante.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   };
+
 
   const showDeleteConfirmation = (id) => {
     setStudentToDelete(id);
@@ -72,8 +86,21 @@ const StudentsGridCard = () => {
       await axios.delete(`http://localhost:3001/students/${studentToDelete}`);
       setShowConfirmationModal(false); // Cierra el modal de confirmación
       fetchStudents(); // Recarga la lista de estudiantes después de eliminar
+      Swal.fire({
+        title: '¡Eliminado!',
+        text: 'El estudiante ha sido eliminado correctamente.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+
     } catch (error) {
       console.error("Error al eliminar el estudiante:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo eliminar al estudiante.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   };
 
@@ -89,10 +116,7 @@ const StudentsGridCard = () => {
             <div className="text-center">
               <div className="position-relative">
                 <Image
-                  src={
-                    student.image ||
-                    "https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
-                  }
+                  src={`data:image/jpeg;base64,${student.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
                   className="rounded-circle avatar-xl mb-3"
                   alt=""
                 />
@@ -111,7 +135,7 @@ const StudentsGridCard = () => {
             </div>
             <div className="d-flex justify-content-between mt-3">
               <Button
-                variant="primary"
+                variant="secondary"
                 size="sm"
                 onClick={() => handleShowEditModal(student)}
               >
@@ -215,10 +239,10 @@ const StudentsGridCard = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button className="btn-sm" variant="secondary" onClick={() => setShowEditModal(false)}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={handleEditStudent}>
+          <Button className="btn-sm" variant="primary" onClick={handleEditStudent}>
             Guardar Cambios
           </Button>
         </Modal.Footer>
@@ -245,6 +269,7 @@ const StudentsGridCard = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
     </Fragment>
   );
 };

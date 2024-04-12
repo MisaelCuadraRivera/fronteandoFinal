@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 // Importa los componentes de cada paso del formulario
 import GKStepper from 'components/elements/stepper/GKStepper';
 import BasicInformation from './steps/BasicInformation';
-import CoursesMedia from './steps/CoursesMedia';
-import Settings from './steps/Settings';
+
 
 const AddNewCourse = () => {
     const [currentStep, setCurrentStep] = useState(1);

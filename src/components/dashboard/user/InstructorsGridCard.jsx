@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { Col, Card, Image, Row, Form, Button, Modal } from "react-bootstrap";
 import { ChevronLeft, ChevronRight, Edit, Trash } from "react-feather";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function InstructorsGridCard() {
   const [instructors, setInstructors] = useState([]);
@@ -59,8 +60,21 @@ function InstructorsGridCard() {
       );
       setShowEditModal(false);
       fetchInstructors();
+      Swal.fire({
+        title: "¡Listo!",
+        text: "Los datos del instructor han sido actualizados correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+
     } catch (error) {
-      console.error("Error al actualizar el instructor:", error);
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudieron actualizar los datos del instructor.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -74,8 +88,21 @@ function InstructorsGridCard() {
       await axios.delete(`http://localhost:3001/instructors/${instructorToDelete}`);
       setShowConfirmationModal(false);
       fetchInstructors();
+      Swal.fire({
+        title: "¡Eliminado!",
+        text: "El instructor ha sido eliminado correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+
     } catch (error) {
-      console.error("Error al eliminar el instructor:", error);
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo eliminar al instructor.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -108,10 +135,8 @@ function InstructorsGridCard() {
           <Card.Body>
             <div className="text-center">
               <Image
-                src={
-                  instructor.image ||
-                  "https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
-                }
+                  src={`data:image/jpeg;base64,${instructor.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
+
                 className="rounded-circle avatar-xl mb-3"
                 alt=""
               />
@@ -121,7 +146,7 @@ function InstructorsGridCard() {
             </div>
             <div className="d-flex justify-content-between mt-3">
               <Button
-                variant="primary"
+                variant="secondary"
                 size="sm"
                 onClick={() => handleShowEditModal(instructor)}
               >
@@ -201,10 +226,10 @@ function InstructorsGridCard() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button className="btn-sm" variant="secondary" onClick={() => setShowEditModal(false)}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={handleEditInstructor}>
+          <Button className="btn-sm" style={{backgroundColor:"#042b61", border:"none"}} onClick={handleEditInstructor}>
             Guardar Cambios
           </Button>
         </Modal.Footer>

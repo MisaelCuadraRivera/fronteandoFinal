@@ -20,7 +20,6 @@ const Students = () => {
 						<div className="mb-3 mb-lg-0">
 							<h3 className="mb-0">Estudiantes</h3>
 						</div>
-						<GridListViewButton keyGrid="grid" keyList="list" />
 					</Card.Header>
 				</Card>
 				<Tab.Content>
@@ -32,15 +31,6 @@ const Students = () => {
 							</Card.Body>
 						</Card>
 						{/* end of students in grid view */}
-					</Tab.Pane>
-					<Tab.Pane eventKey="list" className="pb-4">
-						{/* students in list view */}
-						<Card className="">
-							<Card.Body className="px-0 py-0">
-								<StudentsListCard />
-								{/* end of students in list view */}
-							</Card.Body>
-						</Card>
 					</Tab.Pane>
 				</Tab.Content>
 			</Tab.Container>

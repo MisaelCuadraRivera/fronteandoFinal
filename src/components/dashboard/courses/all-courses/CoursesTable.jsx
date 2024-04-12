@@ -9,9 +9,12 @@ import axios from 'axios'; // Asegúrate de tener axios instalado
 const CoursesTable = ({ courses_data }) => {
 
 	const [courses, setCourses] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showApproveModal, setShowApproveModal] = useState(false);
     const [currentCourseId, setCurrentCourseId] = useState(null);
     const [precio, setPrecio] = useState('');
+    const [editCourse, setEditCourse] = useState(null);
+
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -44,15 +47,54 @@ const CoursesTable = ({ courses_data }) => {
             console.error('Error al cambiar el estado del curso:', error);
         }
     };
+    
+const handleDelete = async (courseId) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este curso?")) {
+        try {
+            await axios.delete(`http://localhost:3001/delete-course/${courseId}`);
+            // Actualizar el estado para remover el curso eliminado
+            const updatedCourses = courses.filter(course => course.id !== courseId);
+            setCourses(updatedCourses);
+        } catch (error) {
+            console.error('Error al eliminar el curso:', error);
+        }
+    }
+};
+
+const handleEdit = (course) => {
+    setEditCourse(course);
+    setShowEditModal(true);
+};
+
+const handleCloseModal = () => {
+    setShowEditModal(false);
+    setEditCourse(null);
+};
+
+const handleSaveChanges = async () => {
+    if (!editCourse) return;
+
+    try {
+        await axios.put(`http://localhost:3001/update-course/${editCourse.id}`, editCourse);
+        const updatedCourses = courses.map(course =>
+            course.id === editCourse.id ? { ...course, ...editCourse } : course
+        );
+        setCourses(updatedCourses);
+        handleCloseEditModal();
+    } catch (error) {
+        console.error('Error al actualizar el curso:', error);
+    }
+};
+
 
     // Función para cambiar el estado del curso
     const handleApprove = (courseId) => {
-        setShowModal(true);
+        setShowApproveModal(true);
         setCurrentCourseId(courseId);
     };
 
     const changeCourseStatusWithPrice = async () => {
-        if (!precio) {
+        if (!precio || !currentCourseId) {
             alert("Por favor, introduce un precio para el curso.");
             return;
         }
@@ -62,15 +104,11 @@ const CoursesTable = ({ courses_data }) => {
                 status: 'aprobado',
                 precio: precio,
             });
-            // Actualiza el estado local para reflejar el cambio
-			const updatedCourses = courses.map(course =>
-				course.id === currentCourseId ? { ...course, status: 'aprobado', precio: precio } : course
-			);
+            const updatedCourses = courses.map(course =>
+                course.id === currentCourseId ? { ...course, status: 'aprobado', precio: precio } : course
+            );
             setCourses(updatedCourses);
-            // Restablece el modal
-            setShowModal(false);
-            setPrecio('');
-            setCurrentCourseId(null);
+            handleCloseApproveModal();
         } catch (error) {
             console.error('Error al cambiar el estado del curso:', error);
         }
@@ -160,7 +198,22 @@ const CoursesTable = ({ courses_data }) => {
 					)}
 				</Fragment>
 			)
-		}		
+		},
+        {
+            header: 'Opciones',
+            id: 'options',
+            cell: ({ row }) => (
+                <div>
+                    <Button variant="outline-primary" className="me-2" onClick={() => handleEdit(row.original)}>
+                        Editar
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => handleDelete(row.original.id)}>
+                        Eliminar
+                    </Button>
+                </div>
+            )
+        }
+                
     ], [courses, changeCourseStatus]);
 
 	const data = useMemo(() => courses, [courses]);
@@ -174,7 +227,7 @@ const CoursesTable = ({ courses_data }) => {
                 filter={true}
                 filterPlaceholder="Buscar Cursos"
                 pagination={true} />
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal show={showApproveModal} onHide={() => setShowApproveModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Asignar precio al curso</Modal.Title>
                 </Modal.Header>
@@ -192,7 +245,7 @@ const CoursesTable = ({ courses_data }) => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                    <Button variant="secondary" onClick={() => setShowApproveModal(false)}>
                         Cancelar
                     </Button>
                     <Button variant="primary" onClick={changeCourseStatusWithPrice}>
@@ -200,6 +253,53 @@ const CoursesTable = ({ courses_data }) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Modal show={showEditModal} onHide={handleCloseModal}>
+    <Modal.Header closeButton>
+        <Modal.Title>{editCourse ? "Editar Curso" : "Agregar Nuevo Curso"}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+        <Form>
+            <Form.Group className="mb-3">
+                <Form.Label>Título</Form.Label>
+                <Form.Control
+                    type="text"
+                    placeholder="Introduce el título del curso"
+                    value={editCourse?.title || ''}
+                    onChange={(e) => setEditCourse({ ...editCourse, title: e.target.value })}
+                />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Descripción</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Descripción del curso"
+                    value={editCourse?.description || ''}
+                    onChange={(e) => setEditCourse({ ...editCourse, description: e.target.value })}
+                />
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Precio</Form.Label>
+                <Form.Control
+                    type="number"
+                    placeholder="Precio del curso"
+                    value={editCourse?.precio || ''}
+                    onChange={(e) => setEditCourse({ ...editCourse, precio: e.target.value })}
+                />
+            </Form.Group>
+        </Form>
+    </Modal.Body>
+    <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+            Cancelar
+        </Button>
+        <Button variant="primary" onClick={handleSaveChanges}>
+            Guardar Cambios
+        </Button>
+    </Modal.Footer>
+</Modal>
+
+
         </Fragment>
     );
 };

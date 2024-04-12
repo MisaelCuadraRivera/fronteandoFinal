@@ -20,11 +20,7 @@ const Students = () => {
 								<h1 className="mb-1 h2 fw-bold">
 									Estudiantes registrados
 								</h1>
-								<Breadcrumb>
-									<Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-									<Breadcrumb.Item href="#">Usuarios</Breadcrumb.Item>
-									<Breadcrumb.Item active>Estudiantes</Breadcrumb.Item>
-								</Breadcrumb>
+								
 							</div>
 						</div>
 					</Col>
