@@ -6,26 +6,26 @@ import axios from 'axios';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
 
 const CoursesCategory = () => {
-	const handleShow = () => setShow(true);
-	const [show, setShow] = useState(false);
-	const [newCategory, setNewCategory] = useState('');
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [categories, setCategories] = useState([]);
-    const [newCategoryName, setNewCategoryName] = useState('');
-    const [editCategoryName, setEditCategoryName] = useState('');
-    const [editCategoryId, setEditCategoryId] = useState(null);
-    const [categoryToDeleteId, setCategoryToDeleteId] = useState(null);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [editCategoryName, setEditCategoryName] = useState('');
+  const [editCategoryId, setEditCategoryId] = useState(null);
+  const [categoryToDeleteId, setCategoryToDeleteId] = useState(null);
 
-    useEffect(() => {
-        loadCategories();
-    }, []);
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
-    const loadCategories = async () => {
-        const response = await axios.get('http://localhost:3001/categories');
-        setCategories(response.data);
-    };
+  const loadCategories = async () => {
+    const response = await axios.get('http://localhost:3001/categories');
+    setCategories(response.data);
+  };
 
     const handleAddCategory = async () => {
       try {
@@ -39,52 +39,52 @@ const CoursesCategory = () => {
   };
   
 
-    const handleShowEditModal = (categoryId, name) => {
-        setEditCategoryId(categoryId);
-        setEditCategoryName(name);
-        setShowEditModal(true);
-    };
+  const handleShowEditModal = (categoryId, name) => {
+    setEditCategoryId(categoryId);
+    setEditCategoryName(name);
+    setShowEditModal(true);
+  };
 
-    const handleEditCategory = async () => {
-        await axios.put(`http://localhost:3001/categories/${editCategoryId}`, { name: editCategoryName });
-        setEditCategoryName('');
-        setShowEditModal(false);
-        loadCategories();
-    };
+  const handleEditCategory = async () => {
+    await axios.put(`http://localhost:3001/categories/${editCategoryId}`, { name: editCategoryName });
+    setEditCategoryName('');
+    setShowEditModal(false);
+    loadCategories();
+  };
 
-    const handleDeleteCategory = async () => {
-        await axios.delete(`http://localhost:3001/categories/${categoryToDeleteId}`);
-        setShowDeleteModal(false);
-        loadCategories();
-    };
+  const handleDeleteCategory = async () => {
+    await axios.delete(`http://localhost:3001/categories/${categoryToDeleteId}`);
+    setShowDeleteModal(false);
+    loadCategories();
+  };
 
-	const columns = useMemo(
-		() => [
-		  { accessorKey: "categorias", header: "Categoria" },
-		  {
-			accessorKey: "fecha_creacion",
-			header: "Fecha de creacion",
-			cell: (info) => new Date(info.getValue()).toLocaleDateString(),
-		  },
-        {
-            header: 'Acciones',
-            id: 'actions',
-            cell: (info) => {
-                return (
-                    <div className="d-flex">
-                        <Button variant="info" className="me-2" onClick={() => handleShowEditModal(info.row.original.ID, info.row.original.categorias)}>
-                            <Edit size={16} />
-                        </Button>
-                        <Button variant="danger" onClick={() => { setShowDeleteModal(true); setCategoryToDeleteId(info.row.original.ID); }}>
-                            <Trash size={16} />
-                        </Button>
-                    </div>
-                );
-            }
+  const columns = useMemo(
+    () => [
+      { accessorKey: "categorias", header: "Categoria" },
+      {
+        accessorKey: "fecha_creacion",
+        header: "Fecha de creacion",
+        cell: (info) => new Date(info.getValue()).toLocaleDateString(),
+      },
+      {
+        header: 'Acciones',
+        id: 'actions',
+        cell: (info) => {
+          return (
+            <div className="d-flex">
+              <Button variant="secondary" className="me-2 btn-sm" onClick={() => handleShowEditModal(info.row.original.ID, info.row.original.categorias)}>
+                <Edit size={12} />
+              </Button>
+              <Button variant="danger" className='btn-sm' onClick={() => { setShowDeleteModal(true); setCategoryToDeleteId(info.row.original.ID); }}>
+                <Trash size={12} />
+              </Button>
+            </div>
+          );
         }
+      }
     ], []);
 
-    const data = useMemo(() => categories, [categories]);
+  const data = useMemo(() => categories, [categories]);
 
   return (
     <Fragment>
@@ -93,14 +93,10 @@ const CoursesCategory = () => {
           <div className="border-bottom pb-4 mb-4 d-md-flex align-items-center justify-content-between">
             <div className="mb-3 mb-md-0">
               <h1 className="mb-1 h2 fw-bold">Categoria de cursos</h1>
-              <Breadcrumb>
-                <Breadcrumb.Item href="#">Dashboard</Breadcrumb.Item>
-                <Breadcrumb.Item href="#">Cursos</Breadcrumb.Item>
-                <Breadcrumb.Item active>Categoria de Cursos</Breadcrumb.Item>
-              </Breadcrumb>
+
             </div>
             <div>
-              <Button variant="primary" onClick={handleShow}>
+              <Button onClick={handleShow} style={{ backgroundColor: "#042b61", border: "none" }}>
                 Agregar nueva categoria
               </Button>
               <Modal show={show} onHide={() => setShow(false)}>
@@ -140,45 +136,46 @@ const CoursesCategory = () => {
           </Card>
         </Col>
       </Row>
-	  <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar Categoría</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="editCategoryName">
-                            <Form.Label>Nombre de la Categoría</Form.Label>
-							<Form.Control
-    type="text"
-    value={editCategoryName}
-    onChange={(e) => setEditCategoryName(e.target.value)}
-/>                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowEditModal(false)}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={handleEditCategory}>
-                        Guardar Cambios
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Categoría</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="editCategoryName">
+              <Form.Label>Nombre de la Categoría</Form.Label>
+              <Form.Control
+                type="text"
+                value={editCategoryName}
+                onChange={(e) => setEditCategoryName(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+            Cancelar
+          </Button>
+          <Button style={{backgroundColor:"#042b61", border: "none"}} onClick={handleEditCategory}>
+            Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmar Eliminación</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>¿Estás seguro de que quieres eliminar esta categoría?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-                        Cancelar
-                    </Button>
-                    <Button variant="danger" onClick={handleDeleteCategory}>
-                        Eliminar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>¿Estás seguro de que quieres eliminar esta categoría?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={handleDeleteCategory}>
+            Eliminar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Fragment>
   );
 
