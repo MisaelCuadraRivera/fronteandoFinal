@@ -8,7 +8,6 @@ import { useMediaQuery } from 'react-responsive';
 // import sub layout components
 import NavDropdownMain from 'layouts/marketing/navbars/NavDropdownMain';
 import QuickMenu from 'layouts/QuickMenu';
-import DocumentMenu from 'layouts/marketing/navbars/DocumentMenu';
 import DarkLightMode from 'layouts/DarkLightMode';
 
 // import media files
@@ -37,7 +36,7 @@ const NavbarDefault = ({ headerstyle, login }) => {
 			>
 				<Container fluid className="px-0 ps-2">
 					<Navbar.Brand as={Link} to="/" >
-						<Image src={Logo} alt="" />
+						<Image src={Logo} alt="logo UTEZ" />
 					</Navbar.Brand>
 
 					<div
@@ -72,19 +71,7 @@ const NavbarDefault = ({ headerstyle, login }) => {
 							})}
 							
 						</Nav>
-						{/* Search Form */}
-						<Form className="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
-							<span className="position-absolute ps-3 search-icon">
-								<i className="fe fe-search"></i>
-							</span>
-							<Form.Control
-								type="Search"
-								id="formSearch"
-								className="ps-6"
-								placeholder="Buscar..."
-							/>
-						</Form>
-						{/* Right side quick / shortcut menu  */}
+						
 						<Nav className="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
 							{!login && <DarkLightMode className="mt-2 me-2" />}
 							<span className={`ms-auto mt-1  ${login ? 'd-none' : ''}`}>

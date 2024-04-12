@@ -62,7 +62,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(''); // Configura esto de manera segura en producción
+        sgMail.setApiKey('SG.j0AKC3jQSDSHeZd9feej7g.ZjQSNEh9rlgfUASWH2CAAPjR57zoApFBaKeKEzkCdOE'); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado

@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 import { Col, Card, Image, Row, Form, Button, Modal } from "react-bootstrap";
 import { ChevronLeft, ChevronRight, Edit, Trash } from "react-feather";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function InstructorsGridCard() {
   const [instructors, setInstructors] = useState([]);
@@ -59,8 +60,21 @@ function InstructorsGridCard() {
       );
       setShowEditModal(false);
       fetchInstructors();
+      Swal.fire({
+        title: "¡Listo!",
+        text: "Los datos del instructor han sido actualizados correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+
     } catch (error) {
-      console.error("Error al actualizar el instructor:", error);
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudieron actualizar los datos del instructor.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
@@ -74,8 +88,21 @@ function InstructorsGridCard() {
       await axios.delete(`http://localhost:3001/instructors/${instructorToDelete}`);
       setShowConfirmationModal(false);
       fetchInstructors();
+      Swal.fire({
+        title: "¡Eliminado!",
+        text: "El instructor ha sido eliminado correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+
     } catch (error) {
-      console.error("Error al eliminar el instructor:", error);
+      console.error(error);
+      Swal.fire({
+        title: "Error",
+        text: "No se pudo eliminar al instructor.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
