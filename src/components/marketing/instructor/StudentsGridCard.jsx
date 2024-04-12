@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import Swal from 'sweetalert2';
 import { jsPDF } from "jspdf";
-
+import imgCertificado from 'assets/images/img-certificate.png';
 
 // import data files
 import { StudentsList } from 'data/users/StudentsData';
@@ -40,7 +40,7 @@ const StudentsGridCard = () => {
 									<i className="fe fe-map-pin me-1"></i>
 									{students.locations}
 								</p>
-								<Button variant="outline-secondary" className="mt-3" onClick={() => certifyStudent(students.name)}>
+								<Button variant="outline-success" className="mt-3" onClick={() => certifyStudent(students.name)}>
 									Certificar <i className="fe fe-file-text ms-1"></i>
 								</Button>
 							</div>
@@ -81,22 +81,40 @@ const StudentsGridCard = () => {
 	};
 
 	// end of searching
-	const certifyStudent = useCallback((studentName) => {
+	const certifyStudent = useCallback((studentName, courseName) => {
 		Swal.fire({
 			title: `¿Seguro que quieres certificar al alumno ${studentName}?`,
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
+			confirmButtonColor: '#042b61',
 			cancelButtonColor: '#d33',
-			confirmButtonText: '¡Sí, certificar!',
+			confirmButtonText: 'Certificar',
 			cancelButtonText: 'Cancelar',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				// Crear el PDF aquí
-				const doc = new jsPDF();
+				const doc = new jsPDF({
+					orientation: 'landscape',  // Configura la orientación como paisaje
+					unit: 'mm',
+					format: 'a4'
+				});
 
-				doc.text(`Certificado de finalización`, 20, 20);
-				doc.text(`Este documento certifica que ${studentName} ha completado satisfactoriamente el curso.`, 20, 30);
+				
+				const imageURL = ''; 
+				// Calcular la nueva altura manteniendo la relación de aspecto
+				const scaledHeight = 297 * (1414 / 2000);
+				
+				// Agregar imagen de fondo
+				doc.addImage(imageURL, 'JPEG', 0, 0, 297, scaledHeight);
+
+				// Agregar texto personalizado
+				doc.setFontSize(22);
+				doc.text('Certificado de finalización', 148.5, 50, { align: 'center' }); // Centro en paisaje
+				doc.setFontSize(16);
+				doc.text(`Este documento certifica que:`, 148.5, 70, { align: 'center' });
+				doc.setFontSize(18);
+				doc.text(studentName, 148.5, 90, { align: 'center' });
+				doc.text(`ha completado satisfactoriamente el curso de`, 148.5, 110, { align: 'center' });
+				doc.text(courseName, 148.5, 130, { align: 'center' });
 
 				// Guardar el PDF. El nombre del archivo será 'certificado.pdf'
 				doc.save('certificado.pdf');
@@ -126,7 +144,7 @@ const StudentsGridCard = () => {
 							</Form.Group>
 						</Col>
 						<Col xs="auto">
-							<Link to="#" className="btn btn-secondary">
+							<Link to="#" className="btn btn-primary">
 								Exportar XSL
 							</Link>
 						</Col>

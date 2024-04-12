@@ -243,7 +243,7 @@ const StudentsGridCard = () => {
             Cancelar
           </Button>
           <Button className="btn-sm" variant="primary" onClick={handleEditStudent}>
-            Guardar Cambios
+            Guardar cambios
           </Button>
         </Modal.Footer>
       </Modal>

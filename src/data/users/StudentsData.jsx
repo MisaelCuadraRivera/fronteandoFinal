@@ -1,16 +1,10 @@
 // import media files
 import Avatar1 from 'assets/images/avatar/avatar-1.jpg';
 import Avatar2 from 'assets/images/avatar/avatar-2.jpg';
-import Avatar3 from 'assets/images/avatar/avatar-3.jpg';
-import Avatar4 from 'assets/images/avatar/avatar-4.jpg';
-import Avatar6 from 'assets/images/avatar/avatar-6.jpg';
 import Avatar7 from 'assets/images/avatar/avatar-7.jpg';
-import Avatar18 from 'assets/images/avatar/avatar-18.jpg';
-import Avatar12 from 'assets/images/avatar/avatar-12.jpg';
-import Avatar13 from 'assets/images/avatar/avatar-13.jpg';
 import Avatar14 from 'assets/images/avatar/avatar-14.jpg';
 import Avatar17 from 'assets/images/avatar/avatar-17.jpg';
-import Avatar15 from 'assets/images/avatar/avatar-15.jpg';
+
 
 export const StudentsList = [
 	{

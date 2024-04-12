@@ -54,7 +54,7 @@ const StudentsListCard = () => {
 				header: 'Mensaje	',
 				cell: () => {
 					return (
-						<Link href="#" className="btn btn-outline-secondary btn-sm">
+						<Link href="" className="btn btn-outline-success btn-sm">
 							Mensaje
 						</Link>
 					);

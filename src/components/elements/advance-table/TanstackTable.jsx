@@ -50,8 +50,8 @@ const TanstackTable = ({ data, columns, filter = false, pagination = false, filt
                     <GlobalFilter filtering={filtering} setFiltering={setFiltering} placeholder={filterPlaceholder} />
                 </Col>
                 <Col xs="auto" className="mb-lg-0 mb-2 pe-5 py-4">
-                    <Link to="#" className="btn btn-secondary">
-                        Export XSL
+                    <Link to="#" className="btn btn-primary">
+                        Exportar XSL
                     </Link>
                 </Col>
             </Row>}
