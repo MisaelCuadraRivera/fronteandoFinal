@@ -10,25 +10,8 @@ const Footer = ({ bgColor }) => {
 			<Container>
 				<Row className="align-items-center g-0 border-top py-2">
 					{/* Desc */}
-					<Col md={6} sm={12} className="text-center text-md-start">
+					<Col md={6} sm={12} className="text-center text-md-center">
 						<span>© 2024 UTEZ. Todos los derechos reservados.</span>
-					</Col>
-					{/* Links */}
-					<Col md={6} sm={12}>
-						<nav className="nav nav-footer justify-content-center justify-content-md-end">
-							<Link className="nav-link active ps-0" to="#">
-								Privacidad
-							</Link>
-							<Link className="nav-link" to="#">
-								Términos de uso{' '}
-							</Link>
-							<Link className="nav-link" to="#">
-								Sugerencias
-							</Link>
-							<Link className="nav-link" to="#">
-								
-							</Link>
-						</nav>
 					</Col>
 				</Row>
 			</Container>

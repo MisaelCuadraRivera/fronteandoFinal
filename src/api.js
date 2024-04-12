@@ -9,8 +9,27 @@ const morgan = require('morgan');
 const app = express();
 const port = process.env.PORT || 3001;
 
+
 // Clave secreta para JWT, en producción usa una variable de entorno
 const JWT_SECRET = 'chimuelo';
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+      const token = authHeader.split(' ')[1]; // Asume el formato "Bearer [token]"
+
+      jwt.verify(token, JWT_SECRET, (err, user) => {
+          if (err) {
+              return res.status(403).send('Token no válido.');
+          }
+
+          req.userId = user.id; // Adjunta el ID del usuario a la solicitud
+          next(); // Continúa con la siguiente función en la cadena de middlewares
+      });
+  } else {
+      res.status(401).send('Token de autorización no encontrado.');
+  }
+};
 
 app.use(cors());
 
@@ -43,7 +62,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey('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'); // Configura esto de manera segura en producción
+        sgMail.setApiKey(''); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado
@@ -87,7 +106,17 @@ app.post('/signin', (req, res) => {
           { expiresIn: '8h' } 
         );
 
-        res.json({ message: "Inicio de sesión exitoso", token, utez_community: user.utez_community });
+        res.json({ message: "Inicio de sesión exitoso", token, utez_community: user.utez_community, user: {
+          name: user.nombre,
+          username: user.email,
+          avatar: user.imagen,
+          telefono: user.telefono,
+          fechaNacimiento: user.fecha_nacimiento,
+          estado: user.estado,
+          municipio: user.municipio, // Asegúrate de que esto refleje cómo guardas la imagen en la base de datos
+          // Asumiendo que quieres mostrar el correo electrónico como username
+          // Agrega aquí cualquier otro dato que necesites
+        }  });
       } else {
         res.status(401).send("Correo electrónico o contraseña incorrectos");
       }
@@ -358,6 +387,151 @@ app.delete('/instructors/:id', async (req, res) => {
     res.status(500).send('Error al eliminar el instructor');
   }
 });
+
+app.get('/student-count', (req, res) => {
+  const query = `SELECT COUNT(*) AS studentCount FROM usuarios WHERE utez_community IN ('estudiante', 'egresado', 'publico')`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error al consultar el número de estudiantes');
+    }
+    res.json(results[0]);
+  });
+});
+
+app.get('/course-count', (req, res) => {
+  const query = 'SELECT COUNT(*) AS courseCount FROM cursos';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error al consultar el número de cursos');
+    }
+    res.json(results[0]);
+  });
+});
+
+
+app.get('/best-selling-courses', (req, res) => {
+  const query = 'SELECT title, ventas AS sales, precio AS amount, image FROM cursos ORDER BY ventas DESC LIMIT 5';
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error al consultar los cursos más vendidos');
+    }
+    res.json(results);
+  });
+});
+
+app.get('/api/cursos', (req, res) => {
+  const query = 'SELECT * FROM cursos';
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error('Error al consultar los cursos:', err);
+          return res.status(500).send('Error al obtener los cursos');
+      }
+      res.json(results);
+  });
+});
+
+app.get('/user/profile', async (req, res) => {
+  // Extrae el token JWT del header de autorización
+  const token = req.headers.authorization.split(' ')[1]; // Asume 'Bearer [token]'
+  const decoded = jwt.verify(token, JWT_SECRET);
+
+  // Extrae el ID del usuario del token decodificado
+  const userId = decoded.id;
+
+  try {
+    const [rows] = await db.promise().query('SELECT nombre, apellidos, email, celular, fecha_nacimiento, estado, municipio, imagen FROM usuarios WHERE id = ?', [userId]);
+    if (rows.length > 0) {
+      res.json(rows[0]);
+    } else {
+      res.status(404).send('Usuario no encontrado');
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos del usuario:', error);
+    res.status(500).send('Error al obtener los datos del usuario');
+  }
+});
+
+app.put('/user/profile', async (req, res) => {
+  // Extrae el token JWT del header de autorización y obtiene el ID del usuario
+  const token = req.headers.authorization.split(' ')[1];
+  const decoded = jwt.verify(token, JWT_SECRET);
+  const userId = decoded.id;
+
+  const { nombre, apellidos, celular, fecha_nacimiento, estado, municipio, imagen } = req.body;
+
+  try {
+    await db.promise().query('UPDATE usuarios SET nombre = ?, apellidos = ?, celular = ?, fecha_nacimiento = ?, estado = ?, municipio = ?, imagen = ? WHERE id = ?', [nombre, apellidos, celular, fecha_nacimiento, estado, municipio, imagen, userId]);
+    res.send('Perfil actualizado con éxito');
+  } catch (error) {
+    console.error('Error al actualizar el perfil del usuario:', error);
+    res.status(500).send('Error al actualizar el perfil del usuario');
+  }
+});
+
+app.put('/user/updateemail', verifyToken, async (req, res) => {
+  const { email } = req.body;
+  // Asumiendo que tienes una función para obtener el ID del usuario a partir del token JWT
+  const userId = req.userId; // o extraído directamente del token en un middleware anterior
+
+  if (!email) {
+    return res.status(400).send('El correo electrónico es requerido.');
+  }
+
+  try {
+    const [result] = await db.promise().query('UPDATE usuarios SET email = ? WHERE id = ?', [email, userId]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).send('Usuario no encontrado.');
+    }
+
+    res.send('Correo electrónico actualizado con éxito.');
+  } catch (error) {
+    console.error('Error al actualizar el correo electrónico:', error);
+    res.status(500).send('Error al actualizar el correo electrónico.');
+  }
+});
+
+
+app.put('/user/updatepassword', verifyToken, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const userId = req.userId; // o extraído directamente del token en un middleware anterior
+
+  if (!currentPassword || !newPassword) {
+    return res.status(400).send('La contraseña actual y la nueva contraseña son requeridas.');
+  }
+
+  try {
+    const [user] = await db.promise().query('SELECT password FROM usuarios WHERE id = ?', [userId]);
+
+    if (user.length === 0) {
+      return res.status(404).send('Usuario no encontrado.');
+    }
+
+    // Verifica la contraseña actual
+    const isMatch = bcrypt.compareSync(currentPassword, user[0].password);
+    if (!isMatch) {
+      return res.status(401).send('La contraseña actual es incorrecta.');
+    }
+
+    // Actualiza la contraseña
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(newPassword, salt);
+
+    await db.promise().query('UPDATE usuarios SET password = ? WHERE id = ?', [hashedPassword, userId]);
+
+    res.send('Contraseña actualizada con éxito.');
+  } catch (error) {
+    console.error('Error al actualizar la contraseña:', error);
+    res.status(500).send('Error al actualizar la contraseña.');
+  }
+});
+
+
+
+
 
 
   

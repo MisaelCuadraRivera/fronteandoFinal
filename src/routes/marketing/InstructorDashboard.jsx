@@ -12,12 +12,6 @@ export const DashboardMenu = [
 		icon: 'book'
 	},
 	{
-		id: 3,
-		title: 'Reseñas',
-		link: '/marketing/instructor/instructor-reviews/',
-		icon: 'star'
-	},
-	{
 		id: 6,
 		title: 'Estudiantes',
 		link: '/marketing/instructor/instructor-students/',
@@ -37,18 +31,6 @@ export const AccountSettingsMenu = [
 		title: 'Seguridad',
 		link: '/marketing/instructor/instructor-security/',
 		icon: 'user'
-	},
-	{
-		id: 3,
-		title: 'Redes Sociales',
-		link: '/marketing/instructor/instructor-social-profiles/',
-		icon: 'refresh-cw'
-	},
-	{
-		id: 6,
-		title: 'Eliminar Perfil',
-		link: '/marketing/instructor/instructor-delete-profile/',
-		icon: 'trash'
 	},
 	{
 		id: 6,

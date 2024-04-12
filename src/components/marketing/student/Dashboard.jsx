@@ -13,15 +13,15 @@ import Avatar3 from 'assets/images/avatar/avatar-3.jpg';
 import { AllCoursesData } from 'data/slider/AllCoursesData';
 
 const StudentDashboard = () => {
+    const userDataString = localStorage.getItem('user');
+    const userData = userDataString ? JSON.parse(userDataString) : {};
+	const avatarSrc = userData.avatar ? `data:image/jpeg;base64,${userData.avatar}` : Avatar3; // Esta es tu imagen en base64 o una predeterminada
 	const dashboardData = {
-		avatar: Avatar3,
-		name: 'Julián Rodriguez Rojas',
-		username: '20223tn075@utez.edu.mx',
+        avatar: avatarSrc, // Utiliza avatarSrc que ya tiene el manejo de base64 o imagen predeterminada
+        name: userData.name || 'Nombre de Usuario',
+        username: userData.username || 'correo@ejemplo.com',
 		linkname: 'Editar Configuración',
 		link: '/marketing/student/student-edit-profile/',
-		verified: false,
-		outlinebutton: false,
-		level: 'Beginner'
 	};
 
 	return (
