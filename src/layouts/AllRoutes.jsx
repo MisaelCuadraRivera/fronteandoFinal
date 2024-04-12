@@ -327,6 +327,10 @@ const AllRoutes = () => {
 					path="/marketing/student/quiz/result/"
 					element={<StudentQuizResult />}
 				/>
+				<Route
+					path="/marketing/courses/course-single/:courseId"
+					element={<CourseSingle />}
+				/>
 			</Route>
 
 			{/* Routes with BlankLayout */}

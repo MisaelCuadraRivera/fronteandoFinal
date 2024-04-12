@@ -18,82 +18,153 @@ import GKTippy from 'components/elements/tooltips/GKTippy';
 // Utility function
 import { numberWithCommas } from 'helper/utils';
 
-const CourseCard = ({ free, viewby, showprogressbar, extraclass, link }) => {
-    // Se asume que los datos de los cursos se obtienen desde una API
-    const [courses, setCourses] = useState([]);
+const CourseCard = ({ course, viewby = 'default-value', extraclass }) => {
 
-    useEffect(() => {
-        // Cambia la URL por la dirección correcta de tu API
-        axios.get('http://localhost:3001/api/cursos')
-            .then(response => {
-                setCourses(response.data);
-            })
-            .catch(error => {
-                console.error("Error al cargar los cursos", error);
-            });
-    }, []);
+    if (!course) return null;
 
     const GridView = () => (
-        <Fragment>
-            {courses.map(course => (
-                <Card key={course.id} className={`mb-4 card-hover ${extraclass}`}>
-                    <Link to={`/courses/${course.id}`}>
-                        <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
-                    </Link>
-                    <Card.Body>
-                        <h3 className="h4 mb-2 text-truncate-line-2">
-                            <Link to={`/courses/${course.id}`} className="text-inherit">
-                                {course.title}
-                            </Link>
-                        </h3>
-						<h3 className="h4 mb-2 text-truncate-line-2">
-                            <Link to={`/courses/${course.id}`} className="text-inherit">
-                                {course.descripcion}
-                            </Link>
-                        </h3>
-                        <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
-                            <ListGroup.Item as="li" bsPrefix="list-inline-item">
-                                <LevelIcon level={course.level} />
-                                {course.level}
-                            </ListGroup.Item>
-                        </ListGroup>
-                        <div className={`lh-1 mt-3 `}>
-                            <span className="text-dark fw-bold">{course.precio}</span>
-                        </div>
-                    </Card.Body>
-                    {/* Card Footer */}
-                    <Card.Footer>
-                        <Row className="align-items-center g-0">
-                            <Col xs="auto">
-                                <Image src={course.instructor_image} className="rounded-circle avatar-xs" alt="" />
-                            </Col>
-                            <Col className="col ms-2">
-                                <span>{course.instructor_name}</span>
-                            </Col>
-                            <Col xs="auto">
-                                <GKTippy content="Add to Bookmarks">
-                                    <Link to="#">
-                                        <i className="fe fe-bookmark"></i>
-                                    </Link>
-                                </GKTippy>
-                            </Col>
-                        </Row>
-                    </Card.Footer>
-                </Card>
-            ))}
-        </Fragment>
-    );
+            <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+              <Link to={`/marketing/courses/course-single/${course.id}`}>
+                <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+              </Link>
+              <Card.Body>
+                <h3 className="h4 mb-2 text-truncate-line-2">
+                  <Link to={`/marketing/courses/course-single/${course.id}`}>
+                    {course.title}
+                  </Link>
+                </h3>
+                <h3 className="h4 mb-2 text-truncate-line-2">
+                  <Link to={`/courses/${course.id}`} className="text-inherit">
+                    {course.descripcion}
+                  </Link>
+                </h3>
+                <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+                  <ListGroup.Item as="li" bsPrefix="list-inline-item">
+                    <LevelIcon level={course.level} />
+                    {course.level}
+                  </ListGroup.Item>
+                </ListGroup>
+                <div className={`lh-1 mt-3 `}>
+                  <span className="text-dark fw-bold">{course.precio}</span>
+                </div>
+                <div className={`lh-1 mt-3 `}>
+            <span className="text-dark">{course.category}</span>
+          </div>
+              </Card.Body>
+              {/* Card Footer */}
+              <Card.Footer>
+                <Row className="align-items-center g-0">
+                  <Col xs="auto">
+                  <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+                  </Col>
+                  <Col className="col ms-2">
+                    <span>{course.instructor_name}</span>
+                  </Col>
+                  <Col xs="auto">
+                    <GKTippy content="Add to Bookmarks">
+                      <Link to="#">
+                        <i className="fe fe-bookmark"></i>
+                      </Link>
+                    </GKTippy>
+                  </Col>
+                </Row>
+              </Card.Footer>
+            </Card>
+          );
 
     const ListView = () => (
-        // Repetimos la lógica para ListView adaptándola según sea necesario
-        // Para este ejemplo, mantendremos la misma estructura que GridView
-        <GridView />
+        <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
+          <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+        </Link>
+        <Card.Body>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.title}
+            </Link>
+          </h3>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/courses/${course.id}`} className="text-inherit">
+              {course.descripcion}
+            </Link>
+          </h3>
+          <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+            <ListGroup.Item as="li" bsPrefix="list-inline-item">
+              <LevelIcon level={course.level} />
+              {course.level}
+            </ListGroup.Item>
+          </ListGroup>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark fw-bold">{course.precio}</span>
+          </div>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark">{course.descripcion}</span>
+          </div>
+        </Card.Body>
+        {/* Card Footer */}
+        <Card.Footer>
+          <Row className="align-items-center g-0">
+            <Col xs="auto">
+            <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+            </Col>
+            <Col className="col ms-2">
+              <span>{course.instructor_name}</span>
+            </Col>
+            <Col xs="auto">
+              <GKTippy content="Add to Bookmarks">
+                <Link to="#">
+                  <i className="fe fe-bookmark"></i>
+                </Link>
+              </GKTippy>
+            </Col>
+          </Row>
+        </Card.Footer>
+      </Card>
     );
+    
 
     const ListGroupView = () => (
-        // Repetimos la lógica para ListGroupView adaptándola según sea necesario
-        // Para este ejemplo, mantendremos la misma estructura que GridView
-        <GridView />
+        <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
+          <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+        </Link>
+        <Card.Body>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.title}
+            </Link>
+          </h3>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+          <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.descripcion}
+            </Link>
+          </h3>
+          <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+            <ListGroup.Item as="li" bsPrefix="list-inline-item">
+              <LevelIcon level={course.level} />
+              {course.level}
+            </ListGroup.Item>
+          </ListGroup>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark fw-bold">{course.precio}</span>
+          </div>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark ">{course.category}</span>
+          </div>
+        </Card.Body>
+        {/* Card Footer */}
+        <Card.Footer>
+          <Row className="align-items-center g-0">
+            <Col xs="auto">
+            <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+            </Col>
+            <Col className="col ms-2">
+              <span>{course.instructor_name}</span>
+            </Col>
+            
+          </Row>
+        </Card.Footer>
+      </Card>
     );
 
     return (

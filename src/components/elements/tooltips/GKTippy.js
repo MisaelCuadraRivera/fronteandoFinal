@@ -13,23 +13,8 @@ import { AppConfigContext } from 'context/Context';
 const GKTippy = ({ children, content, placement }) => {
 	const ConfigContext = useContext(AppConfigContext);
 	return (
-		<Tippy
-			content={
-				<small
-					className={`fw-bold ${
-						ConfigContext.appStats.skin === 'light' ? 'text-dark' : ''
-					}`}
-				>
-					{content}
-				</small>
-			}
-			theme={ConfigContext.appStats.skin === 'light' ? 'dark' : 'light'}
-			placement={placement}
-			animation={'scale'}
-		>
-			{children}
-		</Tippy>
-	);
+<p></p>
+		);
 };
 // ** PropTypes
 GKTippy.propTypes = {

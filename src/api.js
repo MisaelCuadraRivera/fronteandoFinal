@@ -62,7 +62,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(''); // Configura esto de manera segura en producción
+        sgMail.setApiKey('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'); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado
@@ -423,8 +423,12 @@ app.get('/best-selling-courses', (req, res) => {
 });
 
 app.get('/api/cursos', (req, res) => {
-  const query = 'SELECT * FROM cursos';
-  db.query(query, (err, results) => {
+  const query = `
+    SELECT cursos.*, usuarios.nombre as instructor_name, usuarios.imagen as instructor_image 
+    FROM cursos 
+    JOIN usuarios ON cursos.instructor_id = usuarios.id;
+  `;
+    db.query(query, (err, results) => {
       if (err) {
           console.error('Error al consultar los cursos:', err);
           return res.status(500).send('Error al obtener los cursos');
@@ -548,7 +552,7 @@ app.post('/forgot-password', (req, res) => {
           return res.status(500).send('Error en el servidor.');
       }
       const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey(''); // Configura esto de manera segura en producción
+      sgMail.setApiKey('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'); // Configura esto de manera segura en producción
       
       // Dentro de la misma función después de actualizar la base de datos con el token
       const resetUrl = `http://localhost:3000/reset-password/${token}`; // Asegúrate de cambiar esto por la URL correcta de tu frontend
@@ -604,12 +608,64 @@ app.post('/reset-password', (req, res) => {
 });
 
 
+app.put('/update-course/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, description, precio, level, category, status, instructor_id } = req.body;
+
+  if (!id || !title || !description || precio === undefined || !level || !category || !status || !instructor_id) {
+      return res.status(400).send('Faltan datos necesarios para la actualización.');
+  }
+
+  const query = `
+      UPDATE cursos SET
+      title = ?,
+      description = ?,
+      precio = ?,
+      level = ?,
+      category = ?,
+      status = ?,
+      instructor_id = ?
+      WHERE id = ?;
+  `;
+
+  db.query(query, [title, description, precio, level, category, status, instructor_id, id], (err, result) => {
+      if (err) {
+          console.error('Error al actualizar el curso:', err);
+          return res.status(500).send('Error al actualizar el curso');
+      }
+
+      if (result.affectedRows === 0) {
+          return res.status(404).send('Curso no encontrado');
+      }
+
+      res.send('Curso actualizado con éxito');
+  });
+});
 
 
+// Endpoint para eliminar un curso
+app.delete('/delete-course/:id', (req, res) => {
+  const { id } = req.params;
 
+  if (!id) {
+      return res.status(400).send('Falta el ID del curso para eliminar.');
+  }
 
+  const query = 'DELETE FROM cursos WHERE id = ?';
 
+  db.query(query, [id], (err, result) => {
+      if (err) {
+          console.error('Error al eliminar el curso:', err);
+          return res.status(500).send('Error al eliminar el curso');
+      }
 
+      if (result.affectedRows === 0) {
+          return res.status(404).send('Curso no encontrado');
+      }
+
+      res.send('Curso eliminado con éxito');
+  });
+});
 
 
   

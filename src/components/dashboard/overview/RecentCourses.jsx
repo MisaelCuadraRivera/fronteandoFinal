@@ -65,7 +65,7 @@ const RecentCourses = ({ title }) => {
                                     </Link>
                                     <div className="d-flex align-items-center">
                                         {/* Aquí podrías mostrar el nombre del instructor si tienes esa información */}
-                                        <span className="fs-6">{item.description}</span>
+                                        <span className="fs-6">{item.category}</span>
                                     </div>
                                 </Col>
                             </Row>
