@@ -40,6 +40,16 @@ const ProfileLayout = (props) => {
 				<Container>
 					{/* User info */}
 					<ProfileCover dashboardData={dashboardData} />
+					                {/* Mostrar el botón de Crear curso si el usuario es administrativo o profesor */}
+									{showDashboardMenu && (
+                    <Row className="mb-3">
+                        <Col className="text-end">
+                            <Link to={dashboardData.link} className="btn btn-primary">
+                                {dashboardData.linkname}
+                            </Link>
+                        </Col>
+                    </Row>
+                )}
 	
 					{/* Content */}
 					<Row className="mt-0 mt-md-4">

@@ -19,6 +19,7 @@ const PopularInstructor = ({ title }) => {
             try {
                 const response = await axios.get('http://localhost:3001/instructors');
                 setInstructors(response.data);
+                console.log('Instructores:', response.data); // Añade esto para depurar
             } catch (error) {
                 console.error('Error al cargar los instructores:', error);
                 // Aquí puedes manejar el error, por ejemplo, estableciendo los instructores a un estado de error o mostrando un mensaje
@@ -64,7 +65,7 @@ const PopularInstructor = ({ title }) => {
                                     >
                                         <Image
                                             alt="avatar"
-                                            src={item.imagen || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'} // Asegúrate de proporcionar una URL de imagen por defecto
+                                            src={`data:image/jpeg;base64,${item.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
                                             className="rounded-circle"
                                         />
                                     </div>

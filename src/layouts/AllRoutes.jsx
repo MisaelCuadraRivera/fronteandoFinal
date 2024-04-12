@@ -6,6 +6,7 @@ import 'assets/scss/theme.scss';
 
 // ** Import Layouts
 import DashboardIndex from 'layouts/dashboard/DashboardIndex';
+import ResetPassword from 'components/dashboard/authentication/ResetPassword';
 import AuthLayout from 'layouts/dashboard/AuthLayout';
 import HelpCenterLayout from 'layouts/marketing/HelpCenterLayout'; // ( added in v1.3.0 )
 import DashboardIndexCompact from 'layouts/dashboard/DashboardIndexCompact'; // ( added in v1.3.0 )
@@ -373,6 +374,8 @@ const AllRoutes = () => {
 					path="/authentication/forget-password"
 					element={<ForgetPassword />}
 				/>
+				        <Route path="/reset-password/:token" element={<ResetPassword />} />
+
 			</Route>
 
 			{/* Routes (DASHBOARD ROUTERS) with DashboardIndex */}

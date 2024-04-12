@@ -6,9 +6,12 @@
  * Add commas to a number
  * v1.0.0
  */
-export const numberWithCommas = (x, decimal = 0) => {
-	return x.toLocaleString('en-US', { minimumFractionDigits: decimal });
-};
+// En tu archivo helper/utils.js o donde tengas definida la función
+export function numberWithCommas(x) {
+	if (x === null || x === undefined) return '';
+	return x.toLocaleString();
+  }
+  
 
 /**
  * Get the file extension from given file name

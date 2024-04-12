@@ -135,10 +135,8 @@ function InstructorsGridCard() {
           <Card.Body>
             <div className="text-center">
               <Image
-                src={
-                  instructor.image ||
-                  "https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
-                }
+                  src={`data:image/jpeg;base64,${instructor.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
+
                 className="rounded-circle avatar-xl mb-3"
                 alt=""
               />

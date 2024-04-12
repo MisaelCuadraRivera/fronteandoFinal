@@ -221,7 +221,7 @@ app.get('/students', (req, res) => {
 app.get('/instructors', (req, res) => {
   // Asegúrate de ajustar la consulta SQL según tu esquema de base de datos y tus necesidades
   const query = `
-      SELECT id, nombre, municipio, email, imagen AS image 
+      SELECT * 
       FROM usuarios 
       WHERE utez_community = 'profesor'
   `;
@@ -528,6 +528,84 @@ app.put('/user/updatepassword', verifyToken, async (req, res) => {
     res.status(500).send('Error al actualizar la contraseña.');
   }
 });
+
+const crypto = require('crypto');
+
+
+app.post('/forgot-password', (req, res) => {
+  const { email } = req.body;
+  const token = crypto.randomBytes(20).toString('hex');
+  const expirationDate = new Date();
+  expirationDate.setUTCHours(expirationDate.getUTCHours() + 1);
+  const formattedExpirationDate = expirationDate.toISOString().replace('Z', '').split('.')[0];
+
+  
+  // Aquí, actualiza tu base de datos con el token y la fecha de expiración para el usuario con el correo electrónico dado
+  const query = "UPDATE usuarios SET resetPasswordToken = ?, resetPasswordExpires = ? WHERE email = ?";
+  db.query(query, [token, formattedExpirationDate, email], (err, result) => {
+    if (err) {
+          console.error(err);
+          return res.status(500).send('Error en el servidor.');
+      }
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(''); // Configura esto de manera segura en producción
+      
+      // Dentro de la misma función después de actualizar la base de datos con el token
+      const resetUrl = `http://localhost:3000/reset-password/${token}`; // Asegúrate de cambiar esto por la URL correcta de tu frontend
+      const msg = {
+          to: email,
+          from: 'sigeca.utez@gmail.com',
+          subject: 'Recuperación de contraseña',
+          text: `Estás recibiendo este correo porque tú (o alguien más) ha solicitado el restablecimiento de la contraseña de tu cuenta.\n\n` +
+                `Por favor haz clic en el siguiente enlace, o pégalo en tu navegador para completar el proceso:\n\n` +
+                `${resetUrl}\n\n` +
+                `Si no solicitaste esto, por favor ignora este correo y tu contraseña permanecerá sin cambios.\n`
+      };
+      
+      sgMail.send(msg).then(() => {
+          console.log('Correo de recuperación enviado');
+          res.status(200).send('Correo de recuperación enviado');
+      }).catch((error) => {
+          console.error(error);
+          res.status(500).send('Error al enviar el correo electrónico');
+      });
+        });
+});
+
+app.post('/reset-password', (req, res) => {
+  const { token, password } = req.body;
+  const connection = db.promise();
+  console.log("Token recibido:", token);
+  console.log("Fecha y hora actual del servidor:", new Date());
+
+  // Primero, verifica que el token exista y no haya expirado
+  const query = 'SELECT * FROM usuarios WHERE resetPasswordToken = ? AND resetPasswordExpires > UTC_TIMESTAMP()';
+  
+  connection.query(query, [token])
+      .then(([results]) => {
+          if (results.length === 0) {
+              throw new Error('Token de restablecimiento de contraseña inválido o expirado.');
+          }
+          const user = results[0];
+
+          // Si el token es válido, hashea la nueva contraseña y actualiza al usuario
+          const salt = bcrypt.genSaltSync(10);
+          const hashedPassword = bcrypt.hashSync(password, salt);
+
+          return connection.query('UPDATE usuarios SET password = ?, resetPasswordToken = NULL, resetPasswordExpires = NULL WHERE id = ?', [hashedPassword, user.id]);
+      })
+      .then(() => {
+          res.send({ message: 'La contraseña ha sido actualizada con éxito.' });
+      })
+      .catch((error) => {
+          console.error('Error al restablecer la contraseña:', error);
+          res.status(500).send({ message: error.message || 'Error al restablecer la contraseña.' });
+      });
+});
+
+
+
+
 
 
 

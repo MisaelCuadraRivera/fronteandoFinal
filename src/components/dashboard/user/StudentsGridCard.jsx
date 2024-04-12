@@ -116,10 +116,7 @@ const StudentsGridCard = () => {
             <div className="text-center">
               <div className="position-relative">
                 <Image
-                  src={
-                    student.image ||
-                    "https://cdn-icons-png.flaticon.com/512/6326/6326055.png"
-                  }
+                  src={`data:image/jpeg;base64,${student.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
                   className="rounded-circle avatar-xl mb-3"
                   alt=""
                 />
