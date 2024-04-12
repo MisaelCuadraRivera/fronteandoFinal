@@ -13,15 +13,17 @@ const StudentDashboard = () => {
   const avatarSrc = userData.avatar ? `data:image/jpeg;base64,${userData.avatar}` : Avatar3;
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/cursos') // Asegúrate de que esta URL es correcta
+    axios.get('http://localhost:3001/api/mis-cursos', {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    })
       .then(response => {
         setCourses(response.data);
       })
       .catch(error => {
-        console.error("Error fetching courses: ", error);
+        console.error("Error fetching enrolled courses: ", error);
       });
   }, []);
-
+  
   const dashboardData = {
     avatar: avatarSrc,
     name: userData.name || "Nombre de Usuario",
