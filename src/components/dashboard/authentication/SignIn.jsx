@@ -98,9 +98,6 @@ const SignIn = () => {
                                     </Col>
                                     <Col lg={12} md={12} className="mb-3">
                                         <div className="d-md-flex justify-content-between align-items-center">
-                                            <Form.Group controlId="formBasicCheckbox" className="mb-3 mb-md-0">
-                                                <Form.Check type="checkbox" label="Recordarme" />
-                                            </Form.Group>
                                             <Link to="/authentication/forget-password" style={{ color: "#009475" }}>
                                                 ¿Olvidaste tu contraseña?
                                             </Link>

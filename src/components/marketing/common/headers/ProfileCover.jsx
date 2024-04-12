@@ -8,8 +8,11 @@ import LevelIconWithTooltip from 'components/marketing/common/miscellaneous/Leve
 // import media files
 import CheckedMark from 'assets/images/svg/checked-mark.svg';
 import ProfileBackground from 'assets/images/background/profile-bg.jpg';
+const utez_community = localStorage.getItem('utez_community');
+
 
 const ProfileCover = ({ dashboardData }) => {
+	const showDashboardMenu = utez_community === 'administrativo' || utez_community === 'profesor';
 	return (
 		<Row className="align-items-center">
 			<Col xl={12} lg={12} md={12} sm={12}>
@@ -55,17 +58,7 @@ const ProfileCover = ({ dashboardData }) => {
 								<p className="mb-0 d-block">{dashboardData.username}</p>
 							</div>
 						</div>
-						<div>
-							<Link
-								to={dashboardData.link}
-								className={`btn btn${dashboardData.outlinebutton ? '-outline' : ''
-									} btn-sm d-none d-md-block`}
-								style={{backgroundColor: "#042b61", borderColor: "white", color:"white"
-							}}
-							>
-								{dashboardData.linkname}
-							</Link>
-						</div>
+
 					</div>
 				</Card>
 			</Col>

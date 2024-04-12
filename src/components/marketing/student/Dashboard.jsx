@@ -1,5 +1,6 @@
 // import node module libraries
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { Col, Row, Nav, Tab, Card, Container } from 'react-bootstrap';
 
 // import custom components
@@ -28,8 +29,16 @@ const StudentDashboard = () => {
 		<Fragment>
 			<section className="pt-5 pb-5">
 				<Container>
-					{/* User info */}
-					<ProfileCover dashboardData={dashboardData} />
+				{/* User info */}
+				<ProfileCover dashboardData={dashboardData} />				
+                    <Row className="mb-3">
+                        <Col className="text-end">
+                            <Link to={dashboardData.link} className="btn btn-primary">
+                                {dashboardData.linkname}
+                            </Link>
+                        </Col>
+                    </Row>
+                
 
 					{/* Content */}
 					<Row className="mt-0 mt-md-4">
