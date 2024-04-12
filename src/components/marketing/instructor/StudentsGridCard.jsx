@@ -13,21 +13,21 @@ import { StudentsList } from 'data/users/StudentsData';
 import axios from 'axios';
 
 const StudentsGridCard = () => {
-    const [students, setStudentsList] = useState([]);
-    const [pageNumber, setPageNumber] = useState(0);
-    const studentsPerPage = 9;
-    const pagesVisited = pageNumber * studentsPerPage;
-    const pageCount = Math.ceil(students.length / studentsPerPage);
-    const [searchTerm, setSearchTerm] = useState('');
+	const [students, setStudentsList] = useState([]);
+	const [pageNumber, setPageNumber] = useState(0);
+	const studentsPerPage = 9;
+	const pagesVisited = pageNumber * studentsPerPage;
+	const pageCount = Math.ceil(students.length / studentsPerPage);
+	const [searchTerm, setSearchTerm] = useState('');
 	const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toISOString().split('T')[0]; // Esto devuelve la fecha en formato 'YYYY-MM-DD'
-    };
+		const date = new Date(dateString);
+		return date.toISOString().split('T')[0]; // Esto devuelve la fecha en formato 'YYYY-MM-DD'
+	};
 
 
-    useEffect(() => {
-        fetchStudents();
-    }, [searchTerm]); // Re-fetch when searchTerm changes
+	useEffect(() => {
+		fetchStudents();
+	}, [searchTerm]); // Re-fetch when searchTerm changes
 
 	const fetchStudents = async () => {
 		const token = localStorage.getItem('token'); // Suponiendo que el token está almacenado en localStorage
@@ -51,16 +51,16 @@ const StudentsGridCard = () => {
 		setPageNumber(selected);
 	};
 
-    const getSearchTerm = (event) => {
-        setSearchTerm(event.target.value);
-    };
+	const getSearchTerm = (event) => {
+		setSearchTerm(event.target.value);
+	};
 
 	const displayStudents = students
 		.slice(pagesVisited, pagesVisited + studentsPerPage)
 		.map((student) => {
 			return (
 				<Col xl={4} lg={4} md={6} sm={12} key={student.id}>
-					<Card className="mb-4">
+					<Card className="mb-4 shadow-sm">  {/* Agregado shadow-sm para dar profundidad */}
 						<Card.Body>
 							<div className="text-center">
 								<Image
@@ -68,23 +68,33 @@ const StudentsGridCard = () => {
 									className="rounded-circle avatar-xl mb-3"
 									alt={student.nombre}
 								/>
-									
-								<h4 className="mb-1">{student.nombre}</h4>
-								<h4 className="mb-1">{student.email}</h4>
-								<h4 className="mb-1">{formatDate(student.fecha_inscripcion)}</h4>
-								<h4 className="mb-1">{student.courseTitle}</h4>
+								<h4 className="mb-1 font-weight-bold">{student.nombre}</h4>
+								<p className="text-muted mb-1">{student.email}</p>
+								<p className="text-muted mb-1">{formatDate(student.fecha_inscripcion)}</p>
+								<p className="text-muted mb-1">{student.courseTitle}</p>
 
-								<Button variant="outline-secondary" className="mt-3" onClick={() => certifyStudent(student.name)}>
+								<Button variant="success" className="mt-3" onClick={() => certifyStudent(student)}>
 									Certificar <i className="fe fe-file-text ms-1"></i>
 								</Button>
+
+
+
 							</div>
 						</Card.Body>
 					</Card>
 				</Col>
+
 			);
 		});
 
-	const certifyStudent = useCallback((studentName) => {
+	const certifyStudent = useCallback((student) => {
+		console.log('Estudiante actual:', student);
+		// Asegúrate de que `student` y sus propiedades están definida
+
+		// Ahora es seguro asumir que `student.name` y `student.courseTitle` existen.
+		const studentName = student.nombre; // Asegúrate de usar el nombre correcto de la propiedad
+		const courseName = student.courseTitle;
+
 		Swal.fire({
 			title: `¿Seguro que quieres certificar al alumno?`,
 			icon: 'warning',
@@ -96,39 +106,57 @@ const StudentsGridCard = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				const doc = new jsPDF({
-					orientation: 'landscape',  // Configura la orientación como paisaje
+					orientation: 'landscape',
 					unit: 'mm',
 					format: 'a4'
 				});
+				const originalWidth = 2000; // Ancho original
+				const originalHeight = 1414; // Altura original
 
-				
-				const imageURL = ''; 
-				// Calcular la nueva altura manteniendo la relación de aspecto
-				const scaledHeight = 297 * (1414 / 2000);
-				
+				const scaledHeight = 297 * (originalHeight / originalWidth); // 297mm es el ancho de una página A4 en orientación paisaje
+				const studentNameX = 170; // Coordenada x para centrar
+				const studentNameY = 74; // Coordenada y para el nombre del estudiante
+
+				const courseNameX = 180; // Coordenada x para centrar
+				const courseNameY = 130; // Coordenada y para el nombre del curso
+
 				// Agregar imagen de fondo
-				doc.addImage(imageURL, 'JPEG', 0, 0, 297, scaledHeight);
 
 				// Agregar texto personalizado
-				doc.setFontSize(22);
-				doc.text('Certificado de finalización', 148.5, 50, { align: 'center' }); // Centro en paisaje
-				doc.setFontSize(16);
-				doc.text(`Este documento certifica que:`, 148.5, 70, { align: 'center' });
-				doc.setFontSize(18);
-				doc.text(studentName, 148.5, 90, { align: 'center' });
-				doc.text(`ha completado satisfactoriamente el curso de`, 148.5, 110, { align: 'center' });
-				doc.text(courseName, 148.5, 130, { align: 'center' });
+				try {
+					doc.setFont("helvetica");
+					doc.addImage(imgCertificado, 'PNG', 0, 0, 297, scaledHeight);
+					doc.setFontSize(24); // Elige un tamaño de fuente adecuado
+					doc.text(student.nombre, studentNameX, studentNameY, { align: 'center' });
+					doc.setFontSize(24);
+					doc.text(student.courseTitle, courseNameX, courseNameY, { align: 'center' });
+					doc.save('certificado.pdf');
 
-				// Guardar el PDF. El nombre del archivo será 'certificado.pdf'
-				doc.save('certificado.pdf');
-				Swal.fire(
-					'¡Certificado!',
-					`El alumno ${students.nombre} ha sido certificado y se ha generado su certificado.`,
-					'success'
-				);
+				} catch (error) {
+					console.error('Error generating PDF:', error);
+					Swal.fire({
+						title: 'Error',
+						text: 'Ha ocurrido un error al generar el certificado.',
+						icon: 'error',
+						confirmButtonColor: '#d33',
+					});
+
+				}
+
+				// Código para mostrar el Swal de éxito
 			}
+		}).catch((error) => {
+			// Manejo del error de la promesa
+			console.error('Error with Swal:', error);
+			Swal.fire({
+				title: 'Error inesperado',
+				text: 'Ha ocurrido un error inesperado al certificar al alumno.',
+				icon: 'error',
+				confirmButtonColor: '#d33',
+			});
 		});
 	}, []);
+
 
 	return (
 		<Fragment>

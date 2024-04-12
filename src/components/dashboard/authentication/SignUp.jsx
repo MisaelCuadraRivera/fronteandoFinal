@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Card, Form, Button, Image } from "react-bootstrap";
 // Asegúrate de tener la ruta correcta para tu logo
 import Logo from "assets/images/brand/logo/Logo-utez-2.png";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
@@ -44,33 +45,54 @@ const SignUp = () => {
 
   // Manejar el envío del formulario
   const handleSubmit = async (e) => {
-	e.preventDefault();
-	try {
-	  const response = await fetch("http://localhost:3001/signup", {
-		method: "POST",
-		headers: {
-		  "Content-Type": "application/json",
-		},
-		body: JSON.stringify(formData),
-	  });
-  
-	  if (response.ok) {
-		// Mostrar alerta de éxito
-		alert("Usuario registrado con éxito");
-		
-		// Redirigir al usuario
-		window.location.href = "http://localhost:3000/authentication/sign-in";
-	  } else {
-		// Puedes mejorar esta parte para manejar errores específicos de la API
-		console.error("Error al registrar el usuario");
-		alert("Ocurrió un error al registrar el usuario. Por favor, inténtalo de nuevo.");
-	  }
-	} catch (error) {
-	  console.error("Error al conectarse a la API", error);
-	  alert("Ocurrió un error al conectar con el servicio. Por favor, verifica tu conexión.");
-	}
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3001/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Mostrar alerta de éxito con SweetAlert2
+        Swal.fire({
+          title: 'Registrado con Éxito',
+          text: 'Usuario registrado con éxito.',
+          icon: 'success',
+          confirmButtonColor: '#042b61',
+          confirmButtonText: 'Aceptar'
+        }).then((result) => {
+          if (result.isConfirmed || result.isDismissed) {
+            window.location.href = 'http://localhost:3000/authentication/sign-in';
+          }
+        });
+      } else {
+        // Mostrar error de registro usando SweetAlert2
+        Swal.fire({
+          title: 'Error',
+          text: 'Ocurrió un error al registrar el usuario. Por favor, inténtalo de nuevo.',
+          icon: 'error',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    } catch (error) {
+      console.error('Error al conectarse a la API', error);
+      // Mostrar error de conexión usando SweetAlert2
+      Swal.fire({
+        title: 'Error de Conexión',
+        text: 'Ocurrió un error al conectar con el servicio. Por favor, verifica tu conexión.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Aceptar'
+      });
+    }
   };
-  
+
 
   // Renderizar formulario basado en el paso
   const renderForm = () => {

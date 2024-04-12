@@ -58,11 +58,25 @@ const ProfileCover = ({ dashboardData }) => {
 								<p className="mb-0 d-block">{dashboardData.username}</p>
 							</div>
 						</div>
-						{showDashboardMenu && (
-							<Link to={dashboardData.link} className="btn btn-primary">
-								{dashboardData.linkname}
-							</Link>
-						)}
+
+						{showDashboardMenu &&
+							(
+								<>
+									<Row>
+										<Col>
+											<Link to="/" className="btn btn-secondary me-2">
+												Principal
+											</Link>
+											<Link to={dashboardData.link} className="btn btn-primary">
+												{dashboardData.linkname}
+											</Link>
+										</Col>
+									</Row>
+
+								</>
+
+							)}
+						
 					</div>
 				</Card>
 			</Col>

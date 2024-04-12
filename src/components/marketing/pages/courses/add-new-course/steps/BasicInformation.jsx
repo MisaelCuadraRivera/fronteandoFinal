@@ -125,7 +125,7 @@ const BasicInformation = (props) => {
       Swal.fire({
         icon: 'success',
         title: 'Curso creado',
-        text: 'Se creó el curso con éxito',
+        text: 'El curso se ha enviado a revisión',
         confirmButtonText: 'Aceptar'
       }).then((result) => {
         if (result.isConfirmed) {
