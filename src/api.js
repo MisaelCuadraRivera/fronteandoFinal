@@ -62,7 +62,7 @@ app.post('/signup', (req, res) => {
       } else {
         // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey('SG.j0AKC3jQSDSHeZd9feej7g.ZjQSNEh9rlgfUASWH2CAAPjR57zoApFBaKeKEzkCdOE'); // Configura esto de manera segura en producción
+        sgMail.setApiKey(''); // Configura esto de manera segura en producción
   
         const msg = {
           to: email, // Utiliza el correo electrónico del usuario recién registrado
@@ -423,8 +423,12 @@ app.get('/best-selling-courses', (req, res) => {
 });
 
 app.get('/api/cursos', (req, res) => {
-  const query = 'SELECT * FROM cursos';
-  db.query(query, (err, results) => {
+  const query = `
+    SELECT cursos.*, usuarios.nombre as instructor_name, usuarios.imagen as instructor_image 
+    FROM cursos 
+    JOIN usuarios ON cursos.instructor_id = usuarios.id;
+  `;
+    db.query(query, (err, results) => {
       if (err) {
           console.error('Error al consultar los cursos:', err);
           return res.status(500).send('Error al obtener los cursos');
@@ -529,9 +533,139 @@ app.put('/user/updatepassword', verifyToken, async (req, res) => {
   }
 });
 
+const crypto = require('crypto');
 
 
+app.post('/forgot-password', (req, res) => {
+  const { email } = req.body;
+  const token = crypto.randomBytes(20).toString('hex');
+  const expirationDate = new Date();
+  expirationDate.setUTCHours(expirationDate.getUTCHours() + 1);
+  const formattedExpirationDate = expirationDate.toISOString().replace('Z', '').split('.')[0];
 
+  
+  // Aquí, actualiza tu base de datos con el token y la fecha de expiración para el usuario con el correo electrónico dado
+  const query = "UPDATE usuarios SET resetPasswordToken = ?, resetPasswordExpires = ? WHERE email = ?";
+  db.query(query, [token, formattedExpirationDate, email], (err, result) => {
+    if (err) {
+          console.error(err);
+          return res.status(500).send('Error en el servidor.');
+      }
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(''); // Configura esto de manera segura en producción
+      
+      // Dentro de la misma función después de actualizar la base de datos con el token
+      const resetUrl = `http://localhost:3000/reset-password/${token}`; // Asegúrate de cambiar esto por la URL correcta de tu frontend
+      const msg = {
+          to: email,
+          from: 'sigeca.utez@gmail.com',
+          subject: 'Recuperación de contraseña',
+          text: `Estás recibiendo este correo porque tú (o alguien más) ha solicitado el restablecimiento de la contraseña de tu cuenta.\n\n` +
+                `Por favor haz clic en el siguiente enlace, o pégalo en tu navegador para completar el proceso:\n\n` +
+                `${resetUrl}\n\n` +
+                `Si no solicitaste esto, por favor ignora este correo y tu contraseña permanecerá sin cambios.\n`
+      };
+      
+      sgMail.send(msg).then(() => {
+          console.log('Correo de recuperación enviado');
+          res.status(200).send('Correo de recuperación enviado');
+      }).catch((error) => {
+          console.error(error);
+          res.status(500).send('Error al enviar el correo electrónico');
+      });
+        });
+});
+
+app.post('/reset-password', (req, res) => {
+  const { token, password } = req.body;
+  const connection = db.promise();
+  console.log("Token recibido:", token);
+  console.log("Fecha y hora actual del servidor:", new Date());
+
+  // Primero, verifica que el token exista y no haya expirado
+  const query = 'SELECT * FROM usuarios WHERE resetPasswordToken = ? AND resetPasswordExpires > UTC_TIMESTAMP()';
+  
+  connection.query(query, [token])
+      .then(([results]) => {
+          if (results.length === 0) {
+              throw new Error('Token de restablecimiento de contraseña inválido o expirado.');
+          }
+          const user = results[0];
+
+          // Si el token es válido, hashea la nueva contraseña y actualiza al usuario
+          const salt = bcrypt.genSaltSync(10);
+          const hashedPassword = bcrypt.hashSync(password, salt);
+
+          return connection.query('UPDATE usuarios SET password = ?, resetPasswordToken = NULL, resetPasswordExpires = NULL WHERE id = ?', [hashedPassword, user.id]);
+      })
+      .then(() => {
+          res.send({ message: 'La contraseña ha sido actualizada con éxito.' });
+      })
+      .catch((error) => {
+          console.error('Error al restablecer la contraseña:', error);
+          res.status(500).send({ message: error.message || 'Error al restablecer la contraseña.' });
+      });
+});
+
+
+app.put('/update-course/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, description, precio, level, category, status, instructor_id } = req.body;
+
+  if (!id || !title || !description || precio === undefined || !level || !category || !status || !instructor_id) {
+      return res.status(400).send('Faltan datos necesarios para la actualización.');
+  }
+
+  const query = `
+      UPDATE cursos SET
+      title = ?,
+      description = ?,
+      precio = ?,
+      level = ?,
+      category = ?,
+      status = ?,
+      instructor_id = ?
+      WHERE id = ?;
+  `;
+
+  db.query(query, [title, description, precio, level, category, status, instructor_id, id], (err, result) => {
+      if (err) {
+          console.error('Error al actualizar el curso:', err);
+          return res.status(500).send('Error al actualizar el curso');
+      }
+
+      if (result.affectedRows === 0) {
+          return res.status(404).send('Curso no encontrado');
+      }
+
+      res.send('Curso actualizado con éxito');
+  });
+});
+
+
+// Endpoint para eliminar un curso
+app.delete('/delete-course/:id', (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+      return res.status(400).send('Falta el ID del curso para eliminar.');
+  }
+
+  const query = 'DELETE FROM cursos WHERE id = ?';
+
+  db.query(query, [id], (err, result) => {
+      if (err) {
+          console.error('Error al eliminar el curso:', err);
+          return res.status(500).send('Error al eliminar el curso');
+      }
+
+      if (result.affectedRows === 0) {
+          return res.status(404).send('Curso no encontrado');
+      }
+
+      res.send('Curso eliminado con éxito');
+  });
+});
 
 
   

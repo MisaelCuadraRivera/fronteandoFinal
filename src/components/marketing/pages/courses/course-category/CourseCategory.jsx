@@ -1,5 +1,6 @@
 // import node module libraries
-import { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import axios from 'axios';
 import { Col, Row, Nav, Tab, Container } from 'react-bootstrap';
 
 // import custom components
@@ -14,6 +15,20 @@ import { AllCoursesData } from 'data/slider/AllCoursesData';
 import { InstructorData } from 'data/users/InstructorData';
 
 const CourseCategory = () => {
+	const [courses, setCourses] = useState([]); // Estado para almacenar los cursos
+
+    // Cargar los cursos desde la API
+	useEffect(() => {
+		axios.get('http://localhost:3001/api/cursos')
+			.then(response => {
+				console.log("API Data:", response.data); // Esto te mostrará lo que recibes de la API
+				setCourses(response.data);
+			})
+			.catch(error => {
+				console.error("Error fetching courses: ", error);
+			});
+	}, []);
+	
 	return (
 		<Fragment>
 			{/* Page header */}
@@ -31,7 +46,7 @@ const CourseCategory = () => {
 							<div className="mb-5">
 								<h2 className="mb-1">Instructores populares</h2>
 								<p className="mb-0">
-									Instructores populares en JavaScript.
+									Instructores populares de la UTEZ.
 								</p>
 							</div>
 						</Col>
@@ -56,14 +71,12 @@ const CourseCategory = () => {
 						</Col>
 					</Row>
 					<Row className="mb-6">
-						{AllCoursesData.filter(function (datasource) {
-							return datasource.id <= 8;
-						}).map((item, index) => (
-							<Col lg={3} md={6} sm={12} key={index}>
-								<CourseCard item={item} free />
-							</Col>
-						))}
-					</Row>
+					{courses.map((course) => (
+                                <Col lg={3} md={6} sm={12} key={course.id}>
+                                  <CourseCard course={course} />
+                                </Col>
+                              ))}
+                    </Row>
 					{/* end of all javaScript courses */}
 				</Container>
 			</section>

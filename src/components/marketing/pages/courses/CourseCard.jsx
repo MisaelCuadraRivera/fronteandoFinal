@@ -20,228 +20,162 @@ import GKTippy from 'components/elements/tooltips/GKTippy';
 // import utility file
 import { numberWithCommas } from 'helper/utils';
 
-const CourseCard = ({
-	item,
-	free,
-	viewby,
-	showprogressbar,
-	extraclass,
-	link
-}) => {
-	/** Used in Course Index, Course Category, Course Filter Page, Student Dashboard etc...  */
-	const GridView = () => {
-		return (
-			<Card className={`mb-4 card-hover ${extraclass}`}>
-				<Link to={link}>
-					<Image
-						src={item.image}
-						alt=""
-						className="card-img-top rounded-top-md"
-					/>
-				</Link>
-				{/* Card body  */}
-				<Card.Body>
-					<h3 className="h4 mb-2 text-truncate-line-2 ">
-						<Link to={link} className="text-inherit">
-							{item.title}
-						</Link>
-					</h3>
-					<ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
-						<ListGroup.Item as="li" bsPrefix="list-inline-item">
-							<LevelIcon level={item.level} />
-							{item.level}
-						</ListGroup.Item>
-					</ListGroup>
-					<div
-						className={`lh-1 d-flex align-items-center ${free ||
-								item.price === undefined ||
-								item.price <= 0 ||
-								item.discount === undefined
-								? 'mb-5'
-								: ''
-							}`}
-					>
-					</div>
-					<div
-						className={`lh-1 mt-3 `}
-					>
-						<span className="text-dark fw-bold">
-							${item.price}
-						</span>{' '}
-					</div>
-				</Card.Body>
-				{/* Card Footer */}
-				<Card.Footer>
-					<Row className="align-items-center g-0">
-						<Col xs="auto">
-							<Image
-								src={item.instructor_image}
-								className="rounded-circle avatar-xs"
-								alt=""
-							/>
-						</Col>
-						<Col className="col ms-2">
-							<span>{item.instructor_name}</span>
-						</Col>
-						<Col xs="auto">
-							<GKTippy content="Add to Bookmarks">
-								<Link to="#">
-									<i className="fe fe-bookmark"></i>
-								</Link>
-							</GKTippy>
-						</Col>
-					</Row>
-				</Card.Footer>
-			</Card>
-		);
-	};
+const CourseCard = ({ course, viewby = 'default-value', extraclass }) => {
 
-	/** Used in Course Filter Page  */
-	const ListView = () => {
-		return (
-			<Card className={`mb-4 card-hover ${extraclass}`}>
-				<Link to={link}>
-					<Image
-						src={item.image}
-						alt=""
-						className="card-img-top rounded-top-md"
-					/>
-				</Link>
-				{/* Card body  */}
-				<Card.Body>
-					<h3 className="h4 mb-2 text-truncate-line-2 ">
-						<Link to={link} className="text-inherit">
-							{item.title}
-						</Link>
-					</h3>
-					<ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
-						<ListGroup.Item as="li" bsPrefix="list-inline-item">
-							<LevelIcon level={item.level} />
-							{item.level}
-						</ListGroup.Item>
-					</ListGroup>
-					<div
-						className={`lh-1 d-flex align-items-center ${free ||
-								item.price === undefined ||
-								item.price <= 0 ||
-								item.discount === undefined
-								? 'mb-5'
-								: ''
-							}`}
-					>
-					</div>
-					<div
-						className={`lh-1 mt-3 `}
-					>
-						<span className="text-dark fw-bold">
-							${item.price}
-						</span>{' '}
-					</div>
-				</Card.Body>
-				{/* Card Footer */}
-				<Card.Footer>
-					<Row className="align-items-center g-0">
-						<Col xs="auto">
-							<Image
-								src={item.instructor_image}
-								className="rounded-circle avatar-xs"
-								alt=""
-							/>
-						</Col>
-						<Col className="col ms-2">
-							<span>{item.instructor_name}</span>
-						</Col>
-						<Col xs="auto">
-							<GKTippy content="Add to Bookmarks">
-								<Link to="#">
-									<i className="fe fe-bookmark"></i>
-								</Link>
-							</GKTippy>
-						</Col>
-					</Row>
-				</Card.Footer>
-			</Card>
-		);
-	};
+    if (!course) return null;
 
-	/** Used in Instructor Profile Page  */
-	const ListGroupView = () => {
-		return (
-			<Card className={`mb-4 card-hover ${extraclass}`}>
-				<Link to={link}>
-					<Image
-						src={item.image}
-						alt=""
-						className="card-img-top rounded-top-md"
-					/>
-				</Link>
-				{/* Card body  */}
-				<Card.Body>
-					<h3 className="h4 mb-2 text-truncate-line-2 ">
-						<Link to={link} className="text-inherit">
-							{item.title}
-						</Link>
-					</h3>
-					<ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
-						<ListGroup.Item as="li" bsPrefix="list-inline-item">
-							<LevelIcon level={item.level} />
-							{item.level}
-						</ListGroup.Item>
-					</ListGroup>
-					<div
-						className={`lh-1 d-flex align-items-center ${free ||
-								item.price === undefined ||
-								item.price <= 0 ||
-								item.discount === undefined
-								? 'mb-5'
-								: ''
-							}`}
-					>
-					</div>
-					<div
-						className={`lh-1 mt-3 `}
-					>
-						<span className="text-dark fw-bold">
-							${item.price}
-						</span>{' '}
-					</div>
-				</Card.Body>
-				{/* Card Footer */}
-				<Card.Footer>
-					<Row className="align-items-center g-0">
-						<Col xs="auto">
-							<Image
-								src={item.instructor_image}
-								className="rounded-circle avatar-xs"
-								alt=""
-							/>
-						</Col>
-						<Col className="col ms-2">
-							<span>{item.instructor_name}</span>
-						</Col>
-						<Col xs="auto">
-							<GKTippy content="Add to Bookmarks">
-								<Link to="#">
-									<i className="fe fe-bookmark"></i>
-								</Link>
-							</GKTippy>
-						</Col>
-					</Row>
-				</Card.Footer>
-			</Card>
-		);
-	};
-	return (
-		<Fragment>
-			{viewby === 'grid' ? (
-				<GridView />
-			) : viewby === 'list' ? (
-				<ListView />
-			) : (
-				<ListGroupView />
-			)}
-		</Fragment>
-	);
+    const GridView = () => (
+            <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+              <Link to={`/marketing/courses/course-single/${course.id}`}>
+                <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+              </Link>
+              <Card.Body>
+                <h3 className="h4 mb-2 text-truncate-line-2">
+                  <Link to={`/marketing/courses/course-single/${course.id}`}>
+                    {course.title}
+                  </Link>
+                </h3>
+                <h3 className="h4 mb-2 text-truncate-line-2">
+                  <Link to={`/courses/${course.id}`} className="text-inherit">
+                    {course.descripcion}
+                  </Link>
+                </h3>
+                <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+                  <ListGroup.Item as="li" bsPrefix="list-inline-item">
+                    <LevelIcon level={course.level} />
+                    {course.level}
+                  </ListGroup.Item>
+                </ListGroup>
+                <div className={`lh-1 mt-3 `}>
+                  <span className="text-dark fw-bold">{course.precio}</span>
+                </div>
+                <div className={`lh-1 mt-3 `}>
+            <span className="text-dark">{course.category}</span>
+          </div>
+              </Card.Body>
+              {/* Card Footer */}
+              <Card.Footer>
+                <Row className="align-items-center g-0">
+                  <Col xs="auto">
+                  <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+                  </Col>
+                  <Col className="col ms-2">
+                    <span>{course.instructor_name}</span>
+                  </Col>
+                  <Col xs="auto">
+                    <GKTippy content="Add to Bookmarks">
+                      <Link to="#">
+                        <i className="fe fe-bookmark"></i>
+                      </Link>
+                    </GKTippy>
+                  </Col>
+                </Row>
+              </Card.Footer>
+            </Card>
+          );
+
+    const ListView = () => (
+        <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
+          <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+        </Link>
+        <Card.Body>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.title}
+            </Link>
+          </h3>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/courses/${course.id}`} className="text-inherit">
+              {course.descripcion}
+            </Link>
+          </h3>
+          <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+            <ListGroup.Item as="li" bsPrefix="list-inline-item">
+              <LevelIcon level={course.level} />
+              {course.level}
+            </ListGroup.Item>
+          </ListGroup>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark fw-bold">{course.precio}</span>
+          </div>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark">{course.descripcion}</span>
+          </div>
+        </Card.Body>
+        {/* Card Footer */}
+        <Card.Footer>
+          <Row className="align-items-center g-0">
+            <Col xs="auto">
+            <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+            </Col>
+            <Col className="col ms-2">
+              <span>{course.instructor_name}</span>
+            </Col>
+            <Col xs="auto">
+              <GKTippy content="Add to Bookmarks">
+                <Link to="#">
+                  <i className="fe fe-bookmark"></i>
+                </Link>
+              </GKTippy>
+            </Col>
+          </Row>
+        </Card.Footer>
+      </Card>
+    );
+    
+
+    const ListGroupView = () => (
+        <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
+          <Image src={course.image} alt="" className="card-img-top rounded-top-md" />
+        </Link>
+        <Card.Body>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+            <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.title}
+            </Link>
+          </h3>
+          <h3 className="h4 mb-2 text-truncate-line-2">
+          <Link to={`/marketing/courses/course-single/${course.id}`}>
+              {course.descripcion}
+            </Link>
+          </h3>
+          <ListGroup as="ul" bsPrefix="list-inline" className="mb-3">
+            <ListGroup.Item as="li" bsPrefix="list-inline-item">
+              <LevelIcon level={course.level} />
+              {course.level}
+            </ListGroup.Item>
+          </ListGroup>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark fw-bold">{course.precio}</span>
+          </div>
+          <div className={`lh-1 mt-3 `}>
+            <span className="text-dark ">{course.category}</span>
+          </div>
+        </Card.Body>
+        {/* Card Footer */}
+        <Card.Footer>
+          <Row className="align-items-center g-0">
+            <Col xs="auto">
+            <Image src={`data:image/jpeg;base64,${course.instructor_image}`} className="rounded-circle avatar-xs" alt={course.instructor_name} />
+            </Col>
+            <Col className="col ms-2">
+              <span>{course.instructor_name}</span>
+            </Col>
+            
+          </Row>
+        </Card.Footer>
+      </Card>
+    );
+
+    return (
+        <Fragment>
+            {viewby === 'grid' && <GridView />}
+            {viewby === 'list' && <ListView />}
+            {viewby === 'listGroup' && <ListGroupView />}
+        </Fragment>
+    );
 };
 
 // Specifies the default values for props

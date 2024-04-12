@@ -186,33 +186,7 @@ const CourseSingle = () => {
 								</Card.Body>
 							</Card>
 							{/* Card */}
-							<Card className="mb-4">
-								{/* Card header */}
-								<Card.Header>
-									<h4 className="mb-0">What’s included</h4>
-								</Card.Header>
-								{/* Card Body */}
-								<Card.Body className="p-0">
-									<ListGroup variant="flush">
-										<ListGroup.Item>
-											<i className="fe fe-play-circle align-middle me-2 text-primary"></i>
-											12 horas de video
-										</ListGroup.Item>
-										<ListGroup.Item>
-											<i className="fe fe-award me-2 align-middle text-success"></i>
-											Certificado de finalización
-										</ListGroup.Item>
-										<ListGroup.Item>
-											<i className="fe fe-video align-middle me-2 text-secondary"></i>
-											Ver offline
-										</ListGroup.Item>
-										<ListGroup.Item className="bg-transparent">
-											<i className="fe fe-clock align-middle me-2 text-warning"></i>
-											Acceso de por vida
-										</ListGroup.Item>
-									</ListGroup>
-								</Card.Body>
-							</Card>
+							
 							{/* Card */}
 							<Card>
 								{/* Card body */}
@@ -269,38 +243,10 @@ const CourseSingle = () => {
 											</div>
 										</Col>
 									</Row>
-									<p>
-										Descripción del profesor
-									</p>
-									<Link
-										to="/marketing/instructor/instructor-edit-profile/"
-										className="btn btn-outline-secondary btn-sm"
-									>
-										Ver detalles
-									</Link>
 								</Card.Body>
 							</Card>
 						</Col>
 					</Row>
-					{/* Card */}
-					<div className="pt-12 pb-3">
-						<Row className="d-md-flex align-items-center mb-4">
-							<Col lg={12} md={12} sm={12}>
-								<h2 className="mb-0">Related Courses</h2>
-							</Col>
-						</Row>
-						<Row>
-							{AllCoursesData.filter(function (datasource) {
-								return datasource.category === 'javascript';
-							})
-								.slice(0, 4)
-								.map((item, index) => (
-									<Col lg={3} md={6} sm={12} key={index}>
-										<CourseCard item={item} free />
-									</Col>
-								))}
-						</Row>
-					</div>
 				</Container>
 			</section>
 		</Fragment>

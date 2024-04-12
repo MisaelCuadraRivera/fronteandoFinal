@@ -1,86 +1,71 @@
-// import node module libraries
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, Fragment } from 'react';
+import axios from 'axios';
 import Slider from 'react-slick';
-
-// import sub components
 import CourseCard from './CourseCard';
+// En tu componente CourseSlider.jsx
+import './courseSlider.css'; // Asegúrate de que la ruta al archivo CSS sea correcta
 
-// import data files
-import { AllCoursesData } from 'data/slider/AllCoursesData';
+// ... el resto de tu componente
 
-const CourseSlider = ({ recommended, popular, trending, category }) => {
+
+const CourseSlider = () => {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        // Reemplaza 'your-api-endpoint' con la URL de tu endpoint de la API
+        axios.get('http://localhost:3001/api/cursos')
+            .then(response => {
+				console.log("API Data:", response.data); // Esto te mostrará lo que recibes de la API
+                setCourses(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching data: ", error);
+            });
+    }, []); // Este efecto se ejecutará solo una vez cuando el componente se monta
+
 	const settings = {
 		infinite: true,
-		slidesToShow: 4,
-		slidesToScroll: 1,
+		speed: 500,
+		slidesToShow: 4, // Cambia este número según cuántas tarjetas quieras que se muestren a la vez
+		slidesToScroll: 4, // Cambia este número para que coincida con slidesToShow si quieres que todas las tarjetas visibles se deslicen juntas
 		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1,
-					initialSlide: 2
-				}
-			},
-			{
-				breakpoint: 540,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
+		  {
+			breakpoint: 1024,
+			settings: {
+			  slidesToShow: 3, // Puedes ajustar estos valores para diferentes tamaños de pantalla
+			  slidesToScroll: 3,
 			}
+		  },
+		  {
+			breakpoint: 768,
+			settings: {
+			  slidesToShow: 2,
+			  slidesToScroll: 2,
+			}
+		  },
+		  {
+			breakpoint: 480,
+			settings: {
+			  slidesToShow: 1,
+			  slidesToScroll: 1,
+			}
+		  }
 		]
-	};
+	  };
+	  
 
-	return (
+
+	  return (
 		<Fragment>
-			<Slider {...settings} className="pb-sm-5 mb-5 slick-slider-wrapper">
-				{AllCoursesData.filter(function (dataSource) {
-					if (recommended === true) {
-						dataSource = dataSource.recommended;
-					}
-					if (popular === true) {
-						dataSource = dataSource.popular;
-					}
-					if (trending === true) {
-						dataSource = dataSource.trending;
-					}
-					if (category != null) {
-						dataSource = dataSource.category === category;
-					}
-					return dataSource;
-				}).map((item, index) => (
-					<div className="item px-md-1" key={item.id}>
-						<CourseCard key={index} item={item} extraclass="mx-2" />
-					</div>
-				))}
-			</Slider>
+		  <Slider {...settings}>
+			{courses.map((course) => (
+			  <div className="item px-md-1" key={course.id}>
+				<CourseCard course={course} extraclass="mx-2" />
+			  </div>
+			))}
+		  </Slider>
 		</Fragment>
-	);
-};
-
-// Specifies the default values for props
-CourseSlider.defaultProps = {
-	recommended: false,
-	popular: false,
-	trending: false,
-	category: null
-};
-
-// Typechecking With PropTypes
-CourseSlider.propTypes = {
-	recommended: PropTypes.bool,
-	popular: PropTypes.bool,
-	trending: PropTypes.bool,
-	category: PropTypes.string
-};
+	  );
+	};
 
 export default CourseSlider;

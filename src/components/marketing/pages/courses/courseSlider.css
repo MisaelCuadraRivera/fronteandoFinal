@@ -1,0 +1,29 @@
+/* courseSlider.css */
+.item {
+    padding: 0 10px; /* Añade un poco de espacio entre las tarjetas */
+  }
+  
+  .card-hover {
+    transition: transform 0.3s; /* Añade una transición suave al efecto hover */
+    /* Ajusta tu tarjeta como necesites aquí */
+  }
+  
+  /* Añade media queries si necesitas ajustes específicos para diferentes tamaños de pantalla */
+  @media (max-width: 1024px) {
+    .item {
+      max-width: 300px; /* o el ancho que prefieras */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .item {
+      max-width: 220px; /* o el ancho que prefieras */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .item {
+      max-width: 100%; /* las tarjetas tomarán todo el ancho disponible */
+    }
+  }
+  
