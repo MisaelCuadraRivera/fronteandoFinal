@@ -23,6 +23,11 @@ const QuickMenu = () => {
 		query: '(min-width: 1224px)'
 	});
 
+	const handleLogout = () => {
+        localStorage.removeItem('token'); // Borra el token de localStorage
+        history.push('/authentication/sign-in'); // Redirige al usuario a la página de inicio de sesión
+    };
+
 	const Notifications = () => {
 		return (
 			<SimpleBar style={{ maxHeight: '300px' }}>
@@ -115,11 +120,11 @@ const QuickMenu = () => {
 						</Dropdown.Item>
 						<Dropdown.Divider />
 						<Dropdown.Divider />
-						<Dropdown.Item as="div" className="mb-3">
-    <Link to="/" className="dropdown-item">
-        <i className="fe fe-power me-2"></i> Cerrar Sesión
-    </Link>
-</Dropdown.Item>
+                        <Dropdown.Item as="div" className="mb-3">
+                            <Link to="/" className="dropdown-item" onClick={handleLogout}>
+                                <i className="fe fe-power me-2"></i> Cerrar Sesión
+                            </Link>
+                        </Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</ListGroup>
