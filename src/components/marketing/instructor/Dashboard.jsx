@@ -13,36 +13,64 @@ const Dashboard = () => {
 	const [studentCount, setStudentCount] = useState(0);
 	const [courseCount, setCourseCount] = useState(0);
 	const [bestSellingCourses, setBestSellingCourses] = useState([]);
+	const [enrolledStudents, setStudents] = useState([]); // Nuevo estado para los estudiantes inscritos
+
 
 	useEffect(() => {
-		// Función para cargar el número de estudiantes
+		const fetchEnrolledStudents = async () => {
+			const response = await fetch('http://localhost:3001/api/estudiantes-inscritos', {
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				setStudents(data); // Asumiendo que tienes un estado para estudiantes
+				console.log(data);
+
+			} else {
+				console.error("Error fetching enrolled students");
+			}
+		};
+
+
+
 		const fetchStudentCount = async () => {
-			const response = await fetch('http://localhost:3001/student-count');
+			// Agrega headers si es necesario para la autorización
+			const response = await fetch('http://localhost:3001/student-count', {
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}` // Asegúrate de tener el token en localStorage o manejarlo con un estado/contexto global
+				}
+			});
 			const data = await response.json();
 			setStudentCount(data.studentCount);
 		};
-
-		// Función para cargar el número de cursos
+	
 		const fetchCourseCount = async () => {
-			const response = await fetch('http://localhost:3001/course-count');
+			const response = await fetch('http://localhost:3001/course-count', {
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`
+				}
+			});
 			const data = await response.json();
 			setCourseCount(data.courseCount);
 		};
-
-		// Función para cargar los cursos más vendidos
+	
 		const fetchBestSellingCourses = async () => {
-			const response = await fetch('http://localhost:3001/best-selling-courses');
+			const response = await fetch('http://localhost:3001/best-selling-courses', {
+				headers: {
+					'Authorization': `Bearer ${localStorage.getItem('token')}`
+				}
+			});
 			const data = await response.json();
-			console.log(data); // Esto te ayudará a ver qué estás recibiendo exactamente
 			setBestSellingCourses(data);
 		};
-
-		// Llamar a las funciones de carga de datos
+	
 		fetchStudentCount();
 		fetchCourseCount();
 		fetchBestSellingCourses();
+		fetchEnrolledStudents();
 	}, []);
-
 	// The forwardRef is important!!
 	// Dropdown needs access to the DOM node in order to position the Menu
 	
@@ -54,7 +82,7 @@ const Dashboard = () => {
 				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">
 					<StatRightBadge
 						title="Estudiantes"
-						value={studentCount.toString()} // Convertido a string para el componente
+                        value={enrolledStudents.length.toString()} // Mostrar la cantidad de estudiantes inscritos
 					/>
 				</Col>
 				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">

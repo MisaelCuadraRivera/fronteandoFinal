@@ -41,7 +41,7 @@ const CoursesCategory = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:3001/categories', { name: newCategory });
+      await axios.post('http://localhost:3001/categories', { categoria: newCategory });
       setNewCategory('');
       setShow(false);
       loadCategories();
