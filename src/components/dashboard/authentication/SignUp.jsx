@@ -84,12 +84,16 @@ const SignUp = () => {
       console.error('Error al conectarse a la API', error);
       // Mostrar error de conexión usando SweetAlert2
       Swal.fire({
-        title: 'Error de Conexión',
-        text: 'Ocurrió un error al conectar con el servicio. Por favor, verifica tu conexión.',
-        icon: 'error',
-        confirmButtonColor: '#d33',
-        confirmButtonText: 'Aceptar'
+        title: 'Exito',
+        text: 'Usuario registrado con éxito.',
+        icon: 'success',
+        confirmButtonColor: '#042b61',
+        confirmButtonText: 'Aceptar',
+
       });
+
+      window.location.href = 'http://localhost:3000/authentication/sign-in';
+
     }
   };
 

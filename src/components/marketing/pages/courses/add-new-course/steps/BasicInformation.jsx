@@ -23,6 +23,7 @@ const BasicInformation = (props) => {
     const { value } = e.target;
     setState(value);
   };
+  
 
   const categoryOptions = [
     { value: "React", label: "React" },
@@ -30,6 +31,7 @@ const BasicInformation = (props) => {
     { value: "HTML", label: "HTML" },
     { value: "Vuejs", label: "Vue js" },
     { value: "Gulpjs", label: "Gulp js" },
+    { value: "Python", label: "Python" },
   ];
 
   const levelOptions = [
