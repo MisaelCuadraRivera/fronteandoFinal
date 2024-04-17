@@ -89,6 +89,7 @@ app.post('/signup', (req, res) => {
     });
   });
   
+  
 // Endpoint para iniciar sesión
 app.post('/signin', (req, res) => {
   const { email, password } = req.body;
