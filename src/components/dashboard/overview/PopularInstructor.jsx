@@ -4,13 +4,6 @@ import { Link } from 'react-router-dom';
 import { Col, Row, Card, ListGroup, Dropdown, Image } from 'react-bootstrap';
 import axios from 'axios';
 
-
-// import utility file
-import { numberWithCommas } from 'helper/utils';
-
-// import data files
-import InstructorData from 'data/users/InstructorData';
-
 const PopularInstructor = ({ title }) => {
 	const [instructors, setInstructors] = useState([]);
 

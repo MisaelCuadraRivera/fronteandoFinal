@@ -1,4 +1,3 @@
-// Define la función de logout aquí o en otro lugar apropiado antes de exportar los menús
 const handleLogout = () => {
     localStorage.removeItem('token'); // Elimina el token de autenticación
     window.location.href = '/'; // Redirige al usuario a la página de inicio de sesión

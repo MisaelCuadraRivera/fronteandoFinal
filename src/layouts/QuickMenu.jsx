@@ -1,21 +1,16 @@
-// import node module libraries
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Row, Col, Image, Dropdown, ListGroup } from 'react-bootstrap';
 
-// simple bar scrolling used for notification item scrolling
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-// import custom components
 import DotBadge from 'components/elements/bootstrap/DotBadge';
 import DarkLightMode from 'layouts/DarkLightMode';
 import GKTippy from 'components/elements/tooltips/GKTippy';
 
-// import media files
 
-// import data files
 import NotificationList from 'data/Notification';
 
 const QuickMenu = () => {

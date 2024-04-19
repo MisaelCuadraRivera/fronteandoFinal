@@ -1,7 +1,5 @@
-// ** Import from react dom
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-// ** Import core SCSS styles
 import 'assets/scss/theme.scss';
 
 // ** Import Layouts
@@ -25,16 +23,13 @@ import Instructor from 'components/dashboard/user/Instructor';
 import Students from 'components/dashboard/user/Students';
 
 // ** Import CMS Pages
-import CMSDashboard from 'components/dashboard/cms/CMSDashboard';
 import AllPosts from 'components/dashboard/cms/all-posts/AllPosts';
-import AddNewPost from 'components/dashboard/cms/AddNewPost';
 import Category from 'components/dashboard/cms/Category';
 
 // ** Import Authentication components
 import SignIn from 'components/dashboard/authentication/SignIn';
 import SignUp from 'components/dashboard/authentication/SignUp';
 import ForgetPassword from 'components/dashboard/authentication/ForgetPassword';
-import Notifications from 'components/dashboard/authentication/Notifications';
 
 // ** Boostrap Forms components
 import ChecksRadios from 'components/elements/bootstrap/forms/ChecksRadios';
@@ -76,14 +71,12 @@ import Tooltips from 'components/elements/bootstrap/Tooltips';
 
 // ** Import docs and change log pages
 import Documentation from 'components/dashboard/documentation/Documentation';
-import ChangeLog from 'components/dashboard/changelog/ChangeLog';
 
 /* ----------------------------------- */
 /* IMPORTS FOR MARKETING PAGES - START */
 import DefaultLayout from 'layouts/marketing/DefaultLayout';
 import BlankLayout from 'layouts/marketing/BlankLayout';
 import NotFound from 'layouts/marketing/NotFound';
-import AcademyLayout from 'layouts/marketing/AcademyLayout'; // added in 2.0.0
 import CourseCategory from 'components/marketing/pages/courses/course-category/CourseCategory';
 
 /* IMPORTS FOR FRONT SIDE PAGES MENU */
@@ -93,10 +86,6 @@ import AddNewCourse from 'components/marketing/pages/courses/add-new-course/AddN
 import CoursePath from 'components/marketing/pages/courses/course-path/CoursePath';
 import CoursePathSingle from 'components/marketing/pages/courses/course-path-single/CoursePathSingle';
 import Contact from 'components/marketing/pages/contact/Contact'; // new v1.1.0
-
-
-
-
 
 /* IMPORTS FOR FRONT SPECIALTY SUBMENU  ROUTERS */
 import ComingSoon from 'components/marketing/pages/specialty/ComingSoon';
@@ -116,10 +105,7 @@ import InstructorOrders from 'components/marketing/instructor/Orders';
 import InstructorStudents from 'components/marketing/instructor/Students';
 import ViewProfile from 'components/marketing/instructor/ViewProfile';
 
-// Instructor New Dashboard Pages for Quiz ( v2.0.0)
-import InstructorQuiz from 'components/marketing/instructor/Quiz';
-import InstructorQuizSingle from 'components/marketing/instructor/QuizSingle';
-import InstructorQuizResult from 'components/marketing/instructor/QuizResult';
+
 
 // Student Dashboard Pages
 import StudentDashboard from 'components/marketing/student/Dashboard';
@@ -133,11 +119,6 @@ import Security from 'components/marketing/account-settings/Security';
 import SocialProfiles from 'components/marketing/account-settings/SocialProfiles';
 import Subscriptions from 'components/marketing/account-settings/Subscriptions';
 
-// Student New Dashboard Pages for Quiz ( v2.0.0)
-import StudentQuiz from 'components/marketing/student/Quiz';
-import StudentQuizStart from 'components/marketing/student/quiz-start/QuizStart';
-import StudentQuizAttempt from 'components/marketing/student/QuizAttempt';
-import StudentQuizResult from 'components/marketing/student/QuizResult';
 
 // Account Settings
 import BillingInfo from 'components/marketing/account-settings/BillingInfo';
@@ -233,18 +214,7 @@ const AllRoutes = () => {
 					path="/marketing/instructor/instructor-delete-profile/"
 					element={<DeleteProfile />}
 				/>
-				<Route
-					path="/marketing/instructor/quiz/"
-					element={<InstructorQuiz />}
-				/>
-				<Route
-					path="/marketing/instructor/quiz/single/"
-					element={<InstructorQuizSingle />}
-				/>
-				<Route
-					path="/marketing/instructor/quiz/result/"
-					element={<InstructorQuizResult />}
-				/>
+				
 				<Route
 					path="/marketing/student/dashboard/"
 					element={<StudentDashboard />}
@@ -297,19 +267,7 @@ const AllRoutes = () => {
 					path="/marketing/student/student-linked-accounts/"
 					element={<LinkedAccounts />}
 				/>
-				<Route path="/marketing/student/quiz/" element={<StudentQuiz />} />
-				<Route
-					path="/marketing/student/quiz/attempt/"
-					element={<StudentQuizAttempt />}
-				/>
-				<Route
-					path="/marketing/student/quiz/start/"
-					element={<StudentQuizStart />}
-				/>
-				<Route
-					path="/marketing/student/quiz/result/"
-					element={<StudentQuizResult />}
-				/>
+				
 				<Route
 					path="/marketing/courses/course-single/:courseId"
 					element={<CourseSingle />}
@@ -344,15 +302,6 @@ const AllRoutes = () => {
 			</Route>
 
 
-
-
-
-			{/* Routes with AcademyLayout */}
-			<Route element={<AcademyLayout />}>
-
-			</Route>
-
-
 			{/* Routes with AuthLayout */}
 			<Route element={<AuthLayout />}>
 				<Route path="/authentication/sign-in" element={<SignIn />} />
@@ -373,14 +322,9 @@ const AllRoutes = () => {
 				<Route path="/courses/category-single" element={<CategorySingle />} />
 				<Route path="/user/instructor" element={<Instructor />} />
 				<Route path="/user/students" element={<Students />} />
-				<Route path="/cms/cms-dashboard" element={<CMSDashboard />} />
 				<Route path="/cms/all-posts" element={<AllPosts />} />
-				<Route path="/cms/add-new-post" element={<AddNewPost />} />
 				<Route path="/cms/category" element={<Category />} />
-				<Route
-					path="/authentication/notifications"
-					element={<Notifications />}
-				/>
+				
 				<Route
 					path="/dashboard/layouts/layout-vertical"
 					element={<Overview />}
@@ -433,7 +377,6 @@ const AllRoutes = () => {
 				<Route path="/elements/toasts" element={<Toasts />} />
 				<Route path="/elements/tooltips" element={<Tooltips />} />
 				<Route path="/dashboard/documentation" element={<Documentation />} />
-				<Route path="/dashboard/changelog" element={<ChangeLog />} />
 
 
 
