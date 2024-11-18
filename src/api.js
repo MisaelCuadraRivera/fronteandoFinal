@@ -43,12 +43,13 @@ app.use(morgan('dev'));
 
 
 const db = mysql.createPool({
-  host: 'roundhouse.proxy.rlwy.net',
-  user: 'root',
-  password: 'cIcIQUkvDoldLqzVZoONwlaIeqXWldmZ',
-  database: 'railway',
-  port: 55336
+  host: 'localhost',     // Cambia esto por '127.0.0.1' si es necesario
+  user: 'root',          // Usuario por defecto de MySQL en local
+  password: 'root',          // Deja la contraseña vacía si no la tienes configurada, o cambia por la tuya
+  database: 'sigeca',   // Nombre de la base de datos que creaste
+  port: 3306             // Puerto por defecto de MySQL
 });
+
 
 // Endpoint para registrar un nuevo usuario
 app.post('/signup', (req, res) => {

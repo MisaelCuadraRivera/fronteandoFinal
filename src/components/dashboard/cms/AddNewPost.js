@@ -17,11 +17,8 @@ import {
 } from 'react-bootstrap';
 
 // import custom components
-import { FlatPickr } from 'components/elements/flat-pickr/FlatPickr';
 import { FormSelect } from 'components/elements/form-select/FormSelect';
-import { DropFiles } from 'components/elements/dropfiles/DropFiles';
 import DotBadge from 'components/elements/bootstrap/DotBadge';
-import ReactQuillEditor from 'components/elements/editor/ReactQuillEditor';
 
 // import media files
 import Avatar1 from 'assets/images/avatar/avatar-1.jpg';
@@ -85,7 +82,6 @@ const AddNewPost = () => {
 								action="#"
 								className="dropzone mt-4 p-4 border-dashed text-center"
 							>
-								<DropFiles />
 							</Form>
 
 							{/*  Form  */}
@@ -95,7 +91,6 @@ const AddNewPost = () => {
 										{/* Date */}
 										<Form.Group className="mb-3">
 											<Form.Label htmlFor="selectDate">Fecha</Form.Label>
-											<FlatPickr value={''} />
 										</Form.Group>
 
 										{/* Title  */}
@@ -151,7 +146,6 @@ const AddNewPost = () => {
 									<Col lg={12} md={12} sm={12}>
 										{/* Editor */}
 										<Form.Group className="mb-3">
-											<ReactQuillEditor initialValue={initialValue} />
 										</Form.Group>
 										{/* button */}
 										<Form.Group className="mb-3">

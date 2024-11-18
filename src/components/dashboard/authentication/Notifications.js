@@ -17,7 +17,6 @@ import { Link } from 'react-router-dom';
 import DotBadge from 'components/elements/bootstrap/DotBadge';
 
 // import data files
-import NotificationData from 'data/dashboard/NotificationData';
 
 const Notifications = () => {
 	function NotificationsIcon(icon, color) {
@@ -89,48 +88,7 @@ const Notifications = () => {
 					<Card className="rounded-3">
 						<Card.Body className="rounded-3 p-0">
 							<ListGroup>
-								{NotificationData.map((item, index) => {
-									return (
-										<ListGroup.Item className="py-4" key={index}>
-											<Row className="align-items-center">
-												<Col>
-													<div className="d-flex align-items-center">
-														<Link to="#">
-															<Image
-																src={item.image}
-																alt=""
-																className="avatar-lg rounded-circle"
-															/>
-														</Link>
-														<div className="ms-3">
-															<Link to="#">
-																<p className="mb-0 text-body">
-																	<span className="fw-bold mb-0 h5">
-																		{item.name}:
-																	</span>{' '}
-																	{item.notification}
-																</p>
-															</Link>
-															<span className="fs-6 text-muted">
-																<span>
-																	{NotificationsIcon(
-																		item.icon,
-																		item.colorClass
-																	)}
-																	{item.date},
-																</span>
-																<span className="ms-1">{item.time}</span>
-															</span>
-														</div>
-													</div>
-												</Col>
-												<Col xs="auto" className="text-center p-2">
-													{MarkAsRead(item.removable)}
-												</Col>
-											</Row>
-										</ListGroup.Item>
-									);
-								})}
+								
 							</ListGroup>
 						</Card.Body>
 					</Card>

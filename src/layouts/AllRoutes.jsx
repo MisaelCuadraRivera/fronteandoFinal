@@ -75,8 +75,6 @@ import Toasts from 'components/elements/bootstrap/Toasts';
 import Tooltips from 'components/elements/bootstrap/Tooltips';
 
 // ** Import docs and change log pages
-import Documentation from 'components/dashboard/documentation/Documentation';
-import ChangeLog from 'components/dashboard/changelog/ChangeLog';
 
 /* ----------------------------------- */
 /* IMPORTS FOR MARKETING PAGES - START */
@@ -432,8 +430,6 @@ const AllRoutes = () => {
 				<Route path="/elements/tables" element={<Tables />} />
 				<Route path="/elements/toasts" element={<Toasts />} />
 				<Route path="/elements/tooltips" element={<Tooltips />} />
-				<Route path="/dashboard/documentation" element={<Documentation />} />
-				<Route path="/dashboard/changelog" element={<ChangeLog />} />
 
 
 
