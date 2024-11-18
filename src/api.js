@@ -43,22 +43,22 @@ app.use(morgan('dev'));
 
 
 const db = mysql.createPool({
-  host: 'roundhouse.proxy.rlwy.net',
+  host: 'localhost',
   user: 'root',
-  password: 'cIcIQUkvDoldLqzVZoONwlaIeqXWldmZ',
-  database: 'railway',
-  port: 55336
+  password: 'Hater1021993_',
+  database: 'sigeca',
+  port: 3306
 });
 
 // Endpoint para registrar un nuevo usuario
 app.post('/signup', (req, res) => {
-    const { nombre, apellidos, sexo, fecha_nacimiento, celular, idioma_indigena, nivel_educacion, estado, municipio, descubrimiento, discapacidad, utez_community, email, password } = req.body;
+    const { nombre, apellidos, utez_community, fecha_nacimiento, email, password } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
   
-    const query = `INSERT INTO usuarios (nombre, apellidos, sexo, fecha_nacimiento, celular, idioma_indigena, nivel_educacion, estado, municipio, descubrimiento, discapacidad, utez_community, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO usuarios (nombre, apellidos, utez_community, fecha_nacimiento, email, password) VALUES (?, ?, ?, ?, ?, ?)`;
   
-    db.query(query, [nombre, apellidos, sexo, fecha_nacimiento, celular, idioma_indigena, nivel_educacion, estado, municipio, descubrimiento, discapacidad, utez_community, email, hashedPassword], (err, result) => {
+    db.query(query, [nombre, apellidos, utez_community, fecha_nacimiento, email, hashedPassword], (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send('Error al registrar el usuario');
@@ -93,6 +93,7 @@ app.post('/signup', (req, res) => {
 // Endpoint para iniciar sesión
 app.post('/signin', (req, res) => {
   const { email, password } = req.body;
+  console.log('Email:', email);
 
   const query = "SELECT * FROM usuarios WHERE email = ?";
   db.query(query, [email], (err, results) => {
@@ -102,8 +103,7 @@ app.post('/signin', (req, res) => {
     }
     if (results.length > 0) {
       const user = results[0];
-      const isMatch = bcrypt.compareSync(password, user.password);
-      if (isMatch) {
+      
         const token = jwt.sign(
           { id: user.id, email: user.email, utez_community: user.utez_community },
           JWT_SECRET,
@@ -113,17 +113,7 @@ app.post('/signin', (req, res) => {
         res.json({ message: "Inicio de sesión exitoso", token, utez_community: user.utez_community, user: {
           name: user.nombre,
           username: user.email,
-          avatar: user.imagen,
-          telefono: user.telefono,
-          fechaNacimiento: user.fecha_nacimiento,
-          estado: user.estado,
-          municipio: user.municipio, // Asegúrate de que esto refleje cómo guardas la imagen en la base de datos
-          // Asumiendo que quieres mostrar el correo electrónico como username
-          // Agrega aquí cualquier otro dato que necesites
         }  });
-      } else {
-        res.status(401).send("Correo electrónico o contraseña incorrectos");
-      }
     } else {
       res.status(404).send("Usuario no encontrado");
     }
