@@ -215,7 +215,7 @@ const SignUp = () => {
               >
                 Siguiente
               </Button>
-            </div>
+            </div> hola como 
           </Fragment>
         );
       case 3:
