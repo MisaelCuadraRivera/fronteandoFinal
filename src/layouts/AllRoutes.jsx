@@ -51,7 +51,6 @@ import Breadcrumbs from 'components/elements/bootstrap/Breadcrumbs';
 import Buttons from 'components/elements/bootstrap/Buttons';
 import ButtonGroup from 'components/elements/bootstrap/ButtonGroup';
 import Cards from 'components/elements/bootstrap/Cards';
-import Carousels from 'components/elements/bootstrap/Carousels';
 import CloseButtons from 'components/elements/bootstrap/CloseButtons';
 import Collapses from 'components/elements/bootstrap/Collapses';
 import Dropdowns from 'components/elements/bootstrap/Dropdowns';
@@ -358,7 +357,6 @@ const AllRoutes = () => {
 				<Route path="/elements/buttons" element={<Buttons />} />
 				<Route path="/elements/button-group" element={<ButtonGroup />} />
 				<Route path="/elements/cards" element={<Cards />} />
-				<Route path="/elements/carousels" element={<Carousels />} />
 				<Route path="/elements/close-button" element={<CloseButtons />} />
 				<Route path="/elements/collapse" element={<Collapses />} />
 				<Route path="/elements/dropdowns" element={<Dropdowns />} />
