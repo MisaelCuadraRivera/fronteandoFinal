@@ -72,7 +72,7 @@ const NavbarDefault = ({ headerstyle }) => {
                                 </>
                             ) : (
                                 <>
-                                    <Nav.Link as={Link} to="/authentication/sign-in" className="btn shadow-sm btn-white" style={{paddingTop:"13px", paddingBottom:"10px"}}>
+                                    <Nav.Link as={Link} to="/authentication/sign-in" className="btn shadow-sm btn-white me-2" style={{paddingTop:"13px", paddingBottom:"10px"}}>
                                         Iniciar sesión
                                     </Nav.Link>
                                     <Nav.Link as={Link} to="/authentication/sign-up" className="btn shadow-sm" style={{paddingTop:"13px", paddingBottom:"10px"}}>
