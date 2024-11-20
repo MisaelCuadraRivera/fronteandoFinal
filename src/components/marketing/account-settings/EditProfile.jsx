@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Row, Col, Button, Image, InputGroup, FormControl } from 'react-bootstrap';
 import ProfileLayout from 'components/marketing/instructor/ProfileLayout'; // Asegúrate de ajustar la importación según tu estructura de archivos
-import Avatar3 from 'assets/images/avatar/avatar-3.jpg'; // Asegúrate de ajustar la ruta según tu proyecto
+import Avatar3 from 'assets/images/avatar/emblema2.png'; 
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
     nombre: '',
     apellidos: '',
     email: '',
-    celular: '',
     fecha_nacimiento: '',
-    estado: '',
-    municipio: '',
     imagen: Avatar3, // Imagen predeterminada
   });
 
@@ -30,7 +27,7 @@ const EditProfile = () => {
         const data = await response.json();
         setUserData({
           ...data.user,
-          imagen: data.user.imagen || Avatar3,
+          imagen: data.user.imagen || Avatar3, // Si no hay imagen, usa la predeterminada
         });
       } catch (error) {
         console.error(error.message);
@@ -84,10 +81,7 @@ const EditProfile = () => {
     const userProfileData = {
       nombre: userData.nombre,
       apellidos: userData.apellidos,
-      celular: userData.celular,
       fecha_nacimiento: userData.fecha_nacimiento,
-      estado: userData.estado,
-      municipio: userData.municipio,
       imagen: userData.imagen, // Envía la imagen en base64
     };
 
@@ -106,6 +100,7 @@ const EditProfile = () => {
       }
 
       alert('Perfil actualizado con éxito');
+      console.log('Perfil actualizado:', userProfileData);
     } catch (error) {
       console.error(error.message);
       alert('Hubo un error al actualizar el perfil');
@@ -147,20 +142,8 @@ const EditProfile = () => {
               </Col>
             </Row>
             <Row>
-              <Col md={6}>
-                <Form.Group controlId="celular">
-                  <Form.Label>Celular</Form.Label>
-                  <Form.Control
-                    type="tel"
-                    name="celular"
-                    value={userData.celular}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group controlId="fecha_nacimiento">
+              <Col md={12}>
+                <Form.Group controlId="fecha_nacimiento" style={{ marginTop: '10px' }}>
                   <Form.Label>Fecha de Nacimiento</Form.Label>
                   <Form.Control
                     type="date"
@@ -172,33 +155,7 @@ const EditProfile = () => {
                 </Form.Group>
               </Col>
             </Row>
-            <Row>
-              <Col md={6}>
-                <Form.Group controlId="estado">
-                  <Form.Label>Estado</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="estado"
-                    value={userData.estado}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group controlId="municipio">
-                  <Form.Label>Municipio</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="municipio"
-                    value={userData.municipio}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Form.Group controlId="imagenPerfil">
+            <Form.Group controlId="imagenPerfil" style={{ marginTop: '10px' }}>
               <Form.Label>Imagen de Perfil</Form.Label>
               <InputGroup>
                 <FormControl

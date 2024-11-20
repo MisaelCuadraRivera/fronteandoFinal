@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Nav, Tab, Card, Container } from "react-bootstrap";
 import CourseCard from "components/marketing/pages/courses/CourseCard";
 import ProfileCover from "components/marketing/common/headers/ProfileCover";
-import Avatar3 from "assets/images/avatar/avatar-3.jpg";
+import Avatar3 from "assets/images/avatar/emblema2.png";
 
 const StudentDashboard = () => {
   const [courses, setCourses] = useState([]);

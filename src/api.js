@@ -45,7 +45,7 @@ app.use(morgan('dev'));
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Hater1021993_',
+  password: 'root',
   database: 'sigeca',
   port: 3306
 });
@@ -442,7 +442,7 @@ app.get('/user/profile', async (req, res) => {
   const userId = decoded.id;
 
   try {
-    const [rows] = await db.promise().query('SELECT nombre, apellidos, email, celular, fecha_nacimiento, estado, municipio, imagen FROM usuarios WHERE id = ?', [userId]);
+    const [rows] = await db.promise().query('SELECT nombre, apellidos, email, fecha_nacimiento, imagen FROM usuarios WHERE id = ?', [userId]);
     if (rows.length > 0) {
       res.json(rows[0]);
     } else {
@@ -463,7 +463,7 @@ app.put('/user/profile', async (req, res) => {
   const { nombre, apellidos, celular, fecha_nacimiento, estado, municipio, imagen } = req.body;
 
   try {
-    await db.promise().query('UPDATE usuarios SET nombre = ?, apellidos = ?, celular = ?, fecha_nacimiento = ?, estado = ?, municipio = ?, imagen = ? WHERE id = ?', [nombre, apellidos, celular, fecha_nacimiento, estado, municipio, imagen, userId]);
+    await db.promise().query('UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, imagen = ? WHERE id = ?', [nombre, apellidos, fecha_nacimiento, imagen, userId]);
     res.send('Perfil actualizado con éxito');
   } catch (error) {
     console.error('Error al actualizar el perfil del usuario:', error);
