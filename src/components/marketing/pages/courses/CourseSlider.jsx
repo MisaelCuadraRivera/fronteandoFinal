@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import CourseCard from './CourseCard';
+
 // En tu componente CourseSlider.jsx
 import './courseSlider.css'; // Asegúrate de que la ruta al archivo CSS sea correcta
 
