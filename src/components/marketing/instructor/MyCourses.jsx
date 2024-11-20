@@ -1,44 +1,33 @@
-import React, { useMemo, Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Trash, Edit, MoreVertical } from 'react-feather';
+import React, { useMemo, Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import {
-  Card,
-  Row,
-  Col,
-  Dropdown,
-  Image,
-  Badge,
-  Table,
-  ListGroup,
-  ProgressBar
-} from 'react-bootstrap';
+} from "@tanstack/react-table";
+import { Card, Row, Col, Image, Badge, Table } from "react-bootstrap";
 
-import GlobalFilter from 'components/elements/advance-table/GlobalFilter';
-import Pagination from 'components/elements/advance-table/Pagination';
-import ProfileLayout from './ProfileLayout';
+import GlobalFilter from "components/elements/advance-table/GlobalFilter";
+import Pagination from "components/elements/advance-table/Pagination";
+import ProfileLayout from "./ProfileLayout";
 
 const MyCourses = () => {
-  const [filtering, setFiltering] = useState('');
+  const [filtering, setFiltering] = useState("");
   const [rowSelection, setRowSelection] = useState({});
   const [coursesData, setCoursesData] = useState([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/cursos');
+        const response = await fetch("http://localhost:3001/api/cursos");
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setCoursesData(data);
-		console.log(data); // Esto te ayudará a ver qué estás recibiendo exactamente
+        console.log(data); // Esto te ayudará a ver qué estás recibiendo exactamente
       } catch (error) {
         console.error("Error fetching courses: ", error);
       }
@@ -47,34 +36,41 @@ const MyCourses = () => {
     fetchCourses();
   }, []);
 
-  const columns = useMemo(() => [
-    {
-      accessorKey: 'title',
-      header: () => 'Titulo',
-      cell: info => info.getValue(),
-    },
-    {
-      accessorKey: 'level',
-      header: () => 'Nivel',
-      cell: info =>  info.getValue(),
-    },
-    {
-      accessorKey: 'image',
-      header: () => 'Imagen',
-      cell: info => (
-        <Image src={info.getValue()} alt="course" className="rounded img-4by3-lg" />
-      ),
-    },
-    {
-      accessorKey: 'status',
-      header: () => 'Status',
-      cell: info => (
-        <Badge bg={info.getValue() === 'Active' ? 'success' : 'warning'}>
-          {info.getValue()}
-        </Badge>
-      ),
-    },
-  ], []);
+  const columns = useMemo(
+    () => [
+      {
+        accessorKey: "title",
+        header: () => "Titulo",
+        cell: (info) => info.getValue(),
+      },
+      {
+        accessorKey: "level",
+        header: () => "Nivel",
+        cell: (info) => info.getValue(),
+      },
+      {
+        accessorKey: "image",
+        header: () => "Imagen",
+        cell: (info) => (
+          <Image
+            src={`data:image/jpeg;base64,${info.getValue()}`}
+            alt="Imagen del curso"
+            className="rounded img-4by3-lg"
+          />
+        ),
+      },
+      {
+        accessorKey: "status",
+        header: () => "Status",
+        cell: (info) => (
+          <Badge bg={info.getValue() === "Active" ? "success" : "warning"}>
+            {info.getValue()}
+          </Badge>
+        ),
+      },
+    ],
+    []
+  );
 
   const table = useReactTable({
     data: coursesData,
@@ -112,9 +108,9 @@ const MyCourses = () => {
         <Card.Body className="p-0 pb-5">
           <Table hover responsive className="text-nowrap table-centered">
             <thead>
-              {table.getHeaderGroups().map(headerGroup => (
+              {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => (
+                  {headerGroup.headers.map((header) => (
                     <th key={header.id}>
                       {flexRender(
                         header.column.columnDef.header,
@@ -126,11 +122,14 @@ const MyCourses = () => {
               ))}
             </thead>
             <tbody>
-              {table.getRowModel().rows.map(row => (
+              {table.getRowModel().rows.map((row) => (
                 <tr key={row.id}>
-                  {row.getVisibleCells().map(cell => (
+                  {row.getVisibleCells().map((cell) => (
                     <td key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </td>
                   ))}
                 </tr>
