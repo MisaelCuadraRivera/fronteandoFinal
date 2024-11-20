@@ -44,6 +44,7 @@ const db = mysql.createPool({
   password: "root",
   database: "sigeca",
   port: 3306,
+
 });
 
 // Endpoint para registrar un nuevo usuario
@@ -518,12 +519,14 @@ app.get("/user/profile", async (req, res) => {
   const userId = decoded.id;
 
   try {
+
     const [rows] = await db
       .promise()
       .query(
         "SELECT nombre, apellidos, email, celular, fecha_nacimiento, estado, municipio, imagen FROM usuarios WHERE id = ?",
         [userId]
       );
+
     if (rows.length > 0) {
       res.json(rows[0]);
     } else {
@@ -552,6 +555,7 @@ app.put("/user/profile", async (req, res) => {
   } = req.body;
 
   try {
+
     await db
       .promise()
       .query(
@@ -568,6 +572,7 @@ app.put("/user/profile", async (req, res) => {
         ]
       );
     res.send("Perfil actualizado con éxito");
+
   } catch (error) {
     console.error("Error al actualizar el perfil del usuario:", error);
     res.status(500).send("Error al actualizar el perfil del usuario");
