@@ -67,6 +67,7 @@
     "sass-loader": "^14.0.0",
     "simplebar": "^6.2.5",
     "simplebar-react": "^3.2.4",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.8",
     "sweetalert2": "^11.10.7",
     "sweetalert2-react-content": "^5.0.7",
