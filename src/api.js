@@ -45,20 +45,20 @@ app.use(morgan('dev'));
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Hater1021993_',
+  password: 'root',
   database: 'sigeca',
   port: 3306
 });
 
 // Endpoint para registrar un nuevo usuario
 app.post('/signup', (req, res) => {
-    const { nombre, apellidos, utez_community, fecha_nacimiento, email, password } = req.body;
+    const { nombre, apellidos, utez_community, fechaNacimiento, email, password } = req.body;
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
   
     const query = `INSERT INTO usuarios (nombre, apellidos, utez_community, fecha_nacimiento, email, password) VALUES (?, ?, ?, ?, ?, ?)`;
   
-    db.query(query, [nombre, apellidos, utez_community, fecha_nacimiento, email, hashedPassword], (err, result) => {
+    db.query(query, [nombre, apellidos, utez_community, fechaNacimiento, email, hashedPassword], (err, result) => {
       if (err) {
         console.error(err);
         res.status(500).send('Error al registrar el usuario');
