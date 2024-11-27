@@ -6,6 +6,8 @@ import DotBadge from 'components/elements/bootstrap/DotBadge';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
 import axios from 'axios'; // Asegúrate de tener axios instalado
 import Swal from 'sweetalert2';
+import Icon from '@mdi/react';
+import { Trash, Edit } from 'react-feather';
 
 const CoursesTable = ({ courses_data }) => {
 
@@ -192,12 +194,12 @@ const CoursesTable = ({ courses_data }) => {
         },
         {
             header: 'Curso',
-            accessorKey: 'title', // Asegúrate de que 'title' coincide con la propiedad de tus datos
+            accessorKey: 'title',
             cell: info => info.getValue(),
         },
         {
             header: 'Instructor',
-            accessorKey: 'instructor_name', // Asume una propiedad 'instructor_name' en tus datos
+            accessorKey: 'instructor_name',
             cell: info => info.getValue(),
         },
         {
@@ -207,11 +209,11 @@ const CoursesTable = ({ courses_data }) => {
                 <Fragment>
                     <DotBadge
                         bg={
-                            getValue().toLowerCase() === 'pendiente'
+                            getValue()?.toLowerCase() === 'pendiente'
                                 ? 'warning'
-                                : getValue().toLowerCase() === 'aprobado'
+                                : getValue()?.toLowerCase() === 'aprobado'
                                     ? 'success'
-                                    : 'danger' // Asume 'rechazado' como rojo/danger
+                                    : 'danger'
                         }
                     />
                     {getValue()}
@@ -221,38 +223,42 @@ const CoursesTable = ({ courses_data }) => {
         {
             header: 'Acciones',
             id: 'actions',
-            cell: ({ row }) => (
-                <Fragment>
-                    {row.original.status === 'Pendiente' && (
-                        <Fragment>
-                            <Button onClick={() => handleApprove(row.original.id)} variant="success" className="me-2 btn-sm">
-                                Aprobar
-                            </Button>
-
-                            <Button onClick={() => changeCourseStatus(row.original.id, 'rechazado')} variant="danger" className="btn-sm">
-                                Rechazar
-                            </Button>
-                        </Fragment>
-                    )}
-                </Fragment>
-            )
+            cell: ({ row }) => {
+                const { id, status } = row.original;
+    
+                if (!status) return null; // Si no hay estado, no mostramos nada
+    
+                return (
+                    <Fragment>
+                        {status.toLowerCase() === 'pendiente' && (
+                            <Fragment>
+                                <Button onClick={() => handleApprove(id)} variant="success" className="me-2 btn-sm">
+                                    Aprobar
+                                </Button>
+                                <Button onClick={() => changeCourseStatus(id, 'rechazado')} variant="danger" className="btn-sm">
+                                    Rechazar
+                                </Button>
+                            </Fragment>
+                        )}
+                    </Fragment>
+                );
+            }
         },
         {
             header: 'Opciones',
             id: 'options',
             cell: ({ row }) => (
                 <div>
-                    <Button variant="outline-primary" className="me-2" onClick={() => handleEdit(row.original)}>
-                        Editar
+                    <Button variant="outline-primary" size='sm' className="me-2" onClick={() => handleEdit(row.original)}>
+                    <Edit size={16} />
                     </Button>
-                    <Button variant="outline-danger" onClick={() => handleDelete(row.original.id)}>
-                        Eliminar
+                    <Button variant="outline-danger" size='sm' onClick={() => handleDelete(row.original.id)}>
+                        <Trash size={16} />
                     </Button>
                 </div>
             )
         }
-
-    ], [courses, changeCourseStatus]);
+    ], [courses]);
 
     const data = useMemo(() => courses, [courses]);
 

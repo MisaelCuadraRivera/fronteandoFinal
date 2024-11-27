@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Col, Card, Image, Row, Form, Button, Modal } from "react-bootstrap";
-import { ChevronLeft, ChevronRight, Edit, Trash } from "react-feather";
+import { ChevronLeft, ChevronRight, Edit, Slash } from "react-feather";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -157,7 +157,7 @@ function InstructorsGridCard() {
                 size="sm"
                 onClick={() => showDeleteConfirmation(instructor.id)}
               >
-                <Trash size={16} />
+                <Slash size={16} />
               </Button>
             </div>
           </Card.Body>

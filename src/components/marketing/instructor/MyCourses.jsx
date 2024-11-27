@@ -61,7 +61,7 @@ const MyCourses = () => {
       },
       {
         accessorKey: "status",
-        header: () => "Status",
+        header: () => "Estatus",
         cell: (info) => (
           <Badge bg={info.getValue() === "Active" ? "success" : "warning"}>
             {info.getValue()}
