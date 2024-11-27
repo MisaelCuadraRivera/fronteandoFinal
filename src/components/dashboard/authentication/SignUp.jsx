@@ -5,6 +5,7 @@ import Logo from "assets/images/brand/logo/Logo-utez-2.png";
 import Swal from "sweetalert2"; 
 
 const SignUp = () => {
+
   const [formData, setFormData] = useState({
     nombre: "",
     apellidos: "",
@@ -34,7 +35,19 @@ const SignUp = () => {
   // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
+  
+    // Validar contraseñas
+    if (formData.password !== formData.confirmPassword) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden. Por favor, verifica e inténtalo nuevamente.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+      });
+      return;
+    }
+  
     try {
       const response = await fetch('http://localhost:3001/signup', {
         method: 'POST',
@@ -43,9 +56,9 @@ const SignUp = () => {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         // Mostrar alerta de éxito con SweetAlert2
         Swal.fire({
@@ -53,7 +66,7 @@ const SignUp = () => {
           text: 'Usuario registrado con éxito.',
           icon: 'success',
           confirmButtonColor: '#042b61',
-          confirmButtonText: 'Aceptar'
+          confirmButtonText: 'Aceptar',
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
             window.location.href = 'http://localhost:3000/authentication/sign-in';
@@ -63,26 +76,24 @@ const SignUp = () => {
         // Mostrar error de registro usando SweetAlert2
         Swal.fire({
           title: 'Error',
-          text: 'Ocurrió un error al registrar el usuario. Por favor, inténtalo de nuevo.',
+          text: data.message || 'Ocurrió un error al registrar el usuario. Por favor, inténtalo de nuevo.',
           icon: 'error',
           confirmButtonColor: '#d33',
-          confirmButtonText: 'Aceptar'
+          confirmButtonText: 'Aceptar',
         });
       }
     } catch (error) {
       console.error('Error al conectarse a la API', error);
-      // Mostrar error de conexión usando SweetAlert2
       Swal.fire({
-        title: 'Exito',
-        text: 'Usuario registrado con éxito.',
-        icon: 'success',
-        confirmButtonColor: '#042b61',
+        title: 'Error',
+        text: 'No se pudo conectar con el servidor. Por favor, inténtalo de nuevo más tarde.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
         confirmButtonText: 'Aceptar',
-
       });
     }
-    window.location.href = 'http://localhost:3000/authentication/sign-in';
   };
+  
 
 
   return (
@@ -131,8 +142,7 @@ const SignUp = () => {
                   >
                     <option value="estudiante">Estudiante</option>
                     <option value="egresado">Egresado</option>
-                    <option value="docente">Docente</option>
-                    <option value="administrativo">Administrativo</option>
+                    <option value="profesor">Docente</option>
                     <option value="publico">Público</option>
                   </Form.Select>
                 </Col>
