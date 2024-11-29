@@ -78,9 +78,6 @@ const NavbarDefault = ({ headerstyle }) => {
                                     <Nav.Link as={Link} to="/authentication/sign-up" className="btn shadow-sm" style={{paddingTop:"13px", paddingBottom:"10px"}}>
                                         Registrarme
                                     </Nav.Link>
-                                    <Nav.Link as={Link} to="/authentication/prueba" className="btn shadow-sm" style={{paddingTop:"13px", paddingBottom:"10px"}}>
-                                        Prueba
-                                    </Nav.Link>
                                 </>
                             )}
                         </Nav>

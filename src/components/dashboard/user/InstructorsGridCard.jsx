@@ -5,6 +5,33 @@ import { ChevronLeft, ChevronRight, Edit, Trash } from "react-feather";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+// Imagen predeterminada si no hay imagen disponible
+const defaultImage = 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png';
+
+// Función para procesar imágenes
+const getImageSrc = (image) => {
+  try {
+    if (image && image.data) {
+      // Validar si la imagen ya está en base64
+      const base64HeaderPattern = /^data:image\/(jpeg|png|gif|webp);base64,/;
+      if (base64HeaderPattern.test(String.fromCharCode(...image.data))) {
+        return String.fromCharCode(...image.data);
+      }
+
+      // Procesar el buffer en base64
+      const base64String = btoa(
+        String.fromCharCode(...new Uint8Array(image.data))
+      );
+      return `data:image/jpeg;base64,${base64String}`;
+    }
+  } catch (error) {
+    console.error("Error procesando la imagen:", error);
+  }
+
+  // Retornar imagen predeterminada en caso de error
+  return defaultImage;
+};
+
 function InstructorsGridCard() {
   const [instructors, setInstructors] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
@@ -23,7 +50,11 @@ function InstructorsGridCard() {
   const fetchInstructors = async () => {
     try {
       const response = await axios.get("http://localhost:3001/instructors");
-      setInstructors(response.data);
+      const processedInstructors = response.data.map((instructor) => ({
+        ...instructor,
+        imagen: getImageSrc(instructor.imagen), // Procesar la imagen
+      }));
+      setInstructors(processedInstructors);
     } catch (error) {
       console.error("Error al cargar los instructores:", error);
     }
@@ -66,7 +97,6 @@ function InstructorsGridCard() {
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -94,7 +124,6 @@ function InstructorsGridCard() {
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -114,7 +143,7 @@ function InstructorsGridCard() {
     const value = event.target.value.toLowerCase();
     setSearchTerm(value);
     if (!value.trim()) {
-      fetchInstructors(); // Recargar instructores si la búsqueda está vacía
+      fetchInstructors();
       return;
     }
     const filteredInstructors = instructors.filter(
@@ -124,7 +153,7 @@ function InstructorsGridCard() {
         instructor.municipio.toLowerCase().includes(value)
     );
     setInstructors(filteredInstructors);
-    setPageNumber(0); // Resetear a la primera página
+    setPageNumber(0);
   };
 
   const displayInstructors = instructors
@@ -135,14 +164,13 @@ function InstructorsGridCard() {
           <Card.Body>
             <div className="text-center">
               <Image
-                  src={`data:image/jpeg;base64,${instructor.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
-
+                src={instructor.imagen || defaultImage} // Imagen procesada o predeterminada
                 className="rounded-circle avatar-xl mb-3"
-                alt=""
+                alt="Avatar del instructor"
               />
               <h4 className="mb-0">{instructor.nombre}</h4>
               <p className="mb-0">{instructor.municipio}</p>
-			  <p className="mb-0">{instructor.status}</p>
+              <p className="mb-0">{instructor.status}</p>
             </div>
             <div className="d-flex justify-content-between mt-3">
               <Button
@@ -165,7 +193,6 @@ function InstructorsGridCard() {
       </Col>
     ));
 
-  // Retorno del componente, incluyendo modales para editar y confirmar eliminación
   return (
     <Fragment>
       <div className="mb-4">
@@ -190,7 +217,7 @@ function InstructorsGridCard() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"active"}
       />
-	   <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Instructor</Modal.Title>
         </Modal.Header>
@@ -226,15 +253,23 @@ function InstructorsGridCard() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-sm" variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button
+            className="btn-sm"
+            variant="secondary"
+            onClick={() => setShowEditModal(false)}
+          >
             Cancelar
           </Button>
-          <Button className="btn-sm" style={{backgroundColor:"#042b61", border:"none"}} onClick={handleEditInstructor}>
+          <Button
+            className="btn-sm"
+            style={{ backgroundColor: "#042b61", border: "none" }}
+            onClick={handleEditInstructor}
+          >
             Guardar Cambios
           </Button>
         </Modal.Footer>
       </Modal>
-	  <Modal
+      <Modal
         show={showConfirmationModal}
         onHide={() => setShowConfirmationModal(false)}
       >

@@ -35,6 +35,11 @@ const getImageSrc = (image) => {
 const CourseCard = ({ course, viewby = 'grid', extraclass }) => {
   if (!course) return null;
 
+  // Filtrar solo los cursos aprobados
+  if (course.status?.toLowerCase() !== "aprobado") {
+    return null; // No renderizar si el curso no está aprobado
+  }
+
   const GridView = () => (
     <Card md={3} key={course.id} className={`mb-4 card-hover ${extraclass}`}>
       <Link to={`/marketing/courses/course-single/${course.id}`}>

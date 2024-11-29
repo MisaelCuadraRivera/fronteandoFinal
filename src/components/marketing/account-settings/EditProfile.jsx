@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Row, Col, Button, Image, InputGroup, FormControl } from 'react-bootstrap';
 import ProfileLayout from 'components/marketing/instructor/ProfileLayout'; // Asegúrate de ajustar la importación según tu estructura de archivos
-import Avatar3 from 'assets/images/avatar/emblema2.png'; 
+import Avatar3 from 'assets/images/avatar/emblema2.png';
+import Swal from "sweetalert2";
+
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
@@ -44,19 +46,39 @@ const EditProfile = () => {
   };
 
   // Manejador para el cambio de imagen
-  const handleImageChange = async (e) => {
-    if (e.target.files[0]) {
-      const file = e.target.files[0];
-      const base64 = await convertToBase64(file);
-
-      // Extrae solo la parte base64 de la cadena
-      const base64Data = base64.split(',')[1];
-
-      setUserData({
-        ...userData,
-        imagen: base64Data,
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+  
+    if (!file) {
+      Swal.fire({
+        icon: "error",
+        title: "Archivo no válido",
+        text: "Por favor selecciona un archivo.",
+        confirmButtonText: "Aceptar",
       });
+      return;
     }
+  
+    const validExtensions = ["image/jpeg", "image/png", "image/gif"];
+    if (!validExtensions.includes(file.type)) {
+      Swal.fire({
+        icon: "error",
+        title: "Formato no soportado",
+        text: "Selecciona una imagen en formato .jpg, .jpeg, .png o .gif.",
+        confirmButtonText: "Aceptar",
+      });
+      return;
+    }
+  
+    const reader = new FileReader();
+    reader.onload = () => {
+      // Incluir el prefijo correcto para que se guarde como `data:image/...`
+      setUserData((prev) => ({
+        ...prev,
+        imagen: reader.result,
+      }));
+    };
+    reader.readAsDataURL(file);
   };
 
   // Función para convertir imagen a Base64

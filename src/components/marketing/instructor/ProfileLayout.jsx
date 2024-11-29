@@ -34,7 +34,7 @@ const ProfileLayout = (props) => {
 		avatar: avatarSrc,
 		name: userData.name || "Nombre de Usuario",
 		username: userData.username || "correo@ejemplo.com",
-		linkname: "Crear curso",
+		linkname: "Proponer curso",
 		link: "/marketing/instructor/add-new-course/",
 	};
 	console.log("DashboardMenu:", DashboardMenu);
