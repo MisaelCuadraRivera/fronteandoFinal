@@ -12,7 +12,7 @@ import {
 } from "routes/marketing/InstructorDashboard";
 
 // import media files
-import Avatar1 from "assets/images/avatar/avatar-1.jpg";
+import Avatar1 from "assets/images/avatar/usuario.png";
 
 const ProfileLayout = (props) => {
 	const userDataString = localStorage.getItem("user");

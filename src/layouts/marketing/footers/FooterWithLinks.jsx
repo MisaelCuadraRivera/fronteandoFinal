@@ -91,14 +91,6 @@ const FooterWithLinks = () => {
 										01 800 050 UTEZ(8839)
 									</span>
 								</p>
-								<div className="d-flex">
-									<Link to="#">
-										<img src={AppStore} alt="" className="img-fluid" />
-									</Link>
-									<Link to="#" className="ms-2">
-										<img src={PlayStore} alt="" className="img-fluid" />
-									</Link>
-								</div>
 							</div>
 						</Col>
 					</Row>
