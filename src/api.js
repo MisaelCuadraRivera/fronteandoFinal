@@ -77,32 +77,7 @@ app.post("/signup", (req, res) => {
         console.error(err);
         res.status(500).send("Error al registrar el usuario");
       } else {
-        // El usuario se ha registrado con éxito, ahora enviar el correo electrónico de bienvenida
-        const sgMail = require("@sendgrid/mail");
-        sgMail.setApiKey(
-          "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"
-        ); // Configura esto de manera segura en producción
-
-        const msg = {
-          to: email, // Utiliza el correo electrónico del usuario recién registrado
-          from: "sigeca.utez@gmail.com", // Tu correo verificado en SendGrid
-          templateId: "d-167ccabda7464295914f0054e9274bfa",
-          subject: "Bienvenido a SIGECA",
-          // Aquí puedes añadir 'dynamic_template_data' si tu plantilla lo requiere
-        };
-
-        sgMail
-          .send(msg)
-          .then(() => {
-            console.log("Email sent");
-            res
-              .status(200)
-              .send("Usuario registrado con éxito y correo enviado");
-          })
-          .catch((error) => {
-            console.error(error);
-            res.status(500).send("Error al enviar el correo electrónico");
-          });
+        res.status(201).send("Usuario registrado con éxito");
       }
     }
   );
@@ -170,12 +145,6 @@ app.post("/create-course", (req, res) => {
 
     console.log(req.body)
 
-    // Valida los campos requeridos
-    
-
-    // Convierte la imagen en base64 a un buffer si está presente
-
-    // Construye la consulta SQL
     const query = `
       INSERT INTO cursos (title, category, level, description, applicant_requirements, image, instructor_id)
       VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -278,7 +247,7 @@ app.get("/students", (req, res) => {
 app.get("/instructors", (req, res) => {
   // Asegúrate de ajustar la consulta SQL según tu esquema de base de datos y tus necesidades
   const query = `
-      SELECT id, nombre, municipio, email, imagen AS image 
+      SELECT id, nombre, email, imagen AS image 
       FROM usuarios 
       WHERE utez_community = 'profesor'
   `;
@@ -295,6 +264,7 @@ app.get("/instructors", (req, res) => {
 
 app.post("/update-course-status", (req, res) => {
   const { id, status, precio } = req.body; // Asegúrate de recibir el precio aquí
+  console.log("Precio:", precio);
 
   if (status === "Aprobado" && precio != null) {
     const query = "UPDATE cursos SET status = ?, precio = ? WHERE id = ?";
@@ -404,13 +374,13 @@ app.delete("/students/:id", async (req, res) => {
 
 app.put("/students/:id", async (req, res) => {
   const { id } = req.params;
-  const { nombre, email, celular } = req.body;
+  const { nombre, email } = req.body;
   try {
     const [result] = await db
       .promise()
       .query(
-        "UPDATE usuarios SET nombre = ?, email = ?, celular = ? WHERE id = ?",
-        [nombre, email, celular, id]
+        "UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?",
+        [nombre, email, id]
       );
     if (result.affectedRows > 0) {
       res.status(200).send({ message: "Estudiante actualizado con éxito." });
@@ -425,14 +395,14 @@ app.put("/students/:id", async (req, res) => {
 
 app.put("/instructors/:id", async (req, res) => {
   const { id } = req.params;
-  const { nombre, email, celular } = req.body;
+  const { nombre, email} = req.body;
 
   try {
     await db
       .promise()
       .query(
-        "UPDATE usuarios SET nombre = ?, email = ?, celular = ? WHERE id = ?",
-        [nombre, email, celular, id]
+        "UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?",
+        [nombre, email, id]
       );
     res.send("Instructor actualizado con éxito");
   } catch (error) {
@@ -523,7 +493,7 @@ app.get("/user/profile", async (req, res) => {
     const [rows] = await db
       .promise()
       .query(
-        "SELECT nombre, apellidos, email, celular, fecha_nacimiento, estado, municipio, imagen FROM usuarios WHERE id = ?",
+        "SELECT nombre, apellidos, email, fecha_nacimiento, imagen FROM usuarios WHERE id = ?",
         [userId]
       );
 
@@ -547,10 +517,7 @@ app.put("/user/profile", async (req, res) => {
   const {
     nombre,
     apellidos,
-    celular,
     fecha_nacimiento,
-    estado,
-    municipio,
     imagen,
   } = req.body;
 
@@ -559,14 +526,11 @@ app.put("/user/profile", async (req, res) => {
     await db
       .promise()
       .query(
-        "UPDATE usuarios SET nombre = ?, apellidos = ?, celular = ?, fecha_nacimiento = ?, estado = ?, municipio = ?, imagen = ? WHERE id = ?",
+        "UPDATE usuarios SET nombre = ?, apellidos = ?, fecha_nacimiento = ?, imagen = ? WHERE id = ?",
         [
           nombre,
           apellidos,
-          celular,
           fecha_nacimiento,
-          estado,
-          municipio,
           imagen,
           userId,
         ]
@@ -947,27 +911,21 @@ app.get("/course-enrollments/:cursoId", verifyToken, async (req, res) => {
 });
 
 app.get("/api/mis-cursos", verifyToken, async (req, res) => {
-  const userId = req.userId; // Asegúrate de que el userId se obtiene correctamente, según tu autenticación
-
-  const query = `
-    SELECT c.* FROM cursos c
-    JOIN inscripciones i ON c.id = i.curso_id
-    WHERE i.usuario_id = ?;
-  `;
-  // Convertir las imágenes a base64
-  const courses = results.map((course) => ({
-    ...course,
-    image: course.image ? course.image.toString("base64") : null,
-  }));
+  const userId = req.userId; // Obtenido del token por el middleware verifyToken
 
   try {
+    const query = `
+      SELECT * FROM cursos 
+      WHERE instructor_id = ?;
+    `;
     const [rows] = await db.promise().query(query, [userId]);
     res.json(rows);
   } catch (error) {
-    console.error("Error al obtener los cursos inscritos:", error);
-    res.status(500).send("Error al obtener los cursos inscritos");
+    console.error("Error al obtener los cursos:", error);
+    res.status(500).send("Error al obtener los cursos");
   }
 });
+
 
 app.get("/api/estudiantes-inscritos", verifyToken, async (req, res) => {
   try {
@@ -1010,6 +968,143 @@ app.get("/api/instructor/students", verifyToken, (req, res) => {
         .json({ error: "Error fetching enrolled students" });
     }
     res.json(results);
+  });
+});
+
+app.post("/buildings", (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+      return res.status(400).send("El nombre del edificio es requerido.");
+  }
+
+  const query = "INSERT INTO buildings (name) VALUES (?)";
+  db.query(query, [name], (err, result) => {
+      if (err) {
+          console.error("Error al crear el edificio:", err);
+          return res.status(500).send("Error al crear el edificio.");
+      }
+      res.status(201).send("Edificio creado con éxito.");
+  });
+});
+
+
+app.get("/buildings", (req, res) => {
+  const query = "SELECT * FROM buildings ORDER BY created_at DESC";
+  db.query(query, (err, results) => {
+      if (err) {
+          console.error("Error al obtener los edificios:", err);
+          return res.status(500).send("Error al obtener los edificios.");
+      }
+      res.json(results);
+  });
+});
+
+
+app.put("/buildings/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  if (!name) {
+      return res.status(400).send("El nombre del edificio es requerido.");
+  }
+
+  const query = "UPDATE buildings SET name = ? WHERE id = ?";
+  db.query(query, [name, id], (err, result) => {
+      if (err) {
+          console.error("Error al actualizar el edificio:", err);
+          return res.status(500).send("Error al actualizar el edificio.");
+      }
+      if (result.affectedRows === 0) {
+          return res.status(404).send("Edificio no encontrado.");
+      }
+      res.send("Edificio actualizado con éxito.");
+  });
+});
+
+
+app.delete("/buildings/:id", (req, res) => {
+  const { id } = req.params;
+
+  const query = "DELETE FROM buildings WHERE id = ?";
+  db.query(query, [id], (err, result) => {
+      if (err) {
+          console.error("Error al eliminar el edificio:", err);
+          return res.status(500).send("Error al eliminar el edificio.");
+      }
+      if (result.affectedRows === 0) {
+          return res.status(404).send("Edificio no encontrado.");
+      }
+      res.send("Edificio eliminado con éxito.");
+  });
+});
+
+
+app.post("/rooms", (req, res) => {
+  const { name, buildingId } = req.body;
+
+  if (!name || !buildingId) {
+      return res.status(400).send("El nombre del salón y el ID del edificio son requeridos.");
+  }
+
+  const query = "INSERT INTO rooms (name, building_id) VALUES (?, ?)";
+  db.query(query, [name, buildingId], (err, result) => {
+      if (err) {
+          console.error("Error al crear el salón:", err);
+          return res.status(500).send("Error al crear el salón.");
+      }
+      res.status(201).send("Salón creado con éxito.");
+  });
+});
+
+app.get("/rooms/:buildingId", (req, res) => {
+  const { buildingId } = req.params;
+
+  const query = "SELECT * FROM rooms WHERE building_id = ? ORDER BY created_at DESC";
+  db.query(query, [buildingId], (err, results) => {
+      if (err) {
+          console.error("Error al obtener los salones:", err);
+          return res.status(500).send("Error al obtener los salones.");
+      }
+      res.json(results);
+  });
+});
+
+
+app.put("/rooms/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  if (!name) {
+      return res.status(400).send("El nombre del salón es requerido.");
+  }
+
+  const query = "UPDATE rooms SET name = ? WHERE id = ?";
+  db.query(query, [name, id], (err, result) => {
+      if (err) {
+          console.error("Error al actualizar el salón:", err);
+          return res.status(500).send("Error al actualizar el salón.");
+      }
+      if (result.affectedRows === 0) {
+          return res.status(404).send("Salón no encontrado.");
+      }
+      res.send("Salón actualizado con éxito.");
+  });
+});
+
+
+app.delete("/rooms/:id", (req, res) => {
+  const { id } = req.params;
+
+  const query = "DELETE FROM rooms WHERE id = ?";
+  db.query(query, [id], (err, result) => {
+      if (err) {
+          console.error("Error al eliminar el salón:", err);
+          return res.status(500).send("Error al eliminar el salón.");
+      }
+      if (result.affectedRows === 0) {
+          return res.status(404).send("Salón no encontrado.");
+      }
+      res.send("Salón eliminado con éxito.");
   });
 });
 

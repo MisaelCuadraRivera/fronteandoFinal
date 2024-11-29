@@ -20,8 +20,8 @@ const ProfileLayout = (props) => {
 	const avatarSrc = userData.avatar
 		? `data:image/jpeg;base64,${userData.avatar}`
 		: Avatar1;
-	const utez_community = localStorage.getItem("utez_community");
-	const location = useLocation();
+		const utez_community = (localStorage.getItem("utez_community") || "").trim();
+		const location = useLocation();
 	console.log("utez_community:", utez_community);
 	const handleLogout = () => {
 		console.log("Logging out...");
@@ -37,9 +37,12 @@ const ProfileLayout = (props) => {
 		linkname: "Crear curso",
 		link: "/marketing/instructor/add-new-course/",
 	};
+	console.log("DashboardMenu:", DashboardMenu);
+
 
 	const showDashboardMenu =
 		utez_community === "administrativo" || utez_community === "profesor";
+		console.log("showDashboardMenu:", showDashboardMenu); // Debería ser true
 	const showSettingsMenu =
 		utez_community === "estudiante" ||
 		utez_community === "egresado" ||
