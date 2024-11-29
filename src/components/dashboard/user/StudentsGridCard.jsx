@@ -5,6 +5,32 @@ import ReactPaginate from "react-paginate";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+// Imagen predeterminada si no hay una disponible
+const defaultImage = 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png';
+
+// Función para procesar imágenes
+const getImageSrc = (image) => {
+  try {
+    if (image && image.data) {
+      const base64HeaderPattern = /^data:image\/(jpeg|png|gif|webp);base64,/;
+      if (base64HeaderPattern.test(String.fromCharCode(...image.data))) {
+        return String.fromCharCode(...image.data);
+      }
+
+      // Si la imagen no está en base64, procesarla
+      const base64String = btoa(
+        String.fromCharCode(...new Uint8Array(image.data))
+      );
+      return `data:image/jpeg;base64,${base64String}`;
+    }
+  } catch (error) {
+    console.error("Error procesando la imagen:", error);
+  }
+
+  // Retornar imagen predeterminada si ocurre un error
+  return defaultImage;
+};
+
 const StudentsGridCard = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [editStudentData, setEditStudentData] = useState({
@@ -24,8 +50,12 @@ const StudentsGridCard = () => {
   const fetchStudents = async () => {
     try {
       const response = await axios.get("http://localhost:3001/students");
-      setStudents(response.data);
-      setPageCount(Math.ceil(response.data.length / studentsPerPage));
+      const processedStudents = response.data.map((student) => ({
+        ...student,
+        imagen: getImageSrc(student.imagen), // Procesar la imagen
+      }));
+      setStudents(processedStudents);
+      setPageCount(Math.ceil(processedStudents.length / studentsPerPage));
     } catch (error) {
       console.error("Error al cargar los estudiantes:", error);
     }
@@ -58,48 +88,45 @@ const StudentsGridCard = () => {
       setShowEditModal(false);
       fetchStudents();
       Swal.fire({
-        title: '¡Listo!',
-        text: 'Los datos del estudiante han sido actualizados correctamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
+        title: "¡Listo!",
+        text: "Los datos del estudiante han sido actualizados correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
       });
     } catch (error) {
       console.error("Error al actualizar el estudiante:", error);
       Swal.fire({
-        title: 'Error',
-        text: 'No se pudo actualizar la información del estudiante.',
-        icon: 'error',
-        confirmButtonText: 'Aceptar'
+        title: "Error",
+        text: "No se pudo actualizar la información del estudiante.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
       });
     }
   };
-
 
   const showDeleteConfirmation = (id) => {
     setStudentToDelete(id);
     setShowConfirmationModal(true);
   };
 
-  // Función que realmente elimina el estudiante
   const confirmDelete = async () => {
     try {
       await axios.delete(`http://localhost:3001/students/${studentToDelete}`);
-      setShowConfirmationModal(false); // Cierra el modal de confirmación
-      fetchStudents(); // Recarga la lista de estudiantes después de eliminar
+      setShowConfirmationModal(false);
+      fetchStudents();
       Swal.fire({
-        title: '¡Eliminado!',
-        text: 'El estudiante ha sido eliminado correctamente.',
-        icon: 'success',
-        confirmButtonText: 'Aceptar'
+        title: "¡Eliminado!",
+        text: "El estudiante ha sido eliminado correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
       });
-
     } catch (error) {
       console.error("Error al eliminar el estudiante:", error);
       Swal.fire({
-        title: 'Error',
-        text: 'No se pudo eliminar al estudiante.',
-        icon: 'error',
-        confirmButtonText: 'Aceptar'
+        title: "Error",
+        text: "No se pudo eliminar al estudiante.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
       });
     }
   };
@@ -116,9 +143,9 @@ const StudentsGridCard = () => {
             <div className="text-center">
               <div className="position-relative">
                 <Image
-                  src={`data:image/jpeg;base64,${student.imagen}` || 'https://cdn-icons-png.flaticon.com/512/6326/6326055.png'}
+                  src={student.imagen || defaultImage} // Imagen procesada o predeterminada
                   className="rounded-circle avatar-xl mb-3"
-                  alt=""
+                  alt="Avatar"
                 />
               </div>
               <h4 className="mb-0">{student.nombre}</h4>
@@ -163,7 +190,7 @@ const StudentsGridCard = () => {
     setSearchTerm(value);
 
     if (!value.trim()) {
-      fetchStudents(); // Recargar estudiantes si la búsqueda está vacía
+      fetchStudents();
       return;
     }
 
@@ -175,8 +202,8 @@ const StudentsGridCard = () => {
     );
 
     setStudents(filteredStudents);
-    setPageNumber(0); // Resetear a la primera página
-    setPageCount(Math.ceil(filteredStudents.length / studentsPerPage)); // Recalcular el total de páginas
+    setPageNumber(0);
+    setPageCount(Math.ceil(filteredStudents.length / studentsPerPage));
   };
 
   return (
@@ -239,7 +266,11 @@ const StudentsGridCard = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn-sm" variant="secondary" onClick={() => setShowEditModal(false)}>
+          <Button
+            className="btn-sm"
+            variant="secondary"
+            onClick={() => setShowEditModal(false)}
+          >
             Cancelar
           </Button>
           <Button className="btn-sm" variant="primary" onClick={handleEditStudent}>
@@ -269,7 +300,6 @@ const StudentsGridCard = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
     </Fragment>
   );
 };
