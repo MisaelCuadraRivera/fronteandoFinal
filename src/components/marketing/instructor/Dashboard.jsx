@@ -5,7 +5,7 @@ import { Row, Col, Card, Table, Image } from 'react-bootstrap';
 
 // import custom components
 import StatRightBadge from 'components/marketing/common/stats/StatRightBadge';
-
+ 
 // import profile layout wrapper
 import ProfileLayout from './ProfileLayout';
 
@@ -13,8 +13,7 @@ const Dashboard = () => {
 	const [studentCount, setStudentCount] = useState(0);
 	const [courseCount, setCourseCount] = useState(0);
 	const [bestSellingCourses, setBestSellingCourses] = useState([]);
-	const [enrolledStudents, setStudents] = useState([]); // Nuevo estado para los estudiantes inscritos
-
+	const [enrolledStudents, setStudents] = useState([]); 
 
 	useEffect(() => {
 		const fetchEnrolledStudents = async () => {
@@ -25,7 +24,7 @@ const Dashboard = () => {
 			});
 			if (response.ok) {
 				const data = await response.json();
-				setStudents(data); // Asumiendo que tienes un estado para estudiantes
+				setStudents(data); 
 				console.log(data);
 
 			} else {
@@ -36,10 +35,9 @@ const Dashboard = () => {
 
 
 		const fetchStudentCount = async () => {
-			// Agrega headers si es necesario para la autorización
 			const response = await fetch('http://localhost:3001/student-count', {
 				headers: {
-					'Authorization': `Bearer ${localStorage.getItem('token')}` // Asegúrate de tener el token en localStorage o manejarlo con un estado/contexto global
+					'Authorization': `Bearer ${localStorage.getItem('token')}`
 				}
 			});
 			const data = await response.json();
@@ -71,8 +69,7 @@ const Dashboard = () => {
 		fetchBestSellingCourses();
 		fetchEnrolledStudents();
 	}, []);
-	// The forwardRef is important!!
-	// Dropdown needs access to the DOM node in order to position the Menu
+
 	
 
 	return (
@@ -82,13 +79,13 @@ const Dashboard = () => {
 				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">
 					<StatRightBadge
 						title="Estudiantes"
-                        value={enrolledStudents.length.toString()} // Mostrar la cantidad de estudiantes inscritos
+                        value={enrolledStudents.length.toString()} 
 					/>
 				</Col>
 				<Col lg={6} md={12} sm={12} className="mb-4 mb-lg-0">
 					<StatRightBadge
 						title="Número de cursos"
-						value={courseCount.toString()} // Convertido a string para el componente
+						value={courseCount.toString()} 
 					/>
 				</Col>
 			</Row>
@@ -113,7 +110,7 @@ const Dashboard = () => {
 									<td className="align-middle border-top-0">
 										<Link to="#">
 											<div className="d-lg-flex align-items-center">
-												{/* Asegúrate de que item.image sea una cadena base64 válida */
+												{
 													<Image src={item.image} alt="" className="rounded img-4by3-lg" />}
 												<h5 className="mb-0 ms-lg-3 mt-lg-0 mt-2 text-primary-hover">
 													{item.title}

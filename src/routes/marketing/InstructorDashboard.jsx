@@ -41,7 +41,8 @@ export const AccountSettingsMenu = [
         id: 6,
         title: 'Cerrar Sesión',
         action: handleLogout,  // Agregar un manejo de acción para cerrar sesión
-        icon: 'power'
+        icon: 'power',
+        link: '/'
     }
 ];
 
