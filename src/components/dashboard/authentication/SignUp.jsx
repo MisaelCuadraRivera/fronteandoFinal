@@ -143,7 +143,6 @@ const SignUp = () => {
                     <option value="estudiante">Estudiante</option>
                     <option value="egresado">Egresado</option>
                     <option value="profesor">Docente</option>
-                    <option value="administrativo">Administrativo</option>
                     <option value="publico">Público</option>
                   </Form.Select>
                 </Col>
