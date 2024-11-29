@@ -8,20 +8,16 @@ import Swal from "sweetalert2";
 const BasicInformation = () => {
   const navigate = useNavigate();
 
-  // Estado único para manejar todos los campos del formulario
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     level: "",
     description: "",
     applicantRequirements: "",
-    courseImage: "",
   });
 
-  // Estado separado para manejar la imagen
   const [imageBase64, setImageBase64] = useState(null);
 
-  // Opciones de categoría y nivel
   const categoryOptions = [
     { value: "React", label: "React" },
     { value: "Javascript", label: "Javascript" },
@@ -37,7 +33,7 @@ const BasicInformation = () => {
     { value: "Avanzado", label: "Avanzado" },
   ];
 
-  // Manejador para los cambios en los inputs
+  // Manejar los cambios en los inputs del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -46,7 +42,7 @@ const BasicInformation = () => {
     }));
   };
 
-  // Manejador para la selección de imágenes
+  // Manejar la selección de imágenes y convertirlas a Base64
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
@@ -65,25 +61,24 @@ const BasicInformation = () => {
       Swal.fire({
         icon: "error",
         title: "Formato no soportado",
-        text: "Por favor selecciona un archivo en formato .jpg, .jpeg, .png o .gif.",
+        text: "Selecciona una imagen en formato .jpg, .jpeg, .png o .gif.",
         confirmButtonText: "Aceptar",
       });
       return;
     }
 
     const reader = new FileReader();
-    reader.onloadend = () => {
-      setImageBase64(reader.result.split(",")[1]);
+    reader.onload = () => {
+      // Incluir el prefijo correcto para que se guarde como `data:image/...`
+      setImageBase64(reader.result);
     };
-
     reader.readAsDataURL(file);
   };
 
-  // Manejador para enviar el formulario
+  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar campos requeridos
     if (!formData.category || !formData.level) {
       Swal.fire({
         icon: "error",
@@ -95,15 +90,9 @@ const BasicInformation = () => {
     }
 
     const payload = {
-      title: formData.title,
-      category: formData.category,
-      level: formData.level,
-      description: formData.description,
-      applicantRequirements: formData.applicantRequirements,
-      courseImage: imageBase64, // Verifica que imageBase64 tiene un valor válido
+      ...formData,
+      courseImage: imageBase64, // Enviar la imagen con el prefijo Base64
     };
-
-    console.log("Payload being sent:", payload);
 
     const token = localStorage.getItem("token");
 
@@ -111,10 +100,10 @@ const BasicInformation = () => {
       Swal.fire({
         icon: "warning",
         title: "Autenticación requerida",
-        text: "No estás autenticado. Por favor, inicia sesión.",
+        text: "Por favor inicia sesión.",
         confirmButtonText: "Ir al inicio de sesión",
       }).then(() => {
-        window.location.href = "/"; // Redirigir a la página de login
+        navigate("/");
       });
       return;
     }
@@ -146,7 +135,7 @@ const BasicInformation = () => {
       Swal.fire({
         icon: "error",
         title: "Error al crear el curso",
-        text: "No se pudo crear el curso. Por favor, inténtalo de nuevo.",
+        text: "Por favor, inténtalo de nuevo.",
         confirmButtonText: "Aceptar",
       });
     }
@@ -214,9 +203,6 @@ const BasicInformation = () => {
               value={formData.description}
               onChange={handleInputChange}
             />
-            <Form.Text className="text-muted">
-              Máximo 500 caracteres.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -224,11 +210,12 @@ const BasicInformation = () => {
             <Form.Control
               id="courseImage"
               type="file"
+              accept="image/*"
               onChange={handleImageChange}
             />
             <Form.Text className="text-muted">
-              Sube la imagen de tu curso aquí. Debe cumplir con los estándares
-              de calidad: 750x440 píxeles; .jpg, .jpeg, .gif o .png.
+              Sube la imagen de tu curso aquí. Debe cumplir con los estándares:
+              750x440 píxeles; .jpg, .jpeg, .gif o .png.
             </Form.Text>
           </Form.Group>
 
@@ -241,7 +228,6 @@ const BasicInformation = () => {
               value={formData.applicantRequirements}
               onChange={handleInputChange}
             />
-            <Form.Text className="text-muted">Máximo 60 caracteres.</Form.Text>
           </Form.Group>
         </Card.Body>
       </Card>

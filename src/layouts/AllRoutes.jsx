@@ -16,20 +16,21 @@ import Overview from 'components/dashboard/overview/Overview';
 // ** Import Courses Pages
 import AllCourses from 'components/dashboard/courses/all-courses/AllCourses';
 import CoursesCategory from 'components/dashboard/courses/CoursesCategory';
-import CategorySingle from 'components/dashboard/courses/CategorySingle';
+//import CategorySingle from 'components/dashboard/courses/CategorySingle';
 
 // ** Import Users Pages
 import Instructor from 'components/dashboard/user/Instructor';
 import Students from 'components/dashboard/user/Students';
 
 // ** Import CMS Pages
-import AllPosts from 'components/dashboard/cms/all-posts/AllPosts';
-import Category from 'components/dashboard/cms/Category';
+//import AllPosts from 'components/dashboard/cms/all-posts/AllPosts';
+// eventos: import Category from 'components/dashboard/cms/Category';
 
 // ** Import Authentication components
 import SignIn from 'components/dashboard/authentication/SignIn';
 import SignUp from 'components/dashboard/authentication/SignUp';
 import ForgetPassword from 'components/dashboard/authentication/ForgetPassword';
+import Prueba from 'components/dashboard/authentication/Prueba';
 
 // ** Boostrap Forms components
 import ChecksRadios from 'components/elements/bootstrap/forms/ChecksRadios';
@@ -75,17 +76,17 @@ import CourseCategory from 'components/marketing/pages/courses/course-category/C
 
 /* IMPORTS FOR FRONT SIDE PAGES MENU */
 import CourseSingle from 'components/marketing/pages/courses/course-single/CourseSingle';
-import CourseCheckout from 'components/marketing/pages/courses/course-checkout/CourseCheckout';
+//import CourseCheckout from 'components/marketing/pages/courses/course-checkout/CourseCheckout';
 import AddNewCourse from 'components/marketing/pages/courses/add-new-course/AddNewCourse';
-import CoursePath from 'components/marketing/pages/courses/course-path/CoursePath';
-import CoursePathSingle from 'components/marketing/pages/courses/course-path-single/CoursePathSingle';
-import Contact from 'components/marketing/pages/contact/Contact'; // new v1.1.0
+//import CoursePath from 'components/marketing/pages/courses/course-path/CoursePath';
+//import CoursePathSingle from 'components/marketing/pages/courses/course-path-single/CoursePathSingle';
+//import Contact from 'components/marketing/pages/contact/Contact'; // new v1.1.0
 
 /* IMPORTS FOR FRONT SPECIALTY SUBMENU  ROUTERS */
-import ComingSoon from 'components/marketing/pages/specialty/ComingSoon';
+// import ComingSoon from 'components/marketing/pages/specialty/ComingSoon';
 import Error404 from 'components/marketing/pages/specialty/Error404';
 import MaintenanceMode from 'components/marketing/pages/specialty/MaintenanceMode';
-import TermsAndConditions from 'components/marketing/pages/specialty/TermsAndConditions';
+//import TermsAndConditions from 'components/marketing/pages/specialty/TermsAndConditions';
 
 // Landing menu item pages
 import LandingCourses from 'components/marketing/landings/landing-courses/LandingCourses';
@@ -93,11 +94,21 @@ import LandingCourses from 'components/marketing/landings/landing-courses/Landin
 // Instructor Dashboard Pages
 import InstructorDashboard from 'components/marketing/instructor/Dashboard';
 import InstructorMyCourses from 'components/marketing/instructor/MyCourses';
-import InstructorReviews from 'components/marketing/instructor/Reviews';
-import Earnings from 'components/marketing/instructor/Earnings';
-import InstructorOrders from 'components/marketing/instructor/Orders';
+
+
+//import InstructorReviews from 'components/marketing/instructor/Reviews';
+
+
+//import Earnings from 'components/marketing/instructor/Earnings';
+
+// ordenes de cursos
+// import InstructorOrders from 'components/marketing/instructor/Orders';
+
 import InstructorStudents from 'components/marketing/instructor/Students';
+
+// 
 import ViewProfile from 'components/marketing/instructor/ViewProfile';
+
 
 
 
@@ -105,20 +116,28 @@ import ViewProfile from 'components/marketing/instructor/ViewProfile';
 import StudentDashboard from 'components/marketing/student/Dashboard';
 import DeleteProfile from 'components/marketing/account-settings/DeleteProfile';
 import EditProfile from 'components/marketing/account-settings/EditProfile';
-import LinkedAccounts from 'components/marketing/account-settings/LinkedAccounts';
+
+
+// import LinkedAccounts from 'components/marketing/account-settings/LinkedAccounts';
+
 import AccountNotifications from 'components/marketing/account-settings/Notifications';
-import StudentPayment from 'components/marketing/account-settings/Payment';
+
+// import StudentPayment from 'components/marketing/account-settings/Payment';
+
+//  necesario para la data
 import ProfilePrivacy from 'components/marketing/account-settings/ProfilePrivacy';
+
 import Security from 'components/marketing/account-settings/Security';
+
+// necesario para la data
 import SocialProfiles from 'components/marketing/account-settings/SocialProfiles';
-import Subscriptions from 'components/marketing/account-settings/Subscriptions';
+//import Subscriptions from 'components/marketing/account-settings/Subscriptions';
 
 
 // Account Settings
-import BillingInfo from 'components/marketing/account-settings/BillingInfo';
-import Payouts from 'components/marketing/account-settings/Payouts';
-import Invoice from 'components/marketing/account-settings/Invoice';
-import InvoiceDetails from 'components/marketing/account-settings/InvoiceDetails';
+
+//import Invoice from 'components/marketing/account-settings/Invoice';
+//import InvoiceDetails from 'components/marketing/account-settings/InvoiceDetails';
 
 
 
@@ -133,20 +152,8 @@ const AllRoutes = () => {
 					element={<CourseCategory />}
 				/>
 				<Route
-					path="/marketing/courses/course-checkout/"
-					element={<CourseCheckout />}
-				/>
-				<Route
 					path="/marketing/instructor/add-new-course/"
 					element={<AddNewCourse />}
-				/>
-				<Route
-					path="/marketing/courses/course-path/"
-					element={<CoursePath />}
-				/>
-				<Route
-					path="/marketing/courses/course-path-single/"
-					element={<CoursePathSingle />}
 				/>
 				<Route
 					path="/marketing/courses/course-single/"
@@ -161,48 +168,20 @@ const AllRoutes = () => {
 					element={<InstructorMyCourses />}
 				/>
 				<Route
-					path="/marketing/instructor/instructor-reviews/"
-					element={<InstructorReviews />}
-				/>
-				<Route
-					path="/marketing/instructor/instructor-earnings/"
-					element={<Earnings />}
-				/>
-				<Route
-					path="/marketing/instructor/instructor-orders/"
-					element={<InstructorOrders />}
-				/>
-				<Route
 					path="/marketing/instructor/instructor-students/"
 					element={<InstructorStudents />}
-				/>
-				<Route
-					path="/marketing/instructor/instructor-payouts/"
-					element={<Payouts />}
 				/>
 				<Route
 					path="/marketing/instructor/instructor-edit-profile/"
 					element={<EditProfile />}
 				/>
 				<Route
-					path="/marketing/instructor/instructor-profile/"
-					element={<ViewProfile />}
-				/>
-				<Route
 					path="/marketing/instructor/instructor-security/"
 					element={<Security />}
 				/>
 				<Route
-					path="/marketing/instructor/instructor-social-profiles/"
-					element={<SocialProfiles />}
-				/>
-				<Route
 					path="/marketing/instructor/instructor-notifications/"
 					element={<AccountNotifications />}
-				/>
-				<Route
-					path="/marketing/instructor/instructor-profile-privacy/"
-					element={<ProfilePrivacy />}
 				/>
 				<Route
 					path="/marketing/instructor/instructor-delete-profile/"
@@ -213,26 +192,8 @@ const AllRoutes = () => {
 					path="/marketing/student/dashboard/"
 					element={<StudentDashboard />}
 				/>
-				<Route
-					path="/marketing/student/student-subscriptions/"
-					element={<Subscriptions />}
-				/>
-				<Route
-					path="/marketing/student/student-billing-info/"
-					element={<BillingInfo />}
-				/>
-				<Route
-					path="/marketing/student/student-payment/"
-					element={<StudentPayment />}
-				/>
-				<Route
-					path="/marketing/student/student-invoice/"
-					element={<Invoice />}
-				/>
-				<Route
-					path="/marketing/student/student-invoice-details/"
-					element={<InvoiceDetails />}
-				/>
+				
+				
 				<Route
 					path="/marketing/student/student-edit-profile/"
 					element={<EditProfile />} /*------> Necesitamos cambiar esto*/
@@ -240,10 +201,6 @@ const AllRoutes = () => {
 				<Route
 					path="/marketing/student/student-security/"
 					element={<Security />}
-				/>
-				<Route
-					path="/marketing/student/student-social-profiles/"
-					element={<SocialProfiles />}
 				/>
 				<Route
 					path="/marketing/student/student-notifications/"
@@ -256,10 +213,6 @@ const AllRoutes = () => {
 				<Route
 					path="/marketing/student/student-delete-profile/"
 					element={<DeleteProfile />}
-				/>
-				<Route
-					path="/marketing/student/student-linked-accounts/"
-					element={<LinkedAccounts />}
 				/>
 				
 				<Route
@@ -274,20 +227,11 @@ const AllRoutes = () => {
 					path="/marketing/landings/landing-courses/"
 					element={<LandingCourses />}
 				/>
-
-				<Route path="/marketing/pages/contact/" element={<Contact />} />
-				<Route
-					path="/marketing/specialty/terms-and-conditions/"
-					element={<TermsAndConditions />}
-				/>
 			</Route>
 
 			{/* Routes with NotFound */}
 			<Route element={<NotFound />}>
-				<Route
-					path="/marketing/specialty/coming-soon/"
-					element={<ComingSoon />}
-				/>
+				
 				<Route path="/marketing/specialty/404-error/" element={<Error404 />} />
 				<Route
 					path="/marketing/specialty/maintenance-mode/"
@@ -300,6 +244,7 @@ const AllRoutes = () => {
 			<Route element={<AuthLayout />}>
 				<Route path="/authentication/sign-in" element={<SignIn />} />
 				<Route path="/authentication/sign-up" element={<SignUp />} />
+				<Route path='/authentication/prueba' element={<Prueba />}></Route>
 				<Route
 					path="/authentication/forget-password"
 					element={<ForgetPassword />}
@@ -313,11 +258,9 @@ const AllRoutes = () => {
 				<Route path="/dashboard/overview" element={<Overview />} />
 				<Route path="/courses/all-courses" element={<AllCourses />} />
 				<Route path="/courses/courses-category" element={<CoursesCategory />} />
-				<Route path="/courses/category-single" element={<CategorySingle />} />
 				<Route path="/user/instructor" element={<Instructor />} />
 				<Route path="/user/students" element={<Students />} />
-				<Route path="/cms/all-posts" element={<AllPosts />} />
-				<Route path="/cms/category" element={<Category />} />
+				
 				
 				<Route
 					path="/dashboard/layouts/layout-vertical"

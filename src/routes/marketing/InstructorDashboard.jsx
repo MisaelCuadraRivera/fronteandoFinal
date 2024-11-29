@@ -1,6 +1,21 @@
+import Swal from 'sweetalert2';
+
 const handleLogout = () => {
-    localStorage.removeItem('token'); // Elimina el token de autenticación
-    window.location.href = '/'; // Redirige al usuario a la página de inicio de sesión
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Se cerrará tu sesión actual.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Cerrar Sesión',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.clear(); // Elimina todos los elementos del localStorage
+            window.location.href = '/'; // Redirige al usuario al inicio de sesión u otra página
+        }
+    });
 };
 
 export const DashboardMenu = [

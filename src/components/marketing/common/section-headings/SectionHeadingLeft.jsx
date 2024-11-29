@@ -9,7 +9,7 @@ const SectionHeadingLeft = ({ title, subtitle, description }) => {
 		<Row>
 			<Col md={12}>
 				{subtitle && (
-					<span className=" mb-3 d-block text-uppercase fw-semi-bold ls-lg" style={{color:"#009475"}}>
+					<span className=" mb-3 d-block text-uppercase fw-semi-bold ls-lg" style={{color:"#00945"}}>
 						{subtitle}
 					</span>
 				)}

@@ -13,6 +13,29 @@ import GlobalFilter from "components/elements/advance-table/GlobalFilter";
 import Pagination from "components/elements/advance-table/Pagination";
 import ProfileLayout from "./ProfileLayout";
 
+const defaultImage = '/path-to-placeholder-image.jpg';
+
+// Función para procesar imágenes
+const getImageSrc = (image) => {
+  try {
+    if (image && image.data) {
+      const base64HeaderPattern = /^data:image\/(jpeg|png|gif|webp);base64,/;
+      if (base64HeaderPattern.test(String.fromCharCode(...image.data))) {
+        return String.fromCharCode(...image.data);
+      }
+
+      const base64String = btoa(
+        String.fromCharCode(...new Uint8Array(image.data))
+      );
+      return `data:image/jpeg;base64,${base64String}`;
+    }
+  } catch (error) {
+    console.error('Error procesando la imagen:', error);
+  }
+
+  return defaultImage;
+};
+
 const MyCourses = () => {
   const [filtering, setFiltering] = useState("");
   const [rowSelection, setRowSelection] = useState({});
@@ -21,13 +44,24 @@ const MyCourses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/cursos");
+        const token = localStorage.getItem("token"); 
+        const response = await fetch("http://localhost:3001/api/mis-cursos", {
+          headers: {
+            Authorization: `Bearer ${token}`, 
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setCoursesData(data);
-        console.log(data); // Esto te ayudará a ver qué estás recibiendo exactamente
+
+        const processedData = data.map((course) => ({
+          ...course,
+          image: getImageSrc(course.image),
+        }));
+        setCoursesData(processedData);
+
+        console.log(processedData);
       } catch (error) {
         console.error("Error fetching courses: ", error);
       }
@@ -35,6 +69,7 @@ const MyCourses = () => {
 
     fetchCourses();
   }, []);
+  
 
   const columns = useMemo(
     () => [
@@ -53,10 +88,10 @@ const MyCourses = () => {
         header: () => "Imagen",
         cell: (info) => (
           <Image
-            src={`data:image/jpeg;base64,${info.getValue()}`}
-            alt="Imagen del curso"
-            className="rounded img-4by3-lg"
-          />
+          src={info.getValue()} 
+          alt="Imagen del curso"
+          className="rounded img-4by3-lg"
+        />
         ),
       },
       {

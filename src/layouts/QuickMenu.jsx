@@ -19,7 +19,7 @@ const QuickMenu = () => {
 	});
 
 	const handleLogout = () => {
-        localStorage.removeItem('token'); // Borra el token de localStorage
+		localStorage.removeItem('token', 'user', 'utez_community','name','username','email');
         history.push('/authentication/sign-in'); // Redirige al usuario a la página de inicio de sesión
     };
 
