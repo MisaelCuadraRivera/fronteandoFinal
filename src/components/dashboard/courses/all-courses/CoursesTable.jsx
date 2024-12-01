@@ -6,6 +6,8 @@ import DotBadge from 'components/elements/bootstrap/DotBadge';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Icon from '@mdi/react';
+import { Trash, Edit } from 'react-feather';
 
 // Placeholder para cuando no haya imagen disponible
 const defaultImage = '/path-to-placeholder-image.jpg';
@@ -244,26 +246,47 @@ const CoursesTable = () => {
             </Fragment>
           );
         },
-      },
-      {
-        header: 'Opciones',
-        id: 'options',
-        cell: ({ row }) => (
-          <div>
-            <Button variant="outline-primary" className="me-2" onClick={() => handleEdit(row.original)}>
-              Editar
-            </Button>
-            <Button variant="outline-danger" onClick={() => handleDelete(row.original.id)}>
-              Eliminar
-            </Button>
-          </div>
-        ),
-      },
-    ],
-    [courses]
-  );
-
-  return (
+    },
+        {
+            header: 'Acciones',
+            id: 'actions',
+            cell: ({ row }) => {
+                const { id, status } = row.original;
+    
+                if (!status) return null; // Si no hay estado, no mostramos nada
+    
+                return (
+                    <Fragment>
+                        {status.toLowerCase() === 'pendiente' && (
+                            <Fragment>
+                                <Button onClick={() => handleApprove(id)} variant="success" className="me-2 btn-sm">
+                                    Aprobar
+                                </Button>
+                                <Button onClick={() => changeCourseStatus(id, 'rechazado')} variant="danger" className="btn-sm">
+                                    Rechazar
+                                </Button>
+                            </Fragment>
+                        )}
+                    </Fragment>
+                );
+            }
+        },
+        {
+            header: 'Opciones',
+            id: 'options',
+            cell: ({ row }) => (
+                <div>
+                    <Button variant="outline-primary" size='sm' className="me-2" onClick={() => handleEdit(row.original)}>
+                    <Edit size={16} />
+                    </Button>
+                    <Button variant="outline-danger" size='sm' onClick={() => handleDelete(row.original.id)}>
+                        <Trash size={16} />
+                    </Button>
+                </div>
+            )
+        }
+    
+    ], [courses]);
     <Fragment>
       <TanstackTable
         data={courses}
@@ -379,7 +402,6 @@ const CoursesTable = () => {
         </Modal.Footer>
       </Modal>
     </Fragment>
-  );
 };
 
 export default CoursesTable;

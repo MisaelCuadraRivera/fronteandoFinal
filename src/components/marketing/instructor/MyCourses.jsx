@@ -96,20 +96,12 @@ const MyCourses = () => {
       },
       {
         accessorKey: "status",
-        header: () => "Status",
-        cell: (info) => {
-          const status = info.getValue()?.toLowerCase();
-          let bg = "warning"; // Color amarillo por defecto para pendiente
-
-          if (status === "aprobado") bg = "success"; // Verde para aprobado
-          if (status === "rechazado") bg = "danger"; // Rojo para rechazado
-
-          return (
-            <Badge bg={bg}>
-              {info.getValue()}
-            </Badge>
-          );
-        },
+        header: () => "Estatus",
+        cell: (info) => (
+          <Badge bg={info.getValue() === "Active" ? "success" : "warning"}>
+            {info.getValue()}
+          </Badge>
+        ),
       },
     ],
     []

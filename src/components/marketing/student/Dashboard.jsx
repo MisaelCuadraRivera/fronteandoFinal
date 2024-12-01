@@ -47,7 +47,7 @@ const getImageSrc = (image) => {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
       .then(response => {
-        console.log("Cursos inscritos:", response.data); // Verifica los datos recibidos
+        console.log("Cursos inscritos:", response.data); 
         setCourses(response.data);
       })
       .catch(error => {

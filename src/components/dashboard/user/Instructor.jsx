@@ -2,8 +2,6 @@
 import { Fragment } from 'react';
 import { Col, Row, Card, Tab, Breadcrumb } from 'react-bootstrap';
 
-// import custom components
-import GridListViewButton from 'components/elements/miscellaneous/GridListViewButton';
 
 // import sub components
 import InstructorsGridView from './InstructorsGridCard';
@@ -20,7 +18,6 @@ const Instructor = () => {
 								<h1 className="mb-1 h2 fw-bold">
 									Instructores registrados
 								</h1>
-								
 							</div>
 						</div>
 					</Col>

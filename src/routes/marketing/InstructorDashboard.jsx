@@ -55,8 +55,9 @@ export const AccountSettingsMenu = [
     {
         id: 6,
         title: 'Cerrar Sesión',
-        action: handleLogout,  // Ahora incluye la alerta de confirmación
-        icon: 'power'
+        action: handleLogout,  // Agregar un manejo de acción para cerrar sesión
+        icon: 'power',
+        link: '/'
     }
 ];
 

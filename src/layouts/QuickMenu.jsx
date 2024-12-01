@@ -13,7 +13,7 @@ import DarkLightMode from 'layouts/DarkLightMode';
 import GKTippy from 'components/elements/tooltips/GKTippy';
 
 
-import NotificationList from 'data/Notification';
+
 
 const QuickMenu = () => {
 	const isDesktop = useMediaQuery({
