@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Col, Row, Container, Nav, Card, Tab, Image } from 'react-bootstrap';
-
+import Swal from 'sweetalert2';
 import CheckedMark from 'assets/images/svg/checked-mark.svg';
 
 // Placeholder para imagen por defecto
@@ -59,10 +59,26 @@ const CourseSingle = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         }
       );
-      alert('Inscripción realizada con éxito!');
+
+      // Mostrar éxito con SweetAlert2
+      Swal.fire({
+        title: 'Inscripción realizada',
+        text: '¡Te has inscrito correctamente en el curso!',
+        icon: 'success',
+        confirmButtonColor: '#042b61',
+        confirmButtonText: 'Aceptar',
+      });
     } catch (error) {
       console.error('Error durante la inscripción:', error.response?.data || error.message);
-      alert(error.response?.data || 'Ocurrió un error durante la inscripción.');
+
+      // Mostrar error con SweetAlert2
+      Swal.fire({
+        title: 'Error durante la inscripción',
+        text: error.response?.data || 'Ocurrió un error durante la inscripción.',
+        icon: 'error',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Aceptar',
+      });
     }
   };
 
