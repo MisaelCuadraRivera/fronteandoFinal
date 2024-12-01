@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Form, Row, Col, Button, Image, InputGroup, FormControl } from 'react-bootstrap';
-import ProfileLayout from 'components/marketing/instructor/ProfileLayout'; // Asegúrate de ajustar la importación según tu estructura de archivos
+import { Card, Form, Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
+import ProfileLayout from 'components/marketing/instructor/ProfileLayout';
 import Avatar3 from 'assets/images/avatar/emblema2.png';
 import Swal from "sweetalert2";
 
-
 const EditProfile = () => {
+  const MAX_IMAGE_SIZE = 83 * 1024; // Tamaño máximo permitido (83 KB)
+
   const [userData, setUserData] = useState({
     nombre: '',
     apellidos: '',
@@ -39,16 +40,17 @@ const EditProfile = () => {
     fetchUserData();
   }, []);
 
-  // Función para manejar cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  // Manejador para el cambio de imagen
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-  
+
     if (!file) {
       Swal.fire({
         icon: "error",
@@ -56,9 +58,10 @@ const EditProfile = () => {
         text: "Por favor selecciona un archivo.",
         confirmButtonText: "Aceptar",
       });
+      e.target.value = null;
       return;
     }
-  
+
     const validExtensions = ["image/jpeg", "image/png", "image/gif"];
     if (!validExtensions.includes(file.type)) {
       Swal.fire({
@@ -67,35 +70,31 @@ const EditProfile = () => {
         text: "Selecciona una imagen en formato .jpg, .jpeg, .png o .gif.",
         confirmButtonText: "Aceptar",
       });
+      e.target.value = null;
       return;
     }
-  
+
+    if (file.size > MAX_IMAGE_SIZE) {
+      Swal.fire({
+        icon: "error",
+        title: "Imagen demasiado pesada",
+        text: `El tamaño máximo permitido es 83 KB. La imagen seleccionada pesa ${(file.size / 1024).toFixed(2)} KB.`,
+        confirmButtonText: "Aceptar",
+      });
+      e.target.value = null;
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = () => {
-      // Incluir el prefijo correcto para que se guarde como `data:image/...`
       setUserData((prev) => ({
         ...prev,
-        imagen: reader.result,
+        imagen: reader.result, // Actualiza el estado solo si la imagen es válida
       }));
     };
     reader.readAsDataURL(file);
   };
 
-  // Función para convertir imagen a Base64
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  // Función para manejar la actualización del perfil
   const handleUpdateProfile = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem('token');
@@ -112,7 +111,7 @@ const EditProfile = () => {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json', // Asegúrate de incluir este encabezado
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(userProfileData),
       });
@@ -121,11 +120,20 @@ const EditProfile = () => {
         throw new Error('Error al actualizar los datos del usuario');
       }
 
-      alert('Perfil actualizado con éxito');
-      console.log('Perfil actualizado:', userProfileData);
+      Swal.fire({
+        icon: "success",
+        title: "Perfil actualizado",
+        text: "Los datos del perfil se han actualizado correctamente.",
+        confirmButtonText: "Aceptar",
+      });
     } catch (error) {
       console.error(error.message);
-      alert('Hubo un error al actualizar el perfil');
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un error al actualizar el perfil. Inténtalo nuevamente.",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
 
