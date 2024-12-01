@@ -37,12 +37,13 @@ const getImageSrc = (image) => {
 const CoursesTable = () => {
   const [courses, setCourses] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [salons, setSalons] = useState([]);
   const [showApproveModal, setShowApproveModal] = useState(false);
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [currentCourseId, setCurrentCourseId] = useState(null);
   const [precio, setPrecio] = useState('');
+  const [selectedSalon, setSelectedSalon] = useState('');
   const [editCourse, setEditCourse] = useState(null);
-
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -57,7 +58,19 @@ const CoursesTable = () => {
       }
     };
 
+    const fetchSalons = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/salons');
+        setSalons(response.data);
+      } catch (error) {
+        console.error('Error al cargar los salones:', error);
+      }
+    };
+
+    console.log('sslones', salons);
+
     fetchCourses();
+    fetchSalons();
   }, []);
 
   const handleDelete = async (courseId) => {
@@ -90,7 +103,9 @@ const CoursesTable = () => {
   };
 
   const handleCloseModal = () => {
+    setShowApproveModal(false);
     setShowEditModal(false);
+    setShowRejectModal(false);
     setEditCourse(null);
   };
 
@@ -116,9 +131,9 @@ const CoursesTable = () => {
     setCurrentCourseId(courseId);
   };
 
-  const changeCourseStatusWithPrice = async () => {
-    if (!precio) {
-      Swal.fire('Error', 'Por favor, introduce un precio para el curso.', 'error');
+  const changeCourseStatusWithPriceAndSalon = async () => {
+    if (!precio || !selectedSalon) {
+      Swal.fire('Error', 'Por favor, introduce un precio y selecciona un salón.', 'error');
       return;
     }
     try {
@@ -126,16 +141,19 @@ const CoursesTable = () => {
         id: currentCourseId,
         status: 'aprobado',
         precio: parseFloat(precio),
+        salonId: selectedSalon, // Enviar el salón seleccionado
       });
       setCourses(
         courses.map((course) =>
-          course.id === currentCourseId ? { ...course, status: 'aprobado', precio } : course
+          course.id === currentCourseId
+            ? { ...course, status: 'aprobado', precio, salon: selectedSalon }
+            : course
         )
       );
       setShowApproveModal(false);
-      Swal.fire('Éxito', 'Curso aprobado correctamente', 'success');
+      Swal.fire('Éxito', 'Curso aprobado y salón asignado correctamente', 'success');
     } catch (error) {
-      console.error('Error al cambiar el estado del curso:', error);
+      console.error('Error al aprobar el curso:', error);
       Swal.fire('Error', 'No se pudo aprobar el curso', 'error');
     }
   };
@@ -198,8 +216,8 @@ const CoursesTable = () => {
                 getValue()?.toLowerCase() === 'pendiente'
                   ? 'warning'
                   : getValue()?.toLowerCase() === 'aprobado'
-                  ? 'success'
-                  : 'danger'
+                    ? 'success'
+                    : 'danger'
               }
             />
             {getValue()}
@@ -256,9 +274,9 @@ const CoursesTable = () => {
       />
 
       {/* Modal para aprobar curso */}
-      <Modal show={showApproveModal} onHide={() => setShowApproveModal(false)}>
+      <Modal show={showApproveModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Asignar precio al curso</Modal.Title>
+          <Modal.Title>Aprobar Curso</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -271,13 +289,28 @@ const CoursesTable = () => {
                 onChange={(e) => setPrecio(e.target.value)}
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Asignar Salón</Form.Label>
+              <Form.Control
+                as="select"
+                value={selectedSalon}
+                onChange={(e) => setSelectedSalon(e.target.value)}
+              >
+                <option value="">Selecciona un salón</option>
+                {salons.map((salon) => (
+                  <option key={salon.room_id} value={salon.room_id}>
+                    {`${salon.room_name} (${salon.building_name})`}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowApproveModal(false)}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={changeCourseStatusWithPrice}>
+          <Button variant="primary" onClick={changeCourseStatusWithPriceAndSalon}>
             Guardar y Aprobar
           </Button>
         </Modal.Footer>

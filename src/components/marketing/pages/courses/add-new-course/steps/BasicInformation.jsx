@@ -33,6 +33,8 @@ const BasicInformation = () => {
     { value: "Avanzado", label: "Avanzado" },
   ];
 
+  const MAX_IMAGE_SIZE = 83 * 1024; // Tamaño máximo permitido (83 KB)
+
   // Manejar los cambios en los inputs del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,6 +55,7 @@ const BasicInformation = () => {
         text: "Por favor selecciona un archivo.",
         confirmButtonText: "Aceptar",
       });
+      e.target.value = null; // Reiniciar el campo de archivo
       return;
     }
 
@@ -64,13 +67,26 @@ const BasicInformation = () => {
         text: "Selecciona una imagen en formato .jpg, .jpeg, .png o .gif.",
         confirmButtonText: "Aceptar",
       });
+      e.target.value = null; // Reiniciar el campo de archivo
       return;
     }
 
+    // Verificar el tamaño del archivo (83 KB = 83 * 1024 bytes)
+    if (file.size > MAX_IMAGE_SIZE) {
+      Swal.fire({
+        icon: "error",
+        title: "Imagen demasiado pesada",
+        text: `El tamaño máximo permitido es 83 KB. La imagen seleccionada pesa ${(file.size / 1024).toFixed(2)} KB.`,
+        confirmButtonText: "Aceptar",
+      });
+      e.target.value = null; // Reiniciar el campo de archivo
+      return;
+    }
+
+    // Si pasa todas las validaciones, procesar el archivo
     const reader = new FileReader();
     reader.onload = () => {
-      // Incluir el prefijo correcto para que se guarde como `data:image/...`
-      setImageBase64(reader.result);
+      setImageBase64(reader.result); // Actualizar el estado solo si la imagen es válida
     };
     reader.readAsDataURL(file);
   };

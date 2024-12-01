@@ -56,7 +56,7 @@ const CourseCard = ({ course, viewby = 'grid', extraclass }) => {
           </Link>
         </h3>
         <h3 className="h4 mb-2 text-truncate-line-2">
-          <Link to={`/courses/${course.id}`} className="text-inherit">
+          <Link to={`/marketing/courses/course-single/${course.id}`} className="text-inherit">
             {course.description}
           </Link>
         </h3>
@@ -67,10 +67,14 @@ const CourseCard = ({ course, viewby = 'grid', extraclass }) => {
           </ListGroup.Item>
         </ListGroup>
         <div className="lh-1 mt-3">
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
           <span className="text-dark fw-bold">{course.precio}</span>
+          </Link>
         </div>
         <div className="lh-1 mt-3">
+        <Link to={`/marketing/courses/course-single/${course.id}`}>
           <span className="text-dark">{course.category}</span>
+          </Link>
         </div>
       </Card.Body>
       <Card.Footer>
@@ -83,7 +87,9 @@ const CourseCard = ({ course, viewby = 'grid', extraclass }) => {
             />
           </Col>
           <Col className="col ms-2">
+          <Link to={`/marketing/courses/course-single/${course.id}`}>
             <span>{course.instructor_name}</span>
+            </Link>
           </Col>
           <Col xs="auto">
             <GKTippy content="Add to Bookmarks">

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Row, Col, Image, Dropdown, ListGroup } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+
 
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
@@ -18,10 +20,24 @@ const QuickMenu = () => {
 		query: '(min-width: 1224px)'
 	});
 
+
 	const handleLogout = () => {
-		localStorage.removeItem('token', 'user', 'utez_community','name','username','email');
-        history.push('/authentication/sign-in'); // Redirige al usuario a la página de inicio de sesión
-    };
+		Swal.fire({
+			title: '¿Estás seguro?',
+			text: "Se cerrará tu sesión actual.",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#d33',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: 'Cerrar Sesión',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				localStorage.clear(); // Elimina todos los elementos del localStorage
+				window.location.href = '/'; // Redirige al usuario al inicio de sesión u otra página
+			}
+		});
+	};
 
 	const Notifications = () => {
 		return (
@@ -103,23 +119,23 @@ const QuickMenu = () => {
 									<Image
 										alt="avatar"
 										src="https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-utez.png"
-										
+
 										className="rounded-circle"
 									/>
 								</div>
 								<div className="ms-3 lh-1">
-									<h5 className="mb-1">Keila Lazalde</h5>
-									<p className="mb-0 text-muted">keilalazalde@utez.edu.mx</p>
+									<h5 className="mb-1">Administrador</h5>
+									<p className="mb-0 text-muted">admin@utez.edu.mx</p>
 								</div>
 							</div>
 						</Dropdown.Item>
 						<Dropdown.Divider />
 						<Dropdown.Divider />
-                        <Dropdown.Item as="div" className="mb-3">
-                            <Link to="/" className="dropdown-item" onClick={handleLogout}>
-                                <i className="fe fe-power me-2"></i> Cerrar Sesión
-                            </Link>
-                        </Dropdown.Item>
+						<Dropdown.Item as="div" className="mb-3">
+							<div className="dropdown-item" onClick={handleLogout}>
+								<i className="fe fe-power me-2"></i> Cerrar Sesión
+							</div>
+						</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</ListGroup>
