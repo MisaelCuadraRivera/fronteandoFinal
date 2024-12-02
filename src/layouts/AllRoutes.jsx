@@ -16,15 +16,12 @@ import Overview from 'components/dashboard/overview/Overview';
 // ** Import Courses Pages
 import AllCourses from 'components/dashboard/courses/all-courses/AllCourses';
 import CoursesCategory from 'components/dashboard/courses/CoursesCategory';
-//import CategorySingle from 'components/dashboard/courses/CategorySingle';
 
 // ** Import Users Pages
 import Instructor from 'components/dashboard/user/Instructor';
 import Students from 'components/dashboard/user/Students';
 
-// ** Import CMS Pages
-//import AllPosts from 'components/dashboard/cms/all-posts/AllPosts';
-// eventos: import Category from 'components/dashboard/cms/Category';
+
 
 // ** Import Authentication components
 import SignIn from 'components/dashboard/authentication/SignIn';
@@ -76,17 +73,11 @@ import CourseCategory from 'components/marketing/pages/courses/course-category/C
 
 /* IMPORTS FOR FRONT SIDE PAGES MENU */
 import CourseSingle from 'components/marketing/pages/courses/course-single/CourseSingle';
-//import CourseCheckout from 'components/marketing/pages/courses/course-checkout/CourseCheckout';
 import AddNewCourse from 'components/marketing/pages/courses/add-new-course/AddNewCourse';
-//import CoursePath from 'components/marketing/pages/courses/course-path/CoursePath';
-//import CoursePathSingle from 'components/marketing/pages/courses/course-path-single/CoursePathSingle';
-//import Contact from 'components/marketing/pages/contact/Contact'; // new v1.1.0
 
 /* IMPORTS FOR FRONT SPECIALTY SUBMENU  ROUTERS */
-// import ComingSoon from 'components/marketing/pages/specialty/ComingSoon';
 import Error404 from 'components/marketing/pages/specialty/Error404';
 import MaintenanceMode from 'components/marketing/pages/specialty/MaintenanceMode';
-//import TermsAndConditions from 'components/marketing/pages/specialty/TermsAndConditions';
 
 // Landing menu item pages
 import LandingCourses from 'components/marketing/landings/landing-courses/LandingCourses';
@@ -95,14 +86,6 @@ import LandingCourses from 'components/marketing/landings/landing-courses/Landin
 import InstructorDashboard from 'components/marketing/instructor/Dashboard';
 import InstructorMyCourses from 'components/marketing/instructor/MyCourses';
 
-
-//import InstructorReviews from 'components/marketing/instructor/Reviews';
-
-
-//import Earnings from 'components/marketing/instructor/Earnings';
-
-// ordenes de cursos
-// import InstructorOrders from 'components/marketing/instructor/Orders';
 
 import InstructorStudents from 'components/marketing/instructor/Students';
 
@@ -118,11 +101,9 @@ import DeleteProfile from 'components/marketing/account-settings/DeleteProfile';
 import EditProfile from 'components/marketing/account-settings/EditProfile';
 
 
-// import LinkedAccounts from 'components/marketing/account-settings/LinkedAccounts';
 
 import AccountNotifications from 'components/marketing/account-settings/Notifications';
 
-// import StudentPayment from 'components/marketing/account-settings/Payment';
 
 //  necesario para la data
 import ProfilePrivacy from 'components/marketing/account-settings/ProfilePrivacy';
@@ -131,13 +112,7 @@ import Security from 'components/marketing/account-settings/Security';
 
 // necesario para la data
 import SocialProfiles from 'components/marketing/account-settings/SocialProfiles';
-//import Subscriptions from 'components/marketing/account-settings/Subscriptions';
 
-
-// Account Settings
-
-//import Invoice from 'components/marketing/account-settings/Invoice';
-//import InvoiceDetails from 'components/marketing/account-settings/InvoiceDetails';
 
 
 
