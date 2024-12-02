@@ -6,7 +6,12 @@ import { Col, Row, Tab, Card, Nav, Breadcrumb } from 'react-bootstrap';
 // import sub custom components
 import CoursesTable from './CoursesTable';
 
-
+// import data files
+import {
+	allcourses,
+	allapprovedcourses,
+	allpendingcourses
+} from 'data/courses/AllCoursesData';
 
 const AllCourses = () => {
 	return (
