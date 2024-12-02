@@ -1,345 +1,407 @@
 import React, { Fragment, useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Image, Dropdown, Modal, Form } from 'react-bootstrap';
+import { Button, Image, Modal, Form } from 'react-bootstrap';
 import { XCircle, MoreVertical } from 'react-feather';
 import DotBadge from 'components/elements/bootstrap/DotBadge';
 import TanstackTable from 'components/elements/advance-table/TanstackTable';
-import axios from 'axios'; // Asegúrate de tener axios instalado
+import axios from 'axios';
 import Swal from 'sweetalert2';
+import Icon from '@mdi/react';
+import { Trash, Edit } from 'react-feather';
 
-const CoursesTable = ({ courses_data }) => {
+// Placeholder para cuando no haya imagen disponible
+const defaultImage = '/path-to-placeholder-image.jpg';
 
-    const [courses, setCourses] = useState([]);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [showApproveModal, setShowApproveModal] = useState(false);
-    const [currentCourseId, setCurrentCourseId] = useState(null);
-    const [precio, setPrecio] = useState('');
-    const [editCourse, setEditCourse] = useState(null);
+// Función para procesar imágenes
+const getImageSrc = (image) => {
+  try {
+    if (image && image.data) {
+      // Validar si la imagen ya está en formato base64
+      const base64HeaderPattern = /^data:image\/(jpeg|png|gif|webp);base64,/;
+      if (base64HeaderPattern.test(String.fromCharCode(...image.data))) {
+        return String.fromCharCode(...image.data);
+      }
 
+      // Si no está en base64, procesar el buffer
+      const base64String = btoa(
+        String.fromCharCode(...new Uint8Array(image.data))
+      );
+      return `data:image/jpeg;base64,${base64String}`;
+    }
+  } catch (error) {
+    console.error('Error procesando la imagen:', error);
+  }
 
-    useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                const response = await axios.get('http://localhost:3001/courses');
-                setCourses(response.data);
-                console.log(response.data); // Añade esto para inspeccionar los datos
-            } catch (error) {
-                console.error('Error al cargar los cursos:', error);
-            }
-        };
+  // Retornar imagen por defecto si algo falla
+  return defaultImage;
+};
 
-        fetchCourses();
-    }, []);
-
-    // Función para cambiar el estado del curso
-    const changeCourseStatus = async (courseId, newStatus) => {
-        // Aquí se asume que tu backend está configurado para recibir el ID del curso y el nuevo estado
-        // y actualizar el estado del curso en la base de datos.
-        try {
-            await axios.post('http://localhost:3001/update-course-status', {
-                id: courseId,
-                status: newStatus,
-            });
-            const updatedCourses = courses.map(course =>
-                course.id === courseId ? { ...course, status: newStatus } : course
-            );
-            setCourses(updatedCourses);
-        } catch (error) {
-            console.error('Error al cambiar el estado del curso:', error);
-        }
+const CoursesTable = () => {
+  const [courses, setCourses] = useState([]);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [salons, setSalons] = useState([]);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [currentCourseId, setCurrentCourseId] = useState(null);
+  const [precio, setPrecio] = useState('');
+  const [selectedSalon, setSelectedSalon] = useState('');
+  const [editCourse, setEditCourse] = useState(null);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/courses');
+        const coursesWithImages = response.data.map((course) => ({
+          ...course,
+          image: getImageSrc(course.image), // Procesar la imagen al obtener los datos
+        }));
+        setCourses(coursesWithImages);
+      } catch (error) {
+        console.error('Error al cargar los cursos:', error);
+      }
     };
 
-    const handleDelete = async (courseId) => {
-        const result = await Swal.fire({
-            title: '¿Estás seguro?',
-            text: "¿Deseas eliminar este curso?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar'
-        });
-    
-        if (result.isConfirmed) {
-            try {
-                await axios.delete(`http://localhost:3001/delete-course/${courseId}`);
-                // Actualizar el estado para remover el curso eliminado
-                const updatedCourses = courses.filter(course => course.id !== courseId);
-                setCourses(updatedCourses);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Curso eliminado',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            } catch (error) {
-                console.error(error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error al eliminar el curso',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        }
-    };
-    
-
-    const handleEdit = (course) => {
-        setEditCourse(course);
-        setShowEditModal(true);
+    const fetchSalons = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/salons');
+        setSalons(response.data);
+      } catch (error) {
+        console.error('Error al cargar los salones:', error);
+      }
     };
 
-    const handleCloseModal = () => {
-        setShowEditModal(false);
-        setEditCourse(null);
-    };
+    console.log('sslones', salons);
 
-    const handleSaveChanges = async () => {
-        if (!editCourse) return;
-        try {
-            await axios.put(`http://localhost:3001/update-course/${editCourse.id}`, editCourse);
-            const updatedCourses = courses.map(course =>
-                course.id === editCourse.id ? { ...course, ...editCourse } : course
-            );
-            setCourses(updatedCourses);
-            handleCloseModal();
-            Swal.fire({
-                icon: 'success',
-                title: 'Curso actualizado',
-                showConfirmButton: true,
-                timer: 2000
-            });
+    fetchCourses();
+    fetchSalons();
+  }, []);
 
+  const handleDelete = async (courseId) => {
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Deseas eliminar este curso?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+    });
 
-        } catch (error) {
-            console.error('Error al actualizar el curso:', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error al actualizar el curso',
-                showConfirmButton: true,
-                timer: 2000
-            });
-        }
-    };
+    if (result.isConfirmed) {
+      try {
+        await axios.delete(`http://localhost:3001/delete-course/${courseId}`);
+        setCourses(courses.filter((course) => course.id !== courseId));
+        Swal.fire('Eliminado', 'Curso eliminado correctamente', 'success');
+      } catch (error) {
+        console.error('Error al eliminar el curso:', error);
+        Swal.fire('Error', 'No se pudo eliminar el curso', 'error');
+      }
+    }
+  };
 
+  const handleEdit = (course) => {
+    setEditCourse(course);
+    setShowEditModal(true);
+  };
 
-    // Función para cambiar el estado del curso
-    const handleApprove = (courseId) => {
-        setShowApproveModal(true);
-        setCurrentCourseId(courseId);
-    };
+  const handleCloseModal = () => {
+    setShowApproveModal(false);
+    setShowEditModal(false);
+    setShowRejectModal(false);
+    setEditCourse(null);
+  };
 
-    const changeCourseStatusWithPrice = async () => {
-        if (!precio || !currentCourseId) {
-            alert("Por favor, introduce un precio para el curso.");
-            return;
-        }
-        try {
-            await axios.post('http://localhost:3001/update-course-status', {
-                id: currentCourseId,
-                status: 'aprobado',
-                precio: precio,
-            });
-            const updatedCourses = courses.map(course =>
-                course.id === currentCourseId ? { ...course, status: 'aprobado', precio: precio } : course
-            );
-            setCourses(updatedCourses);
-            handleCloseApproveModal();
-        } catch (error) {
-            console.error('Error al cambiar el estado del curso:', error);
-        }
-    };
+  const handleSaveChanges = async () => {
+    if (!editCourse) return;
+    try {
+      await axios.put(`http://localhost:3001/update-course/${editCourse.id}`, editCourse);
+      setCourses(
+        courses.map((course) =>
+          course.id === editCourse.id ? { ...course, ...editCourse } : course
+        )
+      );
+      handleCloseModal();
+      Swal.fire('Éxito', 'Curso actualizado correctamente', 'success');
+    } catch (error) {
+      console.error('Error al actualizar el curso:', error);
+      Swal.fire('Error', 'No se pudo actualizar el curso', 'error');
+    }
+  };
 
-    // The forwardRef is important!!
-    // Dropdown needs access to the DOM node in order to position the Menu
-    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-        <Link
-            to="#"
-            ref={ref}
-            onClick={(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
-            className="btn-icon btn btn-ghost btn-sm rounded-circle"
-        >
-            {children}
-        </Link>
-    ));
+  const handleApprove = (courseId) => {
+    setShowApproveModal(true);
+    setCurrentCourseId(courseId);
+  };
 
-    const ActionMenu = () => {
-        return (
-            <Dropdown>
-                <Dropdown.Toggle as={CustomToggle}>
-                    <MoreVertical size="15px" className="text-secondary" />
-                </Dropdown.Toggle>
-                <Dropdown.Menu align="end">
-                    <Dropdown.Header>Ajustes</Dropdown.Header>
-                    <Dropdown.Item eventKey="1">
-                        <XCircle size={14} className="me-1" /> Rechazar con comentarios
-                    </Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-        );
-    };
+  const changeCourseStatusWithPriceAndSalon = async () => {
+    if (!precio || !selectedSalon) {
+      Swal.fire('Error', 'Por favor, introduce un precio y selecciona un salón.', 'error');
+      return;
+    }
+    try {
+      await axios.post('http://localhost:3001/update-course-status', {
+        id: currentCourseId,
+        status: 'aprobado',
+        precio: parseFloat(precio),
+        salonId: selectedSalon, // Enviar el salón seleccionado
+      });
+      setCourses(
+        courses.map((course) =>
+          course.id === currentCourseId
+            ? { ...course, status: 'aprobado', precio, salon: selectedSalon }
+            : course
+        )
+      );
+      setShowApproveModal(false);
+      Swal.fire('Éxito', 'Curso aprobado y salón asignado correctamente', 'success');
+    } catch (error) {
+      console.error('Error al aprobar el curso:', error);
+      Swal.fire('Error', 'No se pudo aprobar el curso', 'error');
+    }
+  };
 
-    const columns = useMemo(() => [
-        {
-            header: 'Imagen',
-            accessorKey: 'image',
-            cell: info => <Image src={info.getValue()} alt="Imagen del curso" className="img-fluid rounded" style={{ width: '100px' }} />
-        },
-        {
-            header: 'Curso',
-            accessorKey: 'title', // Asegúrate de que 'title' coincide con la propiedad de tus datos
-            cell: info => info.getValue(),
-        },
-        {
-            header: 'Instructor',
-            accessorKey: 'instructor_name', // Asume una propiedad 'instructor_name' en tus datos
-            cell: info => info.getValue(),
-        },
-        {
-            header: 'Estado',
-            accessorKey: 'status',
-            cell: ({ getValue }) => (
+  const handleReject = (courseId) => {
+    setCurrentCourseId(courseId);
+    setShowRejectModal(true);
+  };
+
+  const confirmRejection = async () => {
+    try {
+      await axios.post('http://localhost:3001/update-course-status', {
+        id: currentCourseId,
+        status: 'rechazado',
+      });
+      setCourses(
+        courses.map((course) =>
+          course.id === currentCourseId ? { ...course, status: 'rechazado' } : course
+        )
+      );
+      setShowRejectModal(false);
+      Swal.fire('Rechazado', 'Curso rechazado correctamente', 'success');
+    } catch (error) {
+      console.error('Error al rechazar el curso:', error);
+      Swal.fire('Error', 'No se pudo rechazar el curso', 'error');
+    }
+  };
+
+  const columns = useMemo(
+    () => [
+      {
+        header: 'Imagen',
+        accessorKey: 'image',
+        cell: (info) => (
+          <Image
+            src={info.getValue()}
+            alt="Imagen del curso"
+            className="img-fluid rounded"
+            style={{ width: '100px' }}
+          />
+        ),
+      },
+      {
+        header: 'Curso',
+        accessorKey: 'title',
+        cell: (info) => info.getValue(),
+      },
+      {
+        header: 'Instructor',
+        accessorKey: 'instructor_name',
+        cell: (info) => info.getValue(),
+      },
+      {
+        header: 'Estado',
+        accessorKey: 'status',
+        cell: ({ getValue }) => (
+          <Fragment>
+            <DotBadge
+              bg={
+                getValue()?.toLowerCase() === 'pendiente'
+                  ? 'warning'
+                  : getValue()?.toLowerCase() === 'aprobado'
+                    ? 'success'
+                    : 'danger'
+              }
+            />
+            {getValue()}
+          </Fragment>
+        ),
+      },
+      {
+        header: 'Acciones',
+        id: 'actions',
+        cell: ({ row }) => {
+          const { id, status } = row.original;
+          return (
+            <Fragment>
+              {status.toLowerCase() === 'pendiente' && (
                 <Fragment>
-                    <DotBadge
-                        bg={
-                            getValue().toLowerCase() === 'pendiente'
-                                ? 'warning'
-                                : getValue().toLowerCase() === 'aprobado'
-                                    ? 'success'
-                                    : 'danger' // Asume 'rechazado' como rojo/danger
-                        }
-                    />
-                    {getValue()}
+                  <Button onClick={() => handleApprove(id)} variant="success" className="me-2 btn-sm">
+                    Aprobar
+                  </Button>
+                  <Button onClick={() => handleReject(id)} variant="danger" className="btn-sm">
+                    Rechazar
+                  </Button>
                 </Fragment>
-            )
+              )}
+            </Fragment>
+          );
         },
+    },
         {
             header: 'Acciones',
             id: 'actions',
-            cell: ({ row }) => (
-                <Fragment>
-                    {row.original.status === 'Pendiente' && (
-                        <Fragment>
-                            <Button onClick={() => handleApprove(row.original.id)} variant="success" className="me-2 btn-sm">
-                                Aprobar
-                            </Button>
-
-                            <Button onClick={() => changeCourseStatus(row.original.id, 'rechazado')} variant="danger" className="btn-sm">
-                                Rechazar
-                            </Button>
-                        </Fragment>
-                    )}
-                </Fragment>
-            )
+            cell: ({ row }) => {
+                const { id, status } = row.original;
+    
+                if (!status) return null; // Si no hay estado, no mostramos nada
+    
+                return (
+                    <Fragment>
+                        {status.toLowerCase() === 'pendiente' && (
+                            <Fragment>
+                                <Button onClick={() => handleApprove(id)} variant="success" className="me-2 btn-sm">
+                                    Aprobar
+                                </Button>
+                                <Button onClick={() => changeCourseStatus(id, 'rechazado')} variant="danger" className="btn-sm">
+                                    Rechazar
+                                </Button>
+                            </Fragment>
+                        )}
+                    </Fragment>
+                );
+            }
         },
         {
             header: 'Opciones',
             id: 'options',
             cell: ({ row }) => (
                 <div>
-                    <Button variant="outline-primary" className="me-2" onClick={() => handleEdit(row.original)}>
-                        Editar
+                    <Button variant="outline-primary" size='sm' className="me-2" onClick={() => handleEdit(row.original)}>
+                    <Edit size={16} />
                     </Button>
-                    <Button variant="outline-danger" onClick={() => handleDelete(row.original.id)}>
-                        Eliminar
+                    <Button variant="outline-danger" size='sm' onClick={() => handleDelete(row.original.id)}>
+                        <Trash size={16} />
                     </Button>
                 </div>
             )
         }
+    
+    ], [courses]);
+    <Fragment>
+      <TanstackTable
+        data={courses}
+        columns={columns}
+        filter={true}
+        filterPlaceholder="Buscar Cursos"
+        pagination={true}
+      />
 
-    ], [courses, changeCourseStatus]);
+      {/* Modal para aprobar curso */}
+      <Modal show={showApproveModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Aprobar Curso</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Introduce el precio del curso"
+                value={precio}
+                onChange={(e) => setPrecio(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Asignar Salón</Form.Label>
+              <Form.Control
+                as="select"
+                value={selectedSalon}
+                onChange={(e) => setSelectedSalon(e.target.value)}
+              >
+                <option value="">Selecciona un salón</option>
+                {salons.map((salon) => (
+                  <option key={salon.room_id} value={salon.room_id}>
+                    {`${salon.room_name} (${salon.building_name})`}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={changeCourseStatusWithPriceAndSalon}>
+            Guardar y Aprobar
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-    const data = useMemo(() => courses, [courses]);
+      {/* Modal para rechazar curso */}
+      <Modal show={showRejectModal} onHide={() => setShowRejectModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Rechazo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>¿Estás seguro de que quieres rechazar este curso?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowRejectModal(false)}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={confirmRejection}>
+            Confirmar Rechazo
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-
-    return (
-        <Fragment>
-            <TanstackTable
-                data={data}
-                columns={columns}
-                filter={true}
-                filterPlaceholder="Buscar Cursos"
-                pagination={true} />
-            <Modal show={showApproveModal} onHide={() => setShowApproveModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Asignar precio al curso</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>Precio</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Introduce el precio del curso"
-                                value={precio}
-                                onChange={(e) => setPrecio(e.target.value)}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowApproveModal(false)}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={changeCourseStatusWithPrice}>
-                        Guardar y Aprobar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            <Modal show={showEditModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{editCourse ? "Editar Curso" : "Agregar Nuevo Curso"}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Título</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Introduce el título del curso"
-                                value={editCourse?.title || ''}
-                                onChange={(e) => setEditCourse({ ...editCourse, title: e.target.value })}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Descripción</Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                placeholder="Descripción del curso"
-                                value={editCourse?.description || ''}
-                                onChange={(e) => setEditCourse({ ...editCourse, description: e.target.value })}
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Precio</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Precio del curso"
-                                value={editCourse?.precio || ''}
-                                onChange={(e) => setEditCourse({ ...editCourse, precio: e.target.value })}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={handleSaveChanges}>
-                        Guardar cambios
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-
-        </Fragment>
-    );
+      {/* Modal para editar curso */}
+      <Modal show={showEditModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{editCourse ? 'Editar Curso' : 'Agregar Nuevo Curso'}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Label>Título</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Introduce el título del curso"
+                value={editCourse?.title || ''}
+                onChange={(e) => setEditCourse({ ...editCourse, title: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Descripción del curso"
+                value={editCourse?.description || ''}
+                onChange={(e) => setEditCourse({ ...editCourse, description: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Precio del curso"
+                value={editCourse?.precio || ''}
+                onChange={(e) => setEditCourse({ ...editCourse, precio: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={handleSaveChanges}>
+            Guardar Cambios
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Fragment>
 };
 
 export default CoursesTable;

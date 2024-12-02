@@ -1,12 +1,8 @@
 // import node module libraries
 import { Card, Tab } from 'react-bootstrap';
 
-// import custom components
-import GridListViewButton from 'components/elements/miscellaneous/GridListViewButton';
-
 // import sub components
 import StudentsGridCard from './StudentsGridCard';
-import StudentsListCard from './StudentsListCard';
 
 // import profile layout wrapper
 import ProfileLayout from './ProfileLayout';

@@ -66,10 +66,6 @@ import Tables from 'components/elements/bootstrap/Tables';
 import Toasts from 'components/elements/bootstrap/Toasts';
 import Tooltips from 'components/elements/bootstrap/Tooltips';
 
-// ** Import docs and change log pages
-
-/* ----------------------------------- */
-/* IMPORTS FOR MARKETING PAGES - START */
 import DefaultLayout from 'layouts/marketing/DefaultLayout';
 import BlankLayout from 'layouts/marketing/BlankLayout';
 import NotFound from 'layouts/marketing/NotFound';

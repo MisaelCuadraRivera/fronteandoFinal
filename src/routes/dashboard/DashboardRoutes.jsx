@@ -19,7 +19,7 @@ export const DashboardMenu = [
 			{
 				id: uuid(),
 				link: '/courses/courses-category',
-				name: 'Categoria de cursos'
+				name: 'Salones'
 			},
 		]
 	},
