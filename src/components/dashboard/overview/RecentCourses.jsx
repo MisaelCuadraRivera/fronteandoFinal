@@ -5,8 +5,6 @@ import { Col, Row, Card, ListGroup, Dropdown, Image } from 'react-bootstrap';
 import axios from 'axios';
 
 
-// import data files
-import { allcourses } from 'data/courses/AllCoursesData';
 
 const RecentCourses = ({ title }) => {
 	const [courses, setCourses] = useState([]);
