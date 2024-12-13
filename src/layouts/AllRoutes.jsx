@@ -131,6 +131,7 @@ import Security from 'components/marketing/account-settings/Security';
 
 // necesario para la data
 import SocialProfiles from 'components/marketing/account-settings/SocialProfiles';
+import AreasofKnowledge from 'components/dashboard/user/AreasofKnowledge';
 //import Subscriptions from 'components/marketing/account-settings/Subscriptions';
 
 
@@ -260,6 +261,7 @@ const AllRoutes = () => {
 				<Route path="/courses/courses-category" element={<CoursesCategory />} />
 				<Route path="/user/instructor" element={<Instructor />} />
 				<Route path="/user/students" element={<Students />} />
+				<Route path="/user/areasKnowledge" element={<AreasofKnowledge />} />
 				
 				
 				<Route

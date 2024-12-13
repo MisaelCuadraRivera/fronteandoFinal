@@ -32,6 +32,16 @@ export const DashboardMenu = [
 			{ id: uuid(), link: '/user/students', name: 'Estudiantes' }
 		]
 	},
+	{
+		id: uuid(),
+		title: 'Áreas de conocimiento',
+		icon: 'layers',
+		children: [
+			{ id: uuid(), link: '/user/areasKnowledge', name: 'Áreas de conocimiento' },
+			
+		]
+	},
+
 ];
 
 export default DashboardMenu;

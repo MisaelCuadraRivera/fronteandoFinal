@@ -25,29 +25,7 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 	</Link>
 ));
 
-const ChartActionMenu = () => {
-	return (
-		<div>
-			<Dropdown>
-				<Dropdown.Toggle as={CustomToggle}>
-					<i className="fe fe-more-vertical text-muted"></i>
-				</Dropdown.Toggle>
-				<Dropdown.Menu align="end">
-					<Dropdown.Header>Opciones</Dropdown.Header>
-					<Dropdown.Item eventKey="1">
-						<i className="fe fe-external-link dropdown-item-icon "></i> Exportar
-					</Dropdown.Item>
-					<Dropdown.Item eventKey="2">
-						<i className="fe fe-mail dropdown-item-icon "></i> Reporte
-					</Dropdown.Item>
-					<Dropdown.Item eventKey="3">
-						<i className="fe fe-download dropdown-item-icon "></i> Descargar
-					</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
-		</div>
-	);
-};
+
 
 const Overview = () => {
 	const [ventas, setVentas] = useState('Cargando...');
